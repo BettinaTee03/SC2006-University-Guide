@@ -1,3 +1,5 @@
+import { config } from 'dotenv';
+config();
 import express, { Request, Response } from 'express';
 import mongoose from 'mongoose';
 import cookieParser from "cookie-parser";
@@ -17,9 +19,7 @@ app.post("/login", async (req: Request , res: Response) => {
     res.json(createdUser);
 });
 
-mongoose.connect(
-    "mongodb+srv://sc2006:nQmsgZ5pqwvrqLwK@sc2006.s0zqzfc.mongodb.net/?retryWrites=true&w=majority"
-).then(() => {
+mongoose.connect(process.env.MONGO_URL!).then(() => {
     console.log(`Connected to database on port ${PORT}`);
     app.listen(PORT);
 });
