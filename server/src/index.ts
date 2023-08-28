@@ -4,10 +4,15 @@ import express, { Request, Response } from 'express';
 import mongoose from 'mongoose';
 import cookieParser from "cookie-parser";
 import UserModel from './models/User';
+import cors from 'cors';
 
 const PORT = 8000;
+
 const app = express();
 
+app.use(cors({
+    origin: "*",
+}));
 app.use(express.json()); // allow for json post requests
 
 app.post("/login", async (req: Request , res: Response) => {
