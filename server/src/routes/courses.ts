@@ -60,7 +60,7 @@ router.post('/:course/submit', async (req: Request, res: Response) => {
     try {
         const userAspiration = req.body.aspiration;
         const userCourse = req.params.course;
-
+        
         // Format the prompt with user input
         const input = await prompt.format({
             aspiration: userAspiration,
