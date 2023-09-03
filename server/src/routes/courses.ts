@@ -5,6 +5,8 @@ import { OpenAI } from "langchain/llms/openai";
 import { PromptTemplate } from 'langchain/prompts';
 import { StructuredOutputParser } from 'langchain/output_parsers';
 import CourseModel from '../models/Course';
+import EmploymentModel from '../models/Employment';
+import IntakeModel from '../models/Intake';
 const router = express.Router();
 router.use(express.json());
 
@@ -87,6 +89,30 @@ router.post('/:course', async (req: Request, res: Response) => {
         res.json(course);
     } catch (error) {
         res.status(500).send("Error retrieving course.");
+    }
+});
+
+router.post('/:degree/employment', async (req: Request, res: Response) => {
+    try {
+        const employment = await EmploymentModel.findOne({ degree: decodeURIComponent(req.params.degree) });
+        if (!employment) {
+            return res.status(400).send("Employment does not exist.");
+        }
+        res.json(employment);
+    } catch (error) {
+        res.status(500).send("Error retrieving employment.");
+    }
+});
+
+router.post('/:course/intake', async (req: Request, res: Response) => {
+    try {
+        const intake = await IntakeModel.findOne({ course: decodeURIComponent(req.params.course) });
+        if (!intake) {
+            return res.status(400).send("Intake does not exist.");
+        }
+        res.json(intake);
+    } catch (error) {
+        res.status(500).send("Error retrieving intake.");
     }
 });
 
