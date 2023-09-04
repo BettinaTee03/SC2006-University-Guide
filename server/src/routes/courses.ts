@@ -4,7 +4,7 @@ import express, { Request, Response } from 'express';
 import { OpenAI } from "langchain/llms/openai";
 import { PromptTemplate } from 'langchain/prompts';
 import { StructuredOutputParser } from 'langchain/output_parsers';
-import CourseModel from '../models/Course';
+import { CourseModel, searchCourses } from '../models/Course';
 import EmploymentModel from '../models/Employment';
 import IntakeModel from '../models/Intake';
 const router = express.Router();
@@ -82,7 +82,7 @@ router.post('/:course/submit', async (req: Request, res: Response) => {
 
 router.post('/:course', async (req: Request, res: Response) => {
     try {
-        const course = await CourseModel.findOne({ course_name: decodeURIComponent(req.params.course) });
+        const course = await CourseModel.findOne({ course_name: decodeURIComponent(req.params.course)});
         if (!course) {
             return res.status(400).send("Course does not exist.");
         }
@@ -94,7 +94,8 @@ router.post('/:course', async (req: Request, res: Response) => {
 
 router.post('/:degree/employment', async (req: Request, res: Response) => {
     try {
-        const employment = await EmploymentModel.findOne({ degree: decodeURIComponent(req.params.degree) });
+        const employment = await EmploymentModel.findOne({ degree: decodeURIComponent(req.params.degree),
+                                                            year: req.body.year });
         if (!employment) {
             return res.status(400).send("Employment does not exist.");
         }
@@ -106,13 +107,24 @@ router.post('/:degree/employment', async (req: Request, res: Response) => {
 
 router.post('/:course/intake', async (req: Request, res: Response) => {
     try {
-        const intake = await IntakeModel.findOne({ course: decodeURIComponent(req.params.course) });
+        const intake = await IntakeModel.findOne({ course: decodeURIComponent(req.params.course),
+                                                    year: req.body.year });
         if (!intake) {
             return res.status(400).send("Intake does not exist.");
         }
         res.json(intake);
     } catch (error) {
         res.status(500).send("Error retrieving intake.");
+    }
+});
+
+router.get('/search', async (req, res) => {
+    try {
+        const query = req.query.q as string;
+        const results = await searchCourses(query);
+        res.json(results);
+    } catch (error) {
+        res.status(500).json({ message: "An error occurred during the search." });
     }
 });
 
