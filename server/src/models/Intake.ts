@@ -11,5 +11,5 @@ const IntakeEnrolment = new Schema({
     graduates: { type: Number, required: true },
 });
 
-const IntakeModel = mongoose.model("universityintakeenrolments", IntakeEnrolment);
+const IntakeModel = mongoose.model("universityintakeenrolment", IntakeEnrolment);
 export default IntakeModel;

@@ -11,7 +11,7 @@ const CourseInfo = new Schema({
     course_duration: { type: String, required: true },
 });
 
-const CourseModel = mongoose.model("courses", CourseInfo);
+const CourseModel = mongoose.model("course", CourseInfo);
 
 // Function to perform autocomplete search
 async function searchCourses(query: string) {

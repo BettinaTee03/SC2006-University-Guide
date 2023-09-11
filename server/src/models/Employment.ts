@@ -17,5 +17,5 @@ const GraduateEmployment = new Schema({
     gross_mthly_75_percentile: { type: Number, required: true },
 });
 
-const EmploymentModel = mongoose.model("graduateemploymentsurveys", GraduateEmployment);
+const EmploymentModel = mongoose.model("graduateemploymentsurvey", GraduateEmployment);
 export default EmploymentModel;
