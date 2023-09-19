@@ -14,7 +14,7 @@ const CourseInfo = new Schema({
 const CourseModel = mongoose.model("course", CourseInfo);
 
 // Function to perform autocomplete search
-async function searchCourses(query: string) {
+async function searchCourses(query) {
     // Define the aggregation pipeline for autocomplete
     const agg = [
             {

@@ -1,17 +1,17 @@
 import { config } from 'dotenv';
 config();
-import express, { Request, Response } from 'express';
+import express from 'express';
 import { OpenAI } from "langchain/llms/openai";
 import { PromptTemplate } from 'langchain/prompts';
 import { StructuredOutputParser } from 'langchain/output_parsers';
-import { CourseModel, searchCourses } from '../models/Course';
-import EmploymentModel from '../models/Employment';
-import IntakeModel from '../models/Intake';
+import { CourseModel, searchCourses } from '../models/Course.js';
+import EmploymentModel from '../models/Employment.js';
+import IntakeModel from '../models/Intake.js';
 const router = express.Router();
 router.use(express.json());
 
 const llm = new OpenAI({
-    openAIApiKey: process.env.OPENAI_API_KEY!,
+    openAIApiKey: process.env.OPENAI_API_KEY,
     modelName: "gpt-3.5-turbo",
     temperature: 0.7,
  });
@@ -58,7 +58,7 @@ const prompt = new PromptTemplate({
     partialVariables: { format_instructions: formatInstructions },
 });
 
-router.post('/:course/submit', async (req: Request, res: Response) => {
+router.post('/:course/submit', async (req, res) => {
     try {
         const userAspiration = req.body.aspiration;
         const userCourse = req.params.course;
@@ -80,7 +80,7 @@ router.post('/:course/submit', async (req: Request, res: Response) => {
     }
 });
 
-router.post('/:course', async (req: Request, res: Response) => {
+router.post('/:course', async (req, res) => {
     try {
         const course = await CourseModel.findOne({ course_name: decodeURIComponent(req.params.course)});
         if (!course) {
@@ -92,7 +92,7 @@ router.post('/:course', async (req: Request, res: Response) => {
     }
 });
 
-router.post('/:degree/employment', async (req: Request, res: Response) => {
+router.post('/:degree/employment', async (req, res) => {
     try {
         const employment = await EmploymentModel.findOne({ degree: decodeURIComponent(req.params.degree),
                                                             year: req.body.year });
@@ -105,7 +105,7 @@ router.post('/:degree/employment', async (req: Request, res: Response) => {
     }
 });
 
-router.post('/:course/intake', async (req: Request, res: Response) => {
+router.post('/:course/intake', async (req, res) => {
     try {
         const intake = await IntakeModel.findOne({ course: decodeURIComponent(req.params.course),
                                                     year: req.body.year });
@@ -120,7 +120,7 @@ router.post('/:course/intake', async (req: Request, res: Response) => {
 
 router.get('/search', async (req, res) => {
     try {
-        const query = req.query.q as string;
+        const query = req.query.q;
         const results = await searchCourses(query);
         res.json(results);
     } catch (error) {
