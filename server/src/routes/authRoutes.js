@@ -1,55 +1,20 @@
 import express from 'express';
+import authController from '../controllers/authController.js';
+import googleAuthController from '../controllers/googleAuthController.js';
 const router = express.Router();
-import UserModel from '../models/User.js';
-import passport from 'passport';
-
-router.use(passport.initialize());
-router.use(passport.session());
 
 // GET REQUESTS
-router.get('/', (req, res) => {
-	res.json({ message: 'Welcome to the home page' });
-  });
-  
-router.get('/login', (req, res) => {
-	res.json({ message: 'Login page' });
-});
+router.get('/login', authController.getLogin);
 
-router.get('/register', (req, res) => {
-	res.json({ message: 'Register page' });
-});
+router.get('/register', authController.getRegister);
 
-router.get('/google/secrets', passport.authenticate('google', { failureRedirect: '/login' }), function(req, res) {
-	res.json({ message: 'Google authentication successful' });
-});
+router.get('/google/secrets', googleAuthController.getRedirect);
 
-router.get('/google', passport.authenticate('google', { scope: ['profile'] }));
+router.get('/google', googleAuthController.getLogin);
 
- // POST REQUESTS
-router.post("/register", async function (req, res) {
-	try {
-			const newUser = await UserModel.register({ username: req.body.username }, req.body.password);
-			res.json({ success: true, user: newUser });
-	} catch (error) {
-			res.json({ success: false, error: error.message });
-	}
-});
-  
-router.post("/login", (req, res, next) => {
-	passport.authenticate("local", (err, user, info) => {
-		if (err) {
-			return res.json({ success: false, error: err.message });
-		}
-		if (!user) {
-			return res.json({ success: false, error: info.message });
-		}
-		req.logIn(user, (err) => {
-			if (err) {
-				return res.json({ success: false, error: err.message });
-			}
-			return res.json({ success: true, user });
-		});
-	})(req, res, next);
-});
+// POST REQUESTS
+router.post("/register", authController.postRegister);
+
+router.post("/login", authController.postLogin);
 
 export default router;

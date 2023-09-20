@@ -1,9 +1,8 @@
 import passport from 'passport';
 import { Strategy as GoogleStrategy } from 'passport-google-oauth20';
 import { Strategy as LocalStrategy } from 'passport-local';
-import UserModel from '../models/User.js';
+import UserModel from '../models/userModel.js';
 import { config } from 'dotenv';
-
 config();
 
 passport.use(new GoogleStrategy({

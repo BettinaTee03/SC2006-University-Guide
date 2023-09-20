@@ -1,6 +1,5 @@
 import session from 'express-session';
 import { config } from 'dotenv';
-
 config();
 
 const sessionConfig = session({

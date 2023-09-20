@@ -1,20 +1,5 @@
-import { config } from 'dotenv';
-config();
-import express from 'express';
-import { OpenAI } from "langchain/llms/openai";
 import { PromptTemplate } from 'langchain/prompts';
 import { StructuredOutputParser } from 'langchain/output_parsers';
-import { CourseModel, searchCourses } from '../models/Course.js';
-import EmploymentModel from '../models/Employment.js';
-import IntakeModel from '../models/Intake.js';
-const router = express.Router();
-router.use(express.json());
-
-const llm = new OpenAI({
-    openAIApiKey: process.env.OPENAI_API_KEY,
-    modelName: "gpt-3.5-turbo",
-    temperature: 0.7,
- });
 
 const parser = StructuredOutputParser.fromNamesAndDescriptions({
     careerProspect1: "First unique career prospect that aligns closely with the user's aspiration and course.",
@@ -58,76 +43,4 @@ const prompt = new PromptTemplate({
     partialVariables: { format_instructions: formatInstructions },
 });
 
-router.post('/:course/submit', async (req, res) => {
-    try {
-        const userAspiration = req.body.aspiration;
-        const userCourse = req.params.course;
-        
-        // Format the prompt with user input
-        const input = await prompt.format({
-            aspiration: userAspiration,
-            course: userCourse
-        });
-
-        const response = await llm.call(input);
-        console.log(response);
-        const structuredResponse = await parser.parse(response);
-        res.json(structuredResponse);
-        
-    } catch (error) {
-        console.error("Error:", error);
-        res.status(500).send("Internal Server Error");
-    }
-});
-
-router.post('/:course', async (req, res) => {
-    try {
-        const course = await CourseModel.findOne({ course_name: decodeURIComponent(req.params.course)});
-        if (!course) {
-            return res.status(400).send("Course does not exist.");
-        }
-        res.json(course);
-    } catch (error) {
-        res.status(500).send("Error retrieving course.");
-    }
-});
-
-router.post('/:degree/employment', async (req, res) => {
-    try {
-        const employment = await EmploymentModel.findOne({ degree: decodeURIComponent(req.params.degree),
-                                                            year: req.body.year });
-        if (!employment) {
-            return res.status(400).send("Employment does not exist.");
-        }
-        res.json(employment);
-    } catch (error) {
-        res.status(500).send("Error retrieving employment.");
-    }
-});
-
-router.post('/:course/intake', async (req, res) => {
-    try {
-        const intake = await IntakeModel.findOne({ course: decodeURIComponent(req.params.course),
-                                                    year: req.body.year });
-        if (!intake) {
-            return res.status(400).send("Intake does not exist.");
-        }
-        res.json(intake);
-    } catch (error) {
-        res.status(500).send("Error retrieving intake.");
-    }
-});
-
-router.get('/search', async (req, res) => {
-    try {
-        const query = req.query.q;
-        const results = await searchCourses(query);
-        res.json(results);
-    } catch (error) {
-        res.status(500).json({ message: "An error occurred during the search." });
-    }
-});
-
-export default router;
-
-
+export default { parser, prompt }
