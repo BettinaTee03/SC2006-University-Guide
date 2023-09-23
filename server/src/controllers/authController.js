@@ -18,30 +18,23 @@ async function postRegister(req, res) {
 	}
 };
 
-async function postLogin(req, res) {
-    try {
-      const user = await new Promise((resolve, reject) => {
-        passport.authenticate("local", (err, user, info) => {
+function postLogin(req, res, next) {
+  passport.authenticate("local", (err, user, info) => {
+      if (err) {
+          return res.status(500).json({ success: false, error: err.message });
+      }
+      if (!user) {
+          return res.status(401).json({ success: false, error: info.message });
+      }
+      req.logIn(user, (err) => {
           if (err) {
-            reject({ type: 'server', message: err.message });
+              return res.status(500).json({ success: false, error: err.message });
           }
-          if (!user) {
-            reject({ type: 'auth', message: info.message });
-          }
-          req.logIn(user, (err) => {
-            if (err) {
-              reject({ type: 'server', message: err.message });
-            }
-            resolve(user);
-          });
-        })(req, res);
+
+
+          return res.status(200).json({ success: true, user });
       });
-  
-      res.status(200).json({ success: true, user });
-    } catch (error) {
-      const statusCode = error.type === 'auth' ? 401 : 500;
-      res.status(statusCode).json({ success: false, error: error.message });
-    }
-  };
+  })(req, res, next);
+}
 
 export default { getLogin, getRegister, postRegister, postLogin };

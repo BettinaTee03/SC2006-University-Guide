@@ -13,8 +13,10 @@ const PORT = 8000;
 const app = express();
 
 app.use(cors({
-    origin: "*",
+    origin: "http://localhost:5173",
+    credentials: true,
 }));
+
 app.use(sessionConfig); // use session config
 app.use(passport.initialize()); // initialise passport
 app.use(passport.session()); // use passport session

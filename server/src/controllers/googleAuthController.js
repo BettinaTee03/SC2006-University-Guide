@@ -1,15 +1,14 @@
 import passport from "passport";
 
-function getLogin() {
-    passport.authenticate('google', { scope: ['profile'] })
+function getLogin(req, res, next) {
+    passport.authenticate('google', { scope: ['profile'] })(req, res, next);
 };
 
-function getRedirect(){
+function getRedirect(req, res, next){
     passport.authenticate('google', { 
-        failureRedirect: '/login' 
-    }), function(req, res) {
-	res.json({ message: 'Google authentication successful' }
-    )}
+        failureRedirect: 'http://localhost:5173/login', // React app's login page
+        successRedirect: 'http://localhost:5173/courses'  // React app's dashboard or home page
+    })(req, res, next);
 };
 
 export default { getLogin, getRedirect };

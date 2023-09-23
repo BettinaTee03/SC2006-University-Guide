@@ -7,12 +7,12 @@ function Home() {
 
   useEffect(() => {
     const fetchMessage = async () => {
-      try {
-        const response = await axios.get('http://localhost:8000/');
-        setMessage(response.data.message);
-      } catch (error) {
-        console.error('Error fetching home message', error);
-      }
+      // try {
+      //   const response = await axios.get('http://localhost:8000/');
+      //   setMessage(response.data.message);
+      // } catch (error) {
+      //   console.error('Error fetching home message', error);
+      // }
     };
 
     fetchMessage();

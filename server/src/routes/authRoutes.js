@@ -8,7 +8,7 @@ router.get('/login', authController.getLogin);
 
 router.get('/register', authController.getRegister);
 
-router.get('/google/secrets', googleAuthController.getRedirect);
+router.get('/google/callback', googleAuthController.getRedirect);
 
 router.get('/google', googleAuthController.getLogin);
 

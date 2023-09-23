@@ -39,10 +39,14 @@ function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:8000/auth/login', { username, password });
+      const response = await axios.post('http://localhost:8000/auth/login', { username, password } , { withCredentials: true });
       console.log(response.data);
     } catch (error) {
-      setError(error.response.data.error);
+      if (error.response) {
+        setError(error.response.data.error);
+    } else {
+        setError(error.message);
+    }
     }
   };
 
