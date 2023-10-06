@@ -60,18 +60,38 @@ function IntakeChart() {
   
     const options = {
         title: {
-            text: 'Intake/Enrolment Data'
+            text: 'Intake & Enrolment Data',
+            style: {
+                fontFamily: 'Montserrat, sans-serif'
+            }
         },
         xaxis: {
-            categories: chartData[0]?.years?.sort((a, b) => a - b) || []
+            categories: chartData[0]?.years?.sort((a, b) => a - b) || [],
+            labels: {
+                style: {
+                    fontFamily: 'Montserrat, sans-serif'
+                }
+            }
+        },
+        yaxis: {
+            labels: {
+                style: {
+                    fontFamily: 'Montserrat, sans-serif'
+                }
+            }
+        },
+        tooltip: {
+            style: {
+                fontFamily: 'Montserrat, sans-serif'
+            }
         }
-    };
+    };    
 
     const series = selectedCourses.map(course => {
         const courseData = chartData.find(data => data.name === course);
         return {
             name: course,
-            data: selectedButton === "intake" ? courseData?.intake : courseData?.enrolment
+            data: selectedButton === "intake" ? (courseData?.intake || []) : (courseData?.enrolment || [])
         };
     });
 
