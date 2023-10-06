@@ -14,7 +14,7 @@ import MenuItem from '@mui/material/MenuItem';
 import SchoolIcon from '@mui/icons-material/School';
 import { Link } from 'react-router-dom';
 
-const pages = ['Home', 'Explore', 'Courses'];
+const pages = ['Home', 'Explore', 'Courses', 'Statistics'];
 const settings = ['Profile', 'Account', 'Login', 'Register'];
 
 function Navbar() {

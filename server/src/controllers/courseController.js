@@ -3,7 +3,7 @@ import { CourseModel, searchCourses } from "../models/courseModel.js";
 import llm from '../config/openAI.js';
 import openAIController from '../controllers/openAIController.js';
 import EmploymentModel from '../models/employmentModel.js';
-import IntakeModel from '../models/intakeModel.js';
+
 
 async function getSearch (req, res) {
     try {
@@ -60,17 +60,4 @@ async function getEmployment(req, res) {
     }
 }
 
-async function getIntake(req, res) {
-    try {
-        const intake = await IntakeModel.findOne({ course: decodeURIComponent(req.params.course),
-                                                    year: req.body.year });
-        if (!intake) {
-            return res.status(400).send("Intake does not exist.");
-        }
-        res.json(intake);
-    } catch (error) {
-        res.status(500).send("Error retrieving intake.");
-    }
-}
-
-export default { getSearch, getAspiration, getCourse, getEmployment, getIntake };
+export default { getSearch, getAspiration, getCourse, getEmployment };

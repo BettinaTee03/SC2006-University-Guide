@@ -11,8 +11,6 @@ router.get('/:course', ensureAuthenticated, courseController.getCourse);
 
 router.get('/:course/employment', courseController.getEmployment);
 
-router.get('/:course/intake', courseController.getIntake);
-
 // POST REQUESTS
 router.post('/:course/submit', courseController.getAspiration);
 

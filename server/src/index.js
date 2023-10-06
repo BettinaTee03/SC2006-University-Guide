@@ -6,6 +6,7 @@ import cookieParser from "cookie-parser";
 import cors from 'cors';
 import authRoutes from './routes/authRoutes.js';
 import courseRoutes from './routes/courseRoutes.js';
+import intakeRoutes from './routes/intakeRoutes.js';
 import passport from './config/passport.js';
 import sessionConfig from './config/session.js';
 
@@ -24,6 +25,7 @@ app.use(express.json()); // allow for json post requests
 app.use(cookieParser()); // allow for cookie parsing
 app.use("/auth", authRoutes); // use auth routes
 app.use("/courses", courseRoutes); // use courses routes
+app.use("/intake", intakeRoutes); // use intake routes
 
 app.get('/', (req, res) => {
     return res.json({ message: 'Hello, world!' });
