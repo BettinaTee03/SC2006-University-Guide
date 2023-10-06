@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import ReactApexChart from 'react-apexcharts';
 import axios from 'axios';
 import { Container, Grid } from '@mui/material';
@@ -9,6 +10,8 @@ function IntakeChart() {
     const [chartData, setChartData] = useState([]);
     const [selectedButton, setSelectedButton] = useState("intake");
 
+    const navigate = useNavigate();
+
     const handleButtonClick = (mode) => {
         setSelectedButton(mode);
     };
@@ -16,7 +19,9 @@ function IntakeChart() {
     useEffect(() => {
         const fetchDataForCourse = async (course) => {
             try {
-                const response = await axios.get(`http://localhost:8000/intake/${encodeURIComponent(course)}`);
+                const response = await axios.get(`http://localhost:8000/intake/${encodeURIComponent(course)}`,{
+                  withCredentials: true,
+                });
                 return {
                     name: course,
                     intake: response.data.map(item => item.intake),
@@ -24,7 +29,10 @@ function IntakeChart() {
                     enrolment: response.data.map(item => item.enrolment),
                 };
             } catch (error) {
-                console.error(`Error fetching intake data for ${course}:`, error);
+              if (error.response && error.response.status === 401) {
+                  alert("You must be logged in to view this page.");
+                  navigate('/login');
+              }
             }
         };
 

@@ -12,7 +12,7 @@ function Search() {
 			const response = await Axios.get("http://localhost:8000/courses/search", {
 				params: {
 					q: query
-			}
+				},
 			});
 			setResults(response.data);
 		} catch (error) {
