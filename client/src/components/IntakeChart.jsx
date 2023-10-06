@@ -47,15 +47,17 @@ function IntakeChart() {
     const handleCourseChange = (e) => {
         const course = e.target.value;
     
-        if (selectedCourses.includes(course)) {
-            setSelectedCourses(prevCourses => prevCourses.filter(c => c !== course));
-        } else {
-            if (selectedCourses.length >= 5) {
-                alert("You can select a maximum of 5 courses at a time.");
-                return;
+            if (!selectedCourses.includes(course)) {
+                if (selectedCourses.length >= 5) {
+                    alert("You can select a maximum of 5 courses at a time.");
+                    return;
+                }
+                setSelectedCourses(prevCourses => [...prevCourses, course]);
             }
-            setSelectedCourses(prevCourses => [...prevCourses, course]);
-        }
+    };
+
+    const handleDeselectCourse = (course) => {
+        setSelectedCourses(prevCourses => prevCourses.filter(c => c !== course));
     };
   
     const options = {
@@ -94,10 +96,6 @@ function IntakeChart() {
             data: selectedButton === "intake" ? (courseData?.intake || []) : (courseData?.enrolment || [])
         };
     });
-
-    const handleDeselectCourse = (course) => {
-        setSelectedCourses(prevCourses => prevCourses.filter(c => c !== course));
-    };
 
     return (
         <>
