@@ -1,5 +1,12 @@
 import IntakeModel from "../models/intakeModel.js";
 
+/**
+ * Handles GET request to retrieve intake data for a specified course.
+ * @function
+ * @async
+ * @param {Object} req - Express request object.
+ * @param {Object} res - Express response object.
+ */
 async function getIntake(req, res) {
   try {
     const intakes = await IntakeModel.find({
