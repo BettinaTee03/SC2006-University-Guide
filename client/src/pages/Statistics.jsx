@@ -1,11 +1,11 @@
-import Intake from '../components/IntakeChart';
+import Intake from "../components/IntakeChart";
 
-function Statistics(){
-    return(
-        <>
-            <Intake />
-        </>
-    );
+function Statistics() {
+  return (
+    <>
+      <Intake />
+    </>
+  );
 }
 
 export default Statistics;

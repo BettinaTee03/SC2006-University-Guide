@@ -1,22 +1,24 @@
-import { config } from 'dotenv';
+import { config } from "dotenv";
 config();
-import express from 'express';
-import mongoose from 'mongoose';
+import express from "express";
+import mongoose from "mongoose";
 import cookieParser from "cookie-parser";
-import cors from 'cors';
-import authRoutes from './routes/authRoutes.js';
-import courseRoutes from './routes/courseRoutes.js';
-import intakeRoutes from './routes/intakeRoutes.js';
-import passport from './config/passport.js';
-import sessionConfig from './config/session.js';
+import cors from "cors";
+import authRoutes from "./routes/authRoutes.js";
+import courseRoutes from "./routes/courseRoutes.js";
+import intakeRoutes from "./routes/intakeRoutes.js";
+import passport from "./config/passport.js";
+import sessionConfig from "./config/session.js";
 
 const PORT = 8000;
 const app = express();
 
-app.use(cors({
+app.use(
+  cors({
     origin: "http://localhost:5173",
     credentials: true,
-}));
+  })
+);
 
 app.use(sessionConfig); // use session config
 app.use(passport.initialize()); // initialise passport
@@ -27,11 +29,11 @@ app.use("/auth", authRoutes); // use auth routes
 app.use("/courses", courseRoutes); // use courses routes
 app.use("/intake", intakeRoutes); // use intake routes
 
-app.get('/', (req, res) => {
-    return res.json({ message: 'Hello, world!' });
+app.get("/", (req, res) => {
+  return res.json({ message: "Hello, world!" });
 });
 
 mongoose.connect(process.env.MONGO_URL).then(() => {
-    console.log(`Connected to database on port ${PORT}`);
-    app.listen(PORT);
+  console.log(`Connected to database on port ${PORT}`);
+  app.listen(PORT);
 });
