@@ -11,11 +11,19 @@ const Schema = mongoose.Schema;
  * @property {string} username - The username of the user.
  * @property {string} password - The password of the user.
  * @property {string} googleId - The Google ID of the user, if authenticated via Google OAuth.
+ * @property {Array.<ObjectId>} favourites - An array of ObjectIds referencing documents from the "courses" collection.
+ * Each ObjectId in the array corresponds to a "course" document that the user has marked as a favourite.
  */
 const UserAccount = new Schema({
   username: String,
   password: String,
   googleId: String,
+  favourites: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "course",
+    },
+  ],
 });
 
 // Plugin to add findOrCreate method to the model

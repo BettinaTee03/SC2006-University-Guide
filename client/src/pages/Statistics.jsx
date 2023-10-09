@@ -1,9 +1,9 @@
-import Intake from "../components/IntakeChart";
+import IntakeChart from "../components/IntakeChart";
 
 function Statistics() {
   return (
     <>
-      <Intake />
+      <IntakeChart />
     </>
   );
 }

@@ -21,13 +21,6 @@ router.get("/search", courseController.getSearch);
 router.get("/:course", ensureAuthenticated, courseController.getCourse);
 
 /**
- * @route GET /courses/:course/employment
- * @desc Get employment statistics related to a specific course
- * @access Public
- */
-router.get("/:course/employment", courseController.getEmployment);
-
-/**
  * @route POST /courses/:course/submit
  * @desc Submit aspirations related to a specific course
  * @access Public
