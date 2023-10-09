@@ -1,7 +1,6 @@
 import { CourseModel, searchCourses } from "../models/courseModel.js";
 import llm from "../config/openAI.js";
 import openAIController from "../controllers/openAIController.js";
-import EmploymentModel from "../models/employmentModel.js";
 
 /**
  * Handles GET request for course search.
@@ -67,26 +66,4 @@ async function getCourse(req, res) {
   }
 }
 
-/**
- * Handles GET request for specific course employment information.
- * @function
- * @async
- * @param {Object} req - Express request object.
- * @param {Object} res - Express response object.
- */
-async function getEmployment(req, res) {
-  try {
-    const employment = await EmploymentModel.findOne({
-      degree: decodeURIComponent(req.params.course),
-      year: req.body.year,
-    });
-    if (!employment) {
-      return res.status(400).send("Employment does not exist.");
-    }
-    res.json(employment);
-  } catch (error) {
-    res.status(500).send("Error retrieving employment.");
-  }
-}
-
-export default { getSearch, getAspiration, getCourse, getEmployment };
+export default { getSearch, getAspiration, getCourse };
