@@ -38,28 +38,42 @@ function Navbar() {
   };
 
   return (
-    <AppBar position="static">
+    <AppBar
+      position="static"
+      sx={{ fontFamily: "'Roboto Condensed', sans-serif" }}
+    >
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <SchoolIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1, color: "#FFFFFF" }} />
+          <SchoolIcon
+            sx={{
+              display: { xs: "none", md: "flex" },
+              mr: 1,
+              color: "#FFFFFF",
+            }}
+          />
           <Typography
             variant="h6"
             noWrap
             component="a"
-            href="/"
+            href="/home"
             sx={{
               mr: 2,
-              display: { xs: 'none', md: 'flex' },
-              fontFamily: 'monospace',
+              display: { xs: "none", md: "flex" },
               fontWeight: 700,
-              letterSpacing: '.3rem',
-              textDecoration: 'none',
+              letterSpacing: ".2rem",
+              textDecoration: "none",
             }}
           >
             Softbuns
           </Typography>
 
-          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' }, justifyContent: 'flex-end' }}>
+          <Box
+            sx={{
+              flexGrow: 1,
+              display: { xs: "flex", md: "none" },
+              justifyContent: "flex-start",
+            }}
+          >
             <IconButton
               size="large"
               aria-label="account of current user"
@@ -89,37 +103,59 @@ function Navbar() {
               }}
             >
               {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
+                <MenuItem
+                  key={page}
+                  component={Link}
+                  to={`/${page.toLowerCase()}`}
+                  onClick={handleCloseNavMenu}
+                >
                   <Typography textAlign="center">{page}</Typography>
                 </MenuItem>
               ))}
             </Menu>
           </Box>
-          <SchoolIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1, color: "#FFFFFF" }} />
+          <SchoolIcon
+            sx={{
+              display: { xs: "flex", md: "none" },
+              mr: 1,
+              color: "#FFFFFF",
+            }}
+          />
           <Typography
             variant="h6"
             noWrap
             component="a"
-            href="/"
+            href="/home"
             sx={{
               mr: 2,
               display: { xs: 'flex', md: 'none' },
               flexGrow: 1,
-              fontFamily: 'monospace',
               fontWeight: 700,
-              letterSpacing: '.3rem',
-              textDecoration: 'none',
+              letterSpacing: ".2rem",
+              textDecoration: "none",
             }}
           >
             Softbuns
           </Typography>
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, justifyContent: 'flex-end' }}>
+          <Box
+            sx={{
+              flexGrow: 1,
+              display: { xs: "none", md: "flex" },
+              justifyContent: "flex-end",
+            }}
+          >
             {pages.map((page) => (
-              <Button 
-                key={page} 
-                component={Link} 
-                to={`/${page.toLowerCase()}`} 
-                sx={{ my: 2, color: 'white', display: 'block', '&:hover':{color:'#445044'}, }}>
+              <Button
+                key={page}
+                component={Link}
+                to={`/${page.toLowerCase()}`}
+                sx={{
+                  my: 2,
+                  color: "white",
+                  display: "block",
+                  "&:hover": { color: "#445044" },
+                }}
+              >
                 {page}
               </Button>
             ))}
