@@ -21,10 +21,15 @@ router.get("/search", courseController.getSearch);
 router.get("/:course", ensureAuthenticated, courseController.getCourse);
 
 /**
- * @route POST /courses/:course/submit
+ * @route POST /courses/submit
  * @desc Submit aspirations related to a specific course
- * @access Public
+ * @access Private
+ * @middleware ensureAuthenticated
  */
-router.post("/:course/submit", courseController.getAspiration);
+router.post(
+  "/aspirations/submit",
+  ensureAuthenticated,
+  courseController.getAspiration
+);
 
 export default router;

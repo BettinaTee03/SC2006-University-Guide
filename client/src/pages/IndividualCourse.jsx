@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Axios from "axios";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import AspirationForm from "../components/AspirationForm";
 
 function IndividualCourse() {
   const [course, setCourse] = useState(null);
@@ -11,7 +12,6 @@ function IndividualCourse() {
 
   useEffect(() => {
     async function getIndividualCourse() {
-      console.log(courseName);
       try {
         const response = await Axios.get(
           `http://localhost:8000/courses/${courseName}`,
@@ -26,7 +26,7 @@ function IndividualCourse() {
       }
     }
     getIndividualCourse();
-  }, [courseName, setCourse]);
+  }, [courseName]);
 
   return (
     <div>
@@ -38,33 +38,31 @@ function IndividualCourse() {
           <p>Course Type: {course.course_type}</p>
           <p>Course Duration: {course.course_duration}</p>
           <p>Course Description: {course.description}</p>
-          <p>Rank Points: {course.rank_points || "N.A."}</p>
-          <p>Polytechnic GPA: {course.polytechnic_GPAs || "N.A."}</p>
-          <p>
-            3H2/1H1 10th Percentile: {course["3H2_1H1_10percentile"] || "N.A."}
-          </p>
-          <p>
-            percentage_less_equal_70_UAS:{" "}
-            {course.percentage_less_equal_70_UAS || "N.A."}
-          </p>
-          <p>
-            percentage_70.01_to_80_UAS:{" "}
-            {course["percentage_70.01_to_80_UAS"] || "N.A."}
-          </p>
-          <p>
-            percentage_80.01_to_90_UAS:{" "}
-            {course["percentage_80.01_to_90_UAS"] || "N.A."}
-          </p>
-          <p>
-            percentage_less_3.2_GPA:{" "}
-            {course["percentage_less_3.2_GPA"] || "N.A."}
-          </p>
-          <p>
-            percentage_3.2_3.6_GPA: {course["percentage_3.2_3.6_GPA"] || "N.A."}
-          </p>
-          <p>
-            percentage_3.6_4.0_GPA: {course["percentage_3.6_4.0_GPA"] || "N.A."}
-          </p>
+          {course.rank_points && <p>Rank Points: {course.rank_points}</p>}
+          {course.polytechnic_GPAs && (
+            <p>Polytechnic GPA: {course.polytechnic_GPAs} </p>
+          )}
+          {course["3H2_1H1_10percentile"] && (
+            <p>3H2_1H1_10percentile: {course["3H2_1H1_10percentile"]}</p>
+          )}
+          {course.percentage_less_equal_70_UAS && (
+            <p>Less than 70%: {course.percentage_less_equal_70_UAS}</p>
+          )}
+          {course["percentage_70.01_to_80_UAS"] && (
+            <p>70.01% to 80%: {course["percentage_70.01_to_80_UAS"]}</p>
+          )}
+          {course["percentage_80.01_to_90_UAS"] && (
+            <p>80.01% to 90%: {course["percentage_80.01_to_90_UAS"]}</p>
+          )}
+          {course["percentage_less_3.2_GPA"] && (
+            <p>Less than 3.2 GPA: {course["percentage_less_3.2_GPA"]}</p>
+          )}
+          {course["percentage_3.2_3.6_GPA"] && (
+            <p>3.2 to 3.6 GPA: {course["percentage_3.2_3.6_GPA"]}</p>
+          )}
+          {course["percentage_3.6_4.0_GPA"] && (
+            <p>3.6 to 4.0 GPA: {course["percentage_3.6_4.0_GPA"]}</p>
+          )}
           <p>Remarks: {course.remarks || "NIL"}</p>
           <p>Employment Stats:</p>
           {/* {course.employment_stats.map((employmentStat) => (
@@ -92,6 +90,7 @@ function IndividualCourse() {
               </p>
             </div>
           ))} */}
+          <AspirationForm course={course.course_name} />
         </div>
       ) : (
         <p>Loading...</p>

@@ -61,6 +61,8 @@ const prompt = new PromptTemplate({
     
     Ensure that the suggested careers truly cater to the user's aspirations.
 
+
+  
     Remove any '\n' or '\t' in your response.
     {format_instructions}
 
