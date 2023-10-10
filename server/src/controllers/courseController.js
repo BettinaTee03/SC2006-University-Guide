@@ -29,7 +29,7 @@ async function getSearch(req, res) {
 async function getAspiration(req, res) {
   try {
     const userAspiration = req.body.aspiration;
-    const userCourse = req.params.course;
+    const userCourse = req.body.course;
 
     const input = await openAIController.prompt.format({
       aspiration: userAspiration,

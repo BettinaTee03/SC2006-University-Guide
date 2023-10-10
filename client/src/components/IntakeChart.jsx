@@ -68,6 +68,18 @@ function IntakeChart() {
   };
 
   const options = {
+    chart: {
+      toolbar: {
+        show: false,
+      },
+    },
+    markers: {
+      size: 5,
+      hover: {
+        size: undefined,
+        sizeOffset: 3,
+      },
+    },
     title: {
       text: "Intake & Enrolment Data",
       style: {
@@ -78,20 +90,20 @@ function IntakeChart() {
       categories: chartData[0]?.years?.sort((a, b) => a - b) || [],
       labels: {
         style: {
-          fontFamily: "Montserrat, sans-serif",
+          fontFamily: "Roboto Condensed, sans-serif",
         },
       },
     },
     yaxis: {
       labels: {
         style: {
-          fontFamily: "Montserrat, sans-serif",
+          fontFamily: "Roboto Condensed, sans-serif",
         },
       },
     },
     tooltip: {
       style: {
-        fontFamily: "Montserrat, sans-serif",
+        fontFamily: "Roboto Condensed, sans-serif",
       },
     },
   };
