@@ -3,6 +3,7 @@ import Axios from "axios";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import AspirationForm from "../components/AspirationForm";
+import EmploymentChart from "../components/EmploymentChart";
 
 function IndividualCourse() {
   const [course, setCourse] = useState(null);
@@ -65,31 +66,10 @@ function IndividualCourse() {
           )}
           <p>Remarks: {course.remarks || "NIL"}</p>
           <p>Employment Stats:</p>
-          {/* {course.employment_stats.map((employmentStat) => (
-            <div key={employmentStat.year}>
-              <p>Year: {employmentStat.year}</p>
-              <p>
-                Employment Rate Overall:{" "}
-                {employmentStat.employment_rate_overall}
-              </p>
-              <p>
-                Employment Rate Full Time Permanent:{" "}
-                {employmentStat.employment_rate_ft_perm}
-              </p>
-              <p>Basic Monthly Mean: {employmentStat.basic_monthly_mean}</p>
-              <p>Basic Monthly Median: {employmentStat.basic_monthly_median}</p>
-              <p>Gross Monthly Mean: {employmentStat.gross_monthly_mean}</p>
-              <p>Gross Monthly Median: {employmentStat.gross_monthly_median}</p>
-              <p>
-                Gross Monthly 25th Percentile:{" "}
-                {employmentStat.gross_mthly_25_percentile}
-              </p>
-              <p>
-                Gross Monthly 75th Percentile:{" "}
-                {employmentStat.gross_mthly_75_percentile}
-              </p>
-            </div>
-          ))} */}
+          <EmploymentChart
+            courseName={course.course_name}
+            employmentData={course.employment_stats}
+          />
           <AspirationForm course={course.course_name} />
         </div>
       ) : (
