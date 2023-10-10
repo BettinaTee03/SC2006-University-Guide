@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Search from "../components/Search";
-import { Container } from "@mui/material";
 
 function Explore() {
   const [message, setMessage] = useState("");

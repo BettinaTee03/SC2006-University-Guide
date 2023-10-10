@@ -1,27 +1,27 @@
-import React from 'react';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
-import Menu from '@mui/material/Menu';
-import MenuIcon from '@mui/icons-material/Menu';
-import Container from '@mui/material/Container';
-import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
-import Tooltip from '@mui/material/Tooltip';
-import MenuItem from '@mui/material/MenuItem';
-import SchoolIcon from '@mui/icons-material/School';
-import { Link } from 'react-router-dom';
+import React from "react";
+import AppBar from "@mui/material/AppBar";
+import Box from "@mui/material/Box";
+import Toolbar from "@mui/material/Toolbar";
+import IconButton from "@mui/material/IconButton";
+import Typography from "@mui/material/Typography";
+import Menu from "@mui/material/Menu";
+import MenuIcon from "@mui/icons-material/Menu";
+import Container from "@mui/material/Container";
+import Avatar from "@mui/material/Avatar";
+import Button from "@mui/material/Button";
+import Tooltip from "@mui/material/Tooltip";
+import MenuItem from "@mui/material/MenuItem";
+import SchoolIcon from "@mui/icons-material/School";
+import { Link } from "react-router-dom";
 
-const pages = ['Home', 'Explore', 'Courses', 'Statistics'];
-const settings = ['Profile', 'Account', 'Login', 'Register'];
+const pages = ["Home", "Explore", "Courses", "Statistics"];
+const settings = ["Profile", "Account", "Login", "Register"];
 
-function Navbar() {
+function Navbar(props) {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const [currentPage, setCurrentPage] = React.useState(null);
 
-  
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
@@ -88,18 +88,18 @@ function Navbar() {
               id="menu-appbar"
               anchorEl={anchorElNav}
               anchorOrigin={{
-                vertical: 'bottom',
-                horizontal: 'left',
+                vertical: "bottom",
+                horizontal: "left",
               }}
               keepMounted
               transformOrigin={{
-                vertical: 'top',
-                horizontal: 'left',
+                vertical: "top",
+                horizontal: "left",
               }}
               open={Boolean(anchorElNav)}
               onClose={handleCloseNavMenu}
               sx={{
-                display: { xs: 'block', md: 'none' },
+                display: { xs: "block", md: "none" },
               }}
             >
               {pages.map((page) => (
@@ -128,7 +128,7 @@ function Navbar() {
             href="/home"
             sx={{
               mr: 2,
-              display: { xs: 'flex', md: 'none' },
+              display: { xs: "flex", md: "none" },
               flexGrow: 1,
               fontWeight: 700,
               letterSpacing: ".2rem",
@@ -144,21 +144,24 @@ function Navbar() {
               justifyContent: "flex-end",
             }}
           >
-            {pages.map((page) => (
-              <Button
-                key={page}
-                component={Link}
-                to={`/${page.toLowerCase()}`}
-                sx={{
-                  my: 2,
-                  color: "white",
-                  display: "block",
-                  "&:hover": { color: "#445044" },
-                }}
-              >
-                {page}
-              </Button>
-            ))}
+          {pages.map((page) => (
+            <Button
+              key={page}
+              onClick={() => setCurrentPage(page)}
+              component={Link}
+              to={`/${page.toLowerCase()}`}
+              sx={{
+                my: 2,
+                ...(currentPage == page
+                  ? { color: "#445044", fontWeight: 700 }
+                  : { color: "white" }),
+                display: "block",
+                "&:hover": { color: "#445044" },
+              }}
+            >
+              {page}
+            </Button>
+          ))}
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>
@@ -168,23 +171,28 @@ function Navbar() {
               </IconButton>
             </Tooltip>
             <Menu
-              sx={{ mt: '45px' }}
+              sx={{ mt: "45px" }}
               id="menu-appbar"
               anchorEl={anchorElUser}
               anchorOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
+                vertical: "top",
+                horizontal: "right",
               }}
               keepMounted
               transformOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
+                vertical: "top",
+                horizontal: "right",
               }}
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
               {settings.map((setting) => (
-                <MenuItem key={setting} component={Link} to={`/${setting.toLowerCase()}`} onClick={handleCloseUserMenu}>
+                <MenuItem
+                  key={setting}
+                  component={Link}
+                  to={`/${setting.toLowerCase()}`}
+                  onClick={handleCloseUserMenu}
+                >
                   <Typography textAlign="center">{setting}</Typography>
                 </MenuItem>
               ))}
