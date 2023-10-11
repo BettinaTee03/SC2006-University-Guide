@@ -10,32 +10,32 @@ import Explore from "./pages/Explore";
 import Statistics from "./pages/Statistics";
 import IndividualCourse from "./pages/IndividualCourse";
 import Footer from "./components/BottomFooter";
-import { createTheme, ThemeProvider} from "@mui/material/styles"
+import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { CssBaseline } from "@mui/material";
 
 const theme = createTheme({
-  palette:{
-    primary:{
-      main:"#A2B29F"
+  palette: {
+    primary: {
+      main: "#A2B29F",
     },
-    secondary:{
-      main:"#DF8886"
+    secondary: {
+      main: "#DF8886",
     },
-    background:{
-      default:"#F8EDE3"
-    }
+    background: {
+      default: "#F8EDE3",
+    },
   },
-  typography:{
-    h6:{
-      color: "#FFFFFF"
-    }
-  }
-})
+  typography: {
+    h6: {
+      color: "#FFFFFF",
+    },
+  },
+});
 
 function App() {
   return (
     <ThemeProvider theme={theme}>
-      <CssBaseline/>
+      <CssBaseline />
       <Router>
         <Navbar />
         <Routes>
@@ -47,7 +47,7 @@ function App() {
           <Route path="/courses/:courseName" element={<IndividualCourse />} />
           <Route path="/statistics" element={<Statistics />} />
         </Routes>
-        <Footer/>
+        <Footer />
       </Router>
     </ThemeProvider>
   );
