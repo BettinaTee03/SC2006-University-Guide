@@ -12,13 +12,26 @@ config();
  */
 
 /**
- * Creates a new instance of OpenAI with the provided configuration.
- * @type {OpenAI} llm
+ * @type {OpenAI}
  */
-const llm = new OpenAI({
+const llm = {
+  /**
+   * The API key for OpenAI.
+   * @type {string}
+   */
   openAIApiKey: process.env.OPENAI_API_KEY,
+
+  /**
+   * The name of the model to use.
+   * @type {string}
+   */
   modelName: "gpt-3.5-turbo",
+
+  /**
+   * Determines the randomness of the model's output.
+   * @type {number}
+   */
   temperature: 0.7,
-});
+};
 
 export default llm;

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: controllers/googleAuthController.js</title>
+    <title>JSDoc: Source: config/openAI.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: controllers/googleAuthController.js</h1>
+    <h1 class="page-title">Source: config/openAI.js</h1>
 
     
 
@@ -26,50 +26,43 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import passport from "passport";
+            <pre class="prettyprint source linenums"><code>import { config } from "dotenv";
+import { OpenAI } from "langchain/llms/openai";
+
+config();
 
 /**
- * Initiates the Google OAuth2 authentication process.
- * @function
- * @param {Object} req - Express request object.
- * @param {Object} res - Express response object.
- * @param {function} next - Express next middleware function.
+ * An instance of the OpenAI library.
+ * @typedef {Object} OpenAI
+ * @property {string} openAIApiKey - The API key for OpenAI.
+ * @property {string} modelName - The name of the model to use.
+ * @property {number} temperature - Determines the randomness of the model's output.
  */
-function getLogin(req, res, next) {
-  passport.authenticate("google", { scope: ["profile"] })(req, res, next);
-}
 
 /**
- * Handles the redirect from Google OAuth2 authentication,
- * redirecting the user to the dashboard on success or
- * the login page on failure.
- * @function
- * @param {Object} req - Express request object.
- * @param {Object} res - Express response object.
- * @param {function} next - Express next middleware function.
+ * @type {OpenAI}
  */
-function getRedirect(req, res, next) {
-  passport.authenticate("google", {
-    failureRedirect: "http://localhost:5173/login", // React app's login page
-    successRedirect: "http://localhost:5173/auth-success", // React app's dashboard or home page
-  })(req, res, next);
-}
+const llm = {
+  /**
+   * The API key for OpenAI.
+   * @type {string}
+   */
+  openAIApiKey: process.env.OPENAI_API_KEY,
 
-/**
- * Checks if the user is authenticated.
- * @function
- * @param {Object} req - Express request object.
- * @param {Object} res - Express response object.
- */
-function getSession(req, res) {
-  if (req.isAuthenticated()) {
-    res.status(200).json({ isAuthenticated: true });
-  } else {
-    res.status(200).json({ isAuthenticated: false });
-  }
-}
+  /**
+   * The name of the model to use.
+   * @type {string}
+   */
+  modelName: "gpt-3.5-turbo",
 
-export default { getLogin, getRedirect, getSession };
+  /**
+   * Determines the randomness of the model's output.
+   * @type {number}
+   */
+  temperature: 0.7,
+};
+
+export default llm;
 </code></pre>
         </article>
     </section>
