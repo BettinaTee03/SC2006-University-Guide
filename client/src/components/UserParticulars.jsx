@@ -49,7 +49,6 @@ export const UserParticulars = (particulars) => {
 
   return (
     <div>
-      {" "}
       {editMode ? (
         <Container component="main" maxWidth="lg">
           <CssBaseline />
