@@ -62,7 +62,12 @@ function Login() {
           component="form"
           onSubmit={handleSubmit}
           noValidate
-          sx={{ mt: 1 }}
+          sx={{
+            mt: 1,
+            "@media (min-width: 600px)": {
+              height: "55vh",
+            },
+          }}
         >
           <TextField
             margin="normal"
@@ -88,16 +93,39 @@ function Login() {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-          <FormControlLabel
-            control={<Checkbox value="remember" color="primary" />}
-            label="Remember me"
-          />
+          <Grid container>
+            <Grid item xs>
+              <FormControlLabel
+                control={<Checkbox value="remember" color="primary" />}
+                label={
+                  <Typography variant="body2" style={{ fontSize: "14px" }}>
+                    Remember me
+                  </Typography>
+                }
+              />
+            </Grid>
+            <Grid item xs sx={{ mr: 0 }}>
+              <Typography
+                variant="body2"
+                style={{ fontSize: "24px", marginLeft: "22px" }}
+              >
+                <Link href="#" variant="body2">
+                  {"Forget password?"}
+                </Link>
+              </Typography>
+            </Grid>
+          </Grid>
+
           <Button
             type="submit"
             fullWidth
             variant="contained"
             color="secondary"
-            sx={{ mt: 3, mb: 2 }}
+            sx={{
+              mt: 3,
+              mb: 2,
+              "@media (min-width: 600px)": { mr: 16 },
+            }}
           >
             Sign In
           </Button>
@@ -106,25 +134,25 @@ function Login() {
             type="submit"
             fullWidth
             variant="contained"
-            sx={{ mt: 3, mb: 2 }}
+            sx={{
+              mt: 1,
+              mb: 2,
+              "@media (min-width: 600px)": {
+                mr: 16,
+                mb: 0.5,
+              },
+            }}
             onClick={handleGoogleLogin}
             color="secondary"
           >
             <GoogleIcon sx={{ mr: 2 }} />
             Sign In with Google
           </Button>
-          <Grid container>
-            <Grid item xs>
-              <Link href="#" variant="body2">
-                Forgot password?
-              </Link>
-            </Grid>
-            <Grid item>
-              <Link href="/Register" variant="body2">
-                {"Don't have an account? Sign Up"}
-              </Link>
-            </Grid>
-          </Grid>
+          <Box style={{ textAlign: "center" }}>
+            <Link href="/Register" variant="body2">
+              {"Don't have an account? Sign Up"}
+            </Link>
+          </Box>
         </Box>
       </Box>
     </Container>

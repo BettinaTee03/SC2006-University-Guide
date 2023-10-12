@@ -41,18 +41,13 @@ function Register() {
           alignItems: "center",
         }}
       >
-        <Avatar sx={{ m: 1}}>
+        <Avatar sx={{ m: 1 }}>
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
           Sign up
         </Typography>
-        <Box
-          component="form"
-          noValidate
-          onSubmit={handleSubmit}
-          sx={{ mt: 3 }}
-        >
+        <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
           <Grid container spacing={2}>
             <Grid item xs={12}>
               <TextField
@@ -96,14 +91,20 @@ function Register() {
             fullWidth
             variant="contained"
             color="secondary"
-            sx={{ mt: 3, mb: 2 }}
+            sx={{
+              mt: 4,
+              mb: 2,
+              "@media (min-width: 600px)": {
+                mr: 16,
+              },
+            }}
           >
             Sign Up
           </Button>
-          <Grid container justifyContent="flex-end">
+          <Grid container justifyContent="center">
             <Grid item>
               <Link href="/Login" variant="body2">
-                Already have an account? Sign in
+                Already have an account? Login
               </Link>
             </Grid>
           </Grid>

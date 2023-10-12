@@ -1,9 +1,12 @@
-import EditParticulars from "../components/EditParticulars";
+import EditParticulars, {
+  UserParticulars,
+} from "../components/UserParticulars";
 import { useState, useEffect } from "react";
 
 function Profile() {
   const [message, setMessage] = useState("");
 
+  /* Need to fetch userParticulars from database and pass into Components as Props*/
   useEffect(() => {
     const fetchMessage = async () => {
       try {
@@ -19,7 +22,9 @@ function Profile() {
 
   return (
     <div>
-      <EditParticulars />
+      <UserParticulars />
     </div>
   );
 }
+
+export default Profile;

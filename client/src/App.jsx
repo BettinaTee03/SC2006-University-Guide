@@ -7,6 +7,7 @@ import Register from "./pages/Register";
 import Navbar from "./components/Navbar";
 import Courses from "./pages/Courses";
 import Explore from "./pages/Explore";
+import Profile from "./pages/Profile";
 import Statistics from "./pages/Statistics";
 import IndividualCourse from "./pages/IndividualCourse";
 import Footer from "./components/BottomFooter";
@@ -46,6 +47,7 @@ function App() {
           <Route path="/courses" element={<Courses />} />
           <Route path="/courses/:courseName" element={<IndividualCourse />} />
           <Route path="/statistics" element={<Statistics />} />
+          <Route path="/profile" element={<Profile />} />
         </Routes>
         <Footer />
       </Router>
