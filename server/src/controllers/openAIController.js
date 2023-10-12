@@ -9,35 +9,28 @@ const parser = StructuredOutputParser.fromNamesAndDescriptions({
   careerProspect1:
     "First unique career prospect that aligns closely with the user's aspiration and course.",
   careerPath1:
-    "Detailed career progression path from a junior role to a senior role for the suggested career.",
+    "Detailed career progression path from a junior role to an intermediate role to a senior role the suggested career .",
   skill1_1:
-    "List the first essential skill required for each job role in the career path. Be highly specific, considering the nature of the job and the tools or platforms predominantly used in that role.",
-  skill1_2:
-    "List the second essential skill required for each job role in the career path. Be highly specific, considering the nature of the job and the tools or platforms predominantly used in that role.",
-  skill1_3:
-    "List the third essential skill required for each job role in the career path. Be highly specific, considering the nature of the job and the tools or platforms predominantly used in that role.",
-
+    "List the first essential skill. Be highly specific and succint, considering the nature of the job and the tools or platforms predominantly used in that role.",
+  skill1_2: "List the second essential skill.",
+  skill1_3: "List the third essential skill.",
   careerProspect2:
     "Second unique career prospect that aligns with the user's aspiration and course.",
   careerPath2:
-    "Detailed career progression path from a junior role to a senior role for the suggested career.",
+    "Detailed career progression path from a junior role to an intermediate role to a senior role for the suggested career.",
   skill2_1:
-    "List the first essential skill required for each job role in the career path. Be highly specific, considering the nature of the job and the tools or platforms predominantly used in that role.",
-  skill2_2:
-    "List the second essential skill required for each job role in the career path. Be highly specific, considering the nature of the job and the tools or platforms predominantly used in that role.",
-  skills2_3:
-    "List the third essential skill required for each job role in the career path. Be highly specific, considering the nature of the job and the tools or platforms predominantly used in that role.",
+    "List the first essential skill. Be highly specific and succint, considering the nature of the job and the tools or platforms predominantly used in that role.",
+  skill2_2: "List the second essential skill.",
+  skill2_3: "List the third essential skill.",
 
   careerProspect3:
     "Third unique career prospect tailored to the user's aspiration and course.",
   careerPath3:
-    "Detailed career progression path from a junior role to a senior role for the suggested career.",
+    "Detailed career progression path from a junior role to an intermediate role to a senior role for the suggested career that aren't the same job.",
   skill3_1:
-    "List the first essential skill required for each job role in the career path. Be highly specific, considering the nature of the job and the tools or platforms predominantly used in that role.",
-  skill3_2:
-    "List the second essential skill required for each job role in the career path. Be highly specific, considering the nature of the job and the tools or platforms predominantly used in that role.",
-  skill3_3:
-    "List the third essential skill required for each job role in the career path. Be highly specific, considering the nature of the job and the tools or platforms predominantly used in that role.",
+    "List the first essential skill. Be highly specific and succint, considering the nature of the job and the tools or platforms predominantly used in that role.",
+  skill3_2: "List the second essential skill.",
+  skill3_3: "List the third essential skill.",
 });
 
 /**
@@ -56,13 +49,11 @@ const prompt = new PromptTemplate({
 
     For each career prospect, provide:
     - The name of the career.
-    - A progression path from a junior role to a senior role.
+    - A progression showcasing diverse roles, starting from an entry-level position, advancing to a mid-level position, and culminating in a high-level position, where each role is distinct from the other. Mention the job name only.
     - The top 3 essential skills required for each role in the career path, emphasizing the specific tools, platforms, or methodologies crucial for the role.
     
     Ensure that the suggested careers truly cater to the user's aspirations.
 
-
-  
     Remove any '\n' or '\t' in your response.
     {format_instructions}
 

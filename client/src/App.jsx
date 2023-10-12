@@ -10,7 +10,7 @@ import Explore from "./pages/Explore";
 import Statistics from "./pages/Statistics";
 import IndividualCourse from "./pages/IndividualCourse";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import AuthProvider from "./context/AuthProvider";
+import AuthProvider from "./contexts/AuthProvider";
 import AuthSuccess from "./components/AuthSuccess";
 
 const theme = createTheme({

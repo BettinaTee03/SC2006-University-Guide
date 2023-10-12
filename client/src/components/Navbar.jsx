@@ -14,7 +14,7 @@ import MenuItem from "@mui/material/MenuItem";
 import SchoolIcon from "@mui/icons-material/School";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
-import AuthContext from "../context/AuthContext";
+import AuthContext from "../contexts/AuthContext";
 
 const pages = ["Home", "Explore", "Courses", "Statistics"];
 const settings = ["Profile", "Account", "Login", "Register", "Logout"];

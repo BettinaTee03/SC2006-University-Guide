@@ -14,7 +14,7 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import GoogleIcon from "@mui/icons-material/Google";
-import AuthContext from "../context/AuthContext";
+import AuthContext from "../contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
 
 function Copyright(props) {

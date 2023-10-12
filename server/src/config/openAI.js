@@ -9,12 +9,13 @@ config();
  * @property {string} openAIApiKey - The API key for OpenAI.
  * @property {string} modelName - The name of the model to use.
  * @property {number} temperature - Determines the randomness of the model's output.
+ * @property {number} maxTokens - The maximum number of tokens to generate.
  */
 
 /**
  * @type {OpenAI}
  */
-const llm = {
+const llm = new OpenAI({
   /**
    * The API key for OpenAI.
    * @type {string}
@@ -25,13 +26,19 @@ const llm = {
    * The name of the model to use.
    * @type {string}
    */
-  modelName: "gpt-3.5-turbo",
+  modelName: "text-davinci-003",
 
   /**
    * Determines the randomness of the model's output.
    * @type {number}
    */
   temperature: 0.7,
-};
+
+  /**
+   * The maximum number of tokens to generate.
+   * @type {number}
+   */
+  maxTokens: 400,
+});
 
 export default llm;

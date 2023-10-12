@@ -40,7 +40,6 @@ async function getAspiration(req, res) {
     const structuredResponse = await openAIController.parser.parse(response);
     res.json(structuredResponse);
   } catch (error) {
-    console.error("Error:", error);
     res.status(500).send("Internal Server Error");
   }
 }
