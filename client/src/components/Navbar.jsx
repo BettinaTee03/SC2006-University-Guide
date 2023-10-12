@@ -12,14 +12,18 @@ import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import SchoolIcon from "@mui/icons-material/School";
+import axios from "axios";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const pages = ["Home", "Explore", "Courses", "Statistics"];
-const settings = ["Profile", "Account", "Login", "Register"];
+const settings = ["Profile", "Account", "Login", "Register", "Logout"];
 
 function Navbar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+
+  const navigate = useNavigate();
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -34,6 +38,24 @@ function Navbar() {
 
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
+  };
+
+  const handleLogout = async () => {
+    try {
+      const response = await axios.get("http://localhost:8000/auth/logout", {
+        withCredentials: true,
+      });
+      if (response.status === 200) {
+        navigate("/home");
+        alert(response.data.message);
+      }
+    } catch (error) {
+      if (error.response.data.error) {
+        alert(error.response.data.error);
+      } else {
+        alert("An error occurred during logout.");
+      }
+    }
   };
 
   return (
@@ -185,9 +207,11 @@ function Navbar() {
               {settings.map((setting) => (
                 <MenuItem
                   key={setting}
-                  component={Link}
+                  component={setting === "Logout" ? "button" : Link}
                   to={`/${setting.toLowerCase()}`}
-                  onClick={handleCloseUserMenu}
+                  onClick={
+                    setting === "Logout" ? handleLogout : handleCloseUserMenu
+                  }
                 >
                   <Typography textAlign="center">{setting}</Typography>
                 </MenuItem>

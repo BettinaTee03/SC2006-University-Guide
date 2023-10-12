@@ -22,6 +22,27 @@ function getRegister(req, res) {
 }
 
 /**
+ * Handles GET request for user logout.
+ * @function
+ * @param {Object} req - Express request object.
+ * @param {Object} res - Express response object.
+ */
+function logOut(req, res) {
+  if (req.isAuthenticated()) {
+    req.session.destroy((err) => {
+      if (err) {
+        return res.status(500).json({ error: "Failed to destroy session" });
+      }
+      res.clearCookie("connect.sid");
+      res.json({ message: "Logged out successfully" });
+    });
+  } else {
+    // If the user is not authenticated, respond accordingly
+    res.status(400).json({ error: "No active session found" });
+  }
+}
+
+/**
  * Handles POST request for user registration.
  * @function
  * @async
@@ -65,4 +86,4 @@ function postLogin(req, res, next) {
   })(req, res, next);
 }
 
-export default { getLogin, getRegister, postRegister, postLogin };
+export default { getLogin, getRegister, logOut, postRegister, postLogin };

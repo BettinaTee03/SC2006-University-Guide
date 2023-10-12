@@ -19,6 +19,13 @@ router.get("/login", authController.getLogin);
 router.get("/register", authController.getRegister);
 
 /**
+ * @route GET /auth/logout
+ * @desc Handle user logout
+ * @access Public
+ */
+router.get("/logout", authController.logOut);
+
+/**
  * @route GET /auth/google/callback
  * @desc Handle Google OAuth 2.0 login callback
  * @access Public
