@@ -23,8 +23,22 @@ function getLogin(req, res, next) {
 function getRedirect(req, res, next) {
   passport.authenticate("google", {
     failureRedirect: "http://localhost:5173/login", // React app's login page
-    successRedirect: "http://localhost:5173/courses", // React app's dashboard or home page
+    successRedirect: "http://localhost:5173/auth-success", // React app's dashboard or home page
   })(req, res, next);
 }
 
-export default { getLogin, getRedirect };
+/**
+ * Checks if the user is authenticated.
+ * @function
+ * @param {Object} req - Express request object.
+ * @param {Object} res - Express response object.
+ */
+function getSession(req, res) {
+  if (req.isAuthenticated()) {
+    res.status(200).json({ isAuthenticated: true });
+  } else {
+    res.status(200).json({ isAuthenticated: false });
+  }
+}
+
+export default { getLogin, getRedirect, getSession };

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import axios from "axios";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
@@ -14,6 +14,8 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import GoogleIcon from "@mui/icons-material/Google";
+import AuthContext from "../context/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 function Copyright(props) {
   return (
@@ -33,13 +35,14 @@ function Copyright(props) {
   );
 }
 
-// TODO remove, this demo shouldn't need to reset the theme.
 const defaultTheme = createTheme();
 
 function Login() {
+  const { setIsAuthenticated } = useContext(AuthContext);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
+
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -49,12 +52,15 @@ function Login() {
         { username, password },
         { withCredentials: true }
       );
-      console.log(response.data);
+      if (response.status === 200) {
+        setIsAuthenticated(true);
+      }
+      navigate("/home");
     } catch (error) {
       if (error.response) {
-        setError(error.response.data.error);
+        alert(error.response.data.error);
       } else {
-        setError(error.message);
+        alert("Something went wrong. Please try again.");
       }
     }
   };
@@ -125,7 +131,7 @@ function Login() {
             </Button>
 
             <Button
-              type="submit"
+              type="button"
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}

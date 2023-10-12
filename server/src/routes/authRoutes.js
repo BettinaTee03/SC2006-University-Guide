@@ -40,6 +40,13 @@ router.get("/google/callback", googleAuthController.getRedirect);
 router.get("/google", googleAuthController.getLogin);
 
 /**
+ * @route GET /auth/check-session
+ * @desc Check if user is authenticated
+ * @access Public
+ */
+router.get("/check-session", googleAuthController.getSession);
+
+/**
  * @route POST /auth/register
  * @desc Handle user registration
  * @access Public
