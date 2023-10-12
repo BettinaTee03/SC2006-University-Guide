@@ -69,8 +69,8 @@ function AspirationForm({ course }) {
   return (
     <>
       <form onSubmit={handleSubmit}>
-        <h1>Tell us more about you!</h1>
-        <label htmlFor="aspiration">Aspiration</label>
+        <h1 style={{color: "#A2B29F"}}>Tell us more about you!</h1>
+        <label htmlFor="aspiration" style={{marginRight: 4}}>Aspiration:</label>
         <input
           type="text"
           id="aspiration"
@@ -79,19 +79,19 @@ function AspirationForm({ course }) {
           value={aspiration}
           onChange={handleInputChange}
         />
-        <input type="submit" value="Submit" />
-      </form>
+        <input type="submit" value="Submit" style={{backgroundColor:"#DF8886", padding:3, border: "none", borderRadius:5, margin:4}}/>
+      </form >
       {isLoading ? (
         "We are crafting and getting the best career prospects for you!"
       ) : careers.length > 0 ? ( // Check if the careers array has data
         <>
-          <h1>Based on your answers...</h1>
-          <p>
+          <h1 style={{color: "#A2B29F"}}>Based on your answers...</h1>
+          <p style={{color: "#A2B29F"}}>
             These are the top 3 career options based on your selected course and
             aspiration!
           </p>
-          <h1>Career Prospects</h1>
-          <p>You can explore the following career options upon graduation:</p>
+          <h1 style={{color: "#A2B29F"}}>Career Prospects</h1>
+          <p style={{color: "#A2B29F"}}>You can explore the following career options upon graduation:</p>
           {careers.map((career, index) => (
             <div key={index}>
               <h2>{career.careerProspect}</h2>
