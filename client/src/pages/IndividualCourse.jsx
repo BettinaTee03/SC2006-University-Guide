@@ -28,8 +28,8 @@ function IndividualCourse() {
         setCourse(response.data);
       } catch (error) {
         if (error.response && error.response.status === 401) {
-          //alert("You must be logged in to view this page.");
-          //navigate("/login");
+          alert("You must be logged in to view this page.");
+          navigate("/login");
         }
       }
     }
