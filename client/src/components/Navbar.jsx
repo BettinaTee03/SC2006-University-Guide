@@ -13,8 +13,6 @@ import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import SchoolIcon from "@mui/icons-material/School";
 import axios from "axios";
-import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
 import { Link, useNavigate } from "react-router-dom";
 import AuthContext from "../contexts/AuthContext";
 
@@ -31,8 +29,6 @@ function Navbar() {
         (setting) => setting !== "Login" && setting !== "Register"
       )
     : settings.filter((setting) => setting !== "Logout");
-
-  const navigate = useNavigate();
 
   const navigate = useNavigate();
 

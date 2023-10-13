@@ -16,7 +16,7 @@ function Footer() {
         <Typography variant="body2" color="#445044" align="center">
           {"Copyright © "}
           <Link color="inherit" href="http://localhost:5173/Home">
-            University Guide
+            Softbuns
           </Link>{" "}
           {new Date().getFullYear()}
           {"."}

@@ -35,21 +35,21 @@ function IndividualCourse() {
     }
     getIndividualCourse();
 
-    setCourse({
-      course_name: "Accountancy (SIT)",
-      description: "The Bachelor of Accountancy with Honours is a three-year, direct honours degree programme designed through a series of consultations with various industry heads, accreditation bodies, and external faculty consultants. This degree programme will hone students’ critical and analytical skills in addition to the requisite knowledge needed for a professional accounting career in commerce, industry, government or public practice. Graduates will be specialists with deep skill-sets ready for the accounting sector.",
-      school_name: "Singapore Institute of Technology",
-      college_name: "Singapore Institute of Technology",
-      course_type: "Full-time",
-      course_duration: "3 years",
-      percentage_less_equal_70_UAS: "9.00",
-      "percentage_70.01_to_80_UAS": "38.70",
-      "percentage_80.01_to_90_UAS": "55.90",
-      "percentage_less_3.2_GPA": "16.50",
-      "percentage_3.2_3.6_GPA": "61.80",
-      "percentage_3.6_4.0_GPA": "56.80",
-      employment_stats:[]
-    });
+    // setCourse({
+    //   course_name: "Accountancy (SIT)",
+    //   description: "The Bachelor of Accountancy with Honours is a three-year, direct honours degree programme designed through a series of consultations with various industry heads, accreditation bodies, and external faculty consultants. This degree programme will hone students’ critical and analytical skills in addition to the requisite knowledge needed for a professional accounting career in commerce, industry, government or public practice. Graduates will be specialists with deep skill-sets ready for the accounting sector.",
+    //   school_name: "Singapore Institute of Technology",
+    //   college_name: "Singapore Institute of Technology",
+    //   course_type: "Full-time",
+    //   course_duration: "3 years",
+    //   percentage_less_equal_70_UAS: "9.00",
+    //   "percentage_70.01_to_80_UAS": "38.70",
+    //   "percentage_80.01_to_90_UAS": "55.90",
+    //   "percentage_less_3.2_GPA": "16.50",
+    //   "percentage_3.2_3.6_GPA": "61.80",
+    //   "percentage_3.6_4.0_GPA": "56.80",
+    //   employment_stats:[]
+    // });
     
     //REMEMBER TO UNCOMMENT THIS
     //setCourse(testCourse);

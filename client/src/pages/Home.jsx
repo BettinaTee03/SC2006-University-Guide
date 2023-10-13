@@ -1,6 +1,7 @@
-import { Typography, Box, Container } from "@mui/material";
+import { Typography, Box, Container, Button } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import universitystudents from "../images/university_students.png";
+import { Link } from "react-router-dom";
 
 function Home() {
   const [message, setMessage] = useState("");
@@ -58,6 +59,21 @@ function Home() {
             business, we connect you with top-tier courses from renowned
             institutions across Singapore.
           </Typography>
+          <Box align="center">
+            <Link to="/Register">
+              <Button
+                variant="contained"
+                sx={{
+                  color: "#FFFFFF",
+                  backgroundColor: "#445044",
+                  borderRadius: 4,
+                  marginTop:1
+                }}
+              >
+                Get Started
+              </Button>
+            </Link>
+          </Box>
           <Box
             component="img"
             sx={{
