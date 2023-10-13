@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -15,6 +15,8 @@ import SchoolIcon from "@mui/icons-material/School";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import AuthContext from "../contexts/AuthContext";
 
 const pages = ["Home", "Explore", "Courses", "Statistics"];
 const settings = ["Profile", "Account", "Login", "Register", "Logout"];
@@ -22,6 +24,15 @@ const settings = ["Profile", "Account", "Login", "Register", "Logout"];
 function Navbar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const { isAuthenticated, setIsAuthenticated } = useContext(AuthContext);
+
+  const filteredSettings = isAuthenticated
+    ? settings.filter(
+        (setting) => setting !== "Login" && setting !== "Register"
+      )
+    : settings.filter((setting) => setting !== "Logout");
+
+  const navigate = useNavigate();
 
   const navigate = useNavigate();
 
@@ -46,6 +57,7 @@ function Navbar() {
         withCredentials: true,
       });
       if (response.status === 200) {
+        setIsAuthenticated(false);
         navigate("/home");
         alert(response.data.message);
       }
@@ -204,7 +216,7 @@ function Navbar() {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              {settings.map((setting) => (
+              {filteredSettings.map((setting) => (
                 <MenuItem
                   key={setting}
                   component={setting === "Logout" ? "button" : Link}
