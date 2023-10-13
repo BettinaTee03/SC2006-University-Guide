@@ -34,19 +34,37 @@ function IndividualCourse() {
       }
     }
     getIndividualCourse();
-    setCourse(testCourse);
+
+    setCourse({
+      course_name: "Accountancy (SIT)",
+      description: "The Bachelor of Accountancy with Honours is a three-year, direct honours degree programme designed through a series of consultations with various industry heads, accreditation bodies, and external faculty consultants. This degree programme will hone students’ critical and analytical skills in addition to the requisite knowledge needed for a professional accounting career in commerce, industry, government or public practice. Graduates will be specialists with deep skill-sets ready for the accounting sector.",
+      school_name: "Singapore Institute of Technology",
+      college_name: "Singapore Institute of Technology",
+      course_type: "Full-time",
+      course_duration: "3 years",
+      percentage_less_equal_70_UAS: "9.00",
+      "percentage_70.01_to_80_UAS": "38.70",
+      "percentage_80.01_to_90_UAS": "55.90",
+      "percentage_less_3.2_GPA": "16.50",
+      "percentage_3.2_3.6_GPA": "61.80",
+      "percentage_3.6_4.0_GPA": "56.80",
+      employment_stats:[]
+    });
+    
+    //REMEMBER TO UNCOMMENT THIS
+    //setCourse(testCourse);
   }, [courseName]);
 
   return (
     <div>
       {course ? (
         <div>
-          <Container maxWidth="md">
-            <Box sx={{ my: 10 }}>
+          <Container>
+            <Grid>
               <Grid container sx={{ my: 6 }}>
                 <Grid item xs={10}>
                   <Paper sx={{ p: 2, bgcolor: "#FFF8F2", borderRadius: 15 }}>
-                    <Typography variant="h4" align="center" color="#A2B29F" sx={{fontWeight:'Bold'}}>
+                    <Typography variant="h5" align="center" color="#A2B29F" sx={{fontWeight:'Bold'}}>
                       {course.course_name}
                     </Typography>
                   </Paper>
@@ -60,9 +78,9 @@ function IndividualCourse() {
                 >
                   <Button onClick={handleClick}>
                     {isIconClicked ? (
-                      <FavoriteIcon sx={{ fontSize: 80 }} />
+                      <FavoriteIcon sx={{ fontSize: 40 }} />
                     ) : (
-                      <FavoriteBorderIcon sx={{ fontSize: 80 }} />
+                      <FavoriteBorderIcon sx={{ fontSize: 40 }} />
                     )}
                   </Button>
                 </Grid>
@@ -200,7 +218,7 @@ function IndividualCourse() {
               <Paper sx={{ my: 6, p: 2 }}>
                 <AspirationForm course={course.course_name} />
               </Paper>
-            </Box>
+            </Grid>
           </Container>
         </div>
       ) : (
