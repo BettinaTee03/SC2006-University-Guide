@@ -78,6 +78,7 @@ async function searchCourses(query) {
         autocomplete: {
           query: query,
           path: "course_name",
+          tokenOrder: "sequential",
         },
       },
     },

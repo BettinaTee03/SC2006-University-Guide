@@ -167,7 +167,7 @@ function IntakeChart() {
               value={selectedCourses}
               onChange={handleCourseChange}
             >
-              <option value="Accountancy">Accountacy</option>
+              <option value="Accountancy">Accountancy</option>
               <option value="Architecture, Building & Real Estate">
                 Architecture, Building & Real Estate
               </option>
