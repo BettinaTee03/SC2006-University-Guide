@@ -13,6 +13,13 @@ router.use(express.json());
 router.get("/search", courseController.getSearch);
 
 /**
+ * @route GET /courses/all
+ * @desc Get all courses
+ * @access Public
+ */
+router.get("/all", courseController.getAllCourses);
+
+/**
  * @route GET /courses/:course
  * @desc Get specific course details
  * @access Private
