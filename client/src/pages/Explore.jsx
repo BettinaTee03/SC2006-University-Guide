@@ -1,36 +1,27 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Search from "../components/Search";
-import { Container } from "@mui/material";
+import Grid from "@mui/material/Grid";
+import { Link } from "react-router-dom";
 
 function Explore() {
-  const [message, setMessage] = useState("");
-
-  useEffect(() => {
-    const fetchMessage = async () => {
-      // implement /explore page
-      try {
-        const response = await axios.get("http://localhost:8000/");
-        setMessage(response.data.message);
-      } catch (error) {
-        console.error("Error fetching explore page", error);
-      }
-    };
-
-    fetchMessage();
-  }, []);
+  const renderLinkContent = (option) => {
+    return (
+      <Link to={`/courses/${option.course_name}`} className="all-link">
+        {option.course_name}
+      </Link>
+    );
+  };
 
   return (
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        marginTop: "50px",
-      }}
-    >
-      {<Search />}
-    </div>
+    <Grid container rowSpacing={2} sx={{ width: "auto", margin: 2 }}>
+      {
+        <Search
+          pageTitle="All Courses"
+          renderOptionContent={renderLinkContent}
+        />
+      }
+    </Grid>
   );
 }
 

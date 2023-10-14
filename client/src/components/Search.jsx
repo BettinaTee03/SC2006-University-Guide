@@ -1,25 +1,24 @@
 import React, { useEffect, useState } from "react";
 import Axios from "axios";
 import { Link } from "react-router-dom";
-import '../Search.css';
+import "../Search.css";
 
-import Grid from '@mui/material/Grid';
-import Autocomplete from '@mui/material/Autocomplete';
-import TextField from '@mui/material/TextField';
-import { Typography } from '@mui/material';
+import Grid from "@mui/material/Grid";
+import Autocomplete from "@mui/material/Autocomplete";
+import TextField from "@mui/material/TextField";
+import { Typography } from "@mui/material";
 
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableRow from '@mui/material/TableRow';
-import Pagination from '@mui/material/Pagination';
-import Stack from '@mui/material/Stack';
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableRow from "@mui/material/TableRow";
+import Pagination from "@mui/material/Pagination";
+import Stack from "@mui/material/Stack";
 
-
-function Search() {
+function Search({ pageTitle, renderOptionContent }) {
   const [results, setResults] = React.useState([]);
-  const [inputValue, setInputValue] = React.useState('');
+  const [inputValue, setInputValue] = React.useState("");
 
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(15);
@@ -46,8 +45,8 @@ function Search() {
   };
 
   return (
-    <Grid container rowSpacing={1} justifyContent="center">
-      <Grid item xs={11}>
+    <>
+      <Grid item xs={12}>
         <Autocomplete
           disablePortal
           inputValue={inputValue}
@@ -58,11 +57,13 @@ function Search() {
           options={results}
           filterOptions={(options, state) => {
             const inputValue = state.inputValue.toLowerCase();
-            if (inputValue === '') {
+            if (inputValue === "") {
               return [];
             }
             const filteredOptions = options
-              .filter((option) => option.course_name.toLowerCase().includes(inputValue))
+              .filter((option) =>
+                option.course_name.toLowerCase().includes(inputValue)
+              )
               .sort((a, b) => {
                 const aIndex = a.course_name.toLowerCase().indexOf(inputValue);
                 const bIndex = b.course_name.toLowerCase().indexOf(inputValue);
@@ -70,49 +71,53 @@ function Search() {
               });
             return filteredOptions.slice(0, 10); // Limit to the first 5 matching options
           }}
-          noOptionsText={inputValue==='' ? "Searching..." : "No search results"}
+          noOptionsText={
+            inputValue === "" ? "Searching..." : "No search results"
+          }
           getOptionLabel={(option) => option.course_name}
           renderInput={(params) => (
             <TextField
               {...params}
               label="Search Course"
-              className="custom-label" 
-          />)}
-          renderOption={(props, option) => (
-            <div>
-              <Link to={`/courses/${option.course_name}`} className="search-link">
-                {option.course_name}
-              </Link>
-            </div>
+              className="custom-label"
+            />
           )}
+          renderOption={(props, option) => {
+            const content = renderOptionContent(option);
+            return (
+              <div {...props} className="search-link">
+                {content}
+              </div>
+            );
+          }}
         />
       </Grid>
 
-      <Grid item xs={11}>
-        <Typography variant="h5" align="left" className="custom-header">
-          All Courses
+      <Grid item xs={12}>
+        <Typography variant="h4" align="left" className="custom-header">
+          {pageTitle}
         </Typography>
       </Grid>
-      
-      <Grid item xs={11}>
+
+      <Grid item xs={12}>
         <TableContainer>
           <Table>
             <TableBody>
-              {results.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((course) => (
-                <TableRow key={course.course_name}>
-                  <TableCell style={{ wordWrap: "break-word",  padding: "0" }}>
-                    <Link to={`/courses/${course.course_name}`} className="all-link">
-                      {course.course_name}
-                    </Link>
-                  </TableCell>
-                </TableRow>
-              ))}
+              {results
+                .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                .map((course) => (
+                  <TableRow key={course.course_name}>
+                    <TableCell style={{ wordWrap: "break-word", padding: "0" }}>
+                      {renderOptionContent(course)}
+                    </TableCell>
+                  </TableRow>
+                ))}
             </TableBody>
           </Table>
         </TableContainer>
       </Grid>
-              
-      <Grid item xs={11}>
+
+      <Grid item xs={12}>
         <Stack justifyContent="center">
           <Pagination
             count={Math.floor(results.length / rowsPerPage)} // Calculate the number of pages
@@ -122,10 +127,8 @@ function Search() {
           />
         </Stack>
       </Grid>
-
-    </Grid>          
+    </>
   );
 }
 
 export default Search;
-

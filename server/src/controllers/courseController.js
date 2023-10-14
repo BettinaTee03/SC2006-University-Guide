@@ -28,7 +28,9 @@ async function getSearch(req, res) {
  */
 async function getAllCourses(req, res) {
   try {
-    const courses = await CourseModel.find({}, { course_name: 1, _id: 0 }).sort({ course_name: 1 });
+    const courses = await CourseModel.find({}, { course_name: 1, _id: 0 }).sort(
+      { course_name: 1 }
+    );
     res.json(courses);
   } catch (error) {
     res.status(500).json({ error: "Internal server error" });
@@ -91,14 +93,16 @@ async function getCourse(req, res) {
 async function postCompareCourses(req, res) {
   try {
     const courses = req.body.courses;
-    const selectedResults = {};
+    const selectedResults = [];
     await Promise.all(
       courses.map(async (course) => {
-        const decodedCourse = decodeURIComponent(course);
+        const decodedCourse = decodeURIComponent(course.course_name);
         const result = await CourseModel.findOne({
           course_name: decodedCourse,
         });
-        selectedResults[decodedCourse] = result;
+        if (result) {
+          selectedResults.push({ course_name: decodedCourse, ...result._doc });
+        }
       })
     );
     res.json(selectedResults);
@@ -107,4 +111,10 @@ async function postCompareCourses(req, res) {
   }
 }
 
-export default { getSearch, getAllCourses, getAspiration, getCourse, postCompareCourses };
+export default {
+  getSearch,
+  getAllCourses,
+  getAspiration,
+  getCourse,
+  postCompareCourses,
+};
