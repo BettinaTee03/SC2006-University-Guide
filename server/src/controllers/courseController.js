@@ -65,4 +65,30 @@ async function getCourse(req, res) {
   }
 }
 
-export default { getSearch, getAspiration, getCourse };
+/**
+ * Handles POST request for course comparison.
+ * @function
+ * @async
+ * @param {Object} req - Express request object.
+ * @param {Object} res - Express response object.
+ */
+async function postCompareCourses(req, res) {
+  try {
+    const courses = req.body.courses;
+    const selectedResults = {};
+    await Promise.all(
+      courses.map(async (course) => {
+        const decodedCourse = decodeURIComponent(course);
+        const result = await CourseModel.findOne({
+          course_name: decodedCourse,
+        });
+        selectedResults[decodedCourse] = result;
+      })
+    );
+    res.json(selectedResults);
+  } catch (error) {
+    res.status(500).json({ message: "An error occurred during the search." });
+  }
+}
+
+export default { getSearch, getAspiration, getCourse, postCompareCourses };

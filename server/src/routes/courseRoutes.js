@@ -21,6 +21,18 @@ router.get("/search", courseController.getSearch);
 router.get("/:course", ensureAuthenticated, courseController.getCourse);
 
 /**
+ * @route POST /courses/compare
+ * @desc Compare courses
+ * @access Private
+ * @middleware ensureAuthenticated
+ */
+router.post(
+  "/compare",
+  ensureAuthenticated,
+  courseController.postCompareCourses
+);
+
+/**
  * @route POST /courses/submit
  * @desc Submit aspirations related to a specific course
  * @access Private

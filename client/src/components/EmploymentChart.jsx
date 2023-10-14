@@ -67,6 +67,8 @@ function EmploymentChart({ courseName, employmentData }) {
       },
       {
         opposite: true,
+        min: 0,
+        max: 100,
         seriesName: "Employment Rate",
         axisTicks: {
           show: true,
@@ -92,9 +94,7 @@ function EmploymentChart({ courseName, employmentData }) {
           const seriesName = w.config.series[seriesIndex].name;
           if (seriesName === "Basic Salary") {
             const medianValue = basicSalariesMedian[dataPointIndex];
-            return (
-              "Mean: $" + value.toFixed(2) + "<br>" + "Median: $" + medianValue
-            );
+            return "Mean: $" + value + "<br>" + "Median: $" + medianValue;
           } else if (seriesName === "Gross Salary") {
             const medianValue = grossSalariesMedian[dataPointIndex];
             return "Mean: $" + value + "<br>" + "Median: $" + medianValue;
