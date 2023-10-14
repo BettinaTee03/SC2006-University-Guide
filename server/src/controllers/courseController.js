@@ -20,6 +20,22 @@ async function getSearch(req, res) {
 }
 
 /**
+ * Handles GET request for all courses.
+ * @function
+ * @async
+ * @param {Object} req - Express request object.
+ * @param {Object} res - Express response object.
+ */
+async function getAllCourses(req, res) {
+  try {
+    const courses = await CourseModel.find({}, { course_name: 1, _id: 0 }).sort({ course_name: 1 });
+    res.json(courses);
+  } catch (error) {
+    res.status(500).json({ error: "Internal server error" });
+  }
+}
+
+/**
  * Handles GET request for user aspiration processing.
  * @function
  * @async
@@ -91,4 +107,4 @@ async function postCompareCourses(req, res) {
   }
 }
 
-export default { getSearch, getAspiration, getCourse, postCompareCourses };
+export default { getSearch, getAllCourses, getAspiration, getCourse, postCompareCourses };
