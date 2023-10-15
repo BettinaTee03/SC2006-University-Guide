@@ -32,23 +32,11 @@ function Courses() {
     );
   };
 
-  const handleClick = async () => {
+  const handleClick = () => {
     if (selectedCourses.length < 2) {
       alert("You must select at least two courses to compare.");
-      return;
-    }
-    try {
-      const response = await axios.post(
-        "http://localhost:8000/courses/compare",
-        { courses: selectedCourses },
-        { withCredentials: true }
-      );
-      setCourseData(response.data);
-    } catch (error) {
-      if (error.response && error.response.status === 401) {
-        alert("You must be logged in to view this page.");
-        navigate("/login");
-      }
+    } else {
+      navigate("/courses/compare", { state: { selectedCourses } });
     }
   };
 
@@ -90,13 +78,6 @@ function Courses() {
         >
           Course Comparison Results
         </Typography>
-        {courseData.length > 0 &&
-          courseData.map((course) => (
-            <div>
-              <p>{course.course_name}</p>
-              <p>{course.description}</p>
-            </div>
-          ))}
       </Grid>
 
       <Grid item xs={6}>
