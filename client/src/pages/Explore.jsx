@@ -7,7 +7,10 @@ import { Link } from "react-router-dom";
 function Explore() {
   const renderLinkContent = (option) => {
     return (
-      <Link to={`/courses/${option.course_name}`} className="all-link">
+      <Link
+        to={`/courses/${option.course_name}`}
+        className="explore-search-link"
+      >
         {option.course_name}
       </Link>
     );
@@ -19,6 +22,7 @@ function Explore() {
         <Search
           pageTitle="All Courses"
           renderOptionContent={renderLinkContent}
+          selectedCourses={[]}
         />
       }
     </Grid>

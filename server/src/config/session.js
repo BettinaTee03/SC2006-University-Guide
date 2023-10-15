@@ -10,7 +10,7 @@ config();
 const sessionConfig = session({
   secret: process.env.SECRET,
   cookie: {
-    maxAge: 1000000,
+    maxAge: 3600000,
   },
   resave: false,
   saveUninitialized: false,

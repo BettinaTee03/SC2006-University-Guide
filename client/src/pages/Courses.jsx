@@ -1,16 +1,16 @@
 import React, { useState } from "react";
-import axios from "axios";
 import Search from "../components/Search";
 import Grid from "@mui/material/Grid";
-import { Typography } from "@mui/material";
 import "../Courses.css";
 import CourseCompareList from "../components/CourseCompareList";
 import Button from "@mui/material/Button";
 import { useNavigate } from "react-router-dom";
+import AlertButton from "../components/AlertButton";
+import AlertSnackbar from "../components/Snackbar";
 
 function Courses() {
   const [selectedCourses, setSelectedCourses] = useState([]);
-  const [courseData, setCourseData] = useState([]);
+  const [showAlert, setShowAlert] = useState(false);
 
   const navigate = useNavigate();
 
@@ -34,7 +34,7 @@ function Courses() {
 
   const handleClick = () => {
     if (selectedCourses.length < 2) {
-      alert("You must select at least two courses to compare.");
+      setShowAlert(true);
     } else {
       navigate("/courses/compare", { state: { selectedCourses } });
     }
@@ -42,50 +42,56 @@ function Courses() {
 
   const renderOptionContent = (option) => {
     return (
-      <div className="all-link" onClick={() => handleOptionClick(option)}>
-        {option.course_name}{" "}
-      </div>
+      <div onClick={() => handleOptionClick(option)}>{option.course_name} </div>
     );
   };
 
   return (
-    <Grid container spacing={2} sx={{ width: "auto", margin: 2 }}>
-      <Grid item xs={6}>
-        <Typography
-          variant="h4"
-          align="left"
-          className="custom-header"
-          sx={{ marginBottom: "2rem" }}
-        >
-          Course List
-        </Typography>
-        <CourseCompareList
-          courses={selectedCourses}
-          handleDelete={handleDelete}
-        />
-        <Button
-          variant="contained"
-          sx={{ margin: "1rem" }}
-          onClick={handleClick}
-        >
-          Compare
-        </Button>
-        <Typography
-          variant="h4"
-          align="left"
-          className="custom-header"
-          sx={{ marginBottom: "2rem" }}
-        >
-          Course Comparison Results
-        </Typography>
+    <Grid
+      container
+      spacing={2}
+      sx={{ width: "auto", margin: 2, padding: "10px" }}
+    >
+      <AlertSnackbar
+        alertMessage="Please select at least 2 courses to compare!"
+        open={showAlert}
+        setOpen={setShowAlert}
+      />
+      <Grid item xs={5} className="course-list">
+        <Grid container>
+          <Grid item xs={12}>
+            <h1 className="course-header">My Course List</h1>
+          </Grid>
+
+          <Grid item xs={12}>
+            <CourseCompareList
+              courses={selectedCourses}
+              handleDelete={handleDelete}
+            />
+          </Grid>
+
+          <Grid item xs={12} sx={{ width: "auto" }}>
+            <Button
+              variant="contained"
+              sx={{
+                width: { xs: "220px", lg: "40%" },
+                fontFamily: "Roboto Condensed, sans-serif",
+              }}
+              onClick={handleClick}
+            >
+              Compare
+            </Button>
+          </Grid>
+        </Grid>
       </Grid>
 
-      <Grid item xs={6}>
+      <Grid item xs={7}>
         <Grid container sx={{ width: "auto" }} rowSpacing={2}>
           {
             <Search
               pageTitle="Course Comparison"
               renderOptionContent={renderOptionContent}
+              selectedCourses={selectedCourses}
             />
           }
         </Grid>

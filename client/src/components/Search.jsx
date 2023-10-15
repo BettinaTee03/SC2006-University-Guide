@@ -16,7 +16,7 @@ import TableRow from "@mui/material/TableRow";
 import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
 
-function Search({ pageTitle, renderOptionContent }) {
+function Search({ pageTitle, renderOptionContent, selectedCourses }) {
   const [results, setResults] = React.useState([]);
   const [inputValue, setInputValue] = React.useState("");
 
@@ -42,6 +42,12 @@ function Search({ pageTitle, renderOptionContent }) {
   const handleChangeRowsPerPage = (event) => {
     setRowsPerPage(+event.target.value);
     setPage(0);
+  };
+
+  const isCourseSelected = (courseName) => {
+    return selectedCourses.some(
+      (selectedCourse) => selectedCourse.course_name === courseName
+    );
   };
 
   return (
@@ -78,14 +84,21 @@ function Search({ pageTitle, renderOptionContent }) {
           renderInput={(params) => (
             <TextField
               {...params}
-              label="Search Course"
+              label="Search Course..."
               className="custom-label"
             />
           )}
           renderOption={(props, option) => {
             const content = renderOptionContent(option);
             return (
-              <div {...props} className="search-link">
+              <div
+                {...props}
+                className={`${
+                  isCourseSelected(option.course_name)
+                    ? "selected search-link-selected"
+                    : "search-link"
+                }`}
+              >
                 {content}
               </div>
             );
@@ -107,8 +120,24 @@ function Search({ pageTitle, renderOptionContent }) {
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map((course) => (
                   <TableRow key={course.course_name}>
-                    <TableCell style={{ wordWrap: "break-word", padding: "0" }}>
-                      {renderOptionContent(course)}
+                    <TableCell
+                      style={{
+                        wordWrap: "break-word",
+                        padding: "0",
+                      }}
+                      className={
+                        isCourseSelected(course.course_name) ? "selected" : ""
+                      }
+                    >
+                      <div
+                        className={`${
+                          isCourseSelected(course.course_name)
+                            ? "selected all-link-selected"
+                            : "all-link"
+                        }`}
+                      >
+                        {renderOptionContent(course)}
+                      </div>
                     </TableCell>
                   </TableRow>
                 ))}
