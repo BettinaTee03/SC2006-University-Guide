@@ -69,7 +69,7 @@ function Search({ pageTitle, renderOptionContent }) {
                 const bIndex = b.course_name.toLowerCase().indexOf(inputValue);
                 return aIndex - bIndex;
               });
-            return filteredOptions.slice(0, 10); // Limit to the first 5 matching options
+            return filteredOptions.slice(0, 10); 
           }}
           noOptionsText={
             inputValue === "" ? "Searching..." : "No search results"
@@ -120,7 +120,7 @@ function Search({ pageTitle, renderOptionContent }) {
       <Grid item xs={12}>
         <Stack justifyContent="center">
           <Pagination
-            count={Math.floor(results.length / rowsPerPage)} // Calculate the number of pages
+            count={Math.floor(results.length / rowsPerPage)} 
             page={page}
             onChange={handleChangePage}
             className="custom-pagination"
