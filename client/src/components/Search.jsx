@@ -72,7 +72,7 @@ function Search({ pageTitle, renderOptionContent, selectedCourses }) {
                 const bIndex = b.course_name.toLowerCase().indexOf(inputValue);
                 return aIndex - bIndex;
               });
-            return filteredOptions.slice(0, 10); // Limit to the first 5 matching options
+            return filteredOptions.slice(0, 10);
           }}
           noOptionsText={
             inputValue === "" ? "Searching..." : "No search results"

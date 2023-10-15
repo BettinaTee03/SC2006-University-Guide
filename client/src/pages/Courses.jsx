@@ -18,7 +18,10 @@ function Courses() {
       (course) => course.course_name === option.course_name
     );
 
-    if (!courseAlreadySelected) {
+    if (selectedCourses.length === 3){
+      alert("Your course list already has the maximum of 3 courses!");
+    }
+    else if (!courseAlreadySelected) {
       setSelectedCourses([...selectedCourses, option]);
     }
   };
