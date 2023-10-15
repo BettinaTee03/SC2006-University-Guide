@@ -23,13 +23,13 @@ function CourseCompareList({ courses, handleDelete }) {
           </Grid>
         ) : (
           courses.map((course) => (
-            <Grid item xs={6} sm={4} md={12} lg={12} key={course.course_name}>
+            <Grid item xs={12} sm={6} md={12} lg={12} key={course.course_name}>
               <Chip
                 className="course-chip"
                 label={course.course_name}
                 onDelete={() => handleDelete(course)}
                 sx={{
-                  height: { xs: "50px", sm: "100px", md: "auto", lg: "auto" },
+                  height: { xs: "60px", sm: "100px", md: "auto", lg: "auto" },
                   pt: "1rem",
                   pb: "1rem",
                   "& .MuiChip-label": {
@@ -38,8 +38,8 @@ function CourseCompareList({ courses, handleDelete }) {
                     width: "55%",
                     textAlign: "center",
                     fontSize: {
-                      xs: "8px",
-                      sm: "12px",
+                      xs: "16px",
+                      sm: "16px",
                       md: "1rem",
                       lg: "1rem",
                     },

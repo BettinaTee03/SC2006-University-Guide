@@ -2,7 +2,6 @@ import React, { useState, useContext } from "react";
 import axios from "axios";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
-import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
@@ -72,7 +71,6 @@ function Login() {
   return (
     <ThemeProvider theme={defaultTheme}>
       <Container component="main" maxWidth="xs">
-        <CssBaseline />
         <Box
           sx={{
             marginTop: 8,

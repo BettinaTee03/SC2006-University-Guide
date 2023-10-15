@@ -4,12 +4,23 @@ import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import AspirationForm from "../components/AspirationForm";
 import EmploymentChart from "../components/EmploymentChart";
+import LoginAlert from "../components/LoginAlert";
+import Skeleton from "@mui/material/Skeleton";
+import Stack from "@mui/material/Stack";
 
 function IndividualCourse() {
   const [course, setCourse] = useState(null);
   const { courseName } = useParams();
-
+  const [isLoginAlertOpen, setIsLoginAlertOpen] = useState(false);
   const navigate = useNavigate();
+
+  const handleLoginAlertClose = () => {
+    setIsLoginAlertOpen(false);
+  };
+
+  const handleLogin = () => {
+    navigate("/login");
+  };
 
   useEffect(() => {
     async function getIndividualCourse() {
@@ -21,8 +32,7 @@ function IndividualCourse() {
         setCourse(response.data);
       } catch (error) {
         if (error.response && error.response.status === 401) {
-          alert("You must be logged in to view this page.");
-          navigate("/login");
+          setIsLoginAlertOpen(true);
         }
       }
     }
@@ -31,6 +41,11 @@ function IndividualCourse() {
 
   return (
     <div>
+      <LoginAlert
+        open={isLoginAlertOpen}
+        handleClose={handleLoginAlertClose}
+        handleLogin={handleLogin}
+      />
       {course ? (
         <div>
           <h1>{course.course_name}</h1>
@@ -73,7 +88,11 @@ function IndividualCourse() {
           <AspirationForm course={course.course_name} />
         </div>
       ) : (
-        <p>Loading...</p>
+        <Stack spacing={2} sx={{ m: "1rem" }}>
+          <Skeleton variant="rounded" height={60} />
+          <Skeleton variant="rounded" height={120} />
+          <Skeleton variant="rounded" height={600} />
+        </Stack>
       )}
     </div>
   );

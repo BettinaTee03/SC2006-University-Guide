@@ -76,6 +76,9 @@ function Courses() {
                 width: { xs: "100%", sm: "50%", md: "100%", lg: "50%" },
                 fontFamily: "Roboto Condensed, sans-serif",
                 mt: 2,
+                color: "#FFFFFF",
+                fontWeight: 700,
+                fontSize: "1rem",
               }}
               onClick={handleClick}
             >

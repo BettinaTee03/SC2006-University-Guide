@@ -1,13 +1,10 @@
 import React, { useEffect, useState } from "react";
 import Axios from "axios";
-import { Link } from "react-router-dom";
 import "../Search.css";
-
 import Grid from "@mui/material/Grid";
 import Autocomplete from "@mui/material/Autocomplete";
 import TextField from "@mui/material/TextField";
 import { Typography } from "@mui/material";
-
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";

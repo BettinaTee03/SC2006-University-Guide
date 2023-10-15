@@ -71,8 +71,11 @@ function Navbar() {
       position="static"
       sx={{ fontFamily: "'Roboto Condensed', sans-serif" }}
     >
-      <Container maxWidth="xl">
-        <Toolbar disableGutters>
+      <Container maxWidth="false">
+        <Toolbar
+          disableGutters
+          sx={{ paddingLeft: "1rem", paddingRight: "1rem" }}
+        >
           <SchoolIcon
             sx={{
               display: { xs: "none", md: "flex" },
