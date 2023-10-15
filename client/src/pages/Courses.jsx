@@ -5,7 +5,6 @@ import "../Courses.css";
 import CourseCompareList from "../components/CourseCompareList";
 import Button from "@mui/material/Button";
 import { useNavigate } from "react-router-dom";
-import AlertButton from "../components/AlertButton";
 import AlertSnackbar from "../components/Snackbar";
 
 function Courses() {
@@ -57,13 +56,13 @@ function Courses() {
         open={showAlert}
         setOpen={setShowAlert}
       />
-      <Grid item xs={5} className="course-list">
+      <Grid item xs={12} md={5} lg={5} className="course-list">
         <Grid container>
           <Grid item xs={12}>
             <h1 className="course-header">My Course List</h1>
           </Grid>
 
-          <Grid item xs={12}>
+          <Grid item xs={12} sm={12}>
             <CourseCompareList
               courses={selectedCourses}
               handleDelete={handleDelete}
@@ -74,8 +73,9 @@ function Courses() {
             <Button
               variant="contained"
               sx={{
-                width: { xs: "220px", lg: "40%" },
+                width: { xs: "100%", sm: "50%", md: "100%", lg: "50%" },
                 fontFamily: "Roboto Condensed, sans-serif",
+                mt: 2,
               }}
               onClick={handleClick}
             >
@@ -85,8 +85,12 @@ function Courses() {
         </Grid>
       </Grid>
 
-      <Grid item xs={7}>
-        <Grid container sx={{ width: "auto" }} rowSpacing={2}>
+      <Grid item xs={12} md={7} lg={7}>
+        <Grid
+          container
+          sx={{ width: "auto", paddingRight: "16px" }}
+          rowSpacing={2}
+        >
           {
             <Search
               pageTitle="Course Comparison"

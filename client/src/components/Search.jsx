@@ -147,12 +147,25 @@ function Search({ pageTitle, renderOptionContent, selectedCourses }) {
       </Grid>
 
       <Grid item xs={12}>
-        <Stack justifyContent="center">
+        <Stack
+          sx={{
+            justifyContent: "center",
+          }}
+        >
           <Pagination
+            sx={{
+              "& .MuiPaginationItem-root": {
+                fontSize: { xs: "14px", sm: "1rem" },
+                minWidth: { xs: "28px", sm: "40px" },
+                minHeight: { xs: "28px", sm: "40px" },
+                borderRadius: "17.5px",
+              },
+            }}
             count={Math.floor(results.length / rowsPerPage)} // Calculate the number of pages
             page={page}
             onChange={handleChangePage}
             className="custom-pagination"
+            siblingCount={1}
           />
         </Stack>
       </Grid>

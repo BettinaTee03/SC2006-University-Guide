@@ -5,10 +5,19 @@
   font-size: 2rem;
   margin-bottom: 2rem;
   padding: 0.5rem;
-  max-width: 435px;
+  max-width: 450px;
   text-align: center;
   background-color: #ffffff;
   border-radius: 10px;
+  box-sizing: border-box;
+}
+
+/* Media query for md screens */
+@media (max-width: 900px) {
+  .course-header {
+    max-width: 100%;
+    width: 100%;
+  }
 }
 
 .course-list {
