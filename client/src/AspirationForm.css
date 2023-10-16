@@ -1,0 +1,19 @@
+.align-right {
+    text-align: right;
+  }
+
+.row {
+    flex-flow: row wrap;
+    justify-content: space-between;
+  }
+
+.column {
+    padding: 1rem;
+    margin: 1rem;
+    background-color: #FFF8F2;
+}
+
+.column h3 {
+    text-align: center;
+    color:#A2B29F
+}

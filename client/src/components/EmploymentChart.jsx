@@ -127,15 +127,11 @@ function EmploymentChart({ courseName, employmentData }) {
   return (
     <>
       <Container maxWidth="lg">
-        <Grid container spacing={3}>
-          <Grid item xs={12} md={6} lg={8}>
             {employmentData.length > 0 ? (
               <ReactApexChart options={options} series={series} />
             ) : (
               <p>No employment data is available.</p>
             )}
-          </Grid>
-        </Grid>
       </Container>
     </>
   );

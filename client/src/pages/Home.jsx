@@ -66,7 +66,7 @@ function Home() {
                 sx={{
                   color: "#FFFFFF",
                   backgroundColor: "#445044",
-                  borderRadius: 4,
+                  borderRadius: 6,
                   marginTop:1
                 }}
               >

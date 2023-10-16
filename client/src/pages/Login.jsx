@@ -103,6 +103,7 @@ function Login() {
               type="submit"
               fullWidth
               variant="contained"
+              color="secondary"
               sx={{ mt: 3, mb: 2 }}
             >
               Sign In
@@ -113,6 +114,7 @@ function Login() {
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
+              color="secondary"
               onClick={handleGoogleLogin}
             >
               <GoogleIcon sx={{ mr: 2 }} />

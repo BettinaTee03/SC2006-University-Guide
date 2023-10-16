@@ -49,7 +49,7 @@ const prompt = new PromptTemplate({
 
     For each career prospect, provide:
     - The name of the career.
-    - A progression showcasing diverse roles, starting from an entry-level position, advancing to a mid-level position, and culminating in a high-level position, where each role is distinct from the other. Mention the job name only.
+    - A progression showcasing diverse roles, starting from an entry-level position, advancing to a mid-level position, and culminating in a high-level position, where each role is distinct from the other. Mention the job name only. Use -> as seperator.
     - The top 3 essential skills required for each role in the career path, emphasizing the specific tools, platforms, or methodologies crucial for the role.
     
     Ensure that the suggested careers truly cater to the user's aspirations.
