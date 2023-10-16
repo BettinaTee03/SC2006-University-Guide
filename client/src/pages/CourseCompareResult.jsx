@@ -14,6 +14,7 @@ import Button from "@mui/material/Button";
 function CourseCompareResult() {
   const [courseData, setCourseData] = useState([]);
   const [isLoginAlertOpen, setIsLoginAlertOpen] = useState(false);
+  const [isLogin, setIsLogin] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -23,6 +24,37 @@ function CourseCompareResult() {
 
   const handleLogin = () => {
     navigate("/login");
+  };
+
+  const skeletonLayout = (category, numCourses) => {
+    const size = numCourses === 2 ? 6 : 4;
+
+    const generateSkeletons = (height) => {
+      return Array.from({ length: numCourses }).map((_, index) => (
+        <Skeleton
+          key={index}
+          variant="rounded"
+          animation="wave"
+          height={height}
+        />
+      ));
+    };
+
+    if (category === "Description") {
+      return <Stack spacing={1}>{generateSkeletons(150)}</Stack>;
+    } else if (category === "Employment Statistics") {
+      return <Stack spacing={1}>{generateSkeletons(480)}</Stack>;
+    } else {
+      return (
+        <Grid container spacing={1}>
+          {Array.from({ length: numCourses }).map((_, index) => (
+            <Grid key={index} item xs={size}>
+              <Skeleton variant="rounded" animation="wave" height={100} />
+            </Grid>
+          ))}
+        </Grid>
+      );
+    }
   };
 
   const selectedCourses = location.state?.selectedCourses || [];
@@ -49,6 +81,7 @@ function CourseCompareResult() {
           { withCredentials: true }
         );
         setCourseData(response.data);
+        setIsLogin(true);
       } catch (error) {
         if (error.response && error.response.status === 401) {
           setIsLoginAlertOpen(true);
@@ -183,7 +216,6 @@ function CourseCompareResult() {
           />
 
           <Button
-            item
             xs={12}
             sm={2}
             variant="contained"
@@ -196,6 +228,7 @@ function CourseCompareResult() {
 
         <Grid
           container
+          item
           xs={12}
           sm={10}
           sx={{ order: { xs: 2 }, width: "auto", padding: 1 }}
@@ -205,9 +238,13 @@ function CourseCompareResult() {
               selectedCategories.includes(category.id) && (
                 <Grid item key={category.id} xs={12}>
                   <h2 className="details-heading">{category.name}</h2>
-                  <Grid container xs={12}>
-                    {getCategoryData(category.id)}
-                  </Grid>
+                  {isLogin ? (
+                    <Grid item container xs={12}>
+                      {getCategoryData(category.id)}
+                    </Grid>
+                  ) : (
+                    skeletonLayout(category.name, selectedCourses.length)
+                  )}
                 </Grid>
               )
           )}
