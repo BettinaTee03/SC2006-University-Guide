@@ -4,26 +4,20 @@ import ReactApexChart from "react-apexcharts";
 import axios from "axios";
 import { Container, Grid } from "@mui/material";
 import "../IntakeChart.css";
-import LoginAlert from "./LoginAlert";
 
 function IntakeChart() {
   const [selectedCourses, setSelectedCourses] = useState([]);
   const [chartData, setChartData] = useState([]);
   const [selectedButton, setSelectedButton] = useState("intake");
 
-  const [isLoginAlertOpen, setIsLoginAlertOpen] = useState(false);
   const navigate = useNavigate();
 
-  const handleLoginAlertClose = () => {
-    setIsLoginAlertOpen(false);
-  };
-
-  const handleLogin = () => {
-    navigate("/login");
+  const handleButtonClick = (mode) => {
+    setSelectedButton(mode);
   };
 
   useEffect(() => {
-    const fetchData = async (course) => {
+    const fetchDataForCourse = async (course) => {
       try {
         const response = await axios.get(
           `http://localhost:8000/intake/${encodeURIComponent(course)}`,
@@ -31,10 +25,6 @@ function IntakeChart() {
             withCredentials: true,
           }
         );
-        if (!response.data) {
-          return { name: course, intake: [], years: [], enrolment: [] };
-        }
-        setIsAuthenticated(true);
         return {
           name: course,
           intake: response.data.map((item) => item.intake),
@@ -43,9 +33,17 @@ function IntakeChart() {
         };
       } catch (error) {
         if (error.response && error.response.status === 401) {
-          setIsLoginAlertOpen(true);
+          alert("You must be logged in to view this page.");
+          navigate("/login");
         }
       }
+    };
+
+    const fetchData = async () => {
+      const allData = await Promise.all(
+        selectedCourses.map(fetchDataForCourse)
+      );
+      setChartData(allData);
     };
 
     fetchData();
@@ -123,11 +121,6 @@ function IntakeChart() {
 
   return (
     <>
-      <LoginAlert
-        open={isLoginAlertOpen}
-        handleClose={handleLoginAlertClose}
-        handleLogin={handleLogin}
-      />
       <Container maxWidth="lg">
         <Grid container spacing={3}>
           <Grid item xs={12} md={11} lg={12}>
