@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import ReactApexChart from "react-apexcharts";
 import axios from "axios";
 import { Container, Grid } from "@mui/material";
-import "../IntakeChart.css";
+import "../css/IntakeChart.css";
 
 function IntakeChart() {
   const [selectedCourses, setSelectedCourses] = useState([]);

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Axios from "axios";
-import "../Search.css";
+import "../css/Search.css";
 import Grid from "@mui/material/Grid";
 import Autocomplete from "@mui/material/Autocomplete";
 import TextField from "@mui/material/TextField";

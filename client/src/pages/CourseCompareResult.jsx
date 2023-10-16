@@ -6,7 +6,7 @@ import Skeleton from "@mui/material/Skeleton";
 import Stack from "@mui/material/Stack";
 import FilterCategories from "../components/FilterCategories";
 import EmploymentChart from "../components/EmploymentChart";
-import "../CourseCompareResults.css";
+import "../css/CourseCompareResults.css";
 
 import Grid from "@mui/material/Grid";
 import Button from "@mui/material/Button";

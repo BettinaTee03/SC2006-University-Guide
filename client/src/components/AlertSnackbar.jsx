@@ -4,13 +4,20 @@ import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
 import Alert from "@mui/material/Alert";
 
-export default function AlertSnackbar({ alertMessage, open, setOpen }) {
+export default function AlertSnackbar({
+  alertMessage,
+  open,
+  setOpen,
+  severity,
+}) {
   const handleClose = (event, reason) => {
     if (reason === "clickaway") {
       return;
     }
     setOpen(false);
   };
+
+  const backgroundColor = severity === "error" ? "#d32f2f" : "#388e3c";
 
   return (
     <Snackbar
@@ -20,14 +27,14 @@ export default function AlertSnackbar({ alertMessage, open, setOpen }) {
       anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
     >
       <Alert
-        severity="error"
+        severity={severity}
         onClose={handleClose}
         sx={{
           ".MuiAlert-icon": {
             color: "white",
           },
           fontFamily: "Roboto Condensed, sans-serif !important",
-          backgroundColor: "#d32f2f",
+          backgroundColor: backgroundColor,
           color: "white",
         }}
         action={

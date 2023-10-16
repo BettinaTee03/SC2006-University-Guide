@@ -1,21 +1,23 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
-import '../FilterCategories.css';
+import "../css/FilterCategories.css";
 
-import Grid from '@mui/material/Grid';
-import Checkbox from '@mui/material/Checkbox';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Collapse from '@mui/material/Collapse';
+import Grid from "@mui/material/Grid";
+import Checkbox from "@mui/material/Checkbox";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import Collapse from "@mui/material/Collapse";
 import Button from "@mui/material/Button";
 
 function FilterCategories({ categories, onFilterChange }) {
-  const [selectedCategories, setSelectedCategories] = useState(categories.map((category) => category.id));
+  const [selectedCategories, setSelectedCategories] = useState(
+    categories.map((category) => category.id)
+  );
   const [expand, setExpand] = useState();
 
   const handleCheckboxChange = (categoryId) => {
     let updatedCategories;
 
-    if (categoryId === 'selectAll') {
+    if (categoryId === "selectAll") {
       if (selectedCategories.length === categories.length) {
         updatedCategories = [];
       } else {
@@ -32,7 +34,12 @@ function FilterCategories({ categories, onFilterChange }) {
   };
 
   return (
-    <Grid container columnSpacing={1} rowSpacing={1} className="filter-container">
+    <Grid
+      container
+      columnSpacing={1}
+      rowSpacing={1}
+      className="filter-container"
+    >
       <Button className="filter-heading" onClick={() => setExpand(!expand)}>
         Filter Categories
       </Button>
@@ -43,7 +50,7 @@ function FilterCategories({ categories, onFilterChange }) {
             control={
               <Checkbox
                 checked={selectedCategories.length === categories.length}
-                onChange={() => handleCheckboxChange('selectAll')}
+                onChange={() => handleCheckboxChange("selectAll")}
                 color="primary"
               />
             }

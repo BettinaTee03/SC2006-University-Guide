@@ -2,7 +2,7 @@ import React from "react";
 import Chip from "@mui/material/Chip";
 import { Grid, Box } from "@mui/material"; // Import Box
 import SchoolIcon from "@mui/icons-material/School";
-import "../CourseCompareList.css";
+import "../css/CourseCompareList.css";
 import DeleteIcon from "@mui/icons-material/Delete";
 
 function CourseCompareList({ courses, handleDelete }) {
@@ -11,7 +11,7 @@ function CourseCompareList({ courses, handleDelete }) {
       sx={{
         display: "flex",
         flexDirection: "column",
-        minHeight: { xs: "auto", md: "500px", lg: "500px" },
+        minHeight: { xs: "auto", md: "300px", lg: "300px" },
       }}
       className="course-stack"
     >
@@ -29,19 +29,19 @@ function CourseCompareList({ courses, handleDelete }) {
                 label={course.course_name}
                 onDelete={() => handleDelete(course)}
                 sx={{
-                  height: { xs: "60px", sm: "100px", md: "auto", lg: "auto" },
+                  height: { xs: "60px", sm: "100px", md: "100px", lg: "100px" },
                   pt: "1rem",
                   pb: "1rem",
                   "& .MuiChip-label": {
                     display: "block",
                     whiteSpace: "normal",
-                    width: "55%",
+                    width: "70%",
                     textAlign: "center",
                     fontSize: {
                       xs: "16px",
                       sm: "16px",
-                      md: "1rem",
-                      lg: "1rem",
+                      md: "20px",
+                      lg: "20px",
                     },
                   },
                   display: "flex",

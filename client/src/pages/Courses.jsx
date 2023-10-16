@@ -1,27 +1,30 @@
 import React, { useState } from "react";
 import Search from "../components/Search";
 import Grid from "@mui/material/Grid";
-import "../Courses.css";
+import "../css/Courses.css";
 import CourseCompareList from "../components/CourseCompareList";
 import Button from "@mui/material/Button";
 import { useNavigate } from "react-router-dom";
-import AlertSnackbar from "../components/Snackbar";
+import AlertSnackbar from "../components/AlertSnackbar";
 
 function Courses() {
   const [selectedCourses, setSelectedCourses] = useState([]);
   const [showAlert, setShowAlert] = useState(false);
-
   const navigate = useNavigate();
+
+  const alertMessage =
+    selectedCourses.length >= 3
+      ? "A maximum of 3 courses have been selected!"
+      : "Please select at least 2 courses to compare!";
 
   const handleOptionClick = (option) => {
     const courseAlreadySelected = selectedCourses.some(
       (course) => course.course_name === option.course_name
     );
 
-    if (selectedCourses.length === 3){
-      alert("Your course list already has the maximum of 3 courses!");
-    }
-    else if (!courseAlreadySelected) {
+    if (selectedCourses.length === 3) {
+      setShowAlert(true);
+    } else if (!courseAlreadySelected) {
       setSelectedCourses([...selectedCourses, option]);
     }
   };
@@ -55,9 +58,10 @@ function Courses() {
       sx={{ width: "auto", margin: 2, padding: "10px" }}
     >
       <AlertSnackbar
-        alertMessage="Please select at least 2 courses to compare!"
+        alertMessage={alertMessage}
         open={showAlert}
         setOpen={setShowAlert}
+        severity={"error"}
       />
       <Grid item xs={12} md={5} lg={5} className="course-list">
         <Grid container>
