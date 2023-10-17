@@ -6,6 +6,7 @@ import Skeleton from "@mui/material/Skeleton";
 import Stack from "@mui/material/Stack";
 import FilterCategories from "../components/FilterCategories";
 import EmploymentChart from "../components/EmploymentChart";
+import Box from "@mui/material/Box";
 import "../css/CourseCompareResults.css";
 
 import Grid from "@mui/material/Grid";
@@ -203,6 +204,13 @@ function CourseCompareResult() {
 
   return (
     <>
+      <Box
+        style={{
+          height: "68px",
+          background:
+            "radial-gradient(circle at 18.7% 37.8%, rgb(250, 250, 250) 0%, rgb(225, 234, 238) 90%)",
+        }}
+      ></Box>
       <LoginAlert
         open={isLoginAlertOpen}
         handleClose={handleLoginAlertClose}

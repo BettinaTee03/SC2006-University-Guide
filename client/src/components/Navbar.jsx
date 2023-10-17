@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -13,7 +13,7 @@ import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import SchoolIcon from "@mui/icons-material/School";
 import axios from "axios";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import AuthContext from "../contexts/AuthContext";
 import AlertSnackbar from "./AlertSnackbar";
 
@@ -25,6 +25,22 @@ function Navbar() {
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   const { isAuthenticated, setIsAuthenticated } = useContext(AuthContext);
   const [showAlert, setShowAlert] = useState(false);
+  const [isTop, setIsTop] = useState(true);
+  const location = useLocation();
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const top = window.scrollY < 5;
+      if (top !== isTop) {
+        setIsTop(top);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [isTop]);
 
   const alertMessage = isAuthenticated
     ? "An error occurred while logging out. Please try again later."
@@ -84,9 +100,10 @@ function Navbar() {
       />
       <AppBar
         position="fixed"
+        elevation={isTop ? 0 : 4}
         sx={{
-          backgroundColor: "rgba(162, 178, 159, 0.75)",
-          backdropFilter: "blur(5px)",
+          backgroundColor: isTop ? "transparent" : "rgba(255, 255, 255, 0.8)",
+          backdropFilter: isTop ? "none" : "blur(5px)",
           paddingTop: { xs: "5px", sm: "0px" },
           paddingBottom: { xs: "3px", sm: "0px" },
         }}
@@ -100,7 +117,7 @@ function Navbar() {
               sx={{
                 display: { xs: "none", md: "flex" },
                 mr: 1,
-                color: "#FFFFFF",
+                color: "#212B36",
               }}
             />
             <Typography
@@ -114,7 +131,7 @@ function Navbar() {
                 fontWeight: 700,
                 letterSpacing: ".2rem",
                 textDecoration: "none",
-                color: "#FFFFFF",
+                color: "#212B36",
               }}
             >
               Softbuns
@@ -171,7 +188,7 @@ function Navbar() {
               sx={{
                 display: { xs: "flex", md: "none" },
                 mr: 1,
-                color: "#FFFFFF",
+                color: "#212B36",
               }}
             />
             <Typography
@@ -186,7 +203,7 @@ function Navbar() {
                 fontWeight: 700,
                 letterSpacing: ".2rem",
                 textDecoration: "none",
-                color: "#FFFFFF",
+                color: "#212B36",
               }}
             >
               Softbuns
@@ -196,6 +213,7 @@ function Navbar() {
                 flexGrow: 1,
                 display: { xs: "none", md: "flex" },
                 justifyContent: "flex-end",
+                marginRight: { xs: "none", md: "2rem", lg: "5rem" },
               }}
             >
               {pages.map((page) => (
@@ -204,15 +222,49 @@ function Navbar() {
                   component={Link}
                   to={`/${page.toLowerCase()}`}
                   sx={{
-                    color: "white",
+                    color: "#212B36",
                     display: "block",
                     "&:hover": { color: "#445044" },
-                    ml: 0.5,
-                    mr: 0.5,
+                    ml: 1,
+                    mr: 1,
+                    paddingLeft: 2,
+                    paddingRight: 2,
                     textAlign: "center",
+                    position: "relative",
+                    width: "auto",
+                    "&::before": {
+                      content: '""',
+                      width: "6px",
+                      height: "6px",
+                      backgroundColor: "#FA541C",
+                      borderRadius: "50%",
+                      position: "absolute",
+                      top: "50%",
+                      left: "-5px",
+                      transform: "translateY(-50%)",
+                      opacity: 0,
+                      transition: "opacity 0.3s",
+                    },
+                    "&:hover::before": {
+                      opacity: 0.5,
+                    },
                   }}
                 >
                   {page}
+                  {location.pathname === `/${page.toLowerCase()}` && (
+                    <Box
+                      sx={{
+                        width: "6px",
+                        height: "6px",
+                        backgroundColor: "#FA541C",
+                        borderRadius: "50%",
+                        position: "absolute",
+                        top: "50%",
+                        left: "-5px",
+                        transform: "translateY(-50%)",
+                      }}
+                    ></Box>
+                  )}
                 </Button>
               ))}
             </Box>
@@ -256,7 +308,6 @@ function Navbar() {
           </Toolbar>
         </Container>
       </AppBar>
-      <Container style={{ height: "68px" }}></Container>
     </>
   );
 }

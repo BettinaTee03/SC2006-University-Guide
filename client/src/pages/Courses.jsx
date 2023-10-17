@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Search from "../components/Search";
 import Grid from "@mui/material/Grid";
+import { Box } from "@mui/material";
 import "../css/Courses.css";
 import CourseCompareList from "../components/CourseCompareList";
 import Button from "@mui/material/Button";
@@ -52,65 +53,74 @@ function Courses() {
   };
 
   return (
-    <Grid
-      container
-      spacing={2}
-      sx={{ width: "auto", margin: 2, padding: "10px" }}
-    >
-      <AlertSnackbar
-        alertMessage={alertMessage}
-        open={showAlert}
-        setOpen={setShowAlert}
-        severity={"error"}
-      />
-      <Grid item xs={12} md={5} lg={5} className="course-list">
-        <Grid container>
-          <Grid item xs={12}>
-            <h1 className="course-header">My Course List</h1>
-          </Grid>
+    <>
+      <Box
+        style={{
+          height: "68px",
+          background:
+            "radial-gradient(circle at 18.7% 37.8%, rgb(250, 250, 250) 0%, rgb(225, 234, 238) 90%)",
+        }}
+      ></Box>
+      <Grid
+        container
+        spacing={2}
+        sx={{ width: "auto", margin: 2, padding: "10px" }}
+      >
+        <AlertSnackbar
+          alertMessage={alertMessage}
+          open={showAlert}
+          setOpen={setShowAlert}
+          severity={"error"}
+        />
+        <Grid item xs={12} md={5} lg={5} className="course-list">
+          <Grid container>
+            <Grid item xs={12}>
+              <h1 className="course-header">My Course List</h1>
+            </Grid>
 
-          <Grid item xs={12} sm={12}>
-            <CourseCompareList
-              courses={selectedCourses}
-              handleDelete={handleDelete}
-            />
-          </Grid>
+            <Grid item xs={12} sm={12}>
+              <CourseCompareList
+                courses={selectedCourses}
+                handleDelete={handleDelete}
+              />
+            </Grid>
 
-          <Grid item xs={12} sx={{ width: "auto" }}>
-            <Button
-              variant="contained"
-              sx={{
-                width: { xs: "100%", sm: "100%", lg: "50%" },
-                fontFamily: "Roboto Condensed, sans-serif",
-                mt: 2,
-                color: "#FFFFFF",
-                fontWeight: 700,
-                fontSize: "1rem",
-              }}
-              onClick={handleClick}
-            >
-              Compare
-            </Button>
+            <Grid item xs={12}>
+              <Button
+                variant="contained"
+                sx={{
+                  width: { xs: "100%", lg: "450px" },
+                  fontFamily: "Roboto Condensed, sans-serif",
+                  mt: 2,
+                  color: "#FFFFFF",
+                  fontWeight: 700,
+                  fontSize: "1rem",
+                }}
+                onClick={handleClick}
+              >
+                Compare
+              </Button>
+            </Grid>
+          </Grid>
+        </Grid>
+
+        <Grid item xs={12} md={7} lg={7}>
+          <Grid
+            container
+            sx={{ width: "auto", paddingRight: "16px" }}
+            rowSpacing={2}
+          >
+            {
+              <Search
+                pageTitle="Course Comparison"
+                renderOptionContent={renderOptionContent}
+                selectedCourses={selectedCourses}
+              />
+            }
           </Grid>
         </Grid>
       </Grid>
-
-      <Grid item xs={12} md={7} lg={7}>
-        <Grid
-          container
-          sx={{ width: "auto", paddingRight: "16px" }}
-          rowSpacing={2}
-        >
-          {
-            <Search
-              pageTitle="Course Comparison"
-              renderOptionContent={renderOptionContent}
-              selectedCourses={selectedCourses}
-            />
-          }
-        </Grid>
-      </Grid>
-    </Grid>
+    </>
   );
 }
 

@@ -7,6 +7,7 @@ import EmploymentChart from "../components/EmploymentChart";
 import LoginAlert from "../components/LoginAlert";
 import Skeleton from "@mui/material/Skeleton";
 import Stack from "@mui/material/Stack";
+import { Box } from "@mui/material";
 
 function IndividualCourse() {
   const [course, setCourse] = useState(null);
@@ -41,6 +42,13 @@ function IndividualCourse() {
 
   return (
     <>
+      <Box
+        style={{
+          height: "68px",
+          background:
+            "radial-gradient(circle at 18.7% 37.8%, rgb(250, 250, 250) 0%, rgb(225, 234, 238) 90%)",
+        }}
+      ></Box>
       <LoginAlert
         open={isLoginAlertOpen}
         handleClose={handleLoginAlertClose}

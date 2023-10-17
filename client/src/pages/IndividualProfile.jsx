@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import Axios from "axios";
 import { useNavigate } from "react-router-dom";
 import UserParticulars from "../components/UserParticulars";
+import { Box } from "@mui/material";
 
 function IndividualProfile() {
   const { id } = useParams();
@@ -38,11 +39,20 @@ function IndividualProfile() {
 
   return (
     user && (
-      <UserParticulars
-        userParticulars={user.particulars}
-        userName={user.username}
-        userId={user._id}
-      />
+      <>
+        <Box
+          style={{
+            height: "68px",
+            background:
+              "radial-gradient(circle at 18.7% 37.8%, rgb(250, 250, 250) 0%, rgb(225, 234, 238) 90%)",
+          }}
+        ></Box>
+        <UserParticulars
+          userParticulars={user.particulars}
+          userName={user.username}
+          userId={user._id}
+        />
+      </>
     )
   );
 }

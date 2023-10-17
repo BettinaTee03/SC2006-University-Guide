@@ -21,13 +21,6 @@ const theme = createTheme({
     primary: {
       main: "#A2B29F",
     },
-    background: {
-      default: `radial-gradient(
-        circle at 18.7% 37.8%,
-        rgb(250, 250, 250) 0%,
-        rgb(225, 234, 238) 90%
-      )`,
-    },
   },
   typography: {
     fontFamily: `"Roboto Condensed", "Helvetica", "Arial", sans-serif`,
