@@ -87,7 +87,6 @@ export const UserParticulars = ({ userParticulars, userName, userId }) => {
     }
   };
 
-  // on cancel click
   const onCancelClick = (e) => {
     e.preventDefault();
     if (errorName) {
