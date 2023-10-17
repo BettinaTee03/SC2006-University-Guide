@@ -82,7 +82,15 @@ function Navbar() {
         setOpen={setShowAlert}
         severity={severity}
       />
-      <AppBar position="static">
+      <AppBar
+        position="fixed"
+        sx={{
+          backgroundColor: "rgba(162, 178, 159, 0.75)",
+          backdropFilter: "blur(5px)",
+          paddingTop: { xs: "5px", sm: "0px" },
+          paddingBottom: { xs: "3px", sm: "0px" },
+        }}
+      >
         <Container maxWidth="false">
           <Toolbar
             disableGutters
@@ -196,7 +204,6 @@ function Navbar() {
                   component={Link}
                   to={`/${page.toLowerCase()}`}
                   sx={{
-                    my: 2,
                     color: "white",
                     display: "block",
                     "&:hover": { color: "#445044" },
@@ -249,6 +256,7 @@ function Navbar() {
           </Toolbar>
         </Container>
       </AppBar>
+      <Container style={{ height: "68px" }}></Container>
     </>
   );
 }
