@@ -80,7 +80,7 @@ function Courses() {
             <Button
               variant="contained"
               sx={{
-                width: { xs: "100%", sm: "50%", md: "100%", lg: "50%" },
+                width: { xs: "100%", sm: "100%", lg: "50%" },
                 fontFamily: "Roboto Condensed, sans-serif",
                 mt: 2,
                 color: "#FFFFFF",

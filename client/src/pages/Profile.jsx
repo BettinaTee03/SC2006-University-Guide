@@ -1,9 +1,19 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Axios from "axios";
+import LoginAlert from "../components/LoginAlert";
 
 function Profile() {
   const navigate = useNavigate();
+  const [isLoginAlertOpen, setIsLoginAlertOpen] = useState(false);
+
+  const handleLoginAlertClose = () => {
+    setIsLoginAlertOpen(false);
+  };
+
+  const handleLogin = () => {
+    navigate("/login");
+  };
 
   useEffect(() => {
     const fetchProfileData = async () => {
@@ -13,25 +23,28 @@ function Profile() {
         });
 
         if (!response.data.isLoggedIn) {
-          directToLogin();
+          setIsLoginAlertOpen(true);
         } else {
           navigate("/profile/" + response.data.id, { replace: true });
           // Using 'replace' to avoid pushing multiple entries to history
         }
       } catch (error) {
-        directToLogin();
+        setIsLoginAlertOpen(true);
       }
     };
 
     fetchProfileData();
   }, []);
 
-  const directToLogin = () => {
-    alert("You must be logged in to view this page.");
-    navigate("/login");
-  };
-
-  return null;
+  return (
+    <>
+      <LoginAlert
+        open={isLoginAlertOpen}
+        handleClose={handleLoginAlertClose}
+        handleLogin={handleLogin}
+      />
+    </>
+  );
 }
 
 export default Profile;

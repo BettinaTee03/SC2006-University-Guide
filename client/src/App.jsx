@@ -24,9 +24,6 @@ const theme = createTheme({
   },
   typography: {
     fontFamily: `"Roboto Condensed", "Helvetica", "Arial", sans-serif`,
-    h6: {
-      color: "#FFFFFF",
-    },
   },
 });
 

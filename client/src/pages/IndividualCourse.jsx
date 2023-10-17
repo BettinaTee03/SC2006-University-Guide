@@ -40,7 +40,7 @@ function IndividualCourse() {
   }, [courseName]);
 
   return (
-    <div>
+    <>
       <LoginAlert
         open={isLoginAlertOpen}
         handleClose={handleLoginAlertClose}
@@ -94,7 +94,7 @@ function IndividualCourse() {
           <Skeleton variant="rounded" height={600} />
         </Stack>
       )}
-    </div>
+    </>
   );
 }
 
