@@ -88,23 +88,6 @@ function IntakeChart() {
     },
     xaxis: {
       categories: chartData[0]?.years?.sort((a, b) => a - b) || [],
-      labels: {
-        style: {
-          fontFamily: "Roboto Condensed, sans-serif",
-        },
-      },
-    },
-    yaxis: {
-      labels: {
-        style: {
-          fontFamily: "Roboto Condensed, sans-serif",
-        },
-      },
-    },
-    tooltip: {
-      style: {
-        fontFamily: "Roboto Condensed, sans-serif",
-      },
     },
   };
 

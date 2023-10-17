@@ -18,7 +18,7 @@ import AuthContext from "../contexts/AuthContext";
 import AlertSnackbar from "./AlertSnackbar";
 
 const pages = ["Home", "Explore", "Courses", "Statistics"];
-const settings = ["Profile", "Account", "Login", "Register", "Logout"];
+const settings = ["Profile", "Login", "Register", "Logout"];
 
 function Navbar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -82,10 +82,7 @@ function Navbar() {
         setOpen={setShowAlert}
         severity={severity}
       />
-      <AppBar
-        position="static"
-        sx={{ fontFamily: "'Roboto Condensed', sans-serif" }}
-      >
+      <AppBar position="static">
         <Container maxWidth="false">
           <Toolbar
             disableGutters
@@ -156,7 +153,7 @@ function Navbar() {
                     to={`/${page.toLowerCase()}`}
                     onClick={handleCloseNavMenu}
                   >
-                    <Typography textAlign="center">{page}</Typography>
+                    <Typography>{page}</Typography>
                   </MenuItem>
                 ))}
               </Menu>
@@ -201,6 +198,9 @@ function Navbar() {
                     color: "white",
                     display: "block",
                     "&:hover": { color: "#445044" },
+                    ml: 0.5,
+                    mr: 0.5,
+                    textAlign: "center",
                   }}
                 >
                   {page}
@@ -208,7 +208,7 @@ function Navbar() {
               ))}
             </Box>
 
-            <Box sx={{ flexGrow: 0 }}>
+            <Box sx={{ flexGrow: 0, ml: 4 }}>
               <Tooltip title="Open settings">
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                   <Avatar alt="Remy Sharp" src="" />

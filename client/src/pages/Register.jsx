@@ -35,6 +35,7 @@ const defaultTheme = createTheme();
 function Register() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
 
   const navigate = useNavigate();
 
@@ -43,7 +44,7 @@ function Register() {
     try {
       const response = await axios.post(
         "http://localhost:8000/auth/register",
-        { username, password },
+        { username, email, password },
         { withCredentials: true }
       );
       navigate("/login");
@@ -101,6 +102,8 @@ function Register() {
                   label="Email Address"
                   name="email"
                   autoComplete="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                 />
               </Grid>
               <Grid item xs={12}>

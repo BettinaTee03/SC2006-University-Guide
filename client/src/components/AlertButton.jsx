@@ -28,7 +28,6 @@ export default function AlertButton({ alertMessage, open, setOpen }) {
             ".MuiAlert-icon": {
               color: "white",
             },
-            fontFamily: "Roboto Condensed, sans-serif !important",
             backgroundColor: "#d32f2f",
             color: "white",
           }}

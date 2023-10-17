@@ -10,6 +10,8 @@ import Explore from "./pages/Explore";
 import Statistics from "./pages/Statistics";
 import CourseCompareResult from "./pages/CourseCompareResult";
 import IndividualCourse from "./pages/IndividualCourse";
+import Profile from "./pages/Profile";
+import IndividualProfile from "./pages/IndividualProfile";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import AuthProvider from "./contexts/AuthProvider";
 import AuthSuccess from "./components/AuthSuccess";
@@ -21,6 +23,7 @@ const theme = createTheme({
     },
   },
   typography: {
+    fontFamily: `"Roboto Condensed", "Helvetica", "Arial", sans-serif`,
     h6: {
       color: "#FFFFFF",
     },
@@ -44,6 +47,8 @@ function App() {
             <Route path="/courses/:courseName" element={<IndividualCourse />} />
             <Route path="/statistics" element={<Statistics />} />
             <Route path="/auth-success" element={<AuthSuccess />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/profile/:id" element={<IndividualProfile />} />
           </Routes>
         </Router>
       </AuthProvider>

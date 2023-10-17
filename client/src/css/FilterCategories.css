@@ -7,7 +7,6 @@
 }
 
 .filter-heading {
-  font-family: "Roboto Condensed", sans-serif !important;
   font-weight: 900 !important;
   color: #a2b29f !important;
   border-bottom: 2px solid #a2b29f !important;
@@ -17,7 +16,6 @@
 }
 
 .checkbox-label {
-  font-family: "Roboto Condensed", sans-serif;
   color: #000000;
   word-wrap: break-word;
 }

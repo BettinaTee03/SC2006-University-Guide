@@ -1,5 +1,4 @@
 .custom-label .MuiInputLabel-root {
-  font-family: "Roboto Condensed", sans-serif !important;
   font-weight: 900;
   padding-right: 10px;
 }
@@ -7,7 +6,6 @@
 .search-link {
   text-decoration: none;
   color: #a2b29f;
-  font-family: "Roboto Condensed", sans-serif !important;
   font-weight: 800;
   display: block;
   padding: 10px;
@@ -23,7 +21,6 @@
 .explore-search-link {
   text-decoration: none;
   color: #a2b29f;
-  font-family: "Roboto Condensed", sans-serif !important;
   font-weight: 800;
   display: block;
   padding: 0px;
@@ -35,7 +32,6 @@
 .search-link-selected {
   text-decoration: none;
   color: #a2b29f;
-  font-family: "Roboto Condensed", sans-serif !important;
   font-weight: 800;
   display: block;
   padding: 10px;
@@ -44,7 +40,6 @@
 }
 
 .custom-header {
-  font-family: "Roboto Condensed", sans-serif !important;
   font-weight: 900;
   color: #a2b29f;
 }
@@ -52,7 +47,6 @@
 .all-link {
   text-decoration: none;
   color: #a2b29f;
-  font-family: "Roboto Condensed", sans-serif !important;
   font-weight: 800;
   display: block;
   padding: 15px;
@@ -69,7 +63,6 @@
 .all-link-selected {
   text-decoration: none;
   color: #a2b29f;
-  font-family: "Roboto Condensed", sans-serif !important;
   font-weight: 800;
   display: block;
   padding: 15px;
@@ -80,7 +73,6 @@
 .custom-pagination {
   & .MuiPaginationItem-root {
     color: #a2b29f;
-    font-family: "Roboto Condensed," sans-serif !important;
     font-weight: 700;
     margin: 2px;
     box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1), -1px -1px 2px rgba(0, 0, 0, 0.1);

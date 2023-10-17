@@ -11,6 +11,7 @@ import courseRoutes from "./routes/courseRoutes.js"; // Importing course-related
 import intakeRoutes from "./routes/intakeRoutes.js"; // Importing intake-related routes
 import passport from "./config/passport.js"; // Importing Passport.js configuration
 import sessionConfig from "./config/session.js"; // Importing session configuration
+import userRoutes from "./routes/userRoutes.js"; // Importing user-related routes
 
 const PORT = 8000; // Defining the port number
 const app = express(); // Creating an Express.js application instance
@@ -33,6 +34,7 @@ app.use(cookieParser()); // Allowing cookie parsing
 app.use("/auth", authRoutes); // Using authentication routes
 app.use("/courses", courseRoutes); // Using course-related routes
 app.use("/intake", intakeRoutes); // Using intake-related routes
+app.use("/profile", userRoutes); // Using user-related routes
 
 // Defining a root route handler
 app.get("/", (req, res) => {

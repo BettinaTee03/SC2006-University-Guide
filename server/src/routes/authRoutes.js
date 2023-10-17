@@ -5,20 +5,6 @@ import googleAuthController from "../controllers/googleAuthController.js";
 const router = express.Router();
 
 /**
- * @route GET /auth/login
- * @desc Render the login page
- * @access Public
- */
-router.get("/login", authController.getLogin);
-
-/**
- * @route GET /auth/register
- * @desc Render the registration page
- * @access Public
- */
-router.get("/register", authController.getRegister);
-
-/**
  * @route GET /auth/logout
  * @desc Handle user logout
  * @access Public

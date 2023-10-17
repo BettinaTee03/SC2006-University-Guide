@@ -33,7 +33,6 @@ export default function AlertSnackbar({
           ".MuiAlert-icon": {
             color: "white",
           },
-          fontFamily: "Roboto Condensed, sans-serif !important",
           backgroundColor: backgroundColor,
           color: "white",
         }}

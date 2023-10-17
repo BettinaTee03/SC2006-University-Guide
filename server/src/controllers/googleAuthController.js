@@ -8,7 +8,11 @@ import passport from "passport";
  * @param {function} next - Express next middleware function.
  */
 function getLogin(req, res, next) {
-  passport.authenticate("google", { scope: ["profile"] })(req, res, next);
+  passport.authenticate("google", { scope: ["profile", "email"] })(
+    req,
+    res,
+    next
+  );
 }
 
 /**
