@@ -216,8 +216,12 @@ function CourseCompareResult() {
         handleClose={handleLoginAlertClose}
         handleLogin={handleLogin}
       />
-      <Grid container spacing={2} sx={{ width: "auto", padding: 3 }}>
-        <Grid item xs={12} md={4} lg={2} sx={{ order: { xs: 1 } }}>
+      <Grid
+        container
+        spacing={2}
+        sx={{ width: "auto", ml: { xs: "14vw" }, mr: { xs: "11.4vw" } }}
+      >
+        <Grid item xs={12} md={4} lg={3} sx={{ order: { xs: 1 } }}>
           <Grid item xs={12}>
             <FilterCategories
               categories={categories}
@@ -253,7 +257,7 @@ function CourseCompareResult() {
           item
           xs={12}
           md={8}
-          lg={10}
+          lg={9}
           sx={{ order: { xs: 2 }, width: "auto", padding: 1 }}
         >
           {categories.map(
