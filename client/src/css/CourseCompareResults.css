@@ -2,6 +2,7 @@
   padding-left: 10px;
   padding-right: 10px;
   font-size: large;
+  font-family: "Roboto Condensed", sans-serif;
 }
 
 .detailsRow-container + .detailsRow-container {
@@ -12,6 +13,7 @@
   padding-left: 10px;
   padding-right: 10px;
   font-size: large;
+  font-family: "Roboto Condensed", sans-serif;
 }
 
 .detailsColumn-container + .detailsColumn-container {
@@ -24,6 +26,7 @@
   border-bottom: 1px solid #a2b29f;
   padding: 5px;
   margin-bottom: 5px;
+  font-family: "Roboto Condensed", sans-serif;
 }
 
 .custom-button {
