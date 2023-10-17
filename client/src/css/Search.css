@@ -5,7 +5,7 @@
 
 .search-link {
   text-decoration: none;
-  color: #a2b29f;
+  color: #212b36;
   font-weight: 800;
   display: block;
   padding: 10px;
@@ -15,12 +15,12 @@
 }
 
 .search-link:hover {
-  background-color: #f5f5f5;
+  background-color: rgba(99, 115, 129, 0.3);
 }
 
 .explore-search-link {
   text-decoration: none;
-  color: #a2b29f;
+  color: #212b36;
   font-weight: 800;
   display: block;
   padding: 0px;
@@ -31,7 +31,7 @@
 
 .search-link-selected {
   text-decoration: none;
-  color: #a2b29f;
+  color: #212b36;
   font-weight: 800;
   display: block;
   padding: 10px;
@@ -41,12 +41,12 @@
 
 .custom-header {
   font-weight: 900;
-  color: #a2b29f;
+  color: #212b36;
 }
 
 .all-link {
   text-decoration: none;
-  color: #a2b29f;
+  color: #212b36;
   font-weight: 800;
   display: block;
   padding: 15px;
@@ -57,12 +57,12 @@
 }
 
 .all-link:hover {
-  background-color: #f5f5f5;
+  background-color: rgba(99, 115, 129, 0.3);
 }
 
 .all-link-selected {
   text-decoration: none;
-  color: #a2b29f;
+  color: #212b36;
   font-weight: 800;
   display: block;
   padding: 15px;
@@ -72,7 +72,7 @@
 
 .custom-pagination {
   & .MuiPaginationItem-root {
-    color: #a2b29f;
+    color: #212b36;
     font-weight: 700;
     margin: 2px;
     box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1), -1px -1px 2px rgba(0, 0, 0, 0.1);
@@ -87,12 +87,12 @@
   }
 
   & .Mui-selected:hover {
-    background-color: #f5f5f5;
+    background-color: rgba(99, 115, 129, 0.3);
   }
 }
 
 .selected {
-  background-color: lightgray;
+  background-color: rgba(99, 115, 129, 0.45);
   cursor: not-allowed;
-  color: gray;
+  color: #515559;
 }

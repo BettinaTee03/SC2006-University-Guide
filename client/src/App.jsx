@@ -19,7 +19,11 @@ import AuthSuccess from "./components/AuthSuccess";
 const theme = createTheme({
   palette: {
     primary: {
-      main: "#A2B29F",
+      main: "#212B36",
+    },
+    secondary: {
+      main: "#FA541C",
+      hover: "#B3200E",
     },
   },
   typography: {

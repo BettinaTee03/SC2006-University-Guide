@@ -1,16 +1,18 @@
 .course-header {
-  font-weight: 500;
+  font-weight: 900;
   font-family: "Roboto Condensed", sans-serif;
-  color: #a2b29f;
-  font-size: 2rem;
+  color: #212b36;
+  font-size: 1.75rem;
   margin-top: 0;
   margin-bottom: 1rem;
   padding: 0.5rem;
   max-width: 450px;
   text-align: center;
   background-color: #ffffff;
-  border-radius: 10px;
+  border-radius: 4px;
   box-sizing: border-box;
+  border: 2px solid #ccc;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1), -2px -2px 4px rgba(0, 0, 0, 0.1);
 }
 
 /* Media query for md screens */

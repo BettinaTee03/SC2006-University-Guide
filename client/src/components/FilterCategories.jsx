@@ -36,11 +36,25 @@ function FilterCategories({ categories, onFilterChange }) {
   return (
     <Grid
       container
-      columnSpacing={1}
       rowSpacing={1}
       className="filter-container"
+      sx={{ marginTop: "12px" }}
     >
-      <Button className="filter-heading" onClick={() => setExpand(!expand)}>
+      <Button
+        className="filter-heading"
+        fullWidth
+        sx={{
+          boxSizing: "border-box",
+          color: "primary",
+          fontWeight: 900,
+          fontSize: "1rem",
+          paddingLeft: "16px",
+          paddingRight: "16px",
+          height: "36px",
+          width: "100%",
+        }}
+        onClick={() => setExpand(!expand)}
+      >
         Filter Categories
       </Button>
 
@@ -51,7 +65,7 @@ function FilterCategories({ categories, onFilterChange }) {
               <Checkbox
                 checked={selectedCategories.length === categories.length}
                 onChange={() => handleCheckboxChange("selectAll")}
-                color="primary"
+                color="secondary"
               />
             }
             label="Select All"
@@ -65,7 +79,7 @@ function FilterCategories({ categories, onFilterChange }) {
                 <Checkbox
                   checked={selectedCategories.includes(category.id)}
                   onChange={() => handleCheckboxChange(category.id)}
-                  color="primary"
+                  color="secondary"
                 />
               }
               label={category.name}

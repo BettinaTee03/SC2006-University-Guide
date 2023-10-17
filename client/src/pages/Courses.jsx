@@ -64,7 +64,12 @@ function Courses() {
       <Grid
         container
         spacing={2}
-        sx={{ width: "auto", margin: 2, padding: "10px" }}
+        sx={{
+          width: "auto",
+          ml: { xs: "13.5vw" },
+          mr: { xs: "10.2vw" },
+          padding: "10px",
+        }}
       >
         <AlertSnackbar
           alertMessage={alertMessage}
@@ -89,12 +94,18 @@ function Courses() {
               <Button
                 variant="contained"
                 sx={{
-                  width: { xs: "100%", lg: "450px" },
+                  width: { xs: "100%" },
+                  maxWidth: { md: "450px" },
                   fontFamily: "Roboto Condensed, sans-serif",
+                  backgroundColor: "secondary.main",
                   mt: 2,
                   color: "#FFFFFF",
-                  fontWeight: 700,
+                  height: "48px",
                   fontSize: "1rem",
+                  "&:hover": {
+                    backgroundColor: "secondary.hover",
+                    boxShadow: "0 8px 16px 0 rgba(250, 84, 28, 0.24)",
+                  },
                 }}
                 onClick={handleClick}
               >

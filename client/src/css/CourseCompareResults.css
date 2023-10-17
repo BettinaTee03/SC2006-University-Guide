@@ -1,37 +1,32 @@
 .detailsRow-container {
   padding-left: 10px;
   padding-right: 10px;
+  color: #212b36;
   font-size: large;
   font-family: "Roboto Condensed", sans-serif;
 }
 
 .detailsRow-container + .detailsRow-container {
-  border-left: 1px solid rgba(162, 178, 159, 0.5);
+  border-left: 1px solid rgba(99, 115, 129, 0.5);
 }
 
 .detailsColumn-container {
   padding-left: 10px;
   padding-right: 10px;
+  color: #212b36;
   font-size: large;
   font-family: "Roboto Condensed", sans-serif;
 }
 
 .detailsColumn-container + .detailsColumn-container {
-  border-top: 1px solid rgba(162, 178, 159, 0.5);
+  border-top: 1px solid rgba(99, 115, 129, 0.5);
 }
 
 .details-heading {
   font-weight: 900;
-  color: #a2b29f;
-  border-bottom: 1px solid #a2b29f;
+  color: #212b36;
+  border-bottom: 1px solid rgba(99, 115, 129, 1);
   padding: 5px;
   margin-bottom: 5px;
   font-family: "Roboto Condensed", sans-serif;
-}
-
-.custom-button {
-  font-weight: 900 !important;
-  color: white !important;
-  margin-top: 10px !important;
-  width: 100% !important;
 }

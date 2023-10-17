@@ -124,7 +124,20 @@ function Login() {
               type="submit"
               fullWidth
               variant="contained"
-              sx={{ mt: 3, mb: 2 }}
+              sx={{
+                backgroundColor: "#1976d2",
+                color: "#FFFFFF",
+                fontSize: "0.875rem",
+                paddingLeft: "16px",
+                paddingRight: "16px",
+                height: "36px",
+                marginTop: 3,
+                width: "100%",
+                "&:hover": {
+                  backgroundColor: "#0e53b3",
+                  boxShadow: "0 8px 16px 0 rgba(250, 84, 28, 0.24)",
+                },
+              }}
             >
               Sign In
             </Button>
@@ -133,7 +146,21 @@ function Login() {
               type="button"
               fullWidth
               variant="contained"
-              sx={{ mt: 3, mb: 2 }}
+              sx={{
+                backgroundColor: "secondary.main",
+                color: "#FFFFFF",
+                fontSize: "0.875rem",
+                paddingLeft: "16px",
+                paddingRight: "16px",
+                height: "36px",
+                marginTop: 3,
+                marginBottom: 2,
+                width: "100%",
+                "&:hover": {
+                  backgroundColor: "secondary.hover",
+                  boxShadow: "0 8px 16px 0 rgba(250, 84, 28, 0.24)",
+                },
+              }}
               onClick={handleGoogleLogin}
             >
               <GoogleIcon sx={{ mr: 2 }} />

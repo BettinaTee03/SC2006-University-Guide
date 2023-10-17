@@ -25,7 +25,16 @@ function Explore() {
             "radial-gradient(circle at 18.7% 37.8%, rgb(250, 250, 250) 0%, rgb(225, 234, 238) 90%)",
         }}
       ></Box>
-      <Grid container rowSpacing={2} sx={{ width: "auto", mt: 2, mx: 5 }}>
+      <Grid
+        container
+        rowSpacing={2}
+        sx={{
+          width: "auto",
+          mt: 2,
+          ml: { xs: "14.9vw" },
+          mr: { xs: "11.6vw" },
+        }}
+      >
         {
           <Search
             pageTitle="All Courses"

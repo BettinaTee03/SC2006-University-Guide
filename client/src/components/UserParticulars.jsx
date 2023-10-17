@@ -281,7 +281,7 @@ export const UserParticulars = ({ userParticulars, userName, userId }) => {
             <Button
               type="submit"
               variant="contained"
-              sx={{ mt: 3, mb: 2, borderRadius: "50px" }}
+              sx={{ mt: 3, mb: 2 }}
               onClick={submitHandler}
               color="secondary"
             >
@@ -290,7 +290,7 @@ export const UserParticulars = ({ userParticulars, userName, userId }) => {
             <Button
               type="submit"
               variant="contained"
-              sx={{ mt: 0, mb: 2, borderRadius: "50px" }}
+              sx={{ mt: 0, mb: 2 }}
               onClick={onCancelClick}
               color="secondary"
             >
@@ -425,7 +425,7 @@ export const UserParticulars = ({ userParticulars, userName, userId }) => {
 
             <Button
               variant="contained"
-              sx={{ mt: 3, mb: 2, borderRadius: "50px" }}
+              sx={{ mt: 3, mb: 2 }}
               onClick={onEditClick}
               color="secondary"
             >

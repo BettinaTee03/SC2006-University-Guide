@@ -43,23 +43,21 @@ function Home() {
               marginBottom: { xs: 5, lg: 1 },
             }}
           >
-            University Course <span style={{ color: "#FA541C" }}>Finder</span>
+            University Course <span style={{ color: "secondary" }}>Finder</span>
           </Typography>
           <Typography
             component="h2"
             sx={{
               fontFamily: "'Roboto Condensed', sans-serif",
               textDecoration: "none",
-              color: "#637381",
+              color: "primary",
               marginLeft: { lg: "15%" },
               marginBottom: { xs: 2, lg: 2 },
               fontWeight: 700,
               fontSize: { xs: "1.2rem" },
             }}
           >
-            Welcome to Singapore's{" "}
-            <span style={{ color: "#FA541C" }}>leading</span> course discovery
-            platform.
+            Welcome to Singapore's leading course discovery platform.
           </Typography>
           <Typography
             component="p"
@@ -67,7 +65,7 @@ function Home() {
             sx={{
               fontFamily: "'Roboto Condensed', sans-serif",
               textDecoration: "none",
-              color: "#637381",
+              color: "primary",
               textAlign: { xs: "center", lg: "left" },
               marginLeft: { lg: "15%" },
               marginBottom: { xs: 5 },
@@ -83,21 +81,22 @@ function Home() {
             endIcon={<LoginIcon />}
             sx={{
               marginLeft: { lg: "15%" },
-              backgroundColor: "#212B36",
+              backgroundColor: "secondary.main",
               color: "#FFFFFF",
               fontSize: "15px",
               paddingLeft: "16px",
               paddingRight: "16px",
               height: "48px",
               "&:hover": {
-                backgroundColor: "#454F5B",
+                backgroundColor: "secondary.hover",
+                boxShadow: "0 8px 16px 0 rgba(250, 84, 28, 0.24)",
               },
             }}
             onClick={() => {
               navigate("/register");
             }}
           >
-            Get Started
+            Get Started.
           </Button>
           <Box
             component="img"

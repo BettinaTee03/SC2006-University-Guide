@@ -2,14 +2,12 @@
   padding: 10px;
   background-color: #ffffff;
   border: 2px solid #ccc;
-  border-radius: 8px;
+  border-radius: 4px;
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1), -2px -2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .filter-heading {
-  font-weight: 900 !important;
-  color: #a2b29f !important;
-  border-bottom: 2px solid #a2b29f !important;
+  border-bottom: 2px solid #637381 !important;
   border-radius: 0px !important;
   word-wrap: break-word !important;
   width: 100% !important;
@@ -18,4 +16,5 @@
 .checkbox-label {
   color: #000000;
   word-wrap: break-word;
+  padding-left: 10px;
 }

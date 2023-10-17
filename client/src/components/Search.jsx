@@ -155,7 +155,8 @@ function Search({ pageTitle, renderOptionContent, selectedCourses }) {
                 fontSize: { xs: "14px", sm: "1rem" },
                 minWidth: { xs: "28px", sm: "40px" },
                 minHeight: { xs: "28px", sm: "40px" },
-                borderRadius: "17.5px",
+                borderRadius: "50%",
+                marginBottom: "30px",
               },
             }}
             count={Math.floor(results.length / rowsPerPage)} // Calculate the number of pages

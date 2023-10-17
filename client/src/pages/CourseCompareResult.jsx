@@ -217,28 +217,43 @@ function CourseCompareResult() {
         handleLogin={handleLogin}
       />
       <Grid container spacing={2} sx={{ width: "auto", padding: 3 }}>
-        <Grid item xs={12} sm={2} sx={{ order: { xs: 1 } }}>
-          <FilterCategories
-            categories={categories}
-            onFilterChange={handleFilterChange}
-          />
-
-          <Button
-            xs={12}
-            sm={2}
-            variant="contained"
-            className="custom-button"
-            onClick={handleClick}
-          >
-            Return to Courses Page
-          </Button>
+        <Grid item xs={12} md={4} lg={2} sx={{ order: { xs: 1 } }}>
+          <Grid item xs={12}>
+            <FilterCategories
+              categories={categories}
+              onFilterChange={handleFilterChange}
+            />
+          </Grid>
+          <Grid item xs={12}>
+            <Button
+              variant="contained"
+              sx={{
+                backgroundColor: "secondary.main",
+                color: "#FFFFFF",
+                fontSize: "15px",
+                paddingLeft: "12px",
+                paddingRight: "12px",
+                height: "48px",
+                marginTop: "20px",
+                width: "100%",
+                "&:hover": {
+                  backgroundColor: "secondary.hover",
+                  boxShadow: "0 8px 16px 0 rgba(250, 84, 28, 0.24)",
+                },
+              }}
+              onClick={handleClick}
+            >
+              Return to Courses Page
+            </Button>
+          </Grid>
         </Grid>
 
         <Grid
           container
           item
           xs={12}
-          sm={10}
+          md={8}
+          lg={10}
           sx={{ order: { xs: 2 }, width: "auto", padding: 1 }}
         >
           {categories.map(

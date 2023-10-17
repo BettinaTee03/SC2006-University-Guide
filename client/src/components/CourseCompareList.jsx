@@ -11,7 +11,7 @@ function CourseCompareList({ courses, handleDelete }) {
       sx={{
         display: "flex",
         flexDirection: "column",
-        minHeight: { xs: "auto", md: "300px", lg: "300px" },
+        minHeight: { xs: "auto", md: "320px", lg: "320px" },
       }}
       className="course-stack"
     >
@@ -38,10 +38,10 @@ function CourseCompareList({ courses, handleDelete }) {
                     width: "70%",
                     textAlign: "center",
                     fontSize: {
-                      xs: "16px",
-                      sm: "16px",
-                      md: "20px",
-                      lg: "20px",
+                      xs: "14px",
+                      sm: "14px",
+                      md: "16px",
+                      lg: "18px",
                     },
                   },
                   display: "flex",

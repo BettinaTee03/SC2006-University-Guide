@@ -111,12 +111,13 @@ function Navbar() {
         <Container maxWidth="false">
           <Toolbar
             disableGutters
-            sx={{ paddingLeft: "1rem", paddingRight: "1rem" }}
+            sx={{ paddingLeft: "1rem", paddingRight: "1rem", color: "#212B36" }}
           >
             <SchoolIcon
               sx={{
                 display: { xs: "none", md: "flex" },
                 mr: 1,
+                ml: "12.8vw",
                 color: "#212B36",
               }}
             />
@@ -269,7 +270,7 @@ function Navbar() {
               ))}
             </Box>
 
-            <Box sx={{ flexGrow: 0, ml: 4 }}>
+            <Box sx={{ flexGrow: 0, mr: { md: "9.5vw" } }}>
               <Tooltip title="Open settings">
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                   <Avatar alt="Remy Sharp" src="" />
