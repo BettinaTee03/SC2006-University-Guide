@@ -27,7 +27,7 @@ function Home() {
         <Typography
           component="h1"
           sx={{
-            fontWeight: 600,
+            fontWeight: 700,
             textDecoration: "none",
             paddingTop: { xs: "15%", lg: "7%" },
             marginLeft: { lg: "15%" },
@@ -38,14 +38,15 @@ function Home() {
           University Course <span style={{ color: "#FA541C" }}>Finder</span>
         </Typography>
         <Typography
-          component="h3"
-          variant="p"
+          component="h2"
           sx={{
             fontFamily: "'Roboto Condensed', sans-serif",
             textDecoration: "none",
             color: "#637381",
             marginLeft: { lg: "15%" },
-            marginBottom: { xs: 1, lg: 2 },
+            marginBottom: { xs: 2, lg: 2 },
+            fontWeight: 700,
+            fontSize: { xs: "1.2rem" },
           }}
         >
           Welcome to Singapore's{" "}
@@ -59,6 +60,7 @@ function Home() {
             fontFamily: "'Roboto Condensed', sans-serif",
             textDecoration: "none",
             color: "#637381",
+            textAlign: { xs: "center", lg: "left" },
             marginLeft: { lg: "15%" },
             marginBottom: { xs: 5 },
             width: { xs: "90%", lg: "30%" },
@@ -92,7 +94,8 @@ function Home() {
         <Box
           component="img"
           sx={{
-            width: "100%",
+            width: { xs: "100%", lg: "80%" },
+            marginLeft: { lg: "10%" },
             maxHeight: "50vh",
             objectFit: "cover",
           }}

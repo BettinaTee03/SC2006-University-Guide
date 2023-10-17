@@ -178,6 +178,7 @@ function Navbar() {
                 fontWeight: 700,
                 letterSpacing: ".2rem",
                 textDecoration: "none",
+                color: "#FFFFFF",
               }}
             >
               Softbuns

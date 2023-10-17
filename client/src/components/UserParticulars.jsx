@@ -117,7 +117,7 @@ export const UserParticulars = ({ userParticulars, userName, userId }) => {
               alignItems: "center",
             }}
           >
-            <Typography component="h1" variant="h4">
+            <Typography component="h1" variant="h4" sx={{ marginBottom: 3 }}>
               My Particulars
             </Typography>
             <Box
@@ -308,7 +308,7 @@ export const UserParticulars = ({ userParticulars, userName, userId }) => {
               alignItems: "center",
             }}
           >
-            <Typography component="h1" variant="h4">
+            <Typography component="h1" variant="h4" sx={{ marginBottom: 3 }}>
               My Particulars
             </Typography>
             <Box
