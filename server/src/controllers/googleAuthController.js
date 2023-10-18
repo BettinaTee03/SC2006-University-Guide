@@ -2,7 +2,7 @@ import passport from "passport";
 import { config } from "dotenv"; // Importing dotenv for environment variable configuration
 config(); // Configuring dotenv
 
-const VITE_BASE_URL = process.env.VITE_BASE_URL || "http://localhost:5173";
+const BASE_URL = process.env.BASE_URL || "http://localhost:5173";
 
 /**
  * Initiates the Google OAuth2 authentication process.
@@ -30,8 +30,8 @@ function getLogin(req, res, next) {
  */
 function getRedirect(req, res, next) {
   passport.authenticate("google", {
-    failureRedirect: `${VITE_BASE_URL}/login`, // React app's login page
-    successRedirect: `${VITE_BASE_URL}/auth-success`, // React app's dashboard or home page
+    failureRedirect: `${BASE_URL}/login`, // React app's login page
+    successRedirect: `${BASE_URL}/auth-success`, // React app's dashboard or home page
   })(req, res, next);
 }
 
