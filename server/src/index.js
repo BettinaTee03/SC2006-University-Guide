@@ -20,6 +20,12 @@ if (port == null || port == "") {
 }
 const app = express(); // Creating an Express.js application instance
 
+app.use((req, res, next) => {
+  if (req.header("x-forwarded-proto") !== "https")
+    res.redirect(`https://${req.header("host")}${req.url}`);
+  else next();
+});
+
 // Trusting the first proxy
 app.set("trust proxy", 1);
 
@@ -29,6 +35,7 @@ app.use(
     origin: [
       "http://localhost:5173",
       "https://university-guide-app-staging-d62da9232739.herokuapp.com",
+      "https://www.sguniguide.tech",
     ], // Specifying the allowed origins in an array
     credentials: true, // Allowing credentials
   })
