@@ -58,7 +58,7 @@ function Home() {
               textDecoration: "none",
               paddingTop: { xs: "15%", lg: "7%" },
               marginLeft: { lg: "15%" },
-              fontSize: { xs: "2.5rem", lg: "4rem" },
+              fontSize: { xs: "2rem", md: "2.5rem", lg: "4rem" },
               marginBottom: { xs: 5, lg: 1 },
             }}
           >
@@ -72,7 +72,7 @@ function Home() {
               marginLeft: { lg: "15%" },
               marginBottom: { xs: 2, lg: 2 },
               fontWeight: 700,
-              fontSize: { xs: "1.2rem" },
+              fontSize: { xs: "1rem", md: "1.2rem" },
             }}
           >
             Welcome to Singapore's leading course discovery platform.
