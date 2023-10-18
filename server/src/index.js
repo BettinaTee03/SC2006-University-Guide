@@ -12,6 +12,7 @@ import intakeRoutes from "./routes/intakeRoutes.js"; // Importing intake-related
 import passport from "./config/passport.js"; // Importing Passport.js configuration
 import sessionConfig from "./config/session.js"; // Importing session configuration
 import userRoutes from "./routes/userRoutes.js"; // Importing user-related routes
+import path from "path"; // Importing path for serving static files
 
 let port = process.env.PORT;
 if (port == null || port == "") {
