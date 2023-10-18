@@ -27,6 +27,7 @@ function Navbar() {
   const [showAlert, setShowAlert] = useState(false);
   const [isTop, setIsTop] = useState(true);
   const location = useLocation();
+  const API_BASE_URL = import.meta.env.VITE_BASE_URL || "http://localhost:8000";
 
   useEffect(() => {
     const handleScroll = () => {
@@ -73,7 +74,7 @@ function Navbar() {
 
   const handleLogout = async () => {
     try {
-      const response = await axios.get("http://localhost:8000/auth/logout", {
+      const response = await axios.get(`${API_BASE_URL}/auth/logout`, {
         withCredentials: true,
       });
       if (response.status === 200) {

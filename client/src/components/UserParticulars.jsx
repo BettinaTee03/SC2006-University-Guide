@@ -31,6 +31,7 @@ export const UserParticulars = ({ userParticulars, userName, userId }) => {
   const [errorName, setErrorName] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
   const [errorSubmit, setErrorSubmit] = useState(false);
+  const API_BASE_URL = import.meta.env.VITE_BASE_URL || "http://localhost:8000";
 
   const alertMessage =
     errorSubmit && errorName
@@ -61,7 +62,7 @@ export const UserParticulars = ({ userParticulars, userName, userId }) => {
   const submitHandler = async () => {
     try {
       const response = await Axios.put(
-        `http://localhost:8000/profile/${userId}/particulars/submit`,
+        `${API_BASE_URL}/profile/${userId}/particulars/submit`,
         {
           editedParticulars,
           username,

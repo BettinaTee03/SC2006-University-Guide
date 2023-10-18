@@ -14,6 +14,7 @@ function IndividualCourse() {
   const { courseName } = useParams();
   const [isLoginAlertOpen, setIsLoginAlertOpen] = useState(false);
   const navigate = useNavigate();
+  const API_BASE_URL = import.meta.env.VITE_BASE_URL || "http://localhost:8000";
 
   const handleLoginAlertClose = () => {
     setIsLoginAlertOpen(false);
@@ -27,7 +28,7 @@ function IndividualCourse() {
     async function getIndividualCourse() {
       try {
         const response = await Axios.get(
-          `http://localhost:8000/courses/${courseName}`,
+          `${API_BASE_URL}/courses/${courseName}`,
           { withCredentials: true }
         );
         setCourse(response.data);

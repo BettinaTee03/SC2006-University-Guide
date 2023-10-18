@@ -9,15 +9,15 @@ function IndividualProfile() {
   const { id } = useParams();
   const [user, setUser] = useState(null);
   const navigate = useNavigate();
+  const API_BASE_URL = import.meta.env.VITE_BASE_URL || "http://localhost:8000";
 
   useEffect(() => {
     async function getIndividualProfile() {
       if (id) {
         try {
-          const response = await Axios.get(
-            `http://localhost:8000/profile/${id}`,
-            { withCredentials: true }
-          );
+          const response = await Axios.get(`${API_BASE_URL}/profile/${id}`, {
+            withCredentials: true,
+          });
 
           if (response.status === 200) {
             setUser(response.data);

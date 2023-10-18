@@ -9,6 +9,7 @@ function IntakeChart() {
   const [selectedCourses, setSelectedCourses] = useState([]);
   const [chartData, setChartData] = useState([]);
   const [selectedButton, setSelectedButton] = useState("intake");
+  const API_BASE_URL = import.meta.env.VITE_BASE_URL || "http://localhost:8000";
 
   const navigate = useNavigate();
 
@@ -20,7 +21,7 @@ function IntakeChart() {
     const fetchDataForCourse = async (course) => {
       try {
         const response = await axios.get(
-          `http://localhost:8000/intake/${encodeURIComponent(course)}`,
+          `${API_BASE_URL}/intake/${encodeURIComponent(course)}`,
           {
             withCredentials: true,
           }

@@ -3,6 +3,8 @@ import Axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 function AspirationForm({ course }) {
+  const API_BASE_URL = import.meta.env.VITE_BASE_URL || "http://localhost:8000";
+
   function restructureData(data) {
     const numberOfCareers = 3;
     const result = [];
@@ -44,7 +46,7 @@ function AspirationForm({ course }) {
     setIsLoading(true);
     try {
       const response = await Axios.post(
-        "http://localhost:8000/courses/aspirations/submit",
+        `${API_BASE_URL}/courses/aspirations/submit`,
         {
           aspiration,
           course,

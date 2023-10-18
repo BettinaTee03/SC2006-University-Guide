@@ -16,14 +16,14 @@ import Stack from "@mui/material/Stack";
 function Search({ pageTitle, renderOptionContent, selectedCourses }) {
   const [results, setResults] = React.useState([]);
   const [inputValue, setInputValue] = React.useState("");
-
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(15);
+  const API_BASE_URL = import.meta.env.VITE_BASE_URL || "http://localhost:8000";
 
   useEffect(() => {
     async function fetchAllCourses() {
       try {
-        const response = await Axios.get("http://localhost:8000/courses/all");
+        const response = await Axios.get(`${API_BASE_URL}/courses/all`);
         setResults(response.data);
       } catch (error) {
         return [];

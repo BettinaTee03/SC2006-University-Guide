@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import axios from "axios";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
@@ -9,10 +9,10 @@ import Box from "@mui/material/Box";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
+import AlertSnackbar from "../components/AlertSnackbar";
 import GoogleIcon from "@mui/icons-material/Google";
 import AuthContext from "../contexts/AuthContext";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 function Copyright(props) {
   return (
@@ -32,42 +32,65 @@ function Copyright(props) {
   );
 }
 
-const defaultTheme = createTheme();
-
 function Login() {
   const { setIsAuthenticated } = useContext(AuthContext);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [showAlert, setShowAlert] = useState(false);
+  const [alertMessage, setAlertMessage] = useState("");
+  const [severity, setSeverity] = useState("success");
+  const API_BASE_URL = import.meta.env.VITE_BASE_URL || "http://localhost:8000";
 
+  const location = useLocation();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (location.state && location.state.showAlert) {
+      setAlertMessage(location.state.message);
+      setSeverity(location.state.severity);
+      setShowAlert(true);
+    }
+  }, [location]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        "http://localhost:8000/auth/login",
+        `${API_BASE_URL}/auth/login`,
         { username, password },
         { withCredentials: true }
       );
       if (response.status === 200) {
         setIsAuthenticated(true);
+        navigate("/home", {
+          state: { showAlert: true, message: "Login successful!" },
+        });
       }
-      navigate("/home");
     } catch (error) {
       if (error.response) {
-        alert(error.response.data.error);
+        setAlertMessage(error.response.data.error);
+        setSeverity("error");
+        setShowAlert(true);
       } else {
-        alert("Something went wrong. Please try again.");
+        setAlertMessage("Something went wrong. Please try again.");
+        setSeverity("error");
+        setShowAlert(true);
       }
     }
   };
 
   const handleGoogleLogin = () => {
-    window.location = "http://localhost:8000/auth/google";
+    window.location = `${API_BASE_URL}/auth/google`;
   };
 
   return (
     <>
+      <AlertSnackbar
+        alertMessage={alertMessage}
+        open={showAlert}
+        setOpen={setShowAlert}
+        severity={severity}
+      />
       <Box
         style={{
           height: "68px",

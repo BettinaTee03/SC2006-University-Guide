@@ -18,6 +18,7 @@ function CourseCompareResult() {
   const [isLogin, setIsLogin] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
+  const API_BASE_URL = import.meta.env.VITE_BASE_URL || "http://localhost:8000";
 
   const handleLoginAlertClose = () => {
     setIsLoginAlertOpen(false);
@@ -77,7 +78,7 @@ function CourseCompareResult() {
     const handleClick = async () => {
       try {
         const response = await axios.post(
-          "http://localhost:8000/courses/compare",
+          `${API_BASE_URL}/courses/compare`,
           { courses: selectedCourses },
           { withCredentials: true }
         );

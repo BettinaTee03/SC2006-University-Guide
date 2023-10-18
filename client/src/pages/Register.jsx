@@ -9,7 +9,7 @@ import Box from "@mui/material/Box";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
+import AlertSnackbar from "../components/AlertSnackbar";
 import { useNavigate } from "react-router-dom";
 
 function Copyright(props) {
@@ -34,28 +34,43 @@ function Register() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
+  const [showAlert, setShowAlert] = useState(false);
+  const [alertMessage, setAlertMessage] = useState("");
   const navigate = useNavigate();
+  const API_BASE_URL = import.meta.env.VITE_BASE_URL || "http://localhost:8000";
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        "http://localhost:8000/auth/register",
+        `${API_BASE_URL}/auth/register`,
         { username, email, password },
         { withCredentials: true }
       );
-      navigate("/login");
+      if (response.status === 201) {
+        navigate("/login", {
+          state: { showAlert: true, message: "Sign up successful!" },
+        });
+      }
     } catch (error) {
       if (error.response) {
-        alert(error.response.data.error);
+        setAlertMessage(error.response.data.error);
+        setShowAlert(true);
       } else {
-        alert("Something went wrong. Please try again.");
+        setAlertMessage("Something went wrong. Please try again.");
+        setShowAlert(true);
       }
     }
   };
 
   return (
     <>
+      <AlertSnackbar
+        alertMessage={alertMessage}
+        open={showAlert}
+        setOpen={setShowAlert}
+        severity="error"
+      />
       <Box
         style={{
           height: "68px",

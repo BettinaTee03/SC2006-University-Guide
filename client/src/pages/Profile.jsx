@@ -6,6 +6,7 @@ import LoginAlert from "../components/LoginAlert";
 function Profile() {
   const navigate = useNavigate();
   const [isLoginAlertOpen, setIsLoginAlertOpen] = useState(false);
+  const API_BASE_URL = import.meta.env.VITE_BASE_URL || "http://localhost:8000";
 
   const handleLoginAlertClose = () => {
     setIsLoginAlertOpen(false);
@@ -18,7 +19,7 @@ function Profile() {
   useEffect(() => {
     const fetchProfileData = async () => {
       try {
-        const response = await Axios.get("http://localhost:8000/profile", {
+        const response = await Axios.get(`${API_BASE_URL}/profile`, {
           withCredentials: true,
         });
 

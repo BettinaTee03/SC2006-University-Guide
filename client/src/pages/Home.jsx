@@ -1,15 +1,34 @@
 import { Typography, Box } from "@mui/material";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import universitystudents from "../images/university_students.png";
 import Button from "@mui/material/Button";
 import LoginIcon from "@mui/icons-material/Login";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
+import AlertSnackbar from "../components/AlertSnackbar";
 
 function Home() {
   const navigate = useNavigate();
+  const location = useLocation();
+  const [showAlert, setShowAlert] = useState(false);
+  const [alertMessage, setAlertMessage] = useState("");
+  const [severity, setSeverity] = useState("success");
+
+  useEffect(() => {
+    if (location.state && location.state.showAlert) {
+      setAlertMessage(location.state.message);
+      setSeverity(location.state.severity);
+      setShowAlert(true);
+    }
+  }, [location]);
 
   return (
     <>
+      <AlertSnackbar
+        alertMessage={alertMessage}
+        open={showAlert}
+        setOpen={setShowAlert}
+        severity={severity}
+      />
       <Box
         style={{
           height: "68px",
