@@ -33,6 +33,7 @@ passport.use(
       callbackURL:
         process.env.GOOGLE_CALLBACK_URL ||
         "http://localhost:8000/auth/google/callback",
+      scope: ["profile", "email"],
     },
     function (accessToken, refreshToken, profile, cb) {
       const userData = {
