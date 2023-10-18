@@ -7,8 +7,6 @@ import AlertSnackbar from "./AlertSnackbar";
 function AuthSuccess() {
   const { isAuthenticated, setIsAuthenticated } = useContext(AuthContext);
   const navigate = useNavigate();
-  const [showAlert, setShowAlert] = useState(false);
-  const [alertMessage, setAlertMessage] = useState("");
   const severity = isAuthenticated ? "success" : "error";
   const API_BASE_URL = import.meta.env.VITE_BASE_URL || "http://localhost:8000";
 
@@ -22,30 +20,34 @@ function AuthSuccess() {
         if (response.data.isAuthenticated) {
           setIsAuthenticated(true);
           navigate("/home", {
-            state: { showAlert: true, message: "Login successful!" },
+            state: {
+              showAlert: true,
+              message: "Login successful!",
+              severity: severity,
+            },
           });
         } else {
-          setAlertMessage("Google Authentication failed. Please try again.");
-          setShowAlert(true);
-          setIsAuthenticated(false);
+          navigate("/login", {
+            state: {
+              showAlert: true,
+              message: "Google Authentication failed. Please try again.",
+              severity: severity,
+            },
+          });
         }
       } catch (error) {
-        setAlertMessage("Something went wrong. Please try again.");
-        setShowAlert(true);
+        navigate("/login", {
+          state: {
+            showAlert: true,
+            message: "Something went wrong. Please try again.",
+            severity: severity,
+          },
+        });
       }
     };
 
     checkSession();
   }, []);
-
-  return (
-    <AlertSnackbar
-      alertMessage={alertMessage}
-      open={showAlert}
-      setOpen={setShowAlert}
-      severity={severity}
-    />
-  );
 }
 
 export default AuthSuccess;
