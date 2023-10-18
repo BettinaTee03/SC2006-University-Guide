@@ -27,7 +27,8 @@ function Navbar() {
   const [showAlert, setShowAlert] = useState(false);
   const [isTop, setIsTop] = useState(true);
   const location = useLocation();
-  const API_BASE_URL = import.meta.env.VITE_BASE_URL || "http://localhost:8000";
+  const API_BASE_URL =
+    import.meta.env.VITE_BASE_URL || "http://localhost:8000/api";
 
   useEffect(() => {
     const handleScroll = () => {

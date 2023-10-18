@@ -18,7 +18,8 @@ function Search({ pageTitle, renderOptionContent, selectedCourses }) {
   const [inputValue, setInputValue] = React.useState("");
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(15);
-  const API_BASE_URL = import.meta.env.VITE_BASE_URL || "http://localhost:8000";
+  const API_BASE_URL =
+    import.meta.env.VITE_BASE_URL || "http://localhost:8000/api";
 
   useEffect(() => {
     async function fetchAllCourses() {

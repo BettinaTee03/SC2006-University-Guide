@@ -22,7 +22,8 @@ function IntakeChart() {
   const [chartData, setChartData] = useState([]);
   const [selectedButton, setSelectedButton] = useState("intake");
   const [isLoginAlertOpen, setIsLoginAlertOpen] = useState(false);
-  const API_BASE_URL = import.meta.env.VITE_BASE_URL || "http://localhost:8000";
+  const API_BASE_URL =
+    import.meta.env.VITE_BASE_URL || "http://localhost:8000/api";
   const navigate = useNavigate();
 
   const commonButtonStyles = {

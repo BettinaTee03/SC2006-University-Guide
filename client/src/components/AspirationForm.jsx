@@ -3,7 +3,8 @@ import Axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 function AspirationForm({ course }) {
-  const API_BASE_URL = import.meta.env.VITE_BASE_URL || "http://localhost:8000";
+  const API_BASE_URL =
+    import.meta.env.VITE_BASE_URL || "http://localhost:8000/api";
 
   function restructureData(data) {
     const numberOfCareers = 3;

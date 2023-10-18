@@ -40,7 +40,8 @@ function Register() {
   const navigate = useNavigate();
   const passwordPattern =
     /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-  const API_BASE_URL = import.meta.env.VITE_BASE_URL || "http://localhost:8000";
+  const API_BASE_URL =
+    import.meta.env.VITE_BASE_URL || "http://localhost:8000/api";
 
   const handleSubmit = async (e) => {
     e.preventDefault();

@@ -14,7 +14,8 @@ function IndividualCourse() {
   const { courseName } = useParams();
   const [isLoginAlertOpen, setIsLoginAlertOpen] = useState(false);
   const navigate = useNavigate();
-  const API_BASE_URL = import.meta.env.VITE_BASE_URL || "http://localhost:8000";
+  const API_BASE_URL =
+    import.meta.env.VITE_BASE_URL || "http://localhost:8000/api";
 
   const handleLoginAlertClose = () => {
     setIsLoginAlertOpen(false);

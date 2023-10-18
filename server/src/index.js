@@ -27,7 +27,6 @@ app.use(
   })
 );
 
-app.set("trust proxy", 1);
 app.use(sessionConfig); // Using the session configuration
 app.use(passport.initialize()); // Initializing Passport.js
 app.use(passport.session()); // Using Passport.js sessions
@@ -35,15 +34,16 @@ app.use(express.json()); // Allowing JSON POST requests
 app.use(cookieParser()); // Allowing cookie parsing
 
 // Defining route handlers
-app.use("/auth", authRoutes); // Using authentication routes
-app.use("/courses", courseRoutes); // Using course-related routes
-app.use("/intake", intakeRoutes); // Using intake-related routes
-app.use("/profile", userRoutes); // Using user-related routes
+app.use("/api/auth", authRoutes); // Using authentication routes
+app.use("/api/courses", courseRoutes); // Using course-related routes
+app.use("/api/intake", intakeRoutes); // Using intake-related routes
+app.use("/api/profile", userRoutes); // Using user-related routes
 
-// Defining a root route handler
-app.get("/", (req, res) => {
-  return res.json({ message: "Hello, world!" }); // Sending a JSON response
-});
+const __dirname = path.resolve();
+app.use(express.static(path.join(__dirname, "client", "dist"))); // Serving the static files
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "client", "dist", "index.html"));
+}); // Serving the index.html file
 
 // Connecting to the database and starting the server
 mongoose.connect(process.env.MONGO_URL).then(() => {

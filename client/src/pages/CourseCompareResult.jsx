@@ -18,7 +18,8 @@ function CourseCompareResult() {
   const [isLogin, setIsLogin] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
-  const API_BASE_URL = import.meta.env.VITE_BASE_URL || "http://localhost:8000";
+  const API_BASE_URL =
+    import.meta.env.VITE_BASE_URL || "http://localhost:8000/api";
 
   const handleLoginAlertClose = () => {
     setIsLoginAlertOpen(false);

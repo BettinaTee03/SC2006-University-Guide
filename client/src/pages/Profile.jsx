@@ -6,7 +6,8 @@ import LoginAlert from "../components/LoginAlert";
 function Profile() {
   const navigate = useNavigate();
   const [isLoginAlertOpen, setIsLoginAlertOpen] = useState(false);
-  const API_BASE_URL = import.meta.env.VITE_BASE_URL || "http://localhost:8000";
+  const API_BASE_URL =
+    import.meta.env.VITE_BASE_URL || "http://localhost:8000/api";
 
   const handleLoginAlertClose = () => {
     setIsLoginAlertOpen(false);
