@@ -4,6 +4,31 @@ import ReactApexChart from "react-apexcharts";
 import axios from "axios";
 import { Container, Grid } from "@mui/material";
 import "../css/IntakeChart.css";
+import "../IntakeChart.css";
+import { Autocomplete, TextField } from "@mui/material"; // Import Autocomplete and TextField
+import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
+import CheckBoxIcon from '@mui/icons-material/CheckBox';
+import Checkbox from '@mui/material/Checkbox';
+// import { createTheme } from '@mui/material/styles';
+
+
+const icon = <CheckBoxOutlineBlankIcon fontSize="small" />;
+const checkedIcon = <CheckBoxIcon fontSize="small" />;
+
+// const theme = createTheme({
+//   palette: {
+//     primary: {
+//       main: "#212B36", //Font 
+//     },
+//     secondary: {
+//       main: "#FA541C", //buttons 
+//       hover: "#B3200E", //hover on button
+//     },
+//   },
+//   typography: {
+//     fontFamily: `"Roboto Condensed", "Helvetica", "Arial", sans-serif`,
+//   },
+// });
 
 function IntakeChart() {
   const [selectedCourses, setSelectedCourses] = useState([]);
@@ -49,45 +74,72 @@ function IntakeChart() {
     fetchData();
   }, [selectedCourses]);
 
-  const handleCourseChange = (e) => {
-    const course = e.target.value;
-
-    if (!selectedCourses.includes(course)) {
-      if (selectedCourses.length >= 5) {
-        alert("You can select a maximum of 5 courses at a time.");
-        return;
-      }
-      setSelectedCourses((prevCourses) => [...prevCourses, course]);
+  const handleCourseChange_2 = (event, newValue) => {
+    if (newValue.length > 5) {
+      newValue.pop();
+      alert("You can select a maximum of 5 courses at a time.");
+      return;
     }
+    else {
+      setSelectedCourses(newValue.map((course) => course.value));
+    };
   };
 
-  const handleDeselectCourse = (course) => {
-    setSelectedCourses((prevCourses) =>
-      prevCourses.filter((c) => c !== course)
-    );
-  };
-
-  const options = {
-    chart: {
-      toolbar: {
-        show: false,
-      },
-    },
-    markers: {
-      size: 5,
-      hover: {
-        size: undefined,
-        sizeOffset: 3,
-      },
-    },
+  const options_intake = {
     title: {
-      text: "Intake & Enrolment Data",
+      text: "Intake Data",
       style: {
-        fontFamily: "Montserrat, sans-serif",
+        fontFamily: "Roboto Condensed, sans-serif",
       },
     },
     xaxis: {
       categories: chartData[0]?.years?.sort((a, b) => a - b) || [],
+      labels: {
+        style: {
+          fontFamily: "Roboto Condensed, sans-serif",
+        },
+      },
+    },
+    yaxis: {
+      labels: {
+        style: {
+          fontFamily: "Roboto Condensed, sans-serif",
+        },
+      },
+    },
+    tooltip: {
+      style: {
+        fontFamily: "Roboto Condensed, sans-serif",
+      },
+    },
+  };
+
+  const options_enrol = {
+    title: {
+      text: "Enrolment Data",
+      style: {
+        fontFamily: "Roboto Condensed, sans-serif",
+      },
+    },
+    xaxis: {
+      categories: chartData[0]?.years?.sort((a, b) => a - b) || [],
+      labels: {
+        style: {
+          fontFamily: "Roboto Condensed, sans-serif",
+        },
+      },
+    },
+    yaxis: {
+      labels: {
+        style: {
+          fontFamily: "Roboto Condensed, sans-serif",
+        },
+      },
+    },
+    tooltip: {
+      style: {
+        fontFamily: "Roboto Condensed, sans-serif",
+      },
     },
   };
 
@@ -102,84 +154,158 @@ function IntakeChart() {
     };
   });
 
-  return (
-    <>
-      <Container maxWidth="lg">
-        <Grid container spacing={3}>
-          <Grid item xs={12} md={11} lg={12}>
-            <ReactApexChart options={options} series={series} type="line" />
-          </Grid>
-        </Grid>
+  const courseListWithDicts = [
+    { label: "Accountancy", value: "Accountancy" },
+    { label: "Architecture, Building & Real Estate", value: "Architecture, Building & Real Estate" },
+    { label: "Business & Administration", value: "Business & Administration" },
+    { label: "Dentistry", value: "Dentistry" },
+    { label: "Education", value: "Education" },
+    { label: "Engineering Sciences", value: "Engineering Sciences" },
+    { label: "Fine & Applied Arts", value: "Fine & Applied Arts" },
+    { label: "Health Sciences", value: "Health Sciences" },
+    { label: "Humanities & Social Sciences", value: "Humanities & Social Sciences" },
+    { label: "Information Technology", value: "Information Technology" },
+    { label: "Law", value: "Law" },
+    { label: "Mass Communication", value: "Mass Communication" },
+    { label: "Medicine", value: "Medicine" },
+    { label: "Natural, Physical & Mathematical Sciences", value: "Natural, Physical & Mathematical Sciences" },
+    { label: "Services", value: "Services" }
+  ];
 
-        <Grid item xs={12}>
-          <div className="selected-courses">
-            {selectedCourses.map((course) => (
-              <div key={course} className="selected-course">
-                {course}
-                <button onClick={() => handleDeselectCourse(course)}>x</button>
-              </div>
-            ))}
+
+  return (
+    <div style={{ backgroundColor: '#f8ede3' }}>
+      <Container maxWidth="lg" >
+        {/*Page title grid*/}
+        <Grid item xs={12} md={11} lg={12} style={{ paddingTop: '10px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+          <div style={{
+            background: '#FFF8F2',
+            borderRadius: '40px', // Adjust the value to control the roundness of the edges
+            padding: '1px',
+            width: '1278px',
+            textAlign: 'center',
+            color: '#A2B29F',
+          }}>
+            <h1 style={{ fontFamily: 'Roboto Condensed, sans-serif', color: '#A2B29F' }}>Statistics of Intake and Enrolment</h1>
           </div>
         </Grid>
 
-        <Grid item container xs={12} spacing={1}>
-          <Grid item xs={12} sm={6}>
+        <Grid item xs={12} md={11} lg={12}>
+          {/* First row for the header */}
+          <Grid>
+            <h4 style={{ fontFamily: 'Roboto Condensed, sans-serif', textAlign: 'left', color: '#A2B29F' }}>
+              Filter
+            </h4>
+          </Grid>
+
+          {/* Second row for the buttons */}
+          <Grid>
             <button
-              className={`button ${
-                selectedButton === "intake" ? "button-selected" : ""
-              }`}
+              style={{
+                backgroundColor: selectedButton === "intake" ? '#DF8886' : '#FFF8F2',
+                borderTopLeftRadius: '15px',
+                borderBottomLeftRadius: '15px',
+                color: selectedButton === "intake" ? '#FFF' : '#A2B29F',
+                width: '120px',
+                textAlign: 'center',
+                border: '1px solid #000',
+              }}
+              id='forIntake'
+              variant='outlined'
+              className={`button ${selectedButton === "intake" ? "button-selected" : ""}`}
               onClick={() => handleButtonClick("intake")}
             >
-              Show Intake
+              Intake
             </button>
             <button
-              className={`button ${
-                selectedButton === "enrolment" ? "button-selected" : ""
-              }`}
+              style={{
+                backgroundColor: selectedButton === "enrolment" ? '#DF8886' : '#FFF8F2',
+                borderTopRightRadius: '15px',
+                borderBottomRightRadius: '15px',
+                color: selectedButton === "enrolment" ? '#FFF' : '#A2B29F',
+                width: '120px',
+                textAlign: 'center',
+                border: '1px solid #000',
+              }}
+              id='forEnrolment'
+              className={`button ${selectedButton === "enrolment" ? "button-selected" : ""}`}
               onClick={() => handleButtonClick("enrolment")}
             >
-              Show Enrolment
+              Enrolment
             </button>
           </Grid>
         </Grid>
 
-        <Grid item xs={12}>
-          <div className="select-container">
-            <select
+        <Grid item xs={12} md={11} lg={12} paddingTop={4}>
+          {selectedButton && (
+            <div
+              className="compare-text"
+              style={{ color: '#A2B29F' }}>
+              <h4>
+                Compare {selectedButton === "intake" ? "Intake" : "Enrolment"} between sectors
+              </h4>
+            </div>
+          )}
+        </Grid>
+
+        <Grid item xs={12} md={11} lg={12} style={{ padding: '2vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+          <div className="select-container"
+            style={{
+              background: '#FFF8F2',
+              borderRadius: '20px', // Adjust the value to control the roundness of the edges
+              padding: '10px',
+              color: '#A2B29F',
+              width: '100vw'
+            }}>
+
+            <Autocomplete
               multiple
-              value={selectedCourses}
-              onChange={handleCourseChange}
+              id="courses-select-checkbox"
+              disableCloseOnSelect
+              onChange={(event, newValue) => handleCourseChange_2(event, newValue)}
+              options={courseListWithDicts} // Use the list of dictionaries
+              getOptionLabel={(option) => (option.label)} // Display the label in the dropdown
+              isOptionEqualToValue={(option, value) => option.value === value.value}
+              renderOption={(props, option, { selected }) => (
+                <li {...props}>
+                  <Checkbox
+                    icon={icon}
+                    checkedIcon={checkedIcon}
+                    style={{ marginRight: 8 }}
+                    checked={selected}
+                  />
+                  {option.label}
+                </li>
+              )}
+              renderInput={(params) => (
+                <TextField
+                  {...params}
+                  label={
+                    <span style={{ color: '#A2B29F' }}>
+                      Select Sector
+                    </span>
+                  }
+                  placeholder="e.g Accountancy"
+                  fontFamily="Roboto Condensed, sans-serif"
+                />
+              )}
             >
-              <option value="Accountancy">Accountancy</option>
-              <option value="Architecture, Building & Real Estate">
-                Architecture, Building & Real Estate
-              </option>
-              <option value="Business & Administration">
-                Business & Administration
-              </option>
-              <option value="Dentistry">Dentistry</option>
-              <option value="Education">Education</option>
-              <option value="Engineering Sciences">Engineering Sciences</option>
-              <option value="Fine & Applied Arts">Fine & Applied Arts</option>
-              <option value="Health Sciences">Health Sciences</option>
-              <option value="Humanities & Social Sciences">
-                Humanities & Social Sciences
-              </option>
-              <option value="Information Technology">
-                Information Technology
-              </option>
-              <option value="Law">Law</option>
-              <option value="Mass Communication">Mass Communication</option>
-              <option value="Medicine">Medicine</option>
-              <option value="Natural, Physical & Mathematical Sciences">
-                Natural, Physical & Mathematical Sciences
-              </option>
-              <option value="Services">Services</option>
-            </select>
+            </Autocomplete>
           </div>
         </Grid>
-      </Container>
-    </>
+
+        <Grid container spacing={3} backgroundColor='#FFF'>
+          {/*Grid with chart*/}
+          <Grid item xs={12} md={11} lg={12} >
+            <ReactApexChart
+              options={selectedButton === "intake" ? options_intake : options_enrol}
+              series={series}
+              type="line" />
+          </Grid>
+        </Grid>
+
+      </Container >
+    </div >
   );
 }
 
