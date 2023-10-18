@@ -20,6 +20,9 @@ if (port == null || port == "") {
 }
 const app = express(); // Creating an Express.js application instance
 
+// Trusting the first proxy
+app.set("trust proxy", 1);
+
 // Configuring middleware and routes
 app.use(
   cors({
