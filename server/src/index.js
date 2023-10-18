@@ -23,7 +23,10 @@ const app = express(); // Creating an Express.js application instance
 // Configuring middleware and routes
 app.use(
   cors({
-    origin: "http://localhost:5173", // Specifying the allowed origin
+    origin: [
+      "http://localhost:5173",
+      "https://university-guide-app-staging-d62da9232739.herokuapp.com",
+    ], // Specifying the allowed origins in an array
     credentials: true, // Allowing credentials
   })
 );

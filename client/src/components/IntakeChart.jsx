@@ -259,6 +259,22 @@ function IntakeChart() {
               handleCourseChange_2(event, newValue)
             }
             options={courseListWithDicts}
+            filterOptions={(options, state) => {
+              const inputValue = state.inputValue.toLowerCase();
+              if (inputValue === "") {
+                return [];
+              }
+              const filteredOptions = options
+                .filter((option) =>
+                  option.label.toLowerCase().includes(inputValue)
+                )
+                .sort((a, b) => {
+                  const aIndex = a.label.toLowerCase().indexOf(inputValue);
+                  const bIndex = b.label.toLowerCase().indexOf(inputValue);
+                  return aIndex - bIndex;
+                });
+              return filteredOptions;
+            }}
             getOptionLabel={(option) => option.label}
             isOptionEqualToValue={(option, value) =>
               option.value === value.value

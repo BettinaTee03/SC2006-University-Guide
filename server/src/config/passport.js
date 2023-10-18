@@ -32,7 +32,7 @@ passport.use(
       clientSecret: process.env.CLIENT_SECRET,
       callbackURL:
         process.env.GOOGLE_CALLBACK_URL ||
-        "http://localhost:8000/auth/google/callback",
+        "http://localhost:8000/api/auth/google/callback",
       scope: ["profile", "email"],
     },
     function (accessToken, refreshToken, profile, cb) {
