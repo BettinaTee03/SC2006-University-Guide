@@ -1,5 +1,5 @@
 {
   "scripts": {
-    "start": "npm start --prefix server"
+    "postinstall": "npm install --prefix ./server"
   }
 }
