@@ -13,7 +13,7 @@ const sessionConfig = session({
     maxAge: 3600000,
     secure: process.env.NODE_ENV === "production", // Set secure flag only in production
     httpOnly: true, // Makes the cookie inaccessible from JavaScript on the frontend
-    sameSite: "lax", // For CSRF protection. Optional but recommended
+    sameSite: "none",
   },
   resave: false,
   saveUninitialized: false,
