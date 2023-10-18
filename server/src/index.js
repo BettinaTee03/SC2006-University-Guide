@@ -27,6 +27,7 @@ app.use(
   })
 );
 
+app.set("trust proxy", 1);
 app.use(sessionConfig); // Using the session configuration
 app.use(passport.initialize()); // Initializing Passport.js
 app.use(passport.session()); // Using Passport.js sessions
