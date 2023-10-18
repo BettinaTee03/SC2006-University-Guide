@@ -13,7 +13,7 @@ async function getSearch(req, res) {
   try {
     const query = req.query.q;
     const results = await searchCourses(query);
-    res.json(results);
+    res.status(200).json(results);
   } catch (error) {
     res.status(500).json({ message: "An error occurred during the search." });
   }
@@ -31,7 +31,7 @@ async function getAllCourses(req, res) {
     const courses = await CourseModel.find({}, { course_name: 1, _id: 0 }).sort(
       { course_name: 1 }
     );
-    res.json(courses);
+    res.status(200).json(courses);
   } catch (error) {
     res.status(500).json({ error: "Internal server error" });
   }
@@ -56,7 +56,7 @@ async function getAspiration(req, res) {
 
     const response = await llm.call(input);
     const structuredResponse = await openAIController.parser.parse(response);
-    res.json(structuredResponse);
+    res.status(200).json(structuredResponse);
   } catch (error) {
     res.status(500).send("Internal Server Error");
   }
@@ -105,7 +105,7 @@ async function postCompareCourses(req, res) {
         }
       })
     );
-    res.json(selectedResults);
+    res.status(200).json(selectedResults);
   } catch (error) {
     res.status(500).json({ message: "An error occurred during the search." });
   }

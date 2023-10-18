@@ -14,7 +14,7 @@ async function logOut(req, res) {
         return res.status(500).json({ error: "Failed to destroy session" });
       }
       res.clearCookie("connect.sid");
-      res.json({ message: "Logged out successfully" });
+      res.status(200).json({ message: "Logged out successfully" });
     });
   } else {
     // If the user is not authenticated, respond accordingly

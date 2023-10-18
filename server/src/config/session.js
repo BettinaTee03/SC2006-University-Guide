@@ -8,7 +8,7 @@ config();
  * @constant {Object} sessionConfig
  */
 const sessionConfig = session({
-  secret: process.env.SECRET,
+  secret: process.env.SESSION_SECRET,
   cookie: {
     maxAge: 3600000,
   },
