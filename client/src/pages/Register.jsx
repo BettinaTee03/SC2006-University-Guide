@@ -11,6 +11,7 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import AlertSnackbar from "../components/AlertSnackbar";
 import { useNavigate } from "react-router-dom";
+import validator from "validator";
 
 function Copyright(props) {
   return (
@@ -37,10 +38,33 @@ function Register() {
   const [showAlert, setShowAlert] = useState(false);
   const [alertMessage, setAlertMessage] = useState("");
   const navigate = useNavigate();
+  const passwordPattern =
+    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
   const API_BASE_URL = import.meta.env.VITE_BASE_URL || "http://localhost:8000";
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (!email) {
+      setAlertMessage("Email is required.");
+      setShowAlert(true);
+      return;
+    }
+
+    if (!validator.isEmail(email)) {
+      setAlertMessage("Invalid email format.");
+      setShowAlert(true);
+      return;
+    }
+
+    if (!passwordPattern.test(password)) {
+      setAlertMessage(
+        "Password must have at least 8 characters, one uppercase letter, one lowercase letter, one number, and one special character."
+      );
+      setShowAlert(true);
+      return;
+    }
+
     try {
       const response = await axios.post(
         `${API_BASE_URL}/auth/register`,
