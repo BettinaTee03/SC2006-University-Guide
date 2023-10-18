@@ -13,7 +13,10 @@ import passport from "./config/passport.js"; // Importing Passport.js configurat
 import sessionConfig from "./config/session.js"; // Importing session configuration
 import userRoutes from "./routes/userRoutes.js"; // Importing user-related routes
 
-const PORT = 8000; // Defining the port number
+let port = process.env.PORT;
+if (port == null || port == "") {
+  port = 3000;
+}
 const app = express(); // Creating an Express.js application instance
 
 // Configuring middleware and routes
@@ -44,6 +47,6 @@ app.get("/", (req, res) => {
 // Connecting to the database and starting the server
 mongoose.connect(process.env.MONGO_URL).then(() => {
   // Connecting to MongoDB
-  console.log(`Connected to database on port ${PORT}`); // Logging successful database connection
-  app.listen(PORT); // Starting the server on the specified port
+  console.log(`Connected to database on port ${port}`); // Logging successful database connection
+  app.listen(port); // Starting the server on the specified port
 });
