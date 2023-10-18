@@ -58,7 +58,7 @@ function Courses() {
         style={{
           height: "68px",
           background:
-            "radial-gradient(circle at 18.7% 37.8%, rgb(250, 250, 250) 0%, rgb(225, 234, 238) 90%)",
+            "linear-gradient(90deg, rgb(245, 245, 245) 0%, rgb(225, 234, 238) 90%)",
         }}
       ></Box>
       <Grid
@@ -66,9 +66,9 @@ function Courses() {
         spacing={2}
         sx={{
           width: "auto",
-          ml: { xs: "13.5vw" },
-          mr: { xs: "10.2vw" },
-          padding: "10px",
+          ml: { xs: "14vw" },
+          mr: { xs: "10.8vw" },
+          paddingTop: "16px",
         }}
       >
         <AlertSnackbar

@@ -2,44 +2,60 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import ReactApexChart from "react-apexcharts";
 import axios from "axios";
-import { Container, Grid } from "@mui/material";
+import { Grid } from "@mui/material";
 import "../css/IntakeChart.css";
-import "../IntakeChart.css";
-import { Autocomplete, TextField } from "@mui/material"; // Import Autocomplete and TextField
-import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
-import CheckBoxIcon from '@mui/icons-material/CheckBox';
-import Checkbox from '@mui/material/Checkbox';
-// import { createTheme } from '@mui/material/styles';
-
+import { Autocomplete, TextField } from "@mui/material";
+import CheckBoxOutlineBlankIcon from "@mui/icons-material/CheckBoxOutlineBlank";
+import CheckBoxIcon from "@mui/icons-material/CheckBox";
+import Checkbox from "@mui/material/Checkbox";
+import LoginAlert from "./LoginAlert";
+import Button from "@mui/material/Button";
+import ButtonGroup from "@mui/material/ButtonGroup";
+import courseListWithDicts from "./IntakeLabels.jsx";
+import Typography from "@mui/material/Typography";
 
 const icon = <CheckBoxOutlineBlankIcon fontSize="small" />;
 const checkedIcon = <CheckBoxIcon fontSize="small" />;
-
-// const theme = createTheme({
-//   palette: {
-//     primary: {
-//       main: "#212B36", //Font 
-//     },
-//     secondary: {
-//       main: "#FA541C", //buttons 
-//       hover: "#B3200E", //hover on button
-//     },
-//   },
-//   typography: {
-//     fontFamily: `"Roboto Condensed", "Helvetica", "Arial", sans-serif`,
-//   },
-// });
 
 function IntakeChart() {
   const [selectedCourses, setSelectedCourses] = useState([]);
   const [chartData, setChartData] = useState([]);
   const [selectedButton, setSelectedButton] = useState("intake");
+  const [isLoginAlertOpen, setIsLoginAlertOpen] = useState(false);
   const API_BASE_URL = import.meta.env.VITE_BASE_URL || "http://localhost:8000";
-
   const navigate = useNavigate();
 
-  const handleButtonClick = (mode) => {
-    setSelectedButton(mode);
+  const commonButtonStyles = {
+    width: { xs: "120px" },
+    maxWidth: { md: "450px" },
+    fontFamily: "Roboto Condensed, sans-serif",
+    height: "36px",
+    fontSize: "0.8rem",
+  };
+
+  const activeButtonStyles = {
+    backgroundColor: "secondary.main",
+    color: "#FFFFFF",
+    "&:hover": {
+      backgroundColor: "secondary.hover",
+      boxShadow: "0 8px 16px 0 rgba(250, 84, 28, 0.24)",
+    },
+  };
+
+  const inactiveButtonStyles = {
+    backgroundColor: "#e0e0e0",
+    color: "#000",
+    "&:hover": {
+      backgroundColor: "#d5d5d5",
+    },
+  };
+
+  const handleLoginAlertClose = () => {
+    setIsLoginAlertOpen(false);
+  };
+
+  const handleLogin = () => {
+    navigate("/login");
   };
 
   useEffect(() => {
@@ -59,8 +75,7 @@ function IntakeChart() {
         };
       } catch (error) {
         if (error.response && error.response.status === 401) {
-          alert("You must be logged in to view this page.");
-          navigate("/login");
+          setIsLoginAlertOpen(true);
         }
       }
     };
@@ -80,72 +95,55 @@ function IntakeChart() {
       newValue.pop();
       alert("You can select a maximum of 5 courses at a time.");
       return;
-    }
-    else {
+    } else {
       setSelectedCourses(newValue.map((course) => course.value));
-    };
+    }
   };
 
   const options_intake = {
+    chart: {
+      toolbar: {
+        show: false,
+      },
+    },
+    markers: {
+      size: 5,
+      hover: {
+        size: undefined,
+        sizeOffset: 3,
+      },
+    },
     title: {
       text: "Intake Data",
-      style: {
-        fontFamily: "Roboto Condensed, sans-serif",
-      },
     },
     xaxis: {
       categories: chartData[0]?.years?.sort((a, b) => a - b) || [],
-      labels: {
-        style: {
-          fontFamily: "Roboto Condensed, sans-serif",
-        },
-      },
-    },
-    yaxis: {
-      labels: {
-        style: {
-          fontFamily: "Roboto Condensed, sans-serif",
-        },
-      },
-    },
-    tooltip: {
-      style: {
-        fontFamily: "Roboto Condensed, sans-serif",
-      },
     },
   };
 
   const options_enrol = {
+    chart: {
+      toolbar: {
+        show: false,
+      },
+    },
+    markers: {
+      size: 5,
+      hover: {
+        size: undefined,
+        sizeOffset: 3,
+      },
+    },
     title: {
       text: "Enrolment Data",
-      style: {
-        fontFamily: "Roboto Condensed, sans-serif",
-      },
     },
     xaxis: {
       categories: chartData[0]?.years?.sort((a, b) => a - b) || [],
-      labels: {
-        style: {
-          fontFamily: "Roboto Condensed, sans-serif",
-        },
-      },
-    },
-    yaxis: {
-      labels: {
-        style: {
-          fontFamily: "Roboto Condensed, sans-serif",
-        },
-      },
-    },
-    tooltip: {
-      style: {
-        fontFamily: "Roboto Condensed, sans-serif",
-      },
     },
   };
 
   const series = selectedCourses.map((course) => {
-    const courseData = chartData.find((data) => data.name === course);
+    const courseData = chartData.find((data) => data?.name === course);
     return {
       name: course,
       data:
@@ -155,158 +153,155 @@ function IntakeChart() {
     };
   });
 
-  const courseListWithDicts = [
-    { label: "Accountancy", value: "Accountancy" },
-    { label: "Architecture, Building & Real Estate", value: "Architecture, Building & Real Estate" },
-    { label: "Business & Administration", value: "Business & Administration" },
-    { label: "Dentistry", value: "Dentistry" },
-    { label: "Education", value: "Education" },
-    { label: "Engineering Sciences", value: "Engineering Sciences" },
-    { label: "Fine & Applied Arts", value: "Fine & Applied Arts" },
-    { label: "Health Sciences", value: "Health Sciences" },
-    { label: "Humanities & Social Sciences", value: "Humanities & Social Sciences" },
-    { label: "Information Technology", value: "Information Technology" },
-    { label: "Law", value: "Law" },
-    { label: "Mass Communication", value: "Mass Communication" },
-    { label: "Medicine", value: "Medicine" },
-    { label: "Natural, Physical & Mathematical Sciences", value: "Natural, Physical & Mathematical Sciences" },
-    { label: "Services", value: "Services" }
-  ];
-
-
   return (
-    <div style={{ backgroundColor: '#f8ede3' }}>
-      <Container maxWidth="lg" >
-        {/*Page title grid*/}
-        <Grid item xs={12} md={11} lg={12} style={{ paddingTop: '10px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-          <div style={{
-            background: '#FFF8F2',
-            borderRadius: '40px', // Adjust the value to control the roundness of the edges
-            padding: '1px',
-            width: '1278px',
-            textAlign: 'center',
-            color: '#A2B29F',
-          }}>
-            <h1 style={{ fontFamily: 'Roboto Condensed, sans-serif', color: '#A2B29F' }}>Statistics of Intake and Enrolment</h1>
-          </div>
+    <>
+      <LoginAlert
+        open={isLoginAlertOpen}
+        handleClose={handleLoginAlertClose}
+        handleLogin={handleLogin}
+      />
+      <Grid
+        container
+        sx={{ width: "auto", ml: { xs: "14.9vw" }, mr: { xs: "11.5vw" } }}
+      >
+        <Grid item xs={12}>
+          <Typography
+            component="h1"
+            sx={{
+              fontWeight: 600,
+              textDecoration: "none",
+              marginTop: { xs: "10%", md: "3%" },
+              fontSize: { xs: "1.5rem", md: "2.2rem" },
+              color: "main",
+            }}
+          >
+            Statistics of Intake and Enrolment
+          </Typography>
         </Grid>
 
-        <Grid item xs={12} md={11} lg={12}>
-          {/* First row for the header */}
-          <Grid>
-            <h4 style={{ fontFamily: 'Roboto Condensed, sans-serif', textAlign: 'left', color: '#A2B29F' }}>
+        <Grid item xs={12}>
+          <Grid item xs={12}>
+            <Typography
+              component="h3"
+              sx={{
+                fontWeight: 600,
+                textDecoration: "none",
+                fontSize: { xs: "1rem", md: "1.3rem" },
+                marginTop: { xs: "5%", md: "2%" },
+                marginBottom: { xs: "2%", md: "1%" },
+                color: "main",
+              }}
+            >
               Filter
-            </h4>
+            </Typography>
           </Grid>
+          <Grid item xs={12}>
+            <ButtonGroup>
+              <Button
+                variant="contained"
+                sx={{
+                  ...commonButtonStyles,
+                  ...(selectedButton === "intake"
+                    ? activeButtonStyles
+                    : inactiveButtonStyles),
+                }}
+                onClick={() => setSelectedButton("intake")}
+              >
+                Intake
+              </Button>
 
-          {/* Second row for the buttons */}
-          <Grid>
-            <button
-              style={{
-                backgroundColor: selectedButton === "intake" ? '#DF8886' : '#FFF8F2',
-                borderTopLeftRadius: '15px',
-                borderBottomLeftRadius: '15px',
-                color: selectedButton === "intake" ? '#FFF' : '#A2B29F',
-                width: '120px',
-                textAlign: 'center',
-                border: '1px solid #000',
-              }}
-              id='forIntake'
-              variant='outlined'
-              className={`button ${selectedButton === "intake" ? "button-selected" : ""}`}
-              onClick={() => handleButtonClick("intake")}
-            >
-              Intake
-            </button>
-            <button
-              style={{
-                backgroundColor: selectedButton === "enrolment" ? '#DF8886' : '#FFF8F2',
-                borderTopRightRadius: '15px',
-                borderBottomRightRadius: '15px',
-                color: selectedButton === "enrolment" ? '#FFF' : '#A2B29F',
-                width: '120px',
-                textAlign: 'center',
-                border: '1px solid #000',
-              }}
-              id='forEnrolment'
-              className={`button ${selectedButton === "enrolment" ? "button-selected" : ""}`}
-              onClick={() => handleButtonClick("enrolment")}
-            >
-              Enrolment
-            </button>
+              <Button
+                variant="contained"
+                sx={{
+                  ...commonButtonStyles,
+                  ...(selectedButton === "enrolment"
+                    ? activeButtonStyles
+                    : inactiveButtonStyles),
+                }}
+                onClick={() => setSelectedButton("enrolment")}
+              >
+                Enrolment
+              </Button>
+            </ButtonGroup>
           </Grid>
         </Grid>
 
-        <Grid item xs={12} md={11} lg={12} paddingTop={4}>
+        <Grid
+          item
+          xs={12}
+          sx={{ fontFamily: "Roboto Condensed, sans serif", color: "main" }}
+        >
           {selectedButton && (
-            <div
-              className="compare-text"
-              style={{ color: '#A2B29F' }}>
-              <h4>
-                Compare {selectedButton === "intake" ? "Intake" : "Enrolment"} between sectors
-              </h4>
-            </div>
+            <Typography
+              component="h3"
+              sx={{
+                fontWeight: 600,
+                textDecoration: "none",
+                fontSize: { xs: "1rem", md: "1.3rem" },
+                marginTop: { xs: "5%", md: "2%" },
+                marginBottom: { xs: "4%", md: "1.5%" },
+                color: "main",
+              }}
+            >
+              Compare {selectedButton === "intake" ? "Intake" : "Enrolment"}{" "}
+              between sectors
+            </Typography>
           )}
         </Grid>
 
-        <Grid item xs={12} md={11} lg={12} style={{ padding: '2vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-          <div className="select-container"
-            style={{
-              background: '#FFF8F2',
-              borderRadius: '20px', // Adjust the value to control the roundness of the edges
-              padding: '10px',
-              color: '#A2B29F',
-              width: '100vw'
-            }}>
-
-            <Autocomplete
-              multiple
-              id="courses-select-checkbox"
-              disableCloseOnSelect
-              onChange={(event, newValue) => handleCourseChange_2(event, newValue)}
-              options={courseListWithDicts} // Use the list of dictionaries
-              getOptionLabel={(option) => (option.label)} // Display the label in the dropdown
-              isOptionEqualToValue={(option, value) => option.value === value.value}
-              renderOption={(props, option, { selected }) => (
-                <li {...props}>
-                  <Checkbox
-                    icon={icon}
-                    checkedIcon={checkedIcon}
-                    style={{ marginRight: 8 }}
-                    checked={selected}
-                  />
-                  {option.label}
-                </li>
-              )}
-              renderInput={(params) => (
-                <TextField
-                  {...params}
-                  label={
-                    <span style={{ color: '#A2B29F' }}>
-                      Select Sector
-                    </span>
-                  }
-                  placeholder="e.g Accountancy"
-                  fontFamily="Roboto Condensed, sans-serif"
+        <Grid item xs={12} sx={{ paddingBottom: 4 }}>
+          <Autocomplete
+            multiple
+            id="courses-select-checkbox"
+            disableCloseOnSelect
+            onChange={(event, newValue) =>
+              handleCourseChange_2(event, newValue)
+            }
+            options={courseListWithDicts}
+            getOptionLabel={(option) => option.label}
+            isOptionEqualToValue={(option, value) =>
+              option.value === value.value
+            }
+            renderOption={(props, option, { selected }) => (
+              <li {...props}>
+                <Checkbox
+                  icon={icon}
+                  checkedIcon={checkedIcon}
+                  style={{ marginRight: 8 }}
+                  checked={selected}
+                  color="secondary"
                 />
-              )}
-            >
-            </Autocomplete>
-          </div>
+                {option.label}
+              </li>
+            )}
+            renderInput={(params) => (
+              <TextField
+                {...params}
+                label={<span>Select Sector</span>}
+                placeholder="e.g Accountancy"
+              />
+            )}
+            sx={{ paddingBottom: 2 }}
+          ></Autocomplete>
         </Grid>
 
-        <Grid container spacing={3} backgroundColor='#FFF'>
-          {/*Grid with chart*/}
-          <Grid item xs={12} md={11} lg={12} >
-            <ReactApexChart
-              options={selectedButton === "intake" ? options_intake : options_enrol}
-              series={series}
-              type="line" />
-          </Grid>
+        <Grid
+          item
+          xs={12}
+          sx={{ marginBottom: "50px" }}
+          className="chart-container"
+        >
+          <ReactApexChart
+            options={
+              selectedButton === "intake" ? options_intake : options_enrol
+            }
+            series={series}
+            type="line"
+            height="100%"
+          />
         </Grid>
-
-      </Container >
-    </div >
+      </Grid>
+    </>
   );
 }
 

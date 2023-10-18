@@ -1,56 +1,20 @@
-.selected-courses {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px; /* spacing between items */
-  margin-bottom: 20px;
-}
-
-.selected-course {
-  background-color: #f1f1f1;
-  padding: 5px 10px;
-  border-radius: 5px;
-  display: flex;
-  align-items: center;
-  gap: 5px;
-}
-
-.selected-course button {
-  background-color: red;
-  color: white;
-  border: none;
-  border-radius: 50%;
-  width: 20px;
-  height: 20px;
-  font-size: 14px;
-  cursor: pointer;
-}
-
-.select-container {
-  position: relative;
-  width: 400px;
-  margin-bottom: 20px;
-}
-
-.select-container select {
+.chart-container {
   width: 100%;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  appearance: none;
-  background-color: #fff;
-  font-size: 16px;
-  cursor: pointer;
+  height: 600px;
+}
+.title {
+  font-size: "3rem" !important;
 }
 
-.button {
-  padding: 10px 20px;
-  border: none;
-  cursor: pointer;
-  outline: none;
-  transition: background-color 0.3s;
+/* Media query for md screens */
+@media (max-width: 900px) {
+  .title {
+    font-size: "1em" !important;
+  }
 }
 
-.button-selected {
-  background-color: #007bff; /* You can choose any color */
-  color: white;
+@media (max-width: 600px) {
+  .chart-container {
+    height: 400px;
+  }
 }

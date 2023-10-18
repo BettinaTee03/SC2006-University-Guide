@@ -7,7 +7,7 @@ import AlertSnackbar from "./AlertSnackbar";
 function AuthSuccess() {
   const { isAuthenticated, setIsAuthenticated } = useContext(AuthContext);
   const navigate = useNavigate();
-  const severity = isAuthenticated ? "success" : "error";
+
   const API_BASE_URL = import.meta.env.VITE_BASE_URL || "http://localhost:8000";
 
   useEffect(() => {
@@ -23,7 +23,7 @@ function AuthSuccess() {
             state: {
               showAlert: true,
               message: "Login successful!",
-              severity: severity,
+              severity: "success",
             },
           });
         } else {
@@ -31,7 +31,7 @@ function AuthSuccess() {
             state: {
               showAlert: true,
               message: "Google Authentication failed. Please try again.",
-              severity: severity,
+              severity: "error",
             },
           });
         }
@@ -40,7 +40,7 @@ function AuthSuccess() {
           state: {
             showAlert: true,
             message: "Something went wrong. Please try again.",
-            severity: severity,
+            severity: "error",
           },
         });
       }
