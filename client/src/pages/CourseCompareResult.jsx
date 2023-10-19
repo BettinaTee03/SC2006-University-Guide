@@ -243,7 +243,11 @@ function CourseCompareResult() {
       <Grid
         container
         spacing={2}
-        sx={{ width: "auto", ml: { xs: "14vw" }, mr: { xs: "11.4vw" } }}
+        sx={{ 
+          width: "auto", 
+          ml: { xs: "4vw", sm: "3vw", md:"10vw" },
+          mr: { xs: "7vw", sm: "3vw", md:"10vw" },
+        }}
       >
         <Grid item xs={12} md={4} lg={3} sx={{ order: { xs: 1 } }}>
           <Grid item xs={12}>

@@ -66,8 +66,8 @@ function Courses() {
         spacing={2}
         sx={{
           width: "auto",
-          ml: { xs: "14vw" },
-          mr: { xs: "10.8vw" },
+          ml: { xs: "4vw", sm: "3vw", md:"10vw" },
+          mr: { xs: "4vw", sm: "3vw", md:"10vw" },
           paddingTop: "16px",
         }}
       >

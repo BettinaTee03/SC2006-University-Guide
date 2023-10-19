@@ -140,10 +140,10 @@ function EmploymentChart({ courseName, employmentData }) {
       <Grid 
         item 
         sm={12} 
-        sx={{ width: window.innerWidth*0.8, ml: { xs: "-10vw" }, mr: { xs: "-10vw" }}}
+        sx={{ width: window.innerWidth*0.8 }}
       >
         {employmentData.length > 0 ? (
-          <ReactApexChart options={options} series={series} />
+          <ReactApexChart options={options} series={series} height={window.innerWidth*0.8} />
         ) : (
           <p>No employment data is available.</p>
         )}
