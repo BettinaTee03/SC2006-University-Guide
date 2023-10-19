@@ -20,11 +20,12 @@ if (port == null || port == "") {
 }
 const app = express(); // Creating an Express.js application instance
 
-app.use((req, res, next) => {
-  if (req.header("x-forwarded-proto") !== "https")
-    res.redirect(`https://${req.header("host")}${req.url}`);
-  else next();
-});
+// Redirect to https route
+// app.use((req, res, next) => {
+//   if (req.header("x-forwarded-proto") !== "https")
+//     res.redirect(`https://${req.header("host")}${req.url}`);
+//   else next();
+// });
 
 // Trusting the first proxy
 app.set("trust proxy", 1);
