@@ -9,13 +9,9 @@ import {
   Skeleton,
   Grid,
   Container,
-  Box,
-  Breadcrumbs,
-  Stack,
-  Link,
-  Tooltip,
 } from "@mui/material";
-import NavigateNextIcon from "@mui/icons-material/NavigateNext";
+import CareerCard from "./CareerCard";
+import Carousel from "react-material-ui-carousel";
 
 function AspirationForm({ course }) {
   function restructureData(data) {
@@ -51,9 +47,11 @@ function AspirationForm({ course }) {
 
   const navigate = useNavigate();
 
-  const handleInputChange = (e) => {
-    setAspiration(e.target.value);
-  };
+  const [currentSlide, setCurrentSlide] = React.useState(0);
+
+  const slides = careers.map((career, index) => (
+    <CareerCard key={index} career={career} />
+  ));
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -128,48 +126,28 @@ function AspirationForm({ course }) {
         </Grid>
       </Grid>
       {isLoading ? (
-        <Grid container direction="column">
-          <Grid
-            item
-            color="#A2B29F"
-            sx={{ marginLeft: "1rem", marginBottom: "1rem" }}
+        <>
+          <Typography
+            sx={{ marginLeft: "1rem", marginBottom: "2rem", color: "#A2B29F" }}
           >
-            <Typography>
-              We are crafting and getting the best career prospects for you ...
-            </Typography>
-          </Grid>
-          <Grid
-            item
-            sx={{ marginLeft: "1rem", marginBottom: "1rem", width: "97%" }}
-          >
-            <Skeleton variant="rectangular" height={70} />
-          </Grid>
-          <Grid
-            item
-            sx={{ marginLeft: "1rem", marginBottom: "1rem", width: "97%" }}
-          >
-            <Skeleton variant="rectangular" height={50} />
-          </Grid>
-          <Grid container>
+            We are crafting and getting the best career prospects for you ...
+          </Typography>
+          <Grid container direction="column" alignItems="center">
             <Grid
               item
-              sx={{ marginLeft: "1rem", marginBottom: "1rem", width: "47.8%" }}
+              sx={{
+                marginTop: 1,
+                marginBottom: 3,
+                width: { xs: "90%", md: "90%" },
+              }}
             >
-              <Skeleton variant="rectangular" height={200} />
+              <Skeleton variant="rectangular" height={250} />
             </Grid>
-            <Grid
-              item
-              sx={{ marginLeft: "1rem", marginBottom: "1rem", width: "47.8%" }}
-            >
-              <Skeleton variant="rectangular" height={200} />
+            <Grid item sx={{ width: { xs: "10%", md: "6%" } }}>
+              <Skeleton variant="rectangular" height={25} />
             </Grid>
           </Grid>
-          <Grid container justifyContent="center">
-            <Grid item sx={{ marginLeft: "1rem", width: "47.8%" }}>
-              <Skeleton variant="rectangular" height={200} />
-            </Grid>
-          </Grid>
-        </Grid>
+        </>
       ) : careers.length > 0 ? ( // Check if the careers array has data
         <>
           <Grid container>
@@ -190,69 +168,19 @@ function AspirationForm({ course }) {
               </Typography>
             </Grid>
           </Grid>
-          <Grid container justifyContent="center">
-            {careers.map((career, index) => (
-              <Grid item key={index} padding={1} xs={12} sm={12} md={6}>
-                <Box backgroundColor="#FFF8F2" height="100%" padding={2}>
-                  <Container sx={{ textAlign: "center" }}>
-                    <Typography
-                      variant="h5"
-                      color="#A2B29F"
-                      fontSize="1.1rem"
-                      fontWeight="Bold"
-                    >
-                      {career.careerProspect} Career Path
-                    </Typography>
-                  </Container>
-                  <Container>
-                    <Stack
-                      spacing={2}
-                      alignItems="center"
-                      justifyContent="center"
-                      my={5}
-                    >
-                      <Breadcrumbs
-                        separator={<NavigateNextIcon fontSize="small" />}
-                      >
-                        {career.careerPath.map((path, idx) => (
-                          <Link
-                            underline="hover"
-                            color="inherit"
-                            href="/"
-                            key={idx}
-                          >
-                            <Tooltip
-                              title={
-                                <div>
-                                  Skill required for {path}:
-                                  <br />
-                                  {career.skills[idx]}
-                                </div>
-                              }
-                            >
-                              <Typography
-                                sx={{
-                                  width: { xs: 80, md: 120 },
-                                  fontSize: { xs: 13, md: 16 },
-                                  textAlign: "center",
-                                  variant: "body1",
-                                  ":hover": {
-                                    color: "black",
-                                  },
-                                }}
-                              >
-                                {path}
-                              </Typography>
-                            </Tooltip>
-                          </Link>
-                        ))}
-                      </Breadcrumbs>
-                    </Stack>
-                  </Container>
-                </Box>
-              </Grid>
-            ))}
-          </Grid>
+          <Container sx={{ my: 5 }}>
+            <Carousel
+              animation="slide"
+              index={currentSlide}
+              onChange={(newIndex) => setCurrentSlide(newIndex)}
+              autoPlay={false}
+              navButtonsAlwaysVisible={true}
+              cycleNavigation={false}
+              indicators={true}
+            >
+              {slides}
+            </Carousel>
+          </Container>
         </>
       ) : null}
     </>
