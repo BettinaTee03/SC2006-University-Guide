@@ -163,7 +163,11 @@ function IntakeChart() {
       />
       <Grid
         container
-        sx={{ width: "auto", ml: { xs: "14.9vw" }, mr: { xs: "11.5vw" } }}
+        sx={{ 
+          width: "auto", 
+          ml: { xs: "7vw", sm: "6vw", md:"11vw" },
+          mr: { xs: "7vw", sm: "6vw", md:"11vw" },
+        }}
       >
         <Grid item xs={12}>
           <Typography

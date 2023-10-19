@@ -113,13 +113,13 @@ function Navbar() {
         <Container maxWidth="false">
           <Toolbar
             disableGutters
-            sx={{ paddingLeft: "1rem", paddingRight: "1rem", color: "#212B36" }}
+            sx={{ color: "#212B36" }}
           >
             <SchoolIcon
               sx={{
                 display: { xs: "none", md: "flex" },
                 mr: 1,
-                ml: "12.8vw",
+                ml: "9.5vw",
                 color: "#212B36",
               }}
             />
