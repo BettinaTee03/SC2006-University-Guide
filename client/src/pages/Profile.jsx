@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Axios from "axios";
 import LoginAlert from "../components/LoginAlert";
+import { Box } from "@mui/material";
 
 function Profile() {
   const navigate = useNavigate();
@@ -44,6 +45,13 @@ function Profile() {
         open={isLoginAlertOpen}
         handleClose={handleLoginAlertClose}
         handleLogin={handleLogin}
+      />
+      <Box
+        sx={{
+          height: "90vh",
+          background:
+            "linear-gradient(90deg,rgb(225, 234, 238) 0%,rgb(245, 245, 245) 30%,rgb(245, 245, 245) 60%,rgb(225, 234, 238) 100%",
+        }}
       />
     </>
   );

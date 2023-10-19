@@ -24,9 +24,11 @@ function Navbar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   const { isAuthenticated, setIsAuthenticated } = useContext(AuthContext);
+  const { user, setUser } = useContext(AuthContext);
   const [showAlert, setShowAlert] = useState(false);
   const [isTop, setIsTop] = useState(true);
   const location = useLocation();
+
   const API_BASE_URL =
     import.meta.env.VITE_BASE_URL || "http://localhost:8000/api";
 
@@ -79,6 +81,7 @@ function Navbar() {
         withCredentials: true,
       });
       if (response.status === 200) {
+        setUser(null);
         setIsAuthenticated(false);
         setShowAlert(true);
         navigate("/home");
@@ -111,10 +114,7 @@ function Navbar() {
         }}
       >
         <Container maxWidth="false">
-          <Toolbar
-            disableGutters
-            sx={{ color: "#212B36" }}
-          >
+          <Toolbar disableGutters sx={{ color: "#212B36" }}>
             <SchoolIcon
               sx={{
                 display: { xs: "none", md: "flex" },
@@ -275,7 +275,9 @@ function Navbar() {
             <Box sx={{ flexGrow: 0, mr: { md: "9.5vw" } }}>
               <Tooltip title="Open settings">
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                  <Avatar alt="Remy Sharp" src="" />
+                  <Avatar alt={user ? user.username : "Username"} src="">
+                    {user ? user.username.charAt(0).toUpperCase() : null}
+                  </Avatar>
                 </IconButton>
               </Tooltip>
               <Menu

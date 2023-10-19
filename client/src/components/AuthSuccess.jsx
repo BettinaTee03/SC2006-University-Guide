@@ -2,10 +2,9 @@ import React, { useContext, useEffect, useState } from "react";
 import AuthContext from "../contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import AlertSnackbar from "./AlertSnackbar";
 
 function AuthSuccess() {
-  const { isAuthenticated, setIsAuthenticated } = useContext(AuthContext);
+  const { setIsAuthenticated, setUser } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const API_BASE_URL =
@@ -20,6 +19,7 @@ function AuthSuccess() {
 
         if (response.data.isAuthenticated) {
           setIsAuthenticated(true);
+          setUser({ username: response.data.username });
           navigate("/home", {
             state: {
               showAlert: true,

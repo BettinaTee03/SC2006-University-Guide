@@ -15,6 +15,7 @@ import IndividualProfile from "./pages/IndividualProfile";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import AuthProvider from "./contexts/AuthProvider";
 import AuthSuccess from "./components/AuthSuccess";
+import Footer from "./components/Footer";
 
 const theme = createTheme({
   palette: {
@@ -30,7 +31,6 @@ const theme = createTheme({
     fontFamily: `"Roboto Condensed", "Helvetica", "Arial", sans-serif`,
   },
 });
-
 
 function App() {
   return (
@@ -52,6 +52,7 @@ function App() {
             <Route path="/profile" element={<Profile />} />
             <Route path="/profile/:id" element={<IndividualProfile />} />
           </Routes>
+          <Footer />
         </Router>
       </AuthProvider>
     </ThemeProvider>

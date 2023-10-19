@@ -39,13 +39,15 @@ function Register() {
   const [alertMessage, setAlertMessage] = useState("");
   const navigate = useNavigate();
   const passwordPattern =
-    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&/,\.])[A-Za-z\d@$!%*?&/,\.]{8,}$/;
+
   const API_BASE_URL =
     import.meta.env.VITE_BASE_URL || "http://localhost:8000/api";
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    console.log(password);
+    console.log(passwordPattern.test(password));
     if (!email) {
       setAlertMessage("Email is required.");
       setShowAlert(true);
@@ -97,12 +99,12 @@ function Register() {
         severity="error"
       />
       <Box
-        style={{
+        sx={{
           height: "68px",
           background:
-            "linear-gradient(90deg, rgb(245, 245, 245) 0%, rgb(225, 234, 238) 90%)",
+            "linear-gradient(90deg,rgb(225, 234, 238) 0%,rgb(245, 245, 245) 30%,rgb(245, 245, 245) 60%,rgb(225, 234, 238) 100%",
         }}
-      ></Box>
+      />
       <Container component="main" maxWidth="xs">
         <Box
           sx={{

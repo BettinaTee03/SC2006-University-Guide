@@ -12,7 +12,7 @@ import Stack from "@mui/material/Stack";
 import Grid from "@mui/material/Grid";
 import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
-import useMediaQuery from '@mui/material/useMediaQuery';
+import useMediaQuery from "@mui/material/useMediaQuery";
 
 function CourseCompareResult() {
   const [courseData, setCourseData] = useState([]);
@@ -20,7 +20,7 @@ function CourseCompareResult() {
   const [isLogin, setIsLogin] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
-  const isRow = useMediaQuery((theme) => theme.breakpoints.down('md'));
+  const isRow = useMediaQuery((theme) => theme.breakpoints.down("md"));
   const API_BASE_URL =
     import.meta.env.VITE_BASE_URL || "http://localhost:8000/api";
 
@@ -117,9 +117,11 @@ function CourseCompareResult() {
             sm={12}
             md={12 / courseData.length}
             sx={{
-              width: "100%",  
+              width: "100%",
             }}
-            className={isRow ? 'detailsColumn-container' : 'detailsRow-container' }
+            className={
+              isRow ? "detailsColumn-container" : "detailsRow-container"
+            }
           >
             <h3 key={course.id}>{course.course_name}</h3>
             <p key={course.id}>{course.school_name}</p>
@@ -132,9 +134,11 @@ function CourseCompareResult() {
             sm={12}
             md={12 / courseData.length}
             sx={{
-              width: "100%",  
+              width: "100%",
             }}
-            className={isRow ? 'detailsColumn-container' : 'detailsRow-container' }
+            className={
+              isRow ? "detailsColumn-container" : "detailsRow-container"
+            }
           >
             <h3 key={course.id}>{course.course_name}</h3>
             <p key={course.id}>{course.college_name}</p>
@@ -147,9 +151,11 @@ function CourseCompareResult() {
             sm={12}
             md={12 / courseData.length}
             sx={{
-              width: "100%",  
+              width: "100%",
             }}
-            className={isRow ? 'detailsColumn-container' : 'detailsRow-container' }
+            className={
+              isRow ? "detailsColumn-container" : "detailsRow-container"
+            }
           >
             <h3 key={course.id}>{course.course_name}</h3>
             <p key={course.id}>{course.course_type}</p>
@@ -162,9 +168,11 @@ function CourseCompareResult() {
             sm={12}
             md={12 / courseData.length}
             sx={{
-              width: "100%",  
+              width: "100%",
             }}
-            className={isRow ? 'detailsColumn-container' : 'detailsRow-container' }
+            className={
+              isRow ? "detailsColumn-container" : "detailsRow-container"
+            }
           >
             <h3 key={course.id}>{course.course_name}</h3>
             <p key={course.id}>{course.course_duration}</p>
@@ -177,9 +185,11 @@ function CourseCompareResult() {
             sm={12}
             md={12 / courseData.length}
             sx={{
-              width: "100%",  
+              width: "100%",
             }}
-            className={isRow ? 'detailsColumn-container' : 'detailsRow-container' }
+            className={
+              isRow ? "detailsColumn-container" : "detailsRow-container"
+            }
           >
             <h3 key={course.id}>{course.course_name}</h3>
             {course.rank_points && <p>Rank Points: {course.rank_points}</p>}
@@ -229,12 +239,12 @@ function CourseCompareResult() {
   return (
     <>
       <Box
-        style={{
+        sx={{
           height: "68px",
           background:
-            "linear-gradient(90deg, rgb(245, 245, 245) 0%, rgb(225, 234, 238) 90%)",
+            "linear-gradient(90deg,rgb(225, 234, 238) 0%,rgb(245, 245, 245) 30%,rgb(245, 245, 245) 60%,rgb(225, 234, 238) 100%",
         }}
-      ></Box>
+      />
       <LoginAlert
         open={isLoginAlertOpen}
         handleClose={handleLoginAlertClose}
@@ -243,10 +253,10 @@ function CourseCompareResult() {
       <Grid
         container
         spacing={2}
-        sx={{ 
-          width: "auto", 
-          ml: { xs: "4vw", sm: "3vw", md:"10vw" },
-          mr: { xs: "7vw", sm: "3vw", md:"10vw" },
+        sx={{
+          width: "auto",
+          ml: { xs: "4vw", sm: "3vw", md: "10vw" },
+          mr: { xs: "7vw", sm: "3vw", md: "10vw" },
         }}
       >
         <Grid item xs={12} md={4} lg={3} sx={{ order: { xs: 1 } }}>

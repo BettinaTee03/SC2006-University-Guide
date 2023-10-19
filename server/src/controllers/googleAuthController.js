@@ -43,7 +43,8 @@ function getRedirect(req, res, next) {
  */
 function getSession(req, res) {
   if (req.isAuthenticated()) {
-    res.status(200).json({ isAuthenticated: true });
+    const name = req.user.particulars.firstName;
+    res.status(200).json({ isAuthenticated: true, username: name });
   } else {
     res.status(200).json({ isAuthenticated: false });
   }

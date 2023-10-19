@@ -55,19 +55,19 @@ function Courses() {
   return (
     <>
       <Box
-        style={{
+        sx={{
           height: "68px",
           background:
-            "linear-gradient(90deg, rgb(245, 245, 245) 0%, rgb(225, 234, 238) 90%)",
+            "linear-gradient(90deg,rgb(225, 234, 238) 0%,rgb(245, 245, 245) 30%,rgb(245, 245, 245) 60%,rgb(225, 234, 238) 100%",
         }}
-      ></Box>
+      />
       <Grid
         container
         spacing={2}
         sx={{
           width: "auto",
-          ml: { xs: "4vw", sm: "3vw", md:"10vw" },
-          mr: { xs: "4vw", sm: "3vw", md:"10vw" },
+          ml: { xs: "4vw", sm: "3vw", md: "10vw" },
+          mr: { xs: "4vw", sm: "3vw", md: "10vw" },
           paddingTop: "16px",
         }}
       >

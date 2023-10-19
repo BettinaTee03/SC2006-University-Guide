@@ -113,7 +113,6 @@ export const UserParticulars = ({ userParticulars, userName, userId }) => {
         <Container component="main" maxWidth="lg" className="container">
           <Box
             sx={{
-              marginTop: 8,
               display: "flex",
               flexDirection: "column",
               alignItems: "center",

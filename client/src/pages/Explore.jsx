@@ -19,20 +19,20 @@ function Explore() {
   return (
     <>
       <Box
-        style={{
+        sx={{
           height: "68px",
           background:
-            "linear-gradient(90deg, rgb(245, 245, 245) 0%, rgb(225, 234, 238) 90%)",
+            "linear-gradient(90deg,rgb(225, 234, 238) 0%,rgb(245, 245, 245) 30%,rgb(245, 245, 245) 60%,rgb(225, 234, 238) 100%",
         }}
-      ></Box>
+      />
       <Grid
         container
         rowSpacing={2}
         sx={{
           width: "auto",
           mt: 2,
-          ml: { xs: "7vw", sm: "5vw", md:"11vw" },
-          mr: { xs: "7vw", sm: "5vw", md:"11vw" },
+          ml: { xs: "7vw", sm: "5vw", md: "11vw" },
+          mr: { xs: "7vw", sm: "5vw", md: "11vw" },
         }}
       >
         {

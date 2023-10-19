@@ -5,6 +5,7 @@ import Button from "@mui/material/Button";
 import LoginIcon from "@mui/icons-material/Login";
 import { useNavigate, useLocation } from "react-router-dom";
 import AlertSnackbar from "../components/AlertSnackbar";
+import Container from "@mui/material/Container";
 
 function Home() {
   const navigate = useNavigate();
@@ -30,17 +31,15 @@ function Home() {
         severity={severity}
       />
       <Box
-        style={{
+        sx={{
           height: "68px",
           background:
-            "linear-gradient(90deg, rgb(245, 245, 245) 0%, rgb(225, 234, 238) 90%)",
+            "linear-gradient(90deg,rgb(225, 234, 238) 0%,rgb(245, 245, 245) 30%,rgb(245, 245, 245) 60%,rgb(225, 234, 238) 100%",
         }}
-      ></Box>
+      />
       <Box
         sx={{
           minHeight: "100vh",
-          background:
-            "radial-gradient(circle at 18.7% 37.8%, rgb(250, 250, 250) 0%, rgb(225, 234, 238) 90%)",
         }}
       >
         <Box
@@ -56,8 +55,10 @@ function Home() {
             sx={{
               fontWeight: 700,
               textDecoration: "none",
+              textAlign: { xs: "center", lg: "left" },
+              marginLeft: { lg: "10.7vw" },
               paddingTop: { xs: "15%", lg: "7%" },
-              marginLeft: { lg: "15%" },
+              marginLeft: { lg: "10.7vw" },
               fontSize: { xs: "2rem", md: "2.5rem", lg: "4rem" },
               marginBottom: { xs: 5, lg: 1 },
             }}
@@ -69,7 +70,10 @@ function Home() {
             sx={{
               textDecoration: "none",
               color: "primary",
-              marginLeft: { lg: "15%" },
+              textAlign: { xs: "center", lg: "left" },
+              marginLeft: { lg: "10.7vw" },
+              ml: { xs: "4vw" },
+              mr: { xs: "4vw" },
               marginBottom: { xs: 2, lg: 2 },
               fontWeight: 700,
               fontSize: { xs: "1rem", md: "1.2rem" },
@@ -85,7 +89,9 @@ function Home() {
               textDecoration: "none",
               color: "primary",
               textAlign: { xs: "center", lg: "left" },
-              marginLeft: { lg: "15%" },
+              marginLeft: { lg: "10.7vw" },
+              ml: { xs: "4vw" },
+              mr: { xs: "4vw" },
               marginBottom: { xs: 5 },
               width: { xs: "90%", lg: "30%" },
             }}
@@ -98,7 +104,7 @@ function Home() {
             variant="contained"
             endIcon={<LoginIcon />}
             sx={{
-              marginLeft: { lg: "15%" },
+              marginLeft: { lg: "10.7vw" },
               backgroundColor: "secondary.main",
               color: "#FFFFFF",
               fontSize: "15px",
@@ -116,17 +122,23 @@ function Home() {
           >
             Get Started.
           </Button>
-          <Box
-            component="img"
+          <Container
             sx={{
-              width: { xs: "100%", lg: "80%" },
-              marginLeft: { lg: "10%" },
-              maxHeight: "50vh",
-              objectFit: "cover",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
             }}
-            alt="University Students."
-            src={universitystudents}
-          />
+          >
+            <Box
+              component="img"
+              sx={{
+                width: { xs: "91.2vw", md: "77.8vw" },
+                objectFit: "cover",
+              }}
+              alt="University Students."
+              src={universitystudents}
+            />
+          </Container>
         </Box>
       </Box>
     </>

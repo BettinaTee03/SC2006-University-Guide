@@ -13,10 +13,9 @@ import AlertSnackbar from "../components/AlertSnackbar";
 import GoogleIcon from "@mui/icons-material/Google";
 import AuthContext from "../contexts/AuthContext";
 import { useNavigate, useLocation } from "react-router-dom";
-import Footer from "../components/Footer";
 
 function Login() {
-  const { setIsAuthenticated } = useContext(AuthContext);
+  const { setIsAuthenticated, setUser } = useContext(AuthContext);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [showAlert, setShowAlert] = useState(false);
@@ -46,6 +45,7 @@ function Login() {
       );
       if (response.status === 200) {
         setIsAuthenticated(true);
+        setUser({ username: response.data.user.username });
         navigate("/home", {
           state: { showAlert: true, message: "Login successful!" },
         });
@@ -76,12 +76,12 @@ function Login() {
         severity={severity}
       />
       <Box
-        style={{
+        sx={{
           height: "68px",
           background:
-            "linear-gradient(90deg, rgb(245, 245, 245) 0%, rgb(225, 234, 238) 90%)",
+            "linear-gradient(90deg,rgb(225, 234, 238) 0%,rgb(245, 245, 245) 30%,rgb(245, 245, 245) 60%,rgb(225, 234, 238) 100%",
         }}
-      ></Box>
+      />
       <Container component="main" maxWidth="xs">
         <Box
           sx={{
@@ -187,7 +187,6 @@ function Login() {
             </Grid>
           </Box>
         </Box>
-        <Footer sx={{ mt: 8, mb: 4 }} />
       </Container>
     </>
   );
