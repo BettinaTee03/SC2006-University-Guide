@@ -1,18 +1,20 @@
 import React, { useState, useEffect } from "react";
 import Axios from "axios";
-import { useParams } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import AspirationForm from "../components/AspirationForm";
-import EmploymentChart from "../components/EmploymentChart";
 import LoginAlert from "../components/LoginAlert";
 import Skeleton from "@mui/material/Skeleton";
 import Stack from "@mui/material/Stack";
 import { Box } from "@mui/material";
+import FavouriteCourseButton from "../components/FavouriteCourseButton";
+import CourseDetails from "../components/CourseDetails";
+import { Container, Typography, Paper, Grid } from "@mui/material";
 
 function IndividualCourse() {
   const [course, setCourse] = useState(null);
   const { courseName } = useParams();
   const [isLoginAlertOpen, setIsLoginAlertOpen] = useState(false);
+  const [isIconClicked, setIsIconClicked] = React.useState();
   const navigate = useNavigate();
   const API_BASE_URL =
     import.meta.env.VITE_BASE_URL || "http://localhost:8000/api";
@@ -23,6 +25,10 @@ function IndividualCourse() {
 
   const handleLogin = () => {
     navigate("/login");
+  };
+
+  const handleClick = () => {
+    setIsIconClicked(!isIconClicked);
   };
 
   useEffect(() => {
@@ -57,46 +63,46 @@ function IndividualCourse() {
         handleLogin={handleLogin}
       />
       {course ? (
-        <div>
-          <h1>{course.course_name}</h1>
-          <p>School: {course.school_name}</p>
-          <p>College: {course.college_name}</p>
-          <p>Course Type: {course.course_type}</p>
-          <p>Course Duration: {course.course_duration}</p>
-          <p>Course Description: {course.description}</p>
-          {course.rank_points && <p>Rank Points: {course.rank_points}</p>}
-          {course.polytechnic_GPAs && (
-            <p>Polytechnic GPA: {course.polytechnic_GPAs} </p>
-          )}
-          {course["3H2_1H1_10percentile"] && (
-            <p>3H2_1H1_10percentile: {course["3H2_1H1_10percentile"]}</p>
-          )}
-          {course.percentage_less_equal_70_UAS && (
-            <p>Less than 70%: {course.percentage_less_equal_70_UAS}</p>
-          )}
-          {course["percentage_70.01_to_80_UAS"] && (
-            <p>70.01% to 80%: {course["percentage_70.01_to_80_UAS"]}</p>
-          )}
-          {course["percentage_80.01_to_90_UAS"] && (
-            <p>80.01% to 90%: {course["percentage_80.01_to_90_UAS"]}</p>
-          )}
-          {course["percentage_less_3.2_GPA"] && (
-            <p>Less than 3.2 GPA: {course["percentage_less_3.2_GPA"]}</p>
-          )}
-          {course["percentage_3.2_3.6_GPA"] && (
-            <p>3.2 to 3.6 GPA: {course["percentage_3.2_3.6_GPA"]}</p>
-          )}
-          {course["percentage_3.6_4.0_GPA"] && (
-            <p>3.6 to 4.0 GPA: {course["percentage_3.6_4.0_GPA"]}</p>
-          )}
-          <p>Remarks: {course.remarks || "NIL"}</p>
-          <p>Employment Stats:</p>
-          <EmploymentChart
-            courseName={course.course_name}
-            employmentData={course.employment_stats}
-          />
-          <AspirationForm course={course.course_name} />
-        </div>
+        <Container>
+          <Grid>
+            <Grid container sx={{ my: 4 }}>
+              <Grid item xs={10}>
+                <Paper sx={{ p: 1, bgcolor: "#FFF8F2", borderRadius: 8 }}>
+                  <Typography
+                    variant="h5"
+                    align="center"
+                    color="#A2B29F"
+                    fontWeight="Bold"
+                  >
+                    {course.course_name}
+                  </Typography>
+                </Paper>
+              </Grid>
+              <Grid
+                item
+                xs={2}
+                display="flex"
+                justifyContent="center"
+                alignItems="center"
+              >
+                <FavouriteCourseButton
+                  isIconClicked={isIconClicked}
+                  onClick={handleClick}
+                />
+              </Grid>
+            </Grid>
+            <Paper sx={{ my: 4, p: 2 }}>
+              <Typography color="#A2B29F">Course Description:</Typography>
+              <Typography variant="h7">{course.description}</Typography>
+            </Paper>
+            <Paper sx={{ my: 4, p: 2 }}>
+              <CourseDetails course={course} />
+            </Paper>
+            <Paper sx={{ my: 6, p: 2 }}>
+              <AspirationForm course={course.course_name} />
+            </Paper>
+          </Grid>
+        </Container>
       ) : (
         <Stack spacing={2} sx={{ m: "1rem" }}>
           <Skeleton variant="rounded" height={60} />

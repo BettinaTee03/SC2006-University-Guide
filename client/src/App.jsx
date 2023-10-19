@@ -7,12 +7,13 @@ import Register from "./pages/Register";
 import Navbar from "./components/Navbar";
 import Courses from "./pages/Courses";
 import Explore from "./pages/Explore";
+import Profile from "./pages/Profile";
 import Statistics from "./pages/Statistics";
 import CourseCompareResult from "./pages/CourseCompareResult";
 import IndividualCourse from "./pages/IndividualCourse";
-import Profile from "./pages/Profile";
 import IndividualProfile from "./pages/IndividualProfile";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { CssBaseline } from "@mui/material";
 import AuthProvider from "./contexts/AuthProvider";
 import AuthSuccess from "./components/AuthSuccess";
 import Footer from "./components/Footer";
@@ -35,6 +36,7 @@ const theme = createTheme({
 function App() {
   return (
     <ThemeProvider theme={theme}>
+      <CssBaseline />
       <AuthProvider>
         <Router>
           <Navbar />

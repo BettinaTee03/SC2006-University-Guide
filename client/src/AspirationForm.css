@@ -1,0 +1,9 @@
+.align-right {
+    text-align: right;
+  }
+
+.carousel-indicators {
+  display: flex;
+  justify-content: center;
+  margin-top: 3%;
+}

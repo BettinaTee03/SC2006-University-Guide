@@ -1,11 +1,11 @@
 import React from "react";
 import ReactApexChart from "react-apexcharts";
-import { Container, Grid } from "@mui/material";
-import useMediaQuery from '@mui/material/useMediaQuery';
+import { Grid } from "@mui/material";
+import useMediaQuery from "@mui/material/useMediaQuery";
 
 function EmploymentChart({ courseName, employmentData }) {
-  const isSM = useMediaQuery((theme) => theme.breakpoints.down('sm'));
-  
+  const isSM = useMediaQuery((theme) => theme.breakpoints.down("sm"));
+
   const years = employmentData.map((item) => item.year);
   const basicSalaries = employmentData.map((item) =>
     parseFloat(item.basic_monthly_mean)
@@ -53,7 +53,7 @@ function EmploymentChart({ courseName, employmentData }) {
       categories: years,
       labels: {
         style: {
-          fontSize: isSM ? "10px" : "16px", 
+          fontSize: isSM ? "10px" : "16px",
         },
       },
     },
@@ -89,7 +89,7 @@ function EmploymentChart({ courseName, employmentData }) {
             return val + "%";
           },
           style: {
-            fontSize: isSM ? "8px" : "16px", 
+            fontSize: isSM ? "8px" : "16px",
           },
         },
         title: {
@@ -135,22 +135,21 @@ function EmploymentChart({ courseName, employmentData }) {
     },
   ];
 
-  if (isSM){
+  if (isSM) {
     return (
-      <Grid 
-        item 
-        sm={12} 
-        sx={{ width: window.innerWidth*0.8 }}
-      >
+      <Grid item sm={12} sx={{ width: window.innerWidth * 0.8 }}>
         {employmentData.length > 0 ? (
-          <ReactApexChart options={options} series={series} height={window.innerWidth*0.8} />
+          <ReactApexChart
+            options={options}
+            series={series}
+            height={window.innerWidth * 0.8}
+          />
         ) : (
           <p>No employment data is available.</p>
         )}
       </Grid>
-   );
-  }
-  else {
+    );
+  } else {
     return (
       <Grid item xs={12}>
         {employmentData.length > 0 ? (
@@ -159,7 +158,7 @@ function EmploymentChart({ courseName, employmentData }) {
           <p>No employment data is available.</p>
         )}
       </Grid>
-   );
+    );
   }
 }
 
