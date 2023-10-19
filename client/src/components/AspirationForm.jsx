@@ -141,7 +141,7 @@ function AspirationForm({ course }) {
                 width: { xs: "90%", md: "90%" },
               }}
             >
-              <Skeleton variant="rectangular" height={250} />
+              <Skeleton variant="rectangular" sx={{height:{ xs:500, sm: 250}}} />
             </Grid>
             <Grid item sx={{ width: { xs: "10%", md: "6%" } }}>
               <Skeleton variant="rectangular" height={25} />
