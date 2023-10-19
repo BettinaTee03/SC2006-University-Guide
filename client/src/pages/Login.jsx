@@ -13,24 +13,7 @@ import AlertSnackbar from "../components/AlertSnackbar";
 import GoogleIcon from "@mui/icons-material/Google";
 import AuthContext from "../contexts/AuthContext";
 import { useNavigate, useLocation } from "react-router-dom";
-
-function Copyright(props) {
-  return (
-    <Typography
-      variant="body2"
-      color="text.secondary"
-      align="center"
-      {...props}
-    >
-      {"Copyright © "}
-      <Link color="inherit" href="https://mui.com/">
-        University Guide
-      </Link>{" "}
-      {new Date().getFullYear()}
-      {"."}
-    </Typography>
-  );
-}
+import Footer from "../components/Footer";
 
 function Login() {
   const { setIsAuthenticated } = useContext(AuthContext);
@@ -204,7 +187,7 @@ function Login() {
             </Grid>
           </Box>
         </Box>
-        <Copyright sx={{ mt: 8, mb: 4 }} />
+        <Footer sx={{ mt: 8, mb: 4 }} />
       </Container>
     </>
   );
