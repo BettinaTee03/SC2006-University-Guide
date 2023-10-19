@@ -58,7 +58,6 @@ function Home() {
               textAlign: { xs: "center", lg: "left" },
               marginLeft: { lg: "10.7vw" },
               paddingTop: { xs: "15%", lg: "7%" },
-              marginLeft: { lg: "10.7vw" },
               fontSize: { xs: "2rem", md: "2.5rem", lg: "4rem" },
               marginBottom: { xs: 5, lg: 1 },
             }}
