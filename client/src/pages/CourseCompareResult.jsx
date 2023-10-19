@@ -1,16 +1,18 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
+
 import LoginAlert from "../components/LoginAlert";
-import Skeleton from "@mui/material/Skeleton";
-import Stack from "@mui/material/Stack";
 import FilterCategories from "../components/FilterCategories";
 import EmploymentChart from "../components/EmploymentChart";
-import Box from "@mui/material/Box";
 import "../css/CourseCompareResults.css";
 
+import Skeleton from "@mui/material/Skeleton";
+import Stack from "@mui/material/Stack";
 import Grid from "@mui/material/Grid";
 import Button from "@mui/material/Button";
+import Box from "@mui/material/Box";
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 function CourseCompareResult() {
   const [courseData, setCourseData] = useState([]);
@@ -18,6 +20,7 @@ function CourseCompareResult() {
   const [isLogin, setIsLogin] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
+  const isRow = useMediaQuery((theme) => theme.breakpoints.down('md'));
   const API_BASE_URL =
     import.meta.env.VITE_BASE_URL || "http://localhost:8000/api";
 
@@ -102,7 +105,7 @@ function CourseCompareResult() {
     return courseData.map((course, index) => {
       if (categoryId === "1") {
         return (
-          <Grid item xs={12} className="detailsColumn-container">
+          <Grid item sm={12} className="detailsColumn-container">
             <h3 key={course.id}>{course.course_name}</h3>
             <p key={course.id}>{course.description}</p>
           </Grid>
@@ -111,8 +114,12 @@ function CourseCompareResult() {
         return (
           <Grid
             item
-            xs={12 / courseData.length}
-            className="detailsRow-container"
+            sm={12}
+            md={12 / courseData.length}
+            sx={{
+              width: "100%",  
+            }}
+            className={isRow ? 'detailsColumn-container' : 'detailsRow-container' }
           >
             <h3 key={course.id}>{course.course_name}</h3>
             <p key={course.id}>{course.school_name}</p>
@@ -122,8 +129,12 @@ function CourseCompareResult() {
         return (
           <Grid
             item
-            xs={12 / courseData.length}
-            className="detailsRow-container"
+            sm={12}
+            md={12 / courseData.length}
+            sx={{
+              width: "100%",  
+            }}
+            className={isRow ? 'detailsColumn-container' : 'detailsRow-container' }
           >
             <h3 key={course.id}>{course.course_name}</h3>
             <p key={course.id}>{course.college_name}</p>
@@ -133,8 +144,12 @@ function CourseCompareResult() {
         return (
           <Grid
             item
-            xs={12 / courseData.length}
-            className="detailsRow-container"
+            sm={12}
+            md={12 / courseData.length}
+            sx={{
+              width: "100%",  
+            }}
+            className={isRow ? 'detailsColumn-container' : 'detailsRow-container' }
           >
             <h3 key={course.id}>{course.course_name}</h3>
             <p key={course.id}>{course.course_type}</p>
@@ -144,8 +159,12 @@ function CourseCompareResult() {
         return (
           <Grid
             item
-            xs={12 / courseData.length}
-            className="detailsRow-container"
+            sm={12}
+            md={12 / courseData.length}
+            sx={{
+              width: "100%",  
+            }}
+            className={isRow ? 'detailsColumn-container' : 'detailsRow-container' }
           >
             <h3 key={course.id}>{course.course_name}</h3>
             <p key={course.id}>{course.course_duration}</p>
@@ -155,8 +174,12 @@ function CourseCompareResult() {
         return (
           <Grid
             item
-            xs={12 / courseData.length}
-            className="detailsRow-container"
+            sm={12}
+            md={12 / courseData.length}
+            sx={{
+              width: "100%",  
+            }}
+            className={isRow ? 'detailsColumn-container' : 'detailsRow-container' }
           >
             <h3 key={course.id}>{course.course_name}</h3>
             {course.rank_points && <p>Rank Points: {course.rank_points}</p>}
@@ -189,9 +212,8 @@ function CourseCompareResult() {
         );
       } else if (categoryId === "7") {
         return (
-          <Grid item xs={12} className="detailsColumn-container">
+          <Grid item sm={12} className="detailsColumn-container">
             <h3 key={course.id}>{course.course_name}</h3>
-            <p>Employment Statistics:</p>
             <EmploymentChart employmentData={course.employment_stats} />
           </Grid>
         );
