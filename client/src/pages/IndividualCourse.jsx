@@ -8,7 +8,7 @@ import Stack from "@mui/material/Stack";
 import { Box } from "@mui/material";
 import FavouriteCourseButton from "../components/FavouriteCourseButton";
 import CourseDetails from "../components/CourseDetails";
-import { Container, Typography, Paper, Grid } from "@mui/material";
+import { Typography, Paper, Grid } from "@mui/material";
 
 function IndividualCourse() {
   const [course, setCourse] = useState(null);

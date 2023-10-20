@@ -61,7 +61,7 @@ export const CareerCard = ({ career }) => {
                     transform: isScreenSmall ? "rotate(90deg)" : "rotate(0deg)",
                   }}
                 >
-                  <NavigateNextIcon fontSize="small" />
+                  <NavigateNextIcon fontSize="small" color="secondary" />
                 </IconButton>
               }
             >
@@ -70,8 +70,8 @@ export const CareerCard = ({ career }) => {
                   <Tooltip
                     title={`Skill required: ${career.skills[idx]}`}
                     placement={isScreenSmall ? "bottom" : "bottom"}
-                    enterTouchDelay={0}
-                    leaveTouchDelay={2000}
+                    enterTouchDelay={isScreenSmall ? 0 : 700}
+                    leaveTouchDelay={1500}
                   >
                     <Typography
                       variant="body1"

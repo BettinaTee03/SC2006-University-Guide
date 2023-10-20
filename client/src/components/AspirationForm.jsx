@@ -96,7 +96,7 @@ function AspirationForm({ course }) {
           item
           color="main"
           paddingLeft="1rem"
-          paddingTopop="1rem"
+          paddingTop="1rem"
           paddingBottom="1rem"
         >
           <Typography variant="h5" sx={{ fontWeight: 700 }}>
@@ -190,6 +190,28 @@ function AspirationForm({ course }) {
               navButtonsAlwaysVisible={true}
               cycleNavigation={false}
               indicators={true}
+              indicatorIconButtonProps={{
+                style: {
+                  width: "8px",
+                  height: "8px",
+                  color: "transparent",
+                  backgroundColor: "rgba(250, 84, 28, 0.4)",
+                  borderRadius: "4px",
+                  margin: "0 4px",
+                },
+              }}
+              activeIndicatorIconButtonProps={{
+                style: {
+                  width: "16px",
+                  height: "8px",
+                  borderTopLeftRadius: "6px",
+                  borderTopRightRadius: "6px",
+                  borderBottomRightRadius: "6px",
+                  borderBottomLeftRadius: "6px",
+                  backgroundColor: "rgb(250, 84, 28)",
+                  margin: "0 4px",
+                },
+              }}
             >
               {slides}
             </Carousel>
