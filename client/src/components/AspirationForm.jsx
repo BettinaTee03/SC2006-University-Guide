@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Axios from "axios";
-import { useNavigate } from "react-router-dom";
+import AlertSnackbar from "../components/AlertSnackbar";
 import "../css/AspirationForm.css";
 import {
   Typography,
@@ -14,6 +14,9 @@ import CareerCard from "./CareerCard";
 import Carousel from "react-material-ui-carousel";
 
 function AspirationForm({ course }) {
+  const [showAlert, setShowAlert] = useState(false);
+  const [alertMessage, setAlertMessage] = useState("");
+
   const API_BASE_URL =
     import.meta.env.VITE_BASE_URL || "http://localhost:8000/api";
 
@@ -48,8 +51,6 @@ function AspirationForm({ course }) {
   const [careers, setCareers] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
-  const navigate = useNavigate();
-
   const [currentSlide, setCurrentSlide] = React.useState(0);
 
   const slides = careers.map((career, index) => (
@@ -73,12 +74,10 @@ function AspirationForm({ course }) {
       const structuredData = restructureData(response.data);
       setCareers(structuredData);
     } catch (error) {
-      if (error.response && error.response.status === 401) {
-        alert("You must be logged in to view this page.");
-        navigate("/login");
-      } else {
-        alert("An error occurred while submitting your aspiration.");
-      }
+      setAlertMessage(
+        "OpenAI API is under maintenance. Please try again later."
+      );
+      setShowAlert(true);
     }
 
     setIsLoading(false);
@@ -86,6 +85,12 @@ function AspirationForm({ course }) {
 
   return (
     <>
+      <AlertSnackbar
+        alertMessage={alertMessage}
+        open={showAlert}
+        setOpen={setShowAlert}
+        severity={"error"}
+      />
       <Grid container direction="column">
         <Grid
           item
