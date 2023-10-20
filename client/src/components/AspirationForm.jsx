@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import Axios from "axios";
 import AlertSnackbar from "../components/AlertSnackbar";
-import "../css/AspirationForm.css";
 import {
   Typography,
   TextField,
