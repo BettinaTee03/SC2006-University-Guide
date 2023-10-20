@@ -113,6 +113,13 @@ export const UserParticulars = ({ userParticulars, userName, userId }) => {
         <Container component="main" maxWidth="lg" className="container">
           <Box
             sx={{
+              height: "64px",
+              background:
+                "linear-gradient(90deg,rgb(225, 234, 238) 0%,rgb(245, 245, 245) 30%,rgb(245, 245, 245) 60%,rgb(225, 234, 238) 100%",
+            }}
+          />
+          <Box
+            sx={{
               display: "flex",
               flexDirection: "column",
               alignItems: "center",

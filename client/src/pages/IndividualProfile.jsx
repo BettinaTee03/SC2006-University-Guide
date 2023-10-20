@@ -1,14 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Axios from "axios";
-import { useNavigate } from "react-router-dom";
 import UserParticulars from "../components/UserParticulars";
 import { Box } from "@mui/material";
 
 function IndividualProfile() {
   const { id } = useParams();
   const [user, setUser] = useState(null);
-  const navigate = useNavigate();
   const API_BASE_URL =
     import.meta.env.VITE_BASE_URL || "http://localhost:8000/api";
 
@@ -24,13 +22,7 @@ function IndividualProfile() {
             setUser(response.data);
           }
         } catch (error) {
-          setIsLoading(false);
-          if (error.response && error.response.status === 401) {
-            alert("You must be logged in to view this page.");
-            navigate("/login");
-          } else {
-            alert("Failed to fetch user data. Please try again later.");
-          }
+          alert("Failed to fetch user data. Please try again later.");
         }
       }
     }
