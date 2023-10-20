@@ -27,7 +27,7 @@ const AuthProvider = ({ children }) => {
 
     fetchLoginStatus();
 
-    const intervalId = setInterval(fetchLoginStatus, 60000); // Check every 1 minute
+    const intervalId = setInterval(fetchLoginStatus, 300000); // Check every 5 minute
 
     return () => clearInterval(intervalId);
   }, []);
