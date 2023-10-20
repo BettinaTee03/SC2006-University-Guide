@@ -10,7 +10,7 @@ config();
 const sessionConfig = session({
   secret: process.env.SESSION_SECRET,
   cookie: {
-    maxAge: 60000,
+    maxAge: 3600000,
     secure: process.env.NODE_ENV === "production", // Set secure flag only in production
     httpOnly: true, // Makes the cookie inaccessible from JavaScript on the frontend
     sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
