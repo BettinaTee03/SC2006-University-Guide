@@ -3,19 +3,19 @@ import AuthContext from "./AuthContext";
 
 const AuthProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(() =>
-    JSON.parse(sessionStorage.getItem("isAuthenticated") || "false")
+    JSON.parse(localStorage.getItem("isAuthenticated") || "false")
   );
 
   const [user, setUser] = useState(() =>
-    JSON.parse(sessionStorage.getItem("user") || "null")
+    JSON.parse(localStorage.getItem("user") || "null")
   );
 
   useEffect(() => {
-    sessionStorage.setItem("isAuthenticated", JSON.stringify(isAuthenticated));
+    localStorage.setItem("isAuthenticated", JSON.stringify(isAuthenticated));
   }, [isAuthenticated]);
 
   useEffect(() => {
-    sessionStorage.setItem("user", JSON.stringify(user));
+    localStorage.setItem("user", JSON.stringify(user));
   }, [user]);
 
   return (
