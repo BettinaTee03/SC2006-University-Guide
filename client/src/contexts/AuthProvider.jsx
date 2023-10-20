@@ -14,6 +14,10 @@ const AuthProvider = ({ children }) => {
     sessionStorage.setItem("isAuthenticated", JSON.stringify(isAuthenticated));
   }, [isAuthenticated]);
 
+  useEffect(() => {
+    sessionStorage.setItem("user", JSON.stringify(user));
+  }, [user]);
+
   return (
     <AuthContext.Provider
       value={{ isAuthenticated, setIsAuthenticated, user, setUser }}
