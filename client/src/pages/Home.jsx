@@ -1,17 +1,19 @@
 import { Typography, Box } from "@mui/material";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import universitystudents from "../images/university_students.png";
 import Button from "@mui/material/Button";
 import LoginIcon from "@mui/icons-material/Login";
 import { useNavigate, useLocation } from "react-router-dom";
 import AlertSnackbar from "../components/AlertSnackbar";
 import Container from "@mui/material/Container";
+import AuthContext from "../contexts/AuthContext";
 
 function Home() {
   const navigate = useNavigate();
   const location = useLocation();
   const [showAlert, setShowAlert] = useState(false);
   const [alertMessage, setAlertMessage] = useState("");
+  const { isAuthenticated } = useContext(AuthContext);
   const [severity, setSeverity] = useState("success");
 
   useEffect(() => {
@@ -116,7 +118,9 @@ function Home() {
               },
             }}
             onClick={() => {
-              navigate("/register");
+              {
+                isAuthenticated ? navigate("/explore") : navigate("/register");
+              }
             }}
           >
             Get Started.
