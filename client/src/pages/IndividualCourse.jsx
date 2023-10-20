@@ -65,7 +65,7 @@ function IndividualCourse() {
       {course ? (
         <Grid
           sx={{
-            ml: { xs: "6vw", md: "11vw" },
+            ml: { xs: "8vw", md: "11vw" },
             mr: { xs: "4vw", md: "11vw" },
           }}
         >
@@ -113,10 +113,18 @@ function IndividualCourse() {
           </Paper>
         </Grid>
       ) : (
-        <Stack spacing={2} sx={{ m: "1rem" }}>
-          <Skeleton variant="rounded" height={60} />
-          <Skeleton variant="rounded" height={120} />
-          <Skeleton variant="rounded" height={600} />
+        <Stack
+          spacing={2}
+          sx={{
+            ml: { xs: "8vw", md: "11vw" },
+            mr: { xs: "4vw", md: "11vw" },
+            my: 4,
+          }}
+        >
+          <Skeleton variant="rounded" animation="wave" height={48} />
+          <Skeleton variant="rounded" animation="wave" height={100} />
+          <Skeleton variant="rounded" animation="wave" height={1300} />
+          <Skeleton variant="rounded" animation="wave" height={206} />
         </Stack>
       )}
     </>
