@@ -65,7 +65,7 @@ function IndividualCourse() {
       {course ? (
         <Grid
           sx={{
-            ml: { xs: "8vw", md: "11vw" },
+            ml: { xs: "6vw", md: "11vw" },
             mr: { xs: "4vw", md: "11vw" },
           }}
         >
@@ -116,7 +116,7 @@ function IndividualCourse() {
         <Stack
           spacing={2}
           sx={{
-            ml: { xs: "8vw", md: "11vw" },
+            ml: { xs: "6vw", md: "11vw" },
             mr: { xs: "4vw", md: "11vw" },
             my: 4,
           }}
