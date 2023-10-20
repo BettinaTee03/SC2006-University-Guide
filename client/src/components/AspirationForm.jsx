@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Axios from "axios";
 import { useNavigate } from "react-router-dom";
-import "../AspirationForm.css";
+import "../css/AspirationForm.css";
 import {
   Typography,
   TextField,
@@ -89,40 +89,44 @@ function AspirationForm({ course }) {
       <Grid container direction="column">
         <Grid
           item
-          color="#A2B29F"
-          marginLeft="1rem"
-          marginTop="1rem"
-          marginBottom="1rem"
+          color="main"
+          paddingLeft="1rem"
+          paddingTopop="1rem"
+          paddingBottom="1rem"
         >
-          <Typography variant="h5" fontWeight="Bold">
+          <Typography variant="h5" sx={{ fontWeight: 700 }}>
             Tell us more about you!
           </Typography>
         </Grid>
-        <Grid item>
+        <Grid
+          item
+          sx={{ paddingLeft: "1rem", paddingRight: "1rem", width: "100%" }}
+        >
           <TextField
             id="outlined-helperText"
-            label="Enter your aspiration"
-            helperText="Example: I want to be a software engineer"
+            label="Enter your aspirations"
+            helperText="Example: I want to be a software engineer in Silicon Valley."
             value={aspiration}
             onChange={(e) => setAspiration(e.target.value)}
-            sx={{ marginLeft: "1rem", width: "97%" }}
+            sx={{ width: "100%" }}
           />
         </Grid>
-        <Grid item justifySelf="end" className="align-right">
+        <Grid item sx={{ paddingLeft: "1rem", marginTop: "1rem" }}>
           <Button
             variant="contained"
-            onClick={handleSubmit}
             sx={{
-              backgroundColor: "#DF8886",
-              padding: 2,
-              paddingLeft: 4,
-              paddingRight: 4,
-              margin: "1rem",
-              marginTop: "1rem",
-              border: "none",
-              borderRadius: 4,
-              "&:hover": { backgroundColor: "#DF8886" },
+              backgroundColor: "secondary.main",
+              color: "#FFFFFF",
+              fontSize: "15px",
+              paddingLeft: "16px",
+              paddingRight: "16px",
+              height: "48px",
+              "&:hover": {
+                backgroundColor: "secondary.hover",
+                boxShadow: "0 8px 16px 0 rgba(250, 84, 28, 0.24)",
+              },
             }}
+            onClick={handleSubmit}
           >
             Submit
           </Button>
@@ -131,7 +135,11 @@ function AspirationForm({ course }) {
       {isLoading ? (
         <>
           <Typography
-            sx={{ marginLeft: "1rem", marginBottom: "2rem", color: "#A2B29F" }}
+            sx={{
+              marginLeft: "1rem",
+              marginBottom: "2rem",
+              paddingTop: "2rem",
+            }}
           >
             We are crafting and getting the best career prospects for you ...
           </Typography>
@@ -144,7 +152,10 @@ function AspirationForm({ course }) {
                 width: { xs: "90%", md: "90%" },
               }}
             >
-              <Skeleton variant="rectangular" sx={{height:{ xs:500, sm: 250}}} />
+              <Skeleton
+                variant="rectangular"
+                sx={{ height: { xs: 500, sm: 250 } }}
+              />
             </Grid>
             <Grid item sx={{ width: { xs: "10%", md: "6%" } }}>
               <Skeleton variant="rectangular" height={25} />
@@ -154,18 +165,12 @@ function AspirationForm({ course }) {
       ) : careers.length > 0 ? ( // Check if the careers array has data
         <>
           <Grid container>
-            <Grid
-              item
-              color="#A2B29F"
-              marginLeft={2}
-              marginTop={2}
-              marginBottom={2}
-            >
+            <Grid item xs={12} marginLeft={2} marginTop={6} marginBottom={2}>
               <Typography variant="h5" fontWeight="Bold">
                 Career prospects based on your selected course and aspiration!
               </Typography>
             </Grid>
-            <Grid item marginLeft="1rem" marginBottom="1rem">
+            <Grid item xs={12} marginLeft="1rem">
               <Typography>
                 You can explore the following 3 career options upon graduation:
               </Typography>

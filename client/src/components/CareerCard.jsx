@@ -12,36 +12,42 @@ import {
   IconButton,
   useMediaQuery,
   useTheme,
-  styled
+  styled,
 } from "@mui/material";
 
 export const CareerCard = ({ career }) => {
-
-  const theme = useTheme()
-  const isScreenSmall = useMediaQuery(theme.breakpoints.down("sm"))
+  const theme = useTheme();
+  const isScreenSmall = useMediaQuery(theme.breakpoints.down("sm"));
 
   const StyledBreadcrumbs = styled(Breadcrumbs)`
-    ${props => props.theme.breakpoints.down("sm")} {
+    ${(props) => props.theme.breakpoints.down("sm")} {
       .MuiBreadcrumbs-ol {
-        display:block
+        display: block;
       }
       .MuiIconButton-root {
-        display:block;
-        margin:auto;
+        display: block;
+        margin: auto;
       }
     }
-  `
+  `;
 
   return (
     <Card
       sx={{
-        backgroundColor: "#FFF8F2",
+        backgroundColor: "rgb(245, 245, 245)",
         py: 10,
       }}
     >
       <CardContent>
         <Container sx={{ textAlign: "center" }}>
-          <Typography variant="h5" component="div" color="#A2B29F">
+          <Typography
+            variant="h3"
+            component="div"
+            sx={{
+              fontWeight: 700,
+              fontSize: { xs: "1.8rem", lg: "2rem" },
+            }}
+          >
             {career.careerProspect} Career Path
           </Typography>
         </Container>
@@ -55,24 +61,28 @@ export const CareerCard = ({ career }) => {
                     transform: isScreenSmall ? "rotate(90deg)" : "rotate(0deg)",
                   }}
                 >
-                  <NavigateNextIcon
-                    fontSize="small"
-                  />
+                  <NavigateNextIcon fontSize="small" />
                 </IconButton>
               }
             >
               {career.careerPath.map((path, idx) => (
-                <Link key={idx} underline="hover" color="inherit" href="/">
-                  <Tooltip title={`Skill required: ${career.skills[idx]}`}>
+                <Link key={idx}>
+                  <Tooltip
+                    title={`Skill required: ${career.skills[idx]}`}
+                    placement={isScreenSmall ? "left" : "bottom"}
+                  >
                     <Typography
                       variant="body1"
                       sx={{
-                        width: { xs: 90, md: 120, lg: "100%" },
-                        fontSize: { xs: 16, md: 16 },
+                        width: { xs: "100%", lg: "100%" },
+                        fontSize: { xs: "1.2rem", lg: "1.5rem" },
                         textAlign: "center",
                         variant: "body1",
+                        fontWeight: 700,
                         ":hover": {
-                          color: "black",
+                          color: "secondary.main",
+                          textDecoration: "underline",
+                          textDecorationColor: "secondary.hover",
                         },
                       }}
                     >
@@ -82,7 +92,7 @@ export const CareerCard = ({ career }) => {
                 </Link>
               ))}
             </StyledBreadcrumbs>
-            </Stack>
+          </Stack>
         </Container>
       </CardContent>
     </Card>

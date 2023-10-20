@@ -46,6 +46,14 @@ function Navbar() {
     };
   }, [isTop]);
 
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "smooth",
+    });
+  };
+
   const alertMessage = isAuthenticated
     ? "An error occurred while logging out. Please try again later."
     : "Logged out successfully!";
@@ -127,7 +135,7 @@ function Navbar() {
               variant="h6"
               noWrap
               component="a"
-              href="/home"
+              onClick={scrollToTop}
               sx={{
                 mr: 2,
                 display: { xs: "none", md: "flex" },
@@ -198,7 +206,7 @@ function Navbar() {
               variant="h6"
               noWrap
               component="a"
-              href="/home"
+              onClick={scrollToTop}
               sx={{
                 mr: 2,
                 display: { xs: "flex", md: "none" },

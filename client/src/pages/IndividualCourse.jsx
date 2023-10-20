@@ -63,46 +63,55 @@ function IndividualCourse() {
         handleLogin={handleLogin}
       />
       {course ? (
-        <Container>
-          <Grid>
-            <Grid container sx={{ my: 4 }}>
-              <Grid item xs={10}>
-                <Paper sx={{ p: 1, bgcolor: "#FFF8F2", borderRadius: 8 }}>
-                  <Typography
-                    variant="h5"
-                    align="center"
-                    color="#A2B29F"
-                    fontWeight="Bold"
-                  >
-                    {course.course_name}
-                  </Typography>
-                </Paper>
-              </Grid>
-              <Grid
-                item
-                xs={2}
-                display="flex"
-                justifyContent="center"
-                alignItems="center"
-              >
-                <FavouriteCourseButton
-                  isIconClicked={isIconClicked}
-                  onClick={handleClick}
-                />
-              </Grid>
+        <Grid
+          sx={{
+            ml: { xs: "8vw", sm: "6vw", md: "11vw" },
+            mr: { xs: "6vw", sm: "4vw", md: "11vw" },
+          }}
+        >
+          <Grid container sx={{ my: 4 }}>
+            <Grid item xs={10}>
+              <Paper sx={{ p: 1 }}>
+                <Typography
+                  variant="h5"
+                  align="center"
+                  color="main"
+                  fontWeight="Bold"
+                >
+                  {course.course_name}
+                </Typography>
+              </Paper>
             </Grid>
-            <Paper sx={{ my: 4, p: 2 }}>
-              <Typography color="#A2B29F">Course Description:</Typography>
-              <Typography variant="h7">{course.description}</Typography>
-            </Paper>
-            <Paper sx={{ my: 4, p: 2 }}>
-              <CourseDetails course={course} />
-            </Paper>
-            <Paper sx={{ my: 6, p: 2 }}>
-              <AspirationForm course={course.course_name} />
-            </Paper>
+            <Grid
+              item
+              xs={2}
+              display="flex"
+              sx={{ justifyContent: { xs: "flex-end" } }}
+            >
+              <FavouriteCourseButton
+                isIconClicked={isIconClicked}
+                onClick={handleClick}
+              />
+            </Grid>
           </Grid>
-        </Container>
+          <Paper sx={{ my: 4, p: 2 }}>
+            <Typography variant="h5" sx={{ fontWeight: 700 }}>
+              Course Description:
+            </Typography>
+            <Typography
+              variant="p"
+              sx={{ fontSize: { xs: "1rem", sm: "1.1rem" } }}
+            >
+              {course.description}
+            </Typography>
+          </Paper>
+          <Paper sx={{ my: 4, p: 2 }}>
+            <CourseDetails course={course} />
+          </Paper>
+          <Paper sx={{ my: 6, p: 2 }}>
+            <AspirationForm course={course.course_name} />
+          </Paper>
+        </Grid>
       ) : (
         <Stack spacing={2} sx={{ m: "1rem" }}>
           <Skeleton variant="rounded" height={60} />

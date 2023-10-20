@@ -32,7 +32,7 @@ function Explore() {
           width: "auto",
           mt: 2,
           ml: { xs: "7vw", sm: "5vw", md: "11vw" },
-          mr: { xs: "7vw", sm: "5vw", md: "11vw" },
+          mr: { xs: "5vw", sm: "5vw", md: "11vw" },
         }}
       >
         {
