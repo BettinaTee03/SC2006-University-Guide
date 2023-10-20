@@ -69,7 +69,7 @@ export const CareerCard = ({ career }) => {
                 <Link key={idx}>
                   <Tooltip
                     title={`Skill required: ${career.skills[idx]}`}
-                    placement={isScreenSmall ? "left-end" : "bottom"}
+                    placement={isScreenSmall ? "bottom" : "bottom"}
                     enterTouchDelay={0}
                     leaveTouchDelay={2000}
                   >
