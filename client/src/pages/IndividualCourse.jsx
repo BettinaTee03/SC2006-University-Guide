@@ -1,13 +1,17 @@
 import React, { useState, useEffect } from "react";
 import Axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
+
 import AspirationForm from "../components/AspirationForm";
 import LoginAlert from "../components/LoginAlert";
+import FavouriteCourseButton from "../components/FavouriteCourseButton";
+import CourseDetails from "../components/CourseDetails";
+import "../css/IndividualCourse.css";
+import EmploymentChart from "../components/EmploymentChart";
+
 import Skeleton from "@mui/material/Skeleton";
 import Stack from "@mui/material/Stack";
 import { Box } from "@mui/material";
-import FavouriteCourseButton from "../components/FavouriteCourseButton";
-import CourseDetails from "../components/CourseDetails";
 import { Typography, Paper, Grid } from "@mui/material";
 
 function IndividualCourse() {
@@ -64,60 +68,146 @@ function IndividualCourse() {
       />
       {course ? (
         <Grid
+          container
+          justifyContent="space-between"
           sx={{
-            ml: { xs: "6vw", md: "11vw" },
-            mr: { xs: "4vw", md: "11vw" },
+            width: "auto",
+            mt: 2,
+            ml: { xs: "7vw", sm: "5vw", md: "11vw" },
+            mr: { xs: "5vw", sm: "4vw", md: "11vw" },
           }}
         >
-          <Grid container sx={{ my: 4 }}>
-            <Grid item xs={10}>
-              <Paper sx={{ p: 1 }}>
-                <Typography
-                  variant="h5"
-                  align="center"
-                  color="main"
-                  fontWeight="Bold"
-                >
-                  {course.course_name}
-                </Typography>
-              </Paper>
-            </Grid>
-            <Grid
-              item
-              xs={2}
-              display="flex"
-              sx={{ justifyContent: { xs: "flex-end" } }}
-            >
-              <FavouriteCourseButton
-                isIconClicked={isIconClicked}
-                onClick={handleClick}
-              />
+          <Grid 
+            container
+            justifyContent="center"
+            alignItems="center"   
+            className="course_name-container"
+          >
+            <h2 style={{ marginBottom: "5px", marginTop: "5px" }} >
+              {course.course_name}
+            </h2>
+            <FavouriteCourseButton
+              isIconClicked={isIconClicked}
+              onClick={handleClick}
+            />
+          </Grid>
+
+          <Grid
+            item
+            xs = {12}
+          >
+            <h2 className="heading">
+              Description
+            </h2>
+            <p>{course.description}</p>
+          </Grid>
+
+          <Grid
+            item
+            xs = {12}
+            sm = {5.5}
+          > 
+            <h2 className="heading">
+              School
+            </h2>
+            <p>{course.school_name}</p>
+          </Grid>
+
+          <Grid
+            item
+            xs = {12}
+            sm = {5.5}
+          > 
+            <h2 className="heading">
+              College
+            </h2>
+            <p>{course.college_name}</p>
+          </Grid>
+
+          <Grid
+            item
+            xs = {12}
+            sm = {5.5}
+            md = {5.5}
+          > 
+            <h2 className="heading">
+              Course Type
+            </h2>
+            <p>{course.course_type}</p>
+          </Grid>
+
+          <Grid
+            item
+            xs = {12}
+            sm = {5.5}
+          > 
+            <h2 className="heading">
+              Course Duration
+            </h2>
+            <p>{course.course_duration}</p>
+          </Grid>
+
+          <Grid
+            item
+            xs = {12}
+          >
+            <h2 className="heading">
+              Admission Requirements
+            </h2>
+            {course.rank_points && <p>Rank Points: {course.rank_points}</p>}
+            {course.polytechnic_GPAs && (
+              <p>Polytechnic GPA: {course.polytechnic_GPAs}</p>
+            )}
+            {course["3H2_1H1_10percentile"] && (
+              <p>3H2/1H1 10th percentile: {course["3H2_1H1_10percentile"]}</p>
+            )}
+            {course.percentage_less_equal_70_UAS && (
+              <p>Less than 70%: {course.percentage_less_equal_70_UAS}</p>
+            )}
+            {course["percentage_70.01_to_80_UAS"] && (
+              <p>70.01% to 80%: {course["percentage_70.01_to_80_UAS"]}</p>
+            )}
+            {course["percentage_80.01_to_90_UAS"] && (
+              <p>80.01% to 90%: {course["percentage_80.01_to_90_UAS"]}</p>
+            )}
+            {course["percentage_less_3.2_GPA"] && (
+              <p>Less than 3.2 GPA: {course["percentage_less_3.2_GPA"]}</p>
+            )}
+            {course["percentage_3.2_3.6_GPA"] && (
+              <p>3.2 to 3.6 GPA: {course["percentage_3.2_3.6_GPA"]}</p>
+            )}
+            {course["percentage_3.6_4.0_GPA"] && (
+              <p>3.6 to 4.0 GPA: {course["percentage_3.6_4.0_GPA"]}</p>
+            )}
+            {course.remarks && <p>Remarks: {course.remarks}</p>}
+          </Grid>
+
+          <Grid
+            item
+            xs = {12}
+          >
+            <h2 className="heading">
+              Employment Statistics
+            </h2>
+            <Grid item xs={12} container direction="column" alignItems="center" style={{ marginTop: '20px'}}>
+              <EmploymentChart employmentData={course.employment_stats} />
             </Grid>
           </Grid>
-          <Paper sx={{ my: 4, p: 2 }}>
-            <Typography variant="h5" sx={{ fontWeight: 700 }}>
-              Course Description:
-            </Typography>
-            <Typography
-              variant="p"
-              sx={{ fontSize: { xs: "1rem", sm: "1.1rem" } }}
-            >
-              {course.description}
-            </Typography>
-          </Paper>
-          <Paper sx={{ my: 4, p: 2 }}>
-            <CourseDetails course={course} />
-          </Paper>
-          <Paper sx={{ my: 6, p: 2 }}>
+          
+          <Grid
+            item
+            xs = {12}
+            className="aspiration-container"
+          >
             <AspirationForm course={course.course_name} />
-          </Paper>
+          </Grid>
         </Grid>
       ) : (
         <Stack
           spacing={2}
           sx={{
-            ml: { xs: "6vw", md: "11vw" },
-            mr: { xs: "4vw", md: "11vw" },
+            ml: { xs: "7vw", sm: "5vw", md: "11vw" },
+            mr: { xs: "5vw", sm: "5vw", md: "11vw" },
             my: 4,
           }}
         >

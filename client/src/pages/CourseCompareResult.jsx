@@ -224,7 +224,9 @@ function CourseCompareResult() {
         return (
           <Grid item sm={12} className="detailsColumn-container">
             <h3 key={course.id}>{course.course_name}</h3>
-            <EmploymentChart employmentData={course.employment_stats} />
+            <Grid item xs={12} container direction="column" alignItems="center" style={{ marginTop: '20px'}}>
+              <EmploymentChart employmentData={course.employment_stats} />
+            </Grid>
           </Grid>
         );
       }
