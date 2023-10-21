@@ -5,7 +5,6 @@ import { useParams, useNavigate } from "react-router-dom";
 import AspirationForm from "../components/AspirationForm";
 import LoginAlert from "../components/LoginAlert";
 import FavouriteCourseButton from "../components/FavouriteCourseButton";
-import CourseDetails from "../components/CourseDetails";
 import "../css/IndividualCourse.css";
 import EmploymentChart from "../components/EmploymentChart";
 
@@ -83,19 +82,18 @@ function IndividualCourse() {
             alignItems="center"   
             className="course_name-container"
           >
-            <h2 style={{ marginBottom: "5px", marginTop: "5px" }} >
-              {course.course_name}
-            </h2>
-            <FavouriteCourseButton
-              isIconClicked={isIconClicked}
-              onClick={handleClick}
-            />
+            <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+              <h2 style={{ marginBottom: "5px", marginTop: "5px", textAlign:"center" }}>
+                {course.course_name}
+              </h2>
+              <FavouriteCourseButton
+                isIconClicked={isIconClicked}
+                onClick={handleClick}
+              />
+            </div>
           </Grid>
 
-          <Grid
-            item
-            xs = {12}
-          >
+          <Grid item xs = {12}>
             <h2 className="heading">
               Description
             </h2>
