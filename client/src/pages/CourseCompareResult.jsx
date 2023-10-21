@@ -106,8 +106,8 @@ function CourseCompareResult() {
       if (categoryId === "1") {
         return (
           <Grid item sm={12} className="detailsColumn-container">
-            <h3 key={course.id}>{course.course_name}</h3>
-            <p key={course.id}>{course.description}</p>
+            <h3 className="coursename-heading">{course.course_name}</h3>
+            <p>{course.description}</p>
           </Grid>
         );
       } else if (categoryId === "2") {
@@ -123,8 +123,8 @@ function CourseCompareResult() {
               isRow ? "detailsColumn-container" : "detailsRow-container"
             }
           >
-            <h3 key={course.id}>{course.course_name}</h3>
-            <p key={course.id}>{course.school_name}</p>
+            <h3 className="coursename-heading">{course.course_name}</h3>
+            <p className="details">{course.school_name}</p>
           </Grid>
         );
       } else if (categoryId === "3") {
@@ -140,8 +140,8 @@ function CourseCompareResult() {
               isRow ? "detailsColumn-container" : "detailsRow-container"
             }
           >
-            <h3 key={course.id}>{course.course_name}</h3>
-            <p key={course.id}>{course.college_name}</p>
+            <h3 className="coursename-heading">{course.course_name}</h3>
+            <p className="details">{course.college_name}</p>
           </Grid>
         );
       } else if (categoryId === "4") {
@@ -157,8 +157,8 @@ function CourseCompareResult() {
               isRow ? "detailsColumn-container" : "detailsRow-container"
             }
           >
-            <h3 key={course.id}>{course.course_name}</h3>
-            <p key={course.id}>{course.course_type}</p>
+            <h3 className="coursename-heading">{course.course_name}</h3>
+            <p className="details">{course.course_type}</p>
           </Grid>
         );
       } else if (categoryId === "5") {
@@ -174,8 +174,8 @@ function CourseCompareResult() {
               isRow ? "detailsColumn-container" : "detailsRow-container"
             }
           >
-            <h3 key={course.id}>{course.course_name}</h3>
-            <p key={course.id}>{course.course_duration}</p>
+            <h3 className="coursename-heading">{course.course_name}</h3>
+            <p className="details">{course.course_duration}</p>
           </Grid>
         );
       } else if (categoryId === "6") {
@@ -191,31 +191,33 @@ function CourseCompareResult() {
               isRow ? "detailsColumn-container" : "detailsRow-container"
             }
           >
-            <h3 key={course.id}>{course.course_name}</h3>
-            {course.rank_points && <p>Rank Points: {course.rank_points}</p>}
-            {course.polytechnic_GPAs && (
-              <p>Polytechnic GPA: {course.polytechnic_GPAs}</p>
-            )}
+            <h3 className="coursename-heading">{course.course_name}</h3>
             {course["3H2_1H1_10percentile"] && (
-              <p>3H2/1H1 10th percentile: {course["3H2_1H1_10percentile"]}</p>
+              <p className="details">3H2/1H1 10th percentile: {course["3H2_1H1_10percentile"]}</p>
+            )}
+            {course["rank_points"] && (
+              <p className="details">Rank Points: {course.rank_points}</p>)
+            }
+            {course["polytechnic_GPAs"] && (
+              <p className="details">Polytechnic GPA: {course.polytechnic_GPAs}</p>
             )}
             {course.percentage_less_equal_70_UAS && (
-              <p>Less than 70%: {course.percentage_less_equal_70_UAS}</p>
+              <p className="details">Less than 70%: {course.percentage_less_equal_70_UAS}</p>
             )}
             {course["percentage_70.01_to_80_UAS"] && (
-              <p>70.01% to 80%: {course["percentage_70.01_to_80_UAS"]}</p>
+              <p className="details">70.01% to 80%: {course["percentage_70.01_to_80_UAS"]}</p>
             )}
             {course["percentage_80.01_to_90_UAS"] && (
-              <p>80.01% to 90%: {course["percentage_80.01_to_90_UAS"]}</p>
+              <p className="details">80.01% to 90%: {course["percentage_80.01_to_90_UAS"]}</p>
             )}
             {course["percentage_less_3.2_GPA"] && (
-              <p>Less than 3.2 GPA: {course["percentage_less_3.2_GPA"]}</p>
+              <p className="details">Less than 3.2 GPA: {course["percentage_less_3.2_GPA"]}</p>
             )}
             {course["percentage_3.2_3.6_GPA"] && (
-              <p>3.2 to 3.6 GPA: {course["percentage_3.2_3.6_GPA"]}</p>
+              <p className="details">3.2 to 3.6 GPA: {course["percentage_3.2_3.6_GPA"]}</p>
             )}
             {course["percentage_3.6_4.0_GPA"] && (
-              <p>3.6 to 4.0 GPA: {course["percentage_3.6_4.0_GPA"]}</p>
+              <p className="details">3.6 to 4.0 GPA: {course["percentage_3.6_4.0_GPA"]}</p>
             )}
             {course.remarks && <p>Remarks: {course.remarks}</p>}
           </Grid>
@@ -223,7 +225,7 @@ function CourseCompareResult() {
       } else if (categoryId === "7") {
         return (
           <Grid item sm={12} className="detailsColumn-container">
-            <h3 key={course.id}>{course.course_name}</h3>
+            <h3 className="coursename-heading">{course.course_name}</h3>
             <Grid item xs={12} container direction="column" alignItems="center" style={{ marginTop: '20px'}}>
               <EmploymentChart employmentData={course.employment_stats} />
             </Grid>

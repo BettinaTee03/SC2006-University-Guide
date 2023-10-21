@@ -152,12 +152,14 @@ function IndividualCourse() {
             <h2 className="heading">
               Admission Requirements
             </h2>
-            {course.rank_points && <p>Rank Points: {course.rank_points}</p>}
-            {course.polytechnic_GPAs && (
-              <p>Polytechnic GPA: {course.polytechnic_GPAs}</p>
-            )}
             {course["3H2_1H1_10percentile"] && (
               <p>3H2/1H1 10th percentile: {course["3H2_1H1_10percentile"]}</p>
+            )}
+            {course["rank_points"] && (
+              <p>Rank Points: {course.rank_points}</p>)
+            }
+            {course["polytechnic_GPAs"] && (
+              <p>Polytechnic GPA: {course.polytechnic_GPAs}</p>
             )}
             {course.percentage_less_equal_70_UAS && (
               <p>Less than 70%: {course.percentage_less_equal_70_UAS}</p>
