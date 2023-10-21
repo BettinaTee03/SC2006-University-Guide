@@ -1,6 +1,5 @@
 import React from "react";
 import ReactApexChart from "react-apexcharts";
-import { Grid } from "@mui/material";
 import useMediaQuery from "@mui/material/useMediaQuery";
 
 function EmploymentChart({ courseName, employmentData }) {
@@ -135,11 +134,17 @@ function EmploymentChart({ courseName, employmentData }) {
     },
   ];
 
-  const chartHeight = window.innerWidth * 0.8 > window.innerHeight ? window.innerHeight*0.8 : window.innerWidth * 0.7;
-  const chartWidth = window.innerWidth * 0.8 > window.innerHeight ? window.innerHeight*0.8 : window.innerWidth * 0.8;
+  const chartHeight =
+    window.innerWidth * 0.8 > window.innerHeight
+      ? window.innerHeight * 0.8
+      : window.innerWidth * 0.7;
+  const chartWidth =
+    window.innerWidth * 0.8 > window.innerHeight
+      ? window.innerHeight * 0.85
+      : window.innerWidth * 0.85;
 
   return (
-    <Grid item sm={12}>
+    <>
       {employmentData.length > 0 ? (
         <ReactApexChart
           options={options}
@@ -150,7 +155,7 @@ function EmploymentChart({ courseName, employmentData }) {
       ) : (
         <p>No employment data is available.</p>
       )}
-    </Grid>
+    </>
   );
 }
 

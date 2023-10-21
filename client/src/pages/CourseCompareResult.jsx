@@ -105,7 +105,7 @@ function CourseCompareResult() {
     return courseData.map((course, index) => {
       if (categoryId === "1") {
         return (
-          <Grid item sm={12} className="detailsColumn-container">
+          <Grid item sm={12} className="detailsColumn-container" key={index}>
             <h3 className="coursename-heading">{course.course_name}</h3>
             <p>{course.description}</p>
           </Grid>
@@ -122,6 +122,7 @@ function CourseCompareResult() {
             className={
               isRow ? "detailsColumn-container" : "detailsRow-container"
             }
+            key={index}
           >
             <h3 className="coursename-heading">{course.course_name}</h3>
             <p className="details">{course.school_name}</p>
@@ -139,6 +140,7 @@ function CourseCompareResult() {
             className={
               isRow ? "detailsColumn-container" : "detailsRow-container"
             }
+            key={index}
           >
             <h3 className="coursename-heading">{course.course_name}</h3>
             <p className="details">{course.college_name}</p>
@@ -156,6 +158,7 @@ function CourseCompareResult() {
             className={
               isRow ? "detailsColumn-container" : "detailsRow-container"
             }
+            key={index}
           >
             <h3 className="coursename-heading">{course.course_name}</h3>
             <p className="details">{course.course_type}</p>
@@ -173,6 +176,7 @@ function CourseCompareResult() {
             className={
               isRow ? "detailsColumn-container" : "detailsRow-container"
             }
+            key={index}
           >
             <h3 className="coursename-heading">{course.course_name}</h3>
             <p className="details">{course.course_duration}</p>
@@ -190,43 +194,68 @@ function CourseCompareResult() {
             className={
               isRow ? "detailsColumn-container" : "detailsRow-container"
             }
+            key={index}
           >
             <h3 className="coursename-heading">{course.course_name}</h3>
             {course["3H2_1H1_10percentile"] && (
-              <p className="details">3H2/1H1 10th percentile: {course["3H2_1H1_10percentile"]}</p>
+              <p className="details">
+                3H2/1H1 10th percentile: {course["3H2_1H1_10percentile"]}
+              </p>
             )}
             {course["rank_points"] && (
-              <p className="details">Rank Points: {course.rank_points}</p>)
-            }
+              <p className="details">Rank Points: {course.rank_points}</p>
+            )}
             {course["polytechnic_GPAs"] && (
-              <p className="details">Polytechnic GPA: {course.polytechnic_GPAs}</p>
+              <p className="details">
+                Polytechnic GPA: {course.polytechnic_GPAs}
+              </p>
             )}
             {course.percentage_less_equal_70_UAS && (
-              <p className="details">Less than 70%: {course.percentage_less_equal_70_UAS}</p>
+              <p className="details">
+                Less than 70%: {course.percentage_less_equal_70_UAS}
+              </p>
             )}
             {course["percentage_70.01_to_80_UAS"] && (
-              <p className="details">70.01% to 80%: {course["percentage_70.01_to_80_UAS"]}</p>
+              <p className="details">
+                70.01% to 80%: {course["percentage_70.01_to_80_UAS"]}
+              </p>
             )}
             {course["percentage_80.01_to_90_UAS"] && (
-              <p className="details">80.01% to 90%: {course["percentage_80.01_to_90_UAS"]}</p>
+              <p className="details">
+                80.01% to 90%: {course["percentage_80.01_to_90_UAS"]}
+              </p>
             )}
             {course["percentage_less_3.2_GPA"] && (
-              <p className="details">Less than 3.2 GPA: {course["percentage_less_3.2_GPA"]}</p>
+              <p className="details">
+                Less than 3.2 GPA: {course["percentage_less_3.2_GPA"]}
+              </p>
             )}
             {course["percentage_3.2_3.6_GPA"] && (
-              <p className="details">3.2 to 3.6 GPA: {course["percentage_3.2_3.6_GPA"]}</p>
+              <p className="details">
+                3.2 to 3.6 GPA: {course["percentage_3.2_3.6_GPA"]}
+              </p>
             )}
             {course["percentage_3.6_4.0_GPA"] && (
-              <p className="details">3.6 to 4.0 GPA: {course["percentage_3.6_4.0_GPA"]}</p>
+              <p className="details">
+                3.6 to 4.0 GPA: {course["percentage_3.6_4.0_GPA"]}
+              </p>
             )}
             {course.remarks && <p>Remarks: {course.remarks}</p>}
           </Grid>
         );
       } else if (categoryId === "7") {
         return (
-          <Grid item sm={12} className="detailsColumn-container">
+          <Grid item sm={12} className="detailsColumn-container" key={index}>
             <h3 className="coursename-heading">{course.course_name}</h3>
-            <Grid item xs={12} container direction="column" alignItems="center" style={{ marginTop: '20px'}}>
+            <Grid
+              item
+              xs={12}
+              container
+              direction="column"
+              alignItems="center"
+              key={index}
+              style={{ marginTop: "20px" }}
+            >
               <EmploymentChart employmentData={course.employment_stats} />
             </Grid>
           </Grid>

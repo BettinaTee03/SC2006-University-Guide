@@ -76,14 +76,26 @@ function IndividualCourse() {
             mr: { xs: "5vw", sm: "4vw", md: "11vw" },
           }}
         >
-          <Grid 
+          <Grid
             container
             justifyContent="center"
-            alignItems="center"   
+            alignItems="center"
             className="course_name-container"
           >
-            <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
-              <h2 style={{ marginBottom: "5px", marginTop: "5px", textAlign:"center" }}>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <h2
+                style={{
+                  marginBottom: "5px",
+                  marginTop: "5px",
+                  textAlign: "center",
+                }}
+              >
                 {course.course_name}
               </h2>
               <FavouriteCourseButton
@@ -93,71 +105,37 @@ function IndividualCourse() {
             </div>
           </Grid>
 
-          <Grid item xs = {12}>
-            <h2 className="heading">
-              Description
-            </h2>
+          <Grid item xs={12}>
+            <h2 className="heading">Description</h2>
             <p>{course.description}</p>
           </Grid>
 
-          <Grid
-            item
-            xs = {12}
-            sm = {5.5}
-          > 
-            <h2 className="heading">
-              School
-            </h2>
+          <Grid item xs={12} sm={5.5}>
+            <h2 className="heading">School</h2>
             <p>{course.school_name}</p>
           </Grid>
 
-          <Grid
-            item
-            xs = {12}
-            sm = {5.5}
-          > 
-            <h2 className="heading">
-              College
-            </h2>
+          <Grid item xs={12} sm={5.5}>
+            <h2 className="heading">College</h2>
             <p>{course.college_name}</p>
           </Grid>
 
-          <Grid
-            item
-            xs = {12}
-            sm = {5.5}
-            md = {5.5}
-          > 
-            <h2 className="heading">
-              Course Type
-            </h2>
+          <Grid item xs={12} sm={5.5} md={5.5}>
+            <h2 className="heading">Course Type</h2>
             <p>{course.course_type}</p>
           </Grid>
 
-          <Grid
-            item
-            xs = {12}
-            sm = {5.5}
-          > 
-            <h2 className="heading">
-              Course Duration
-            </h2>
+          <Grid item xs={12} sm={5.5}>
+            <h2 className="heading">Course Duration</h2>
             <p>{course.course_duration}</p>
           </Grid>
 
-          <Grid
-            item
-            xs = {12}
-          >
-            <h2 className="heading">
-              Admission Requirements
-            </h2>
+          <Grid item xs={12}>
+            <h2 className="heading">Admission Requirements</h2>
             {course["3H2_1H1_10percentile"] && (
               <p>3H2/1H1 10th percentile: {course["3H2_1H1_10percentile"]}</p>
             )}
-            {course["rank_points"] && (
-              <p>Rank Points: {course.rank_points}</p>)
-            }
+            {course["rank_points"] && <p>Rank Points: {course.rank_points}</p>}
             {course["polytechnic_GPAs"] && (
               <p>Polytechnic GPA: {course.polytechnic_GPAs}</p>
             )}
@@ -182,23 +160,21 @@ function IndividualCourse() {
             {course.remarks && <p>Remarks: {course.remarks}</p>}
           </Grid>
 
-          <Grid
-            item
-            xs = {12}
-          >
-            <h2 className="heading">
-              Employment Statistics
-            </h2>
-            <Grid item xs={12} container direction="column" alignItems="center" style={{ marginTop: '20px'}}>
+          <Grid item xs={12}>
+            <h2 className="heading">Employment Statistics</h2>
+            <Grid
+              item
+              xs={12}
+              container
+              direction="column"
+              alignItems="center"
+              sx={{ marginTop: "2rem", marginBottom: "2rem" }}
+            >
               <EmploymentChart employmentData={course.employment_stats} />
             </Grid>
           </Grid>
-          
-          <Grid
-            item
-            xs = {12}
-            className="aspiration-container"
-          >
+
+          <Grid item xs={12} className="aspiration-container">
             <AspirationForm course={course.course_name} />
           </Grid>
         </Grid>
