@@ -71,7 +71,7 @@ export const CareerCard = ({ career }) => {
                     title={`Skill required: ${career.skills[idx]}`}
                     placement={isScreenSmall ? "bottom" : "bottom"}
                     enterTouchDelay={isScreenSmall ? 0 : 700}
-                    leaveTouchDelay={1500}
+                    leaveTouchDelay={2000}
                   >
                     <Typography
                       variant="body1"
