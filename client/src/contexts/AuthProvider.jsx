@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import AuthContext from "./AuthContext";
+import Axios from "axios";
 
 const AuthProvider = ({ children }) => {
   const API_BASE_URL =
