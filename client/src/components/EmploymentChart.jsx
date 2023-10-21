@@ -135,31 +135,23 @@ function EmploymentChart({ courseName, employmentData }) {
     },
   ];
 
-  if (isSM) {
-    return (
-      <Grid item sm={12} sx={{ width: window.innerWidth * 0.8 }}>
-        {employmentData.length > 0 ? (
-          <ReactApexChart
-            options={options}
-            series={series}
-            height={window.innerWidth * 0.8}
-          />
-        ) : (
-          <p>No employment data is available.</p>
-        )}
-      </Grid>
-    );
-  } else {
-    return (
-      <Grid item xs={12}>
-        {employmentData.length > 0 ? (
-          <ReactApexChart options={options} series={series} />
-        ) : (
-          <p>No employment data is available.</p>
-        )}
-      </Grid>
-    );
-  }
+  const chartHeight = window.innerWidth * 0.8 > window.innerHeight ? window.innerHeight*0.8 : window.innerWidth * 0.7;
+  const chartWidth = window.innerWidth * 0.8 > window.innerHeight ? window.innerHeight*0.8 : window.innerWidth * 0.8;
+
+  return (
+    <Grid item sm={12}>
+      {employmentData.length > 0 ? (
+        <ReactApexChart
+          options={options}
+          series={series}
+          height={chartHeight}
+          width={chartWidth}
+        />
+      ) : (
+        <p>No employment data is available.</p>
+      )}
+    </Grid>
+  );
 }
 
 export default EmploymentChart;
