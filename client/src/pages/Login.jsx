@@ -13,6 +13,10 @@ import AlertSnackbar from "../components/AlertSnackbar";
 import GoogleIcon from "@mui/icons-material/Google";
 import AuthContext from "../contexts/AuthContext";
 import { useNavigate, useLocation } from "react-router-dom";
+import Visibility from "@mui/icons-material/Visibility";
+import VisibilityOff from "@mui/icons-material/VisibilityOff";
+import IconButton from "@mui/material/IconButton";
+import InputAdornment from "@mui/material/InputAdornment";
 
 function Login() {
   const { setIsAuthenticated, setUser } = useContext(AuthContext);
@@ -21,6 +25,8 @@ function Login() {
   const [showAlert, setShowAlert] = useState(false);
   const [alertMessage, setAlertMessage] = useState("");
   const [severity, setSeverity] = useState("success");
+  const [showPassword, setShowPassword] = React.useState(false);
+
   const API_BASE_URL =
     import.meta.env.VITE_BASE_URL || "http://localhost:8000/api";
 
@@ -34,6 +40,12 @@ function Login() {
       setShowAlert(true);
     }
   }, [location]);
+
+  const handleClickShowPassword = () => setShowPassword((show) => !show);
+
+  const handleMouseDownPassword = (event) => {
+    event.preventDefault();
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -119,9 +131,23 @@ function Login() {
               margin="normal"
               required
               fullWidth
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment position="end">
+                    <IconButton
+                      aria-label="toggle password visibility"
+                      onClick={handleClickShowPassword}
+                      onMouseDown={handleMouseDownPassword}
+                      edge="end"
+                    >
+                      {showPassword ? <VisibilityOff /> : <Visibility />}
+                    </IconButton>
+                  </InputAdornment>
+                ),
+              }}
               name="password"
               label="Password"
-              type="password"
+              type={showPassword ? "text" : "password"}
               id="password"
               autoComplete="current-password"
               value={password}

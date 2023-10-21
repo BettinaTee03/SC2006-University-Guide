@@ -20,7 +20,7 @@ router.get(
 
 /**
  * @route GET /profile
- * @desc Retrieve user profile page
+ * @desc Retrieve user's login status
  * @access Private
  * @middleware ensureAuthenticated
  */

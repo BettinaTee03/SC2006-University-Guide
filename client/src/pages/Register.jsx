@@ -12,6 +12,10 @@ import Container from "@mui/material/Container";
 import AlertSnackbar from "../components/AlertSnackbar";
 import { useNavigate } from "react-router-dom";
 import validator from "validator";
+import Visibility from "@mui/icons-material/Visibility";
+import VisibilityOff from "@mui/icons-material/VisibilityOff";
+import IconButton from "@mui/material/IconButton";
+import InputAdornment from "@mui/material/InputAdornment";
 
 function Copyright(props) {
   return (
@@ -38,11 +42,18 @@ function Register() {
   const [showAlert, setShowAlert] = useState(false);
   const [alertMessage, setAlertMessage] = useState("");
   const navigate = useNavigate();
+  const [showPassword, setShowPassword] = React.useState(false);
   const passwordPattern =
     /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&/,\.])[A-Za-z\d@$!%*?&/,\.]{8,}$/;
 
   const API_BASE_URL =
     import.meta.env.VITE_BASE_URL || "http://localhost:8000/api";
+
+  const handleClickShowPassword = () => setShowPassword((show) => !show);
+
+  const handleMouseDownPassword = (event) => {
+    event.preventDefault();
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -156,11 +167,25 @@ function Register() {
                 <TextField
                   required
                   fullWidth
+                  InputProps={{
+                    endAdornment: (
+                      <InputAdornment position="end">
+                        <IconButton
+                          aria-label="toggle password visibility"
+                          onClick={handleClickShowPassword}
+                          onMouseDown={handleMouseDownPassword}
+                          edge="end"
+                        >
+                          {showPassword ? <VisibilityOff /> : <Visibility />}
+                        </IconButton>
+                      </InputAdornment>
+                    ),
+                  }}
                   name="password"
                   label="Password"
-                  type="password"
+                  type={showPassword ? "text" : "password"}
                   id="password"
-                  autoComplete="new-password"
+                  autoComplete="current-password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                 />
