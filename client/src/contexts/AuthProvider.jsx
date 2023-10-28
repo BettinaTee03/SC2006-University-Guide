@@ -21,6 +21,7 @@ const AuthProvider = ({ children }) => {
           withCredentials: true,
         });
       } catch (error) {
+        console.log("User is not authenticated. This is expected for guests.");
         setIsAuthenticated(false);
         setUser(null);
       }

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
-
 import AspirationForm from "../components/AspirationForm";
 import LoginAlert from "../components/LoginAlert";
 import FavouriteCourseButton from "../components/FavouriteCourseButton";
@@ -11,7 +10,7 @@ import EmploymentChart from "../components/EmploymentChart";
 import Skeleton from "@mui/material/Skeleton";
 import Stack from "@mui/material/Stack";
 import { Box } from "@mui/material";
-import { Typography, Paper, Grid } from "@mui/material";
+import { Grid } from "@mui/material";
 
 function IndividualCourse() {
   const [course, setCourse] = useState(null);

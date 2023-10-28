@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
-
 import LoginAlert from "../components/LoginAlert";
 import FilterCategories from "../components/FilterCategories";
 import EmploymentChart from "../components/EmploymentChart";
