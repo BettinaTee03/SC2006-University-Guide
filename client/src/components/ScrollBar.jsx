@@ -1,20 +1,31 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import LinearProgress from "@mui/material/LinearProgress";
 import Box from "@mui/material/Box";
 
 const ScrollBar = () => {
   const [progress, setProgress] = useState(0);
+  const frameId = useRef(null);
+
+  const updateProgress = () => {
+    const totalHeight = document.body.scrollHeight - window.innerHeight;
+    const scrollPercentage = (window.scrollY / totalHeight) * 100;
+    setProgress(scrollPercentage);
+  };
 
   useEffect(() => {
     const handleScroll = () => {
-      const totalHeight = document.body.scrollHeight - window.innerHeight;
-      const scrollPercentage = (window.scrollY / totalHeight) * 100;
-      setProgress(scrollPercentage);
+      if (frameId.current) {
+        cancelAnimationFrame(frameId.current);
+      }
+      frameId.current = requestAnimationFrame(updateProgress);
     };
 
     window.addEventListener("scroll", handleScroll);
 
     return () => {
+      if (frameId.current) {
+        cancelAnimationFrame(frameId.current);
+      }
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
@@ -35,7 +46,9 @@ const ScrollBar = () => {
         sx={{
           backgroundColor: "transparent",
           "& .MuiLinearProgress-bar": {
-            backgroundColor: "secondary.main",
+            backgroundColor: "rgb(0,0,0)",
+            backgroundImage:
+              "linear-gradient(135deg, rgb(255, 172, 130) 0%, rgb(255, 86, 48) 100%)",
           },
         }}
       />
