@@ -17,6 +17,7 @@ import { CssBaseline } from "@mui/material";
 import AuthProvider from "./contexts/AuthProvider";
 import AuthSuccess from "./components/AuthSuccess";
 import Footer from "./components/Footer";
+import ScrollBar from "./components/ScrollBar";
 
 const theme = createTheme({
   palette: {
@@ -40,6 +41,7 @@ function App() {
       <AuthProvider>
         <Router>
           <Navbar />
+          <ScrollBar />
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
