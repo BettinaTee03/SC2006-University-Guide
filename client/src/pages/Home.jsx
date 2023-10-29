@@ -101,7 +101,7 @@ function Home() {
               textAlign: { xs: "center", lg: "left" },
               marginLeft: { lg: "10.7vw" },
               paddingTop: { xs: "15%", lg: "7%" },
-              fontSize: { xs: "2rem", md: "3.5rem", lg: "4rem" },
+              fontSize: { xs: "2.2rem", md: "3.5rem", lg: "4rem" },
               marginBottom: { xs: 5, lg: 1 },
             }}
           >
@@ -176,7 +176,7 @@ function Home() {
               textAlign: { xs: "center", lg: "left" },
               marginLeft: { lg: "10.7vw" },
               mx: { xs: "4vw" },
-              mt: { xs: 5 },
+              mt: { xs: 8 },
               width: { xs: "90%", lg: "30%" },
             }}
           >
