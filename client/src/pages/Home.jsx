@@ -8,9 +8,6 @@ import AlertSnackbar from "../components/AlertSnackbar";
 import Container from "@mui/material/Container";
 import AuthContext from "../contexts/AuthContext";
 import CourseCard from "../components/CourseCard";
-import ntu_img from "../images/ntu.jpg";
-import smu_img from "../images/smu.jpg";
-import nus_img from "../images/nus.jpg";
 import ntu_logo from "../images/ntu_logo.svg.png";
 import smu_logo from "../images/smu_logo.svg.png";
 import nus_logo from "../images/nus_logo.svg.png";
@@ -19,6 +16,7 @@ import sutd_logo from "../images/sutd_logo.svg.png";
 import suss_logo from "../images/suss_logo.svg.png";
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
+import featuredCourses from "../components/featuredCourses";
 
 function Home() {
   const navigate = useNavigate();
@@ -29,33 +27,6 @@ function Home() {
   const [severity, setSeverity] = useState("success");
   const theme = useTheme();
   const matchesXS = useMediaQuery(theme.breakpoints.only("xs"));
-
-  const featuredCourse1 = {
-    imageUrl: ntu_img,
-    school: "Nanyang Technological University",
-    title: "Accountancy",
-    description:
-      "We have the most established and well-regarded accountancy programmes in Singapore and the region, with a long tradition of training professional accountants for leadership roles as in accounting firms, public and private companies.",
-    faculty: "Nanyang Business School",
-  };
-
-  const featuredCourse2 = {
-    imageUrl: nus_img,
-    school: "National University of Singapore",
-    title: "Accountancy",
-    description:
-      "A full-fledged rigorous and versatile accountancy programme, complemented with a strong business management foundation that grooms students for the profession. Diploma holders may be eligible for up to 20 MCs of exemption that would count towards the Unrestricted Electives.",
-    faculty: "NUS Business School",
-  };
-
-  const featuredCourse3 = {
-    imageUrl: smu_img,
-    school: "Singapore Management University",
-    title: "Accountancy",
-    description:
-      "The programme provides a holistic education that is broad-based with a strong accounting core, covering business, technology, entrepreneurship, leadership skills, communications and social responsibility. All students are guaranteed a Second Major, which they can choose from any School across SMU.",
-    faculty: "School of Accountancy",
-  };
 
   useEffect(() => {
     if (location.state && location.state.showAlert) {
@@ -97,10 +68,9 @@ function Home() {
             component="h1"
             sx={{
               fontWeight: 700,
-              textDecoration: "none",
               textAlign: { xs: "center", lg: "left" },
               marginLeft: { lg: "10.7vw" },
-              paddingTop: { xs: "15%", lg: "7%" },
+              paddingTop: { xs: "15%", lg: "5%" },
               fontSize: { xs: "2.2rem", md: "3.5rem", lg: "4rem" },
               marginBottom: { xs: 5, lg: 1 },
             }}
@@ -110,7 +80,6 @@ function Home() {
           <Typography
             component="h2"
             sx={{
-              textDecoration: "none",
               color: "primary",
               textAlign: { xs: "center", lg: "left" },
               marginLeft: { lg: "10.7vw" },
@@ -127,8 +96,6 @@ function Home() {
             component="p"
             variant="p"
             sx={{
-              fontFamily: "'Roboto Condensed', sans-serif",
-              textDecoration: "none",
               color: "primary",
               textAlign: { xs: "center", lg: "left" },
               marginLeft: { lg: "10.7vw" },
@@ -169,9 +136,8 @@ function Home() {
             component="p"
             variant="p"
             sx={{
-              fontFamily: "'Roboto Condensed', sans-serif",
-              textDecoration: "none",
               color: "main",
+              fontSize: { xs: "16px", lg: "14px" },
               opacity: 0.7,
               textAlign: { xs: "center", lg: "left" },
               marginLeft: { lg: "10.7vw" },
@@ -187,7 +153,7 @@ function Home() {
             justifyContent={{ xs: "center", lg: "flex-start" }}
             columnGap={{ xs: 0, lg: 4 }}
             rowGap={{ xs: 4 }}
-            sx={{ mt: 2, mb: { xs: 2, lg: 4 }, ml: { lg: "10.8vw" } }}
+            sx={{ mt: 2, mb: { xs: 2, lg: 6 }, ml: { lg: "11.3vw" } }}
           >
             {[ntu_logo, nus_logo, sit_logo, smu_logo, sutd_logo, suss_logo].map(
               (logo, idx) => (
@@ -205,7 +171,7 @@ function Home() {
                   <img
                     src={logo}
                     alt="School Logo"
-                    style={{ height: matchesXS ? "25px" : "30px" }}
+                    style={{ height: matchesXS ? "25px" : "35px" }}
                   />
                 </Grid>
               )
@@ -238,16 +204,15 @@ function Home() {
             component="h2"
             sx={{
               fontWeight: 700,
-              textDecoration: "none",
               textAlign: { xs: "center", lg: "left" },
-              paddingTop: { xs: "10%", lg: "5%" },
+              paddingTop: { xs: "10%", lg: "8%" },
               paddingBottom: { lg: "2%" },
-              fontSize: { xs: "2rem", md: "2.5rem", lg: "3.5rem" },
+              fontSize: { xs: "1.5rem", md: "2rem", lg: "3rem" },
               marginBottom: { xs: 5, lg: 1 },
               color: "main",
             }}
           >
-            Compare Courses
+            Compare Courses Across Universities
           </Typography>
         </Box>
         <Grid
@@ -261,15 +226,11 @@ function Home() {
             pb: 5,
           }}
         >
-          <Grid item xs={12} lg={4}>
-            <CourseCard course={featuredCourse1} />
-          </Grid>
-          <Grid item xs={12} lg={4}>
-            <CourseCard course={featuredCourse2} />
-          </Grid>
-          <Grid item xs={12} lg={4}>
-            <CourseCard course={featuredCourse3} />
-          </Grid>
+          {featuredCourses.map((course, idx) => (
+            <Grid item xs={12} lg={4}>
+              <CourseCard course={course} />
+            </Grid>
+          ))}
         </Grid>
         <Box
           sx={{
@@ -277,6 +238,7 @@ function Home() {
             flexDirection: "column",
             justifyContent: { xs: "center", lg: "flex-start" },
             alignItems: { xs: "center", lg: "flex-start" },
+            paddingBottom: { xs: 5, lg: 10 },
           }}
         >
           <Button
@@ -287,8 +249,8 @@ function Home() {
               backgroundColor: "secondary.main",
               color: "#FFFFFF",
               fontSize: "15px",
-              paddingLeft: "16px",
-              paddingRight: "16px",
+              pl: "16px",
+              pr: "16px",
               height: "48px",
               "&:hover": {
                 backgroundColor: "secondary.hover",
