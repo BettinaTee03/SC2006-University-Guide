@@ -49,6 +49,7 @@ const ScrollBar = () => {
             backgroundColor: "rgb(0,0,0)",
             backgroundImage:
               "linear-gradient(135deg, rgb(255, 172, 130) 0%, rgb(255, 86, 48) 100%)",
+            transition: "1.2s ease-out",
           },
         }}
       />

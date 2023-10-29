@@ -1,4 +1,4 @@
-import { Typography, Box, Grid } from "@mui/material";
+import { Typography, Box, Grid, Avatar } from "@mui/material";
 import React, { useState, useEffect, useContext } from "react";
 import universitystudents from "../images/university_students.png";
 import Button from "@mui/material/Button";
@@ -11,6 +11,14 @@ import CourseCard from "../components/CourseCard";
 import ntu_img from "../images/ntu.jpg";
 import smu_img from "../images/smu.jpg";
 import nus_img from "../images/nus.jpg";
+import ntu_logo from "../images/ntu_logo.svg.png";
+import smu_logo from "../images/smu_logo.svg.png";
+import nus_logo from "../images/nus_logo.svg.png";
+import sit_logo from "../images/sit_logo.svg.png";
+import sutd_logo from "../images/sutd_logo.svg.png";
+import suss_logo from "../images/suss_logo.svg.png";
+import { useTheme } from "@mui/material/styles";
+import useMediaQuery from "@mui/material/useMediaQuery";
 
 function Home() {
   const navigate = useNavigate();
@@ -19,6 +27,8 @@ function Home() {
   const [alertMessage, setAlertMessage] = useState("");
   const { isAuthenticated } = useContext(AuthContext);
   const [severity, setSeverity] = useState("success");
+  const theme = useTheme();
+  const matchesXS = useMediaQuery(theme.breakpoints.only("xs"));
 
   const featuredCourse1 = {
     imageUrl: ntu_img,
@@ -91,7 +101,7 @@ function Home() {
               textAlign: { xs: "center", lg: "left" },
               marginLeft: { lg: "10.7vw" },
               paddingTop: { xs: "15%", lg: "7%" },
-              fontSize: { xs: "2rem", md: "2.5rem", lg: "4rem" },
+              fontSize: { xs: "2rem", md: "3.5rem", lg: "4rem" },
               marginBottom: { xs: 5, lg: 1 },
             }}
           >
@@ -108,7 +118,7 @@ function Home() {
               mr: { xs: "4vw" },
               marginBottom: { xs: 2, lg: 2 },
               fontWeight: 700,
-              fontSize: { xs: "1rem", md: "1.2rem" },
+              fontSize: { xs: "1.5rem", md: "1.3rem" },
             }}
           >
             Welcome to Singapore's leading course discovery platform.
@@ -122,8 +132,7 @@ function Home() {
               color: "primary",
               textAlign: { xs: "center", lg: "left" },
               marginLeft: { lg: "10.7vw" },
-              ml: { xs: "4vw" },
-              mr: { xs: "4vw" },
+              mx: { xs: "4vw" },
               marginBottom: { xs: 5 },
               width: { xs: "90%", lg: "30%" },
             }}
@@ -156,11 +165,58 @@ function Home() {
           >
             Get Started.
           </Button>
+          <Typography
+            component="p"
+            variant="p"
+            sx={{
+              fontFamily: "'Roboto Condensed', sans-serif",
+              textDecoration: "none",
+              color: "main",
+              opacity: 0.7,
+              textAlign: { xs: "center", lg: "left" },
+              marginLeft: { lg: "10.7vw" },
+              mx: { xs: "4vw" },
+              mt: { xs: 5 },
+              width: { xs: "90%", lg: "30%" },
+            }}
+          >
+            AVAILABLE FOR
+          </Typography>
+          <Grid
+            container
+            justifyContent={{ xs: "center", lg: "flex-start" }}
+            columnGap={{ xs: 0, lg: 4 }}
+            rowGap={{ xs: 4 }}
+            sx={{ mt: 2, mb: { xs: 2, lg: 4 }, ml: { lg: "10.8vw" } }}
+          >
+            {[ntu_logo, nus_logo, sit_logo, smu_logo, sutd_logo, suss_logo].map(
+              (logo, idx) => (
+                <Grid
+                  item
+                  lg={0.5}
+                  xs={4}
+                  key={idx}
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
+                >
+                  <img
+                    src={logo}
+                    alt="School Logo"
+                    style={{ height: matchesXS ? "25px" : "30px" }}
+                  />
+                </Grid>
+              )
+            )}
+          </Grid>
+
           <Container
             sx={{
               display: {
-                xs: "none", // hidden for xs
-                md: "flex", // hidden for md
+                xs: "none",
+                md: "flex",
               },
               justifyContent: "center",
               alignItems: "center",
