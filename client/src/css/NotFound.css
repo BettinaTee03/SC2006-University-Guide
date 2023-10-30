@@ -1,0 +1,18 @@
+.responsiveImage {
+  width: 100%; /* Make the image take the full width of its container */
+  max-width: 600px; /* Set a maximum width for the image on larger screens */
+}
+
+/* Reduce the size on medium-sized devices */
+@media (max-width: 900px) {
+  .responsiveImage {
+    max-width: 400px;
+  }
+}
+
+/* Reduce the size further on small devices */
+@media (max-width: 600px) {
+  .responsiveImage {
+    max-width: 250px;
+  }
+}
