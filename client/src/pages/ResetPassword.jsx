@@ -22,6 +22,7 @@ function ResetPassword() {
   const [alertMessage, setAlertMessage] = useState("");
   const [severity, setSeverity] = useState("success");
   const [showPassword, setShowPassword] = React.useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [confirmPassword, setConfirmPassword] = useState("");
   const [isValidToken, setIsValidToken] = useState(false);
   const [loading, setLoading] = useState(true);
@@ -63,7 +64,15 @@ function ResetPassword() {
     fetchTokenValidation();
   }, [location]);
 
-  const handleClickShowPassword = () => setShowPassword((show) => !show);
+  const handleClickShowPassword = () => {
+    setShowPassword((prevShowPassword) => !prevShowPassword);
+  };
+
+  const handleClickShowConfirmPassword = () => {
+    setShowConfirmPassword(
+      (prevShowConfirmPassword) => !prevShowConfirmPassword
+    );
+  };
 
   const handleMouseDownPassword = (event) => {
     event.preventDefault();
@@ -202,18 +211,22 @@ function ResetPassword() {
                     <InputAdornment position="end">
                       <IconButton
                         aria-label="toggle password visibility"
-                        onClick={handleClickShowPassword}
+                        onClick={handleClickShowConfirmPassword}
                         onMouseDown={handleMouseDownPassword}
                         edge="end"
                       >
-                        {showPassword ? <VisibilityOff /> : <Visibility />}
+                        {showConfirmPassword ? (
+                          <VisibilityOff />
+                        ) : (
+                          <Visibility />
+                        )}
                       </IconButton>
                     </InputAdornment>
                   ),
                 }}
                 name="confirmPassword"
                 label="Confirm Password"
-                type={showPassword ? "text" : "password"}
+                type={showConfirmPassword ? "text" : "password"}
                 id="confirmPassword"
                 autoComplete="new-password"
                 value={confirmPassword}
