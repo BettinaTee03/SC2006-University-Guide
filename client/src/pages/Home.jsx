@@ -17,6 +17,7 @@ import suss_logo from "../images/suss_logo.svg.png";
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import featuredCourses from "../components/featuredCourses";
+import CareerCard from "../components/CareerCard";
 
 function Home() {
   const navigate = useNavigate();
@@ -35,6 +36,20 @@ function Home() {
       setShowAlert(true);
     }
   }, [location]);
+
+  const demo_career = {
+    careerProspect: "Data Science Developer Career Path",
+    careerPath: [
+      "Data Analyst",
+      "Data Science Engineer",
+      "Data Science Architect",
+    ],
+    skills: [
+      "Proficiency with programming languages like Python or R for data analysis and machine learning",
+      "Experience with working with data processing and ETL tools such as Apache Spark and Hadoop",
+      "Expertise in developing and deploying data-driven models and applications",
+    ],
+  };
 
   return (
     <>
@@ -259,13 +274,92 @@ function Home() {
             }}
             onClick={() => {
               {
-                isAuthenticated ? navigate("/explore") : navigate("/register");
+                isAuthenticated ? navigate("/courses") : navigate("/register");
               }
             }}
           >
             Compare
           </Button>
         </Box>
+
+        <Grid container sx={{ ml: { lg: "10.7vw" }, my: "4%" }}>
+          <Grid
+            item
+            xs={12}
+            lg={3}
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+            }}
+          >
+            <Typography
+              component="h2"
+              sx={{
+                fontWeight: 700,
+                textAlign: { xs: "center", lg: "left" },
+                fontSize: { xs: "1.5rem", md: "2rem", lg: "3rem" },
+                marginBottom: 1,
+                color: "main",
+              }}
+            >
+              Unique Career Insights
+            </Typography>
+            <Typography
+              component="p"
+              sx={{
+                opacity: 0.7,
+                textAlign: { xs: "center", lg: "left" },
+                fontSize: { xs: "14px", md: "14px", lg: "16px" },
+                marginBottom: { xs: 5, lg: 1 },
+                pl: { xs: "8vw", lg: 0 },
+                pr: { xs: "8vw", lg: 0 },
+                color: "main",
+              }}
+            >
+              Unlock Your Potential with Tailored Insights! Dive deep into a
+              world of opportunities tailored uniquely to your chosen course and
+              aspirations. No tedious surveys, no long questionnaires – just
+              clear, actionable insights to propel you forward in your career
+              journey.
+            </Typography>
+
+            <Button
+              variant="contained"
+              endIcon={<LoginIcon />}
+              sx={{
+                backgroundColor: "secondary.main",
+                color: "#FFFFFF",
+                mt: "auto",
+                fontSize: "15px",
+                px: "16px",
+                mb: { xs: "7%", lg: 0 },
+                height: "48px",
+                alignSelf: { xs: "center", lg: "flex-start" },
+                "&:hover": {
+                  backgroundColor: "secondary.hover",
+                  boxShadow: "0 8px 16px 0 rgba(250, 84, 28, 0.24)",
+                },
+              }}
+              onClick={() => {
+                navigate("/register");
+              }}
+            >
+              Register
+            </Button>
+          </Grid>
+          <Grid item xs={0} lg={1.4}></Grid>
+          <Grid
+            item
+            xs={12}
+            lg={5}
+            sx={{
+              pl: { xs: "8vw", lg: 0 },
+              pr: { xs: "8vw", lg: 0 },
+            }}
+          >
+            <CareerCard career={demo_career} />
+          </Grid>
+        </Grid>
       </Box>
     </>
   );
