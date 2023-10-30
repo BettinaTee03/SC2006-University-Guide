@@ -1,6 +1,7 @@
 import express from "express";
 import authController from "../controllers/authController.js";
 import googleAuthController from "../controllers/googleAuthController.js";
+import brevoController from "../controllers/brevoController.js";
 
 const router = express.Router();
 
@@ -33,6 +34,13 @@ router.get("/google", googleAuthController.getLogin);
 router.get("/check-session", googleAuthController.getSession);
 
 /**
+ * @route POST /auth/verify-reset-token/:token
+ * @desc Handle reset password
+ * @access Public
+ */
+router.get("/verify-reset-token/:token", brevoController.verifyResetToken);
+
+/**
  * @route POST /auth/register
  * @desc Handle user registration
  * @access Public
@@ -45,5 +53,19 @@ router.post("/register", authController.postRegister);
  * @access Public
  */
 router.post("/login", authController.postLogin);
+
+/**
+ * @route POST /auth/forget-password
+ * @desc Handle forget password
+ * @access Public
+ */
+router.post("/forget-password", brevoController.sendForgetPassword);
+
+/**
+ * @route POST /auth/reset-password
+ * @desc Handle reset password
+ * @access Public
+ */
+router.post("/reset-password", brevoController.resetPassword);
 
 export default router;

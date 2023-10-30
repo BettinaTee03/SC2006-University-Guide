@@ -57,8 +57,6 @@ function Register() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(password);
-    console.log(passwordPattern.test(password));
     if (!email) {
       setAlertMessage("Email is required.");
       setShowAlert(true);

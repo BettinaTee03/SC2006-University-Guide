@@ -34,7 +34,8 @@ const UserAccount = new Schema({
   username: String,
   password: String,
   googleId: String,
-
+  passwordResetToken: String,
+  passwordResetExpires: Date,
   favourites: [
     {
       type: Schema.Types.ObjectId,
