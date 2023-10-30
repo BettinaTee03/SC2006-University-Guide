@@ -307,7 +307,7 @@ function CourseCompareResult() {
                 fontSize: "15px",
                 paddingLeft: "12px",
                 paddingRight: "12px",
-                height: "48px",
+                height: "40px",
                 marginTop: "20px",
                 width: "100%",
                 "&:hover": {

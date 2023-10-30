@@ -133,7 +133,7 @@ function Home() {
               fontSize: "15px",
               paddingLeft: "16px",
               paddingRight: "16px",
-              height: "48px",
+              height: "40px",
               "&:hover": {
                 backgroundColor: "secondary.hover",
                 boxShadow: "0 8px 16px 0 rgba(250, 84, 28, 0.24)",
@@ -266,7 +266,7 @@ function Home() {
               fontSize: "15px",
               pl: "16px",
               pr: "16px",
-              height: "48px",
+              height: "40px",
               "&:hover": {
                 backgroundColor: "secondary.hover",
                 boxShadow: "0 8px 16px 0 rgba(250, 84, 28, 0.24)",
@@ -333,7 +333,7 @@ function Home() {
                 fontSize: "15px",
                 px: "16px",
                 mb: { xs: "7%", lg: 0 },
-                height: "48px",
+                height: "40px",
                 alignSelf: { xs: "center", lg: "flex-start" },
                 "&:hover": {
                   backgroundColor: "secondary.hover",

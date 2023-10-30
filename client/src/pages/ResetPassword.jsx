@@ -14,6 +14,7 @@ import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import IconButton from "@mui/material/IconButton";
 import InputAdornment from "@mui/material/InputAdornment";
 import NotFound from "./NotFound";
+import CircularProgress from "@mui/material/CircularProgress";
 
 function ResetPassword() {
   const [password, setPassword] = useState("");
@@ -23,6 +24,8 @@ function ResetPassword() {
   const [showPassword, setShowPassword] = React.useState(false);
   const [confirmPassword, setConfirmPassword] = useState("");
   const [isValidToken, setIsValidToken] = useState(false);
+  const [loading, setLoading] = useState(true);
+
   const passwordPattern =
     /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&/,\.])[A-Za-z\d@$!%*?&/,\.]{8,}$/;
 
@@ -33,11 +36,14 @@ function ResetPassword() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const token = location.pathname.split("/").pop();
+    const fetchTokenValidation = async () => {
+      const token = location.pathname.split("/").pop();
 
-    axios
-      .get(`${API_BASE_URL}/auth/verify-reset-token/${token}`)
-      .then((response) => {
+      try {
+        const response = await axios.get(
+          `${API_BASE_URL}/auth/verify-reset-token/${token}`
+        );
+
         if (response.data.isValid) {
           setIsValidToken(true);
         } else {
@@ -45,12 +51,16 @@ function ResetPassword() {
           setSeverity("error");
           setShowAlert(true);
         }
-      })
-      .catch((error) => {
+      } catch (error) {
         setAlertMessage("Server error. Please try again later.");
         setSeverity("error");
         setShowAlert(true);
-      });
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchTokenValidation();
   }, [location]);
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
@@ -115,15 +125,20 @@ function ResetPassword() {
         setOpen={setShowAlert}
         severity={severity}
       />
-      <Box
-        sx={{
-          height: "68px",
-          background:
-            "linear-gradient(90deg,rgb(225, 234, 238) 0%,rgb(245, 245, 245) 30%,rgb(245, 245, 245) 60%,rgb(225, 234, 238) 100%",
-        }}
-      />
-      {isValidToken ? (
+
+      {loading ? (
+        <Box sx={{ display: "flex" }}>
+          <CircularProgress />
+        </Box>
+      ) : isValidToken ? (
         <Container component="main" maxWidth="xs">
+          <Box
+            sx={{
+              height: "68px",
+              background:
+                "linear-gradient(90deg,rgb(225, 234, 238) 0%,rgb(245, 245, 245) 30%,rgb(245, 245, 245) 60%,rgb(225, 234, 238) 100%",
+            }}
+          />
           <Box
             sx={{
               marginTop: 15,
@@ -221,7 +236,11 @@ function ResetPassword() {
           </Box>
         </Container>
       ) : (
-        <NotFound />
+        <NotFound
+          text={
+            "Sorry, we couldn't find the page you're looking for. The password reset link is probably expired."
+          }
+        />
       )}
     </>
   );

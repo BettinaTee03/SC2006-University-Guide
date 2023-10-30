@@ -1,7 +1,8 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect } from "react";
 import AuthContext from "../contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { Box, CircularProgress } from "@mui/material";
 
 function AuthSuccess() {
   const { setIsAuthenticated, setUser } = useContext(AuthContext);
@@ -49,6 +50,12 @@ function AuthSuccess() {
 
     checkSession();
   }, []);
+
+  return (
+    <Box sx={{ display: "flex" }}>
+      <CircularProgress />
+    </Box>
+  );
 }
 
 export default AuthSuccess;

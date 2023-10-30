@@ -100,7 +100,7 @@ function Courses() {
                   backgroundColor: "secondary.main",
                   mt: 2,
                   color: "#FFFFFF",
-                  height: "48px",
+                  height: "40px",
                   fontSize: "1rem",
                   "&:hover": {
                     backgroundColor: "secondary.hover",

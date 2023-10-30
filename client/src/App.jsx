@@ -10,6 +10,7 @@ import Explore from "./pages/Explore";
 import Profile from "./pages/Profile";
 import NotFound from "./pages/NotFound";
 import Statistics from "./pages/Statistics";
+import ForgetPassword from "./pages/ForgetPassword";
 import ResetPassword from "./pages/ResetPassword";
 import CourseCompareResult from "./pages/CourseCompareResult";
 import IndividualCourse from "./pages/IndividualCourse";
@@ -55,10 +56,20 @@ function App() {
             <Route path="/courses/:courseName" element={<IndividualCourse />} />
             <Route path="/statistics" element={<Statistics />} />
             <Route path="/reset-password/:token" element={<ResetPassword />} />
+            <Route path="/forget-password" element={<ForgetPassword />} />
             <Route path="/auth-success" element={<AuthSuccess />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/profile/:id" element={<IndividualProfile />} />
-            <Route path="*" element={<NotFound />} />
+            <Route
+              path="*"
+              element={
+                <NotFound
+                  text={
+                    "Sorry, we couldn't find the page you're looking for. Perhaps you've mistyped the URL? Be sure to check your spelling."
+                  }
+                />
+              }
+            />
           </Routes>
           <Footer />
         </Router>

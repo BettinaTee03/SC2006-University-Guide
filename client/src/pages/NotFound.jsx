@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import error_404 from "../images/error_404.svg";
 import "../css/NotFound.css";
 
-function NotFound() {
+function NotFound({ text }) {
   const navigate = useNavigate();
   return (
     <>
@@ -16,24 +16,34 @@ function NotFound() {
         }}
       />
       <Container
-        maxWidth="sm"
-        style={{
+        maxWidth="xs"
+        sx={{
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
-          marginTop: "3%",
+          marginTop: { xs: "8%", lg: "5%" },
         }}
       >
-        <Typography variant="h4" gutterBottom>
+        <Typography
+          variant="h4"
+          gutterBottom
+          sx={{ fontWeight: 700, fontSize: 32 }}
+        >
           Page Not Found!
         </Typography>
-        <Typography variant="body1" paragraph>
-          Sorry, we couldn't find the page you're looking for.
+        <Typography
+          variant="body1"
+          paragraph
+          sx={{
+            textAlign: "center",
+            color: "rgb(99, 115, 129)",
+            fontSize: "16px",
+          }}
+        >
+          {text}
         </Typography>
-        <Typography variant="body1" paragraph>
-          Perhaps you've mistyped the URL? Be sure to check your spelling.
-        </Typography>
+
         <img
           src={error_404}
           alt="404 illustration"
@@ -42,8 +52,20 @@ function NotFound() {
         />
         <Button
           variant="contained"
-          color="primary"
-          style={{ marginTop: "20px" }}
+          sx={{
+            backgroundColor: "secondary.main",
+            color: "#FFFFFF",
+            mt: "auto",
+            fontSize: "15px",
+            px: "16px",
+            mb: "16px",
+            height: "40px",
+            alignSelf: { xs: "center" },
+            "&:hover": {
+              backgroundColor: "secondary.hover",
+              boxShadow: "0 8px 16px 0 rgba(250, 84, 28, 0.24)",
+            },
+          }}
           onClick={() => navigate("/home")}
         >
           Go To Home
