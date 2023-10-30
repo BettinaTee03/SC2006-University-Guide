@@ -109,7 +109,7 @@ function AspirationForm({ course }) {
           <TextField
             id="outlined-helperText"
             label="Enter your aspirations"
-            helperText="Example: I want to be a software engineer in Silicon Valley."
+            helperText="Example: I want to work as a start-up in Silicon Valley."
             value={aspiration}
             onChange={(e) => setAspiration(e.target.value)}
             sx={{ width: "100%" }}

@@ -242,7 +242,7 @@ function Home() {
           }}
         >
           {featuredCourses.map((course, idx) => (
-            <Grid item xs={12} lg={4}>
+            <Grid item xs={12} lg={4} key={idx}>
               <CourseCard course={course} />
             </Grid>
           ))}
@@ -341,10 +341,14 @@ function Home() {
                 },
               }}
               onClick={() => {
-                navigate("/register");
+                {
+                  isAuthenticated
+                    ? navigate("/explore")
+                    : navigate("/register");
+                }
               }}
             >
-              Register
+              Try it now
             </Button>
           </Grid>
           <Grid item xs={0} lg={1.4}></Grid>

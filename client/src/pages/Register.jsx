@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
@@ -16,6 +16,7 @@ import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import IconButton from "@mui/material/IconButton";
 import InputAdornment from "@mui/material/InputAdornment";
+import AuthContext from "../contexts/AuthContext";
 
 function Copyright(props) {
   return (
@@ -43,11 +44,19 @@ function Register() {
   const [alertMessage, setAlertMessage] = useState("");
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = React.useState(false);
+  const { isAuthenticated } = useContext(AuthContext);
+
   const passwordPattern =
     /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&/,\.])[A-Za-z\d@$!%*?&/,\.]{8,}$/;
 
   const API_BASE_URL =
     import.meta.env.VITE_BASE_URL || "http://localhost:8000/api";
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate("/home");
+    }
+  }, [isAuthenticated, navigate]);
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
 
