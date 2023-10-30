@@ -127,7 +127,15 @@ function ResetPassword() {
       />
 
       {loading ? (
-        <Box sx={{ display: "flex" }}>
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            height: "100vh",
+            color: "secondary.main",
+          }}
+        >
           <CircularProgress />
         </Box>
       ) : isValidToken ? (

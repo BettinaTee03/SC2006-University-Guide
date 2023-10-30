@@ -52,7 +52,15 @@ function AuthSuccess() {
   }, []);
 
   return (
-    <Box sx={{ display: "flex" }}>
+    <Box
+      sx={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        height: "100vh",
+        color: "secondary.main",
+      }}
+    >
       <CircularProgress />
     </Box>
   );
