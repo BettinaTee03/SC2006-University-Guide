@@ -37,35 +37,28 @@ const parser = StructuredOutputParser.fromNamesAndDescriptions({
   careerProspect1:
     "First unique career prospect that aligns closely with the user's aspiration and course.",
   careerPath1:
-    "Detailed career progression path from a junior role to a senior role for the suggested career.",
+    "Detailed career progression path from a junior role to an intermediate role to a senior role the suggested career .",
   skill1_1:
-    "List the first essential skill required for each job role in the career path. Be highly specific, considering the nature of the job and the tools or platforms predominantly used in that role.",
-  skill1_2:
-    "List the second essential skill required for each job role in the career path. Be highly specific, considering the nature of the job and the tools or platforms predominantly used in that role.",
-  skill1_3:
-    "List the third essential skill required for each job role in the career path. Be highly specific, considering the nature of the job and the tools or platforms predominantly used in that role.",
-
+    "List the first essential skill. Be highly specific and succint, considering the nature of the job and the tools or platforms predominantly used in that role.",
+  skill1_2: "List the second essential skill.",
+  skill1_3: "List the third essential skill.",
   careerProspect2:
     "Second unique career prospect that aligns with the user's aspiration and course.",
   careerPath2:
-    "Detailed career progression path from a junior role to a senior role for the suggested career.",
+    "Detailed career progression path from a junior role to an intermediate role to a senior role for the suggested career.",
   skill2_1:
-    "List the first essential skill required for each job role in the career path. Be highly specific, considering the nature of the job and the tools or platforms predominantly used in that role.",
-  skill2_2:
-    "List the second essential skill required for each job role in the career path. Be highly specific, considering the nature of the job and the tools or platforms predominantly used in that role.",
-  skills2_3:
-    "List the third essential skill required for each job role in the career path. Be highly specific, considering the nature of the job and the tools or platforms predominantly used in that role.",
+    "List the first essential skill. Be highly specific and succint, considering the nature of the job and the tools or platforms predominantly used in that role.",
+  skill2_2: "List the second essential skill.",
+  skill2_3: "List the third essential skill.",
 
   careerProspect3:
     "Third unique career prospect tailored to the user's aspiration and course.",
   careerPath3:
-    "Detailed career progression path from a junior role to a senior role for the suggested career.",
+    "Detailed career progression path from a junior role to an intermediate role to a senior role for the suggested career that aren't the same job.",
   skill3_1:
-    "List the first essential skill required for each job role in the career path. Be highly specific, considering the nature of the job and the tools or platforms predominantly used in that role.",
-  skill3_2:
-    "List the second essential skill required for each job role in the career path. Be highly specific, considering the nature of the job and the tools or platforms predominantly used in that role.",
-  skill3_3:
-    "List the third essential skill required for each job role in the career path. Be highly specific, considering the nature of the job and the tools or platforms predominantly used in that role.",
+    "List the first essential skill. Be highly specific and succint, considering the nature of the job and the tools or platforms predominantly used in that role.",
+  skill3_2: "List the second essential skill.",
+  skill3_3: "List the third essential skill.",
 });
 
 /**
@@ -84,13 +77,11 @@ const prompt = new PromptTemplate({
 
     For each career prospect, provide:
     - The name of the career.
-    - A progression path from a junior role to a senior role.
-    - The top 3 essential skills required for each role in the career path, emphasizing the specific tools, platforms, or methodologies crucial for the role.
+    - A progression showcasing diverse roles, starting from an entry-level position, advancing to a mid-level position, and culminating in a high-level position, where each role is distinct from the other. Mention the job name only. Use -> as seperator.
+    - The top 3 essential skills required for each role in the career path, emphasizing the specific tools, platforms, or methodologies crucial for the role. Please give detailed descriptions of the skills.
     
     Ensure that the suggested careers truly cater to the user's aspirations.
 
-
-  
     Remove any '\n' or '\t' in your response.
     {format_instructions}
 
@@ -111,13 +102,13 @@ export default { parser, prompt };
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#CourseModel">CourseModel</a></li><li><a href="global.html#EmploymentModel">EmploymentModel</a></li><li><a href="global.html#IntakeModel">IntakeModel</a></li><li><a href="global.html#UserModel">UserModel</a></li><li><a href="global.html#ensureAuthenticated">ensureAuthenticated</a></li><li><a href="global.html#formatInstructions">formatInstructions</a></li><li><a href="global.html#getAspiration">getAspiration</a></li><li><a href="global.html#getCourse">getCourse</a></li><li><a href="global.html#getIntake">getIntake</a></li><li><a href="global.html#getLogin">getLogin</a></li><li><a href="global.html#getRedirect">getRedirect</a></li><li><a href="global.html#getRegister">getRegister</a></li><li><a href="global.html#getSearch">getSearch</a></li><li><a href="global.html#getSession">getSession</a></li><li><a href="global.html#llm">llm</a></li><li><a href="global.html#logOut">logOut</a></li><li><a href="global.html#parser">parser</a></li><li><a href="global.html#postLogin">postLogin</a></li><li><a href="global.html#postRegister">postRegister</a></li><li><a href="global.html#prompt">prompt</a></li><li><a href="global.html#searchCourses">searchCourses</a></li><li><a href="global.html#sessionConfig">sessionConfig</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#CourseModel">CourseModel</a></li><li><a href="global.html#EmploymentModel">EmploymentModel</a></li><li><a href="global.html#IntakeModel">IntakeModel</a></li><li><a href="global.html#UserModel">UserModel</a></li><li><a href="global.html#checkLogin">checkLogin</a></li><li><a href="global.html#ensureAuthenticated">ensureAuthenticated</a></li><li><a href="global.html#formatInstructions">formatInstructions</a></li><li><a href="global.html#getAllCourses">getAllCourses</a></li><li><a href="global.html#getAspiration">getAspiration</a></li><li><a href="global.html#getCourse">getCourse</a></li><li><a href="global.html#getIntake">getIntake</a></li><li><a href="global.html#getLogin">getLogin</a></li><li><a href="global.html#getRedirect">getRedirect</a></li><li><a href="global.html#getSearch">getSearch</a></li><li><a href="global.html#getSession">getSession</a></li><li><a href="global.html#getUserFavourites">getUserFavourites</a></li><li><a href="global.html#getUserProfile">getUserProfile</a></li><li><a href="global.html#llm">llm</a></li><li><a href="global.html#logOut">logOut</a></li><li><a href="global.html#maxTokens">maxTokens</a></li><li><a href="global.html#modelName">modelName</a></li><li><a href="global.html#openAIApiKey">openAIApiKey</a></li><li><a href="global.html#parser">parser</a></li><li><a href="global.html#postCompareCourses">postCompareCourses</a></li><li><a href="global.html#postLogin">postLogin</a></li><li><a href="global.html#postRegister">postRegister</a></li><li><a href="global.html#prompt">prompt</a></li><li><a href="global.html#resetPassword">resetPassword</a></li><li><a href="global.html#searchCourses">searchCourses</a></li><li><a href="global.html#sendForgetPassword">sendForgetPassword</a></li><li><a href="global.html#sessionConfig">sessionConfig</a></li><li><a href="global.html#temperature">temperature</a></li><li><a href="global.html#updateUserFavourites">updateUserFavourites</a></li><li><a href="global.html#updateUserParticulars">updateUserParticulars</a></li><li><a href="global.html#verifyResetToken">verifyResetToken</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Thu Oct 12 2023 15:00:14 GMT+0800 (GMT+08:00)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Mon Oct 30 2023 21:54:22 GMT+0800 (GMT+08:00)
 </footer>
 
 <script> prettyPrint(); </script>

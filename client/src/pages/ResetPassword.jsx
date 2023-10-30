@@ -108,7 +108,7 @@ function ResetPassword() {
           state: {
             showAlert: true,
             message:
-              "Password reset successful! Please log in with your new password.",
+              "Password reset successful!. Please login with your new password.",
             severity: "success",
           },
         });
