@@ -14,7 +14,7 @@ async function sendForgetPassword(req, res) {
   const email = req.body.email;
 
   if (!email) {
-    return res.status(400).json({ message: "Missing email field." });
+    return res.status(400).json({ error: "Missing email field." });
   }
 
   const user = await UserModel.findOne({
@@ -25,7 +25,7 @@ async function sendForgetPassword(req, res) {
   if (!user) {
     return res
       .status(400)
-      .json({ message: "User not found or user registered via Google OAuth." });
+      .json({ error: "User not found or user registered via Google OAuth." });
   }
 
   const resetToken = uuidv4();
@@ -58,7 +58,6 @@ async function sendForgetPassword(req, res) {
       .json({ message: "A link to reset password has been sent your email." });
   } catch (error) {
     res.status(500).json({
-      message: "Failed to send email. Please try again.",
       error: error.message,
     });
   }

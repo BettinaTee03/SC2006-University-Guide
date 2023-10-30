@@ -20,16 +20,29 @@ function ForgetPassword() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const response = await axios.post(`${API_BASE_URL}/auth/forget-password`, {
-      email: email,
-    });
-    if (response.status === 200) {
-      setAlertMessage(response.data.message);
-      setSeverity("success");
-      setShowAlert(true);
-      setEmail("");
-    } else {
-      setAlertMessage(response.data.message);
+    try {
+      const response = await axios.post(
+        `${API_BASE_URL}/auth/forget-password`,
+        {
+          email: email,
+        }
+      );
+      if (response.status === 200) {
+        setAlertMessage(response.data.message);
+        setSeverity("success");
+        setShowAlert(true);
+        setEmail("");
+      } else if (response.status === 400) {
+        setAlertMessage(response.data.error);
+        setSeverity("error");
+        setShowAlert(true);
+      }
+    } catch (error) {
+      if (error.response) {
+        setAlertMessage(error.response.data.error);
+      } else {
+        setAlertMessage("Something went wrong. Please try again.");
+      }
       setSeverity("error");
       setShowAlert(true);
     }
