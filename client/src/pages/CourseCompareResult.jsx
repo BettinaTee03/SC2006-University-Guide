@@ -213,32 +213,32 @@ function CourseCompareResult() {
             )}
             {course["percentage_less_equal_70_UAS"] && (
               <p className="details">
-                Less than 70 UAS: {course["percentage_less_equal_70_UAS"]}
+                Less than 70 UAS: {course["percentage_less_equal_70_UAS"]}%
               </p>
             )}
             {course["percentage_70.01_to_80_UAS"] && (
               <p className="details">
-                70.01 to 80 UAS: {course["percentage_70.01_to_80_UAS"]}
+                70.01 to 80 UAS: {course["percentage_70.01_to_80_UAS"]}%
               </p>
             )}
             {course["percentage_80.01_to_90_UAS"] && (
               <p className="details">
-                80.01 to 90 UAS: {course["percentage_80.01_to_90_UAS"]}
+                80.01 to 90 UAS: {course["percentage_80.01_to_90_UAS"]}%
               </p>
             )}
             {course["percentage_less_3.2_GPA"] && (
               <p className="details">
-                Less than 3.2 GPA: {course["percentage_less_3.2_GPA"]}
+                Less than 3.2 GPA: {course["percentage_less_3.2_GPA"]}%
               </p>
             )}
             {course["percentage_3.2_3.6_GPA"] && (
               <p className="details">
-                3.2 to 3.6 GPA: {course["percentage_3.2_3.6_GPA"]}
+                3.2 to 3.6 GPA: {course["percentage_3.2_3.6_GPA"]}%
               </p>
             )}
             {course["percentage_3.6_4.0_GPA"] && (
               <p className="details">
-                3.6 to 4.0 GPA: {course["percentage_3.6_4.0_GPA"]}
+                3.6 to 4.0 GPA: {course["percentage_3.6_4.0_GPA"]}%
               </p>
             )}
             {course["percentage_less_60_UAS"] && (
@@ -248,7 +248,7 @@ function CourseCompareResult() {
             )}
             {course["percentage_60_to_90_UAS"] && (
               <p className="details">
-                60 to 90 UAS: {course["percentage_60_to_90_UAS"]}
+                60 to 90 UAS: {course["percentage_60_to_90_UAS"]}%
               </p>
             )}
             {course["percentage_less_3_GPA"] && (
@@ -258,7 +258,7 @@ function CourseCompareResult() {
             )}
             {course["percentage_at_least_3_GPA"] && (
               <p className="details">
-                At least 3 GPA: {course["percentage_at_least_3_GPA"]}
+                At least 3 GPA: {course["percentage_at_least_3_GPA"]}%
               </p>
             )}
             {course["remarks"] && (

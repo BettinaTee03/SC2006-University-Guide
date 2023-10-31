@@ -141,34 +141,34 @@ function IndividualCourse() {
               <p>Polytechnic GPA: {course["polytechnic_GPAs"]}</p>
             )}
             {course["percentage_less_equal_70_UAS"] && (
-              <p>Less than 70 UAS: {course["percentage_less_equal_70_UAS"]}</p>
+              <p>Less than 70 UAS: {course["percentage_less_equal_70_UAS"]}%</p>
             )}
             {course["percentage_70.01_to_80_UAS"] && (
-              <p>70.01 to 80 UAS: {course["percentage_70.01_to_80_UAS"]}</p>
+              <p>70.01 to 80 UAS: {course["percentage_70.01_to_80_UAS"]}%</p>
             )}
             {course["percentage_80.01_to_90_UAS"] && (
-              <p>80.01 to 90 UAS: {course["percentage_80.01_to_90_UAS"]}</p>
+              <p>80.01 to 90 UAS: {course["percentage_80.01_to_90_UAS"]}%</p>
             )}
             {course["percentage_less_3.2_GPA"] && (
-              <p>Less than 3.2 GPA: {course["percentage_less_3.2_GPA"]}</p>
+              <p>Less than 3.2 GPA: {course["percentage_less_3.2_GPA"]}%</p>
             )}
             {course["percentage_3.2_3.6_GPA"] && (
-              <p>3.2 to 3.6 GPA: {course["percentage_3.2_3.6_GPA"]}</p>
+              <p>3.2 to 3.6 GPA: {course["percentage_3.2_3.6_GPA"]}%</p>
             )}
             {course["percentage_3.6_4.0_GPA"] && (
-              <p>3.6 to 4.0 GPA: {course["percentage_3.6_4.0_GPA"]}</p>
+              <p>3.6 to 4.0 GPA: {course["percentage_3.6_4.0_GPA"]}%</p>
             )}
             {course["percentage_less_60_UAS"] && (
               <p>Less than 60 UAS: {course["percentage_less_60_UAS"]}</p>
             )}
             {course["percentage_60_to_90_UAS"] && (
-              <p>60 to 90 UAS: {course["percentage_60_to_90_UAS"]}</p>
+              <p>60 to 90 UAS: {course["percentage_60_to_90_UAS"]}%</p>
             )}
             {course["percentage_less_3_GPA"] && (
               <p>Less than 3 GPA: {course["percentage_less_3_GPA"]}</p>
             )}
             {course["percentage_at_least_3_GPA"] && (
-              <p>At least 3 GPA: {course["percentage_at_least_3_GPA"]}</p>
+              <p>At least 3 GPA: {course["percentage_at_least_3_GPA"]}%</p>
             )}
             {course["remarks"] && (
               <p>Remarks: {course["remarks"]}</p>
