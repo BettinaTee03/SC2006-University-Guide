@@ -63,7 +63,9 @@ async function sendForgetPassword(req, res) {
     await apiInstance.sendTransacEmail(forgetPasswordEmail);
     res
       .status(200)
-      .json({ message: "A link to reset password has been sent your email." });
+      .json({
+        message: "A link to reset password has been sent to your email.",
+      });
   } catch (error) {
     res.status(500).json({
       error: error.message,

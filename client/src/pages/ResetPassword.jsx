@@ -29,6 +29,11 @@ function ResetPassword() {
 
   const passwordPattern =
     /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&/,\.])[A-Za-z\d@$!%*?&/,\.]{8,}$/;
+  const hasEightCharacters = password.length >= 8;
+  const hasUpperCase = /[A-Z]/.test(password);
+  const hasLowerCase = /[a-z]/.test(password);
+  const hasDigit = /\d/.test(password);
+  const hasSpecialCharacter = /[@$!%*?&/,\.]/.test(password);
 
   const API_BASE_URL =
     import.meta.env.VITE_BASE_URL || "http://localhost:8000/api";
@@ -232,6 +237,38 @@ function ResetPassword() {
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
               />
+              <Typography
+                variant="p"
+                sx={{
+                  color: hasEightCharacters ? "green" : "main",
+                  fontSize: "14px",
+                  opacity: hasEightCharacters ? 1 : 0.85,
+                }}
+              >
+                • At least 8 characters
+                <br />
+              </Typography>
+              <Typography
+                variant="p"
+                sx={{
+                  color: hasUpperCase && hasLowerCase ? "green" : "main",
+                  fontSize: "14px",
+                  opacity: hasUpperCase && hasLowerCase ? 1 : 0.85,
+                }}
+              >
+                • At least 1 uppercase and 1 lowercase letter
+                <br />
+              </Typography>
+              <Typography
+                variant="p"
+                sx={{
+                  color: hasDigit && hasSpecialCharacter ? "green" : "main",
+                  fontSize: "14px",
+                  opacity: hasDigit && hasSpecialCharacter ? 1 : 0.85,
+                }}
+              >
+                • At least 1 numeric digit and 1 special character
+              </Typography>
               <Button
                 type="submit"
                 fullWidth
