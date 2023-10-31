@@ -5,7 +5,7 @@ import sit_img from "../images/sit.jpg";
 import suss_img from "../images/suss.jpg";
 import sutd_img from "../images/sutd.jpg";
 
-const featuredCourses = [
+const FeaturedCourses = [
   {
     imageUrl: smu_img,
     school: "Singapore Management University",
@@ -56,4 +56,4 @@ const featuredCourses = [
   },
 ];
 
-export default featuredCourses;
+export default FeaturedCourses;

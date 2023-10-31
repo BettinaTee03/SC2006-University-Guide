@@ -1,4 +1,4 @@
-import { Typography, Box, Grid, Avatar } from "@mui/material";
+import { Typography, Box, Grid } from "@mui/material";
 import React, { useState, useEffect, useContext } from "react";
 import universitystudents from "../images/university_students.png";
 import Button from "@mui/material/Button";
@@ -16,7 +16,7 @@ import sutd_logo from "../images/sutd_logo.svg.png";
 import suss_logo from "../images/suss_logo.svg.png";
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
-import featuredCourses from "../components/featuredCourses";
+import FeaturedCourses from "../components/FeaturedCourses.jsx";
 import CareerCard from "../components/CareerCard";
 
 function Home() {
@@ -38,7 +38,7 @@ function Home() {
   }, [location]);
 
   const demo_career = {
-    careerProspect: "Data Science Developer Career Path",
+    careerProspect: "Data Science Developer",
     careerPath: [
       "Data Analyst",
       "Data Science Engineer",
@@ -241,7 +241,7 @@ function Home() {
             pb: 5,
           }}
         >
-          {featuredCourses.map((course, idx) => (
+          {FeaturedCourses.map((course, idx) => (
             <Grid item xs={12} lg={4} key={idx}>
               <CourseCard course={course} />
             </Grid>
