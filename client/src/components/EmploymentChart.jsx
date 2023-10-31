@@ -1,6 +1,7 @@
 import React from "react";
 import ReactApexChart from "react-apexcharts";
 import useMediaQuery from "@mui/material/useMediaQuery";
+import { Typography } from "@mui/material";
 
 function EmploymentChart({ courseName, employmentData }) {
   const isSM = useMediaQuery((theme) => theme.breakpoints.down("sm"));
@@ -146,12 +147,35 @@ function EmploymentChart({ courseName, employmentData }) {
   return (
     <>
       {employmentData.length > 0 ? (
-        <ReactApexChart
-          options={options}
-          series={series}
-          height={chartHeight}
-          width={chartWidth}
-        />
+        <>
+          <ReactApexChart
+            options={options}
+            series={series}
+            height={chartHeight}
+            width={chartWidth}
+          />
+          <Typography
+            variant="p"
+            sx={{
+              fontSize: 12,
+              opacity: 0.7,
+              color: "main",
+              display: "block",
+              textAlign: "center",
+              mx: "9vw",
+            }}
+          >
+            Contains information from{" "}
+            <a href="https://beta.data.gov.sg/collections/415/view">
+              Graduate Employment Survey
+            </a>{" "}
+            accessed on October 2023 which is made available under the terms of
+            the{" "}
+            <a href="https://beta.data.gov.sg/open-data-license">
+              Singapore Open Data Licence version 1.0
+            </a>
+          </Typography>
+        </>
       ) : (
         <p>No employment data is available.</p>
       )}

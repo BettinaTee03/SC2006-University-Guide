@@ -109,7 +109,7 @@ function AspirationForm({ course }) {
           <TextField
             id="outlined-helperText"
             label="Enter your aspirations"
-            helperText="Example: I want to work as a start-up in Silicon Valley."
+            helperText="Example: I want to work in a start-up in Silicon Valley."
             value={aspiration}
             onChange={(e) => setAspiration(e.target.value)}
             sx={{ width: "100%" }}
@@ -166,7 +166,7 @@ function AspirationForm({ course }) {
             </Grid>
           </Grid>
         </>
-      ) : careers.length > 0 ? ( // Check if the careers array has data
+      ) : careers.length > 0 ? (
         <>
           <Grid container>
             <Grid item xs={12} marginLeft={2} marginTop={6} marginBottom={2}>
