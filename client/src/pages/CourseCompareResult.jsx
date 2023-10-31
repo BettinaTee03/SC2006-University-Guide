@@ -202,26 +202,28 @@ function CourseCompareResult() {
               </p>
             )}
             {course["rank_points"] && (
-              <p className="details">Rank Points: {course.rank_points}</p>
+              <p className="details">
+                Rank Points: {course["rank_points"]}
+              </p>
             )}
             {course["polytechnic_GPAs"] && (
               <p className="details">
-                Polytechnic GPA: {course.polytechnic_GPAs}
+                Polytechnic GPA: {course["polytechnic_GPAs"]}
               </p>
             )}
-            {course.percentage_less_equal_70_UAS && (
+            {course["percentage_less_equal_70_UAS"] && (
               <p className="details">
-                Less than 70%: {course.percentage_less_equal_70_UAS}
+                Less than 70 UAS: {course["percentage_less_equal_70_UAS"]}
               </p>
             )}
             {course["percentage_70.01_to_80_UAS"] && (
               <p className="details">
-                70.01% to 80%: {course["percentage_70.01_to_80_UAS"]}
+                70.01 to 80 UAS: {course["percentage_70.01_to_80_UAS"]}
               </p>
             )}
             {course["percentage_80.01_to_90_UAS"] && (
               <p className="details">
-                80.01% to 90%: {course["percentage_80.01_to_90_UAS"]}
+                80.01 to 90 UAS: {course["percentage_80.01_to_90_UAS"]}
               </p>
             )}
             {course["percentage_less_3.2_GPA"] && (
@@ -239,7 +241,31 @@ function CourseCompareResult() {
                 3.6 to 4.0 GPA: {course["percentage_3.6_4.0_GPA"]}
               </p>
             )}
-            {course.remarks && <p>Remarks: {course.remarks}</p>}
+            {course["percentage_less_60_UAS"] && (
+              <p className="details">
+                Less than 60 UAS: {course["percentage_less_60_UAS"]}
+              </p>
+            )}
+            {course["percentage_60_to_90_UAS"] && (
+              <p className="details">
+                60 to 90 UAS: {course["percentage_60_to_90_UAS"]}
+              </p>
+            )}
+            {course["percentage_less_3_GPA"] && (
+              <p className="details">
+                Less than 3 GPA: {course["percentage_less_3_GPA"]}
+              </p>
+            )}
+            {course["percentage_at_least_3_GPA"] && (
+              <p className="details">
+                At least 3 GPA: {course["percentage_at_least_3_GPA"]}
+              </p>
+            )}
+            {course["remarks"] && (
+              <p className="details">
+                Remarks: {course["remarks"]}
+              </p>
+            )}
           </Grid>
         );
       } else if (categoryId === "7") {
