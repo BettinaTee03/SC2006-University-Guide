@@ -186,8 +186,8 @@ function AspirationForm({ course }) {
               index={currentSlide}
               onChange={(newIndex) => setCurrentSlide(newIndex)}
               autoPlay={false}
-              navButtonsAlwaysVisible={true}
-              cycleNavigation={false}
+              navButtonsAlwaysVisible={false}
+              cycleNavigation={true}
               indicators={true}
               indicatorIconButtonProps={{
                 style: {

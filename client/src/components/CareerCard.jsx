@@ -17,10 +17,10 @@ import {
 
 export const CareerCard = ({ career }) => {
   const theme = useTheme();
-  const isScreenSmall = useMediaQuery(theme.breakpoints.down("sm"));
+  const isScreenSmall = useMediaQuery(theme.breakpoints.down("xl"));
 
   const StyledBreadcrumbs = styled(Breadcrumbs)`
-    ${(props) => props.theme.breakpoints.down("sm")} {
+    ${(props) => props.theme.breakpoints.down("xl")} {
       .MuiBreadcrumbs-ol {
         display: block;
       }
@@ -45,7 +45,7 @@ export const CareerCard = ({ career }) => {
             component="div"
             sx={{
               fontWeight: 700,
-              fontSize: { xs: "1.8rem", lg: "2rem" },
+              fontSize: { xs: "1.5rem", lg: "2rem" },
             }}
           >
             {career.careerProspect} Career Path
@@ -69,15 +69,14 @@ export const CareerCard = ({ career }) => {
                 <Link key={idx}>
                   <Tooltip
                     title={`Skill required: ${career.skills[idx]}`}
-                    placement={isScreenSmall ? "bottom" : "bottom"}
+                    placement={"bottom"}
                     enterTouchDelay={isScreenSmall ? 0 : 700}
                     leaveTouchDelay={2000}
                   >
                     <Typography
                       variant="body1"
                       sx={{
-                        width: { xs: "100%", lg: "100%" },
-                        fontSize: { xs: "1.2rem", lg: "1.5rem" },
+                        fontSize: { xs: "1.2rem", lg: "1.2rem" },
                         textAlign: "center",
                         variant: "body1",
                         fontWeight: 700,
