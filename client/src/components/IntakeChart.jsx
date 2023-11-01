@@ -266,7 +266,7 @@ function IntakeChart() {
             filterOptions={(options, state) => {
               const inputValue = state.inputValue.toLowerCase();
               if (inputValue === "") {
-                return [];
+                return options;
               }
               const filteredOptions = options
                 .filter((option) =>
