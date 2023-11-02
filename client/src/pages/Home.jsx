@@ -26,11 +26,11 @@ function Home() {
   const transformations = `q_auto,h_${matchesXS ? "50" : "70"}`;
   const logos = [
     { id: "cbxhvqwypjpnej0ocvwq", alt: "NTU Logo" },
-    { id: "c5bfbis8iy1ri5uxpjaa", alt: "NTU Logo" },
-    { id: "xmnjdkey2tnvirwcrnxc", alt: "NTU Logo" },
-    { id: "jpcugxt8diwgc6q4bdgy", alt: "NTU Logo" },
-    { id: "akxlzlil5m8while5qfg", alt: "NTU Logo" },
-    { id: "qsrozw7pioghhckvdt62", alt: "NTU Logo" },
+    { id: "c5bfbis8iy1ri5uxpjaa", alt: "NUS Logo" },
+    { id: "xmnjdkey2tnvirwcrnxc", alt: "SIT Logo" },
+    { id: "jpcugxt8diwgc6q4bdgy", alt: "SMU Logo" },
+    { id: "akxlzlil5m8while5qfg", alt: "SUTD Logo" },
+    { id: "qsrozw7pioghhckvdt62", alt: "SUSS Logo" },
   ];
 
   useEffect(() => {
