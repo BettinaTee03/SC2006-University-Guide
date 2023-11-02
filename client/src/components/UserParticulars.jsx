@@ -294,7 +294,7 @@ export const UserParticulars = ({ userParticulars, userName, userId }) => {
             <Button
               type="submit"
               variant="contained"
-              sx={{ mt: 2, mb: 1 }}
+              sx={{ mt: 2, mb: 1, width: "145px" }}
               onClick={submitHandler}
               color="secondary"
             >
@@ -303,7 +303,7 @@ export const UserParticulars = ({ userParticulars, userName, userId }) => {
             <Button
               type="submit"
               variant="contained"
-              sx={{ mt: 0, mb: 1 }}
+              sx={{ mt: 0, mb: 1, width: "145px" }}
               onClick={onCancelClick}
               color="secondary"
             >
@@ -433,7 +433,7 @@ export const UserParticulars = ({ userParticulars, userName, userId }) => {
             </Box>
             <Button
               variant="contained"
-              sx={{ mt: 2, mb: 1 }}
+              sx={{ mt: 2, mb: 1, width: "145px" }}
               onClick={onEditClick}
               color="secondary"
             >
@@ -610,7 +610,7 @@ export const UserParticulars = ({ userParticulars, userName, userId }) => {
             <Button
               type="submit"
               variant="contained"
-              sx={{ mt: 2, mb: 1 }}
+              sx={{ mt: 2, mb: 1, width: "145px" }}
               onClick={submitHandler}
               color="secondary"
             >
@@ -619,7 +619,7 @@ export const UserParticulars = ({ userParticulars, userName, userId }) => {
             <Button
               type="submit"
               variant="contained"
-              sx={{ mt: 0, mb: 1 }}
+              sx={{ mt: 0, mb: 1, width: "145px" }}
               onClick={onCancelClick}
               color="secondary"
             >
@@ -777,7 +777,7 @@ export const UserParticulars = ({ userParticulars, userName, userId }) => {
             </Box>
             <Button
               variant="contained"
-              sx={{ mt: 2, mb: 1 }}
+              sx={{ mt: 2, mb: 1, width: "145px" }}
               onClick={onEditClick}
               color="secondary"
             >

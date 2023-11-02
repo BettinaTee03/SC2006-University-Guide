@@ -218,6 +218,7 @@ export const Favourites = ({ userFavourites, userId }) => {
                           "&:hover": {
                             backgroundColor: "#ebebeb",
                           },
+                          width: "145px",
                         }}
                       >
                         {courseName}
@@ -254,7 +255,7 @@ export const Favourites = ({ userFavourites, userId }) => {
               <Button
                 type="submit"
                 variant="contained"
-                sx={{ mt: 3, mb: 2 }}
+                sx={{ mt: 3, mb: 1, width: "145px" }}
                 onClick={onSubmitClick}
                 color="secondary"
               >
@@ -263,7 +264,7 @@ export const Favourites = ({ userFavourites, userId }) => {
               <Button
                 type="submit"
                 variant="contained"
-                sx={{ mt: 0, mb: 2 }}
+                sx={{ mt: 0, mb: 1, width: "145px" }}
                 onClick={onCancelClick}
                 color="secondary"
               >
@@ -275,8 +276,9 @@ export const Favourites = ({ userFavourites, userId }) => {
               variant="contained"
               sx={{
                 mt: 3,
-                mb: 2,
+                mb: 1,
                 color: "white",
+                width: "145px",
               }}
               onClick={onEditClick}
               color="secondary"
