@@ -119,7 +119,6 @@ async function getUserFavourites(req, res) {
 async function updateUserFavourites(req, res) {
   try {
     const courseNames = req.body.filteredCourses;
-    console.log(courseNames);
     // Convert course names to course IDs
     const courseIds = await Promise.all(
       courseNames.map(async (courseName) => {
