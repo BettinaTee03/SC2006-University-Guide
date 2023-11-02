@@ -156,8 +156,8 @@ export const Favourites = ({ userFavourites, userId }) => {
           <Grid
             container
             spacing={2}
-            width="95%"
             height="65%"
+            width="95%"
             sx={{
               mt: 1,
               border: "1px solid black",
@@ -168,6 +168,7 @@ export const Favourites = ({ userFavourites, userId }) => {
               flexWrap: "wrap",
               backgroundColor: "white",
               overflowY: "auto",
+              mx: 0,
               paddingRight: "15px",
             }}
           >
