@@ -23,7 +23,7 @@ function Home() {
   const matchesXS = useMediaQuery(theme.breakpoints.only("xs"));
 
   const cloudinaryBaseUrl = "https://res.cloudinary.com/dm9pja9iv/image/upload";
-  const transformations = `f_auto,q_auto,dpr_auto,h_${matchesXS ? "25" : "35"}`;
+  const transformations = `f_auto,q_auto,dpr_auto,h_${matchesXS ? "50" : "70"}`;
   const logos = [
     { id: "cbxhvqwypjpnej0ocvwq", alt: "NTU Logo" },
     { id: "c5bfbis8iy1ri5uxpjaa", alt: "NTU Logo" },
@@ -190,6 +190,7 @@ function Home() {
                   src={`${cloudinaryBaseUrl}/${transformations}/v1/sguniguide/${logo.id}`}
                   alt={logo.alt}
                   loading="lazy"
+                  heigh={matchesXS ? "25" : "35"}
                 />
               </Grid>
             ))}
