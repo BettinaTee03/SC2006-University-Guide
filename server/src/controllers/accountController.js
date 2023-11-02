@@ -8,7 +8,6 @@ import { CourseModel } from "../models/courseModel.js";
  * @param {Object} req - Express request object.
  * @param {Object} res - Express response object.
  */
-
 async function checkLogin(req, res) {
   if (req.isAuthenticated()) {
     res.status(200).json({
@@ -27,7 +26,6 @@ async function checkLogin(req, res) {
  * @param {Object} req - Express request object.
  * @param {Object} res - Express response object.
  */
-
 async function getUserProfile(req, res) {
   try {
     const userId = decodeURIComponent(req.params.id);
@@ -118,7 +116,6 @@ async function getUserFavourites(req, res) {
  * @param {Object} req - Express request object.
  * @param {Object} res - Express response object.
  */
-
 async function updateUserFavourites(req, res) {
   try {
     const courseNames = req.body.filteredCourses;

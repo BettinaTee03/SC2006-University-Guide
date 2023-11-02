@@ -27,30 +27,7 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>import UserModel from "../models/userModel.js";
-
-/**
- * Handles GET request to retrieve user favourites
- * @function
- * @async
- * @param {Object} req - Express request object.
- * @param {Object} res - Express response object.
- */
-async function getUserFavourites(req, res) {
-  try {
-    const userId = decodeURIComponent(req.params.id);
-    const user = await UserModel.findOne({ _id: userId });
-
-    if (!user) {
-      return res.status(400).send("User does not exist.");
-    }
-
-    const userFavourites = user.favourites;
-
-    res.json(userFavourites);
-  } catch (error) {
-    res.status(500).send("Error retrieving user favourites.");
-  }
-}
+import { CourseModel } from "../models/courseModel.js";
 
 /**
  * Handles GET request to check if user is logged in and return user username
@@ -59,7 +36,6 @@ async function getUserFavourites(req, res) {
  * @param {Object} req - Express request object.
  * @param {Object} res - Express response object.
  */
-
 async function checkLogin(req, res) {
   if (req.isAuthenticated()) {
     res.status(200).json({
@@ -78,7 +54,6 @@ async function checkLogin(req, res) {
  * @param {Object} req - Express request object.
  * @param {Object} res - Express response object.
  */
-
 async function getUserProfile(req, res) {
   try {
     const userId = decodeURIComponent(req.params.id);
@@ -138,24 +113,60 @@ async function updateUserParticulars(req, res) {
 }
 
 /**
+ * Handles GET request to retrieve user favourites
+ * @function
+ * @async
+ * @param {Object} req - Express request object.
+ * @param {Object} res - Express response object.
+ */
+async function getUserFavourites(req, res) {
+  try {
+    const courseIds = Object.values(req.query);
+    const favouriteCourses = [];
+
+    await Promise.all(
+      courseIds.map(async (courseId) => {
+        const course = await CourseModel.findOne({ _id: courseId });
+        favouriteCourses.push(course.course_name);
+      })
+    );
+
+    res.status(200).json(favouriteCourses);
+  } catch (error) {
+    res.status(500).send("Error retrieving user favourites.");
+  }
+}
+
+/**
  * Handles PUT request to update user favourites
  * @function
  * @async
  * @param {Object} req - Express request object.
  * @param {Object} res - Express response object.
  */
-
 async function updateUserFavourites(req, res) {
   try {
-    const userFavourites = req.body.favourites;
+    const courseNames = req.body.filteredCourses;
+    console.log(courseNames);
+    // Convert course names to course IDs
+    const courseIds = await Promise.all(
+      courseNames.map(async (courseName) => {
+        const course = await CourseModel.findOne({ course_name: courseName });
+        if (course) {
+          return course._id;
+        } else {
+          return null; // Handle cases where a course with the given name is not found
+        }
+      })
+    );
+    // Retrieve the user
     const userId = decodeURIComponent(req.params.id);
     const user = await UserModel.findOne({ _id: userId });
 
-    if (!user) {
-      return res.status(400).send("User does not exist.");
-    }
+    // Update the user's favorite courses
+    user.favourites = courseIds.filter((id) => id !== null); // Filter out null values
 
-    user.favourites = userFavourites;
+    // Save the user's changes to the database
     const updatedUser = await user.save();
 
     res.status(200).json({
@@ -168,10 +179,10 @@ async function updateUserFavourites(req, res) {
 }
 
 export default {
-  getUserFavourites,
   checkLogin,
   getUserProfile,
   updateUserParticulars,
+  getUserFavourites,
   updateUserFavourites,
 };
 </code></pre>
@@ -184,13 +195,13 @@ export default {
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#CourseModel">CourseModel</a></li><li><a href="global.html#EmploymentModel">EmploymentModel</a></li><li><a href="global.html#IntakeModel">IntakeModel</a></li><li><a href="global.html#UserModel">UserModel</a></li><li><a href="global.html#checkLogin">checkLogin</a></li><li><a href="global.html#ensureAuthenticated">ensureAuthenticated</a></li><li><a href="global.html#formatInstructions">formatInstructions</a></li><li><a href="global.html#getAllCourses">getAllCourses</a></li><li><a href="global.html#getAspiration">getAspiration</a></li><li><a href="global.html#getCourse">getCourse</a></li><li><a href="global.html#getIntake">getIntake</a></li><li><a href="global.html#getLogin">getLogin</a></li><li><a href="global.html#getRedirect">getRedirect</a></li><li><a href="global.html#getSearch">getSearch</a></li><li><a href="global.html#getSession">getSession</a></li><li><a href="global.html#getUserFavourites">getUserFavourites</a></li><li><a href="global.html#getUserProfile">getUserProfile</a></li><li><a href="global.html#llm">llm</a></li><li><a href="global.html#logOut">logOut</a></li><li><a href="global.html#maxTokens">maxTokens</a></li><li><a href="global.html#modelName">modelName</a></li><li><a href="global.html#openAIApiKey">openAIApiKey</a></li><li><a href="global.html#parser">parser</a></li><li><a href="global.html#postCompareCourses">postCompareCourses</a></li><li><a href="global.html#postLogin">postLogin</a></li><li><a href="global.html#postRegister">postRegister</a></li><li><a href="global.html#prompt">prompt</a></li><li><a href="global.html#resetPassword">resetPassword</a></li><li><a href="global.html#searchCourses">searchCourses</a></li><li><a href="global.html#sendForgetPassword">sendForgetPassword</a></li><li><a href="global.html#sessionConfig">sessionConfig</a></li><li><a href="global.html#temperature">temperature</a></li><li><a href="global.html#updateUserFavourites">updateUserFavourites</a></li><li><a href="global.html#updateUserParticulars">updateUserParticulars</a></li><li><a href="global.html#verifyResetToken">verifyResetToken</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#CourseModel">CourseModel</a></li><li><a href="global.html#EmploymentModel">EmploymentModel</a></li><li><a href="global.html#IntakeModel">IntakeModel</a></li><li><a href="global.html#UserModel">UserModel</a></li><li><a href="global.html#addToFavourites">addToFavourites</a></li><li><a href="global.html#checkLogin">checkLogin</a></li><li><a href="global.html#ensureAuthenticated">ensureAuthenticated</a></li><li><a href="global.html#formatInstructions">formatInstructions</a></li><li><a href="global.html#getAllCourses">getAllCourses</a></li><li><a href="global.html#getAspiration">getAspiration</a></li><li><a href="global.html#getCourse">getCourse</a></li><li><a href="global.html#getIntake">getIntake</a></li><li><a href="global.html#getLogin">getLogin</a></li><li><a href="global.html#getRedirect">getRedirect</a></li><li><a href="global.html#getSearch">getSearch</a></li><li><a href="global.html#getSession">getSession</a></li><li><a href="global.html#getUserFavourites">getUserFavourites</a></li><li><a href="global.html#getUserProfile">getUserProfile</a></li><li><a href="global.html#llm">llm</a></li><li><a href="global.html#logOut">logOut</a></li><li><a href="global.html#maxTokens">maxTokens</a></li><li><a href="global.html#modelName">modelName</a></li><li><a href="global.html#openAIApiKey">openAIApiKey</a></li><li><a href="global.html#parser">parser</a></li><li><a href="global.html#postCompareCourses">postCompareCourses</a></li><li><a href="global.html#postLogin">postLogin</a></li><li><a href="global.html#postRegister">postRegister</a></li><li><a href="global.html#prompt">prompt</a></li><li><a href="global.html#removeFromFavourites">removeFromFavourites</a></li><li><a href="global.html#resetPassword">resetPassword</a></li><li><a href="global.html#searchCourses">searchCourses</a></li><li><a href="global.html#sendForgetPassword">sendForgetPassword</a></li><li><a href="global.html#sessionConfig">sessionConfig</a></li><li><a href="global.html#temperature">temperature</a></li><li><a href="global.html#updateUserFavourites">updateUserFavourites</a></li><li><a href="global.html#updateUserParticulars">updateUserParticulars</a></li><li><a href="global.html#verifyResetToken">verifyResetToken</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Mon Oct 30 2023 21:54:22 GMT+0800 (GMT+08:00)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Thu Nov 02 2023 17:55:12 GMT+0800 (GMT+08:00)
 </footer>
 
 <script> prettyPrint(); </script>

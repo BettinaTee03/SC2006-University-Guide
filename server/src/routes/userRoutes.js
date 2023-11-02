@@ -11,7 +11,6 @@ router.use(express.json()); // Middleware to parse JSON request bodies
  * @access Private
  * @middleware ensureAuthenticated
  */
-
 router.get(
   "/:username/favourites",
   ensureAuthenticated,
@@ -52,7 +51,6 @@ router.put(
  * @access Private
  * @middleware ensureAuthenticated
  */
-
 router.put(
   "/:id/favourites/submit",
   ensureAuthenticated,
