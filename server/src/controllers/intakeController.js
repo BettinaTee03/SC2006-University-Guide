@@ -18,7 +18,7 @@ async function getIntake(req, res) {
         .status(400)
         .send("Intake data does not exist for the selected course.");
     }
-    res.json(intakes);
+    res.status(200).json(intakes);
   } catch (error) {
     res.status(500).send("Error retrieving intake data.");
   }

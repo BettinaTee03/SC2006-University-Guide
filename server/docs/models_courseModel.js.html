@@ -1,52 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="utf-8">
+  <head>
+    <meta charset="utf-8" />
     <title>JSDoc: Source: models/courseModel.js</title>
 
-    <script src="scripts/prettify/prettify.js"> </script>
-    <script src="scripts/prettify/lang-css.js"> </script>
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
     <!--[if lt IE 9]>
       <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
-    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
-    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
-</head>
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="styles/prettify-tomorrow.css"
+    />
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css" />
+  </head>
 
-<body>
+  <body>
+    <div id="main">
+      <h1 class="page-title">Source: models/courseModel.js</h1>
 
-<div id="main">
-
-    <h1 class="page-title">Source: models/courseModel.js</h1>
-
-    
-
-
-
-    
-    <section>
+      <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import mongoose from "mongoose";
+          <pre
+            class="prettyprint source linenums"
+          ><code>import mongoose from "mongoose";
 
 const Schema = mongoose.Schema;
 
 /**
- * @typedef CourseInfo
- * @type {object}
- * @property {string} course_name - The name of the course.
- * @property {string} description - A description of the course.
- * @property {string} school_name - The name of the school offering the course.
- * @property {string} college_name - The name of the college offering the course.
- * @property {string} course_type - The type of the course (e.g., "full-time", "part-time").
- * @property {string} course_duration - The duration of the course.
+ * @typedef Course
+ * @property {mongoose.Types.ObjectId} _id - The unique identifier of the course.
+ * @property {number} year - The year of the course intake. Describes the academic year when the course was available.
+ * @property {string} university - The institution or university offering the course.
+ * @property {string} school - The specific school or faculty within the university that offers the course.
+ * @property {string} course_name - The official name or title of the course.
+ * @property {string} description - A brief, detailed description or summary about the course, its scope, and its objectives.
+ * @property {string} course_duration - The total duration of the course usually represented in years or semesters.
+ * @property {string} 3H2_1H1_10percentile - Entry grade profile for the course at the 10th percentile for 'A' level students.
+ * @property {number} rank_points - The cut-off rank points needed for course entry for 'A' level students.
+ * @property {number} polytechnic_GPAs - The cut-off GPA needed for course entry for polytechnic diploma holders.
+ * @property {number} employment_rate_overall - Represents the overall percentage of recent graduates that gained employment after completing the course.
+ * @property {number} employment_rate_ft_perm - Represents the percentage of recent graduates that gained full-time permanent employment after completing the course.
+ * @property {number} basic_monthly_mean - The average basic monthly salary earned by graduates from this course.
+ * @property {number} basic_monthly_median - The median basic monthly salary earned by graduates from this course.
+ * @property {number} gross_monthly_mean - The average gross monthly salary, including additional earnings, earned by graduates from this course.
+ * @property {number} gross_monthly_median - The median gross monthly salary earned by graduates from this course.
+ * @property {number} gross_mthly_25_percentile - The 25th percentile gross monthly salary earned by graduates from this course.
+ * @property {number} gross_mthly_75_percentile - The 75th percentile gross monthly salary earned by graduates from this course.
+ * @property {Array&lt;number|null>} percentage_* - Various percentage values indicating different grade or GPA distributions.
+ * @property {string} remarks - Any additional or noteworthy information or comments about the course.
  */
 const CourseInfo = new Schema({
   course_name: { type: String, required: true },
-  description: { type: String, required: true },
+  description: { type: String },
   school_name: { type: String, required: true },
   college_name: { type: String, required: true },
-  course_type: { type: String, required: true },
-  course_duration: { type: String, required: true },
+  course_type: { type: String },
+  course_duration: { type: String },
+  "3H2_1H1_10percentile": { type: String },
+  rank_points: { type: Number },
+  polytechnic_GPAs: { type: Number },
+  percentage_less_equal_70_UAS: { type: Number },
+  "percentage_70.01_to_80_UAS": { type: Number },
+  "percentage_80.01_to_90_UAS": { type: Number },
+  "percentage_less_3.2_GPA": { type: Number },
+  "percentage_3.2_3.6_GPA": { type: Number },
+  "percentage_3.6_4.0_GPA": { type: Number },
+  employment_stats: [
+    {
+      year: { type: Number },
+      employment_rate_overall: { type: Number },
+      employment_rate_ft_perm: { type: Number },
+      basic_monthly_mean: { type: Number },
+      basic_monthly_median: { type: Number },
+      gross_monthly_mean: { type: Number },
+      gross_monthly_median: { type: Number },
+      gross_mthly_25_percentile: { type: Number },
+      gross_mthly_75_percentile: { type: Number },
+    },
+  ],
 });
 
 /**
@@ -71,6 +105,7 @@ async function searchCourses(query) {
         autocomplete: {
           query: query,
           path: "course_name",
+          tokenOrder: "sequential",
         },
       },
     },
@@ -93,24 +128,68 @@ async function searchCourses(query) {
 export { CourseModel, searchCourses };
 </code></pre>
         </article>
-    </section>
+      </section>
+    </div>
 
+    <nav>
+      <h2><a href="index.html">Home</a></h2>
+      <h3>Global</h3>
+      <ul>
+        <li><a href="global.html#CourseModel">CourseModel</a></li>
+        <li><a href="global.html#EmploymentModel">EmploymentModel</a></li>
+        <li><a href="global.html#IntakeModel">IntakeModel</a></li>
+        <li><a href="global.html#UserModel">UserModel</a></li>
+        <li><a href="global.html#checkLogin">checkLogin</a></li>
+        <li>
+          <a href="global.html#ensureAuthenticated">ensureAuthenticated</a>
+        </li>
+        <li><a href="global.html#formatInstructions">formatInstructions</a></li>
+        <li><a href="global.html#getAllCourses">getAllCourses</a></li>
+        <li><a href="global.html#getAspiration">getAspiration</a></li>
+        <li><a href="global.html#getCourse">getCourse</a></li>
+        <li><a href="global.html#getIntake">getIntake</a></li>
+        <li><a href="global.html#getLogin">getLogin</a></li>
+        <li><a href="global.html#getRedirect">getRedirect</a></li>
+        <li><a href="global.html#getSearch">getSearch</a></li>
+        <li><a href="global.html#getSession">getSession</a></li>
+        <li><a href="global.html#getUserFavourites">getUserFavourites</a></li>
+        <li><a href="global.html#getUserProfile">getUserProfile</a></li>
+        <li><a href="global.html#llm">llm</a></li>
+        <li><a href="global.html#logOut">logOut</a></li>
+        <li><a href="global.html#maxTokens">maxTokens</a></li>
+        <li><a href="global.html#modelName">modelName</a></li>
+        <li><a href="global.html#openAIApiKey">openAIApiKey</a></li>
+        <li><a href="global.html#parser">parser</a></li>
+        <li><a href="global.html#postCompareCourses">postCompareCourses</a></li>
+        <li><a href="global.html#postLogin">postLogin</a></li>
+        <li><a href="global.html#postRegister">postRegister</a></li>
+        <li><a href="global.html#prompt">prompt</a></li>
+        <li><a href="global.html#resetPassword">resetPassword</a></li>
+        <li><a href="global.html#searchCourses">searchCourses</a></li>
+        <li><a href="global.html#sendForgetPassword">sendForgetPassword</a></li>
+        <li><a href="global.html#sessionConfig">sessionConfig</a></li>
+        <li><a href="global.html#temperature">temperature</a></li>
+        <li>
+          <a href="global.html#updateUserFavourites">updateUserFavourites</a>
+        </li>
+        <li>
+          <a href="global.html#updateUserParticulars">updateUserParticulars</a>
+        </li>
+        <li><a href="global.html#verifyResetToken">verifyResetToken</a></li>
+      </ul>
+    </nav>
 
+    <br class="clear" />
 
+    <footer>
+      Documentation generated by
+      <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Mon Oct 30
+      2023 21:54:22 GMT+0800 (GMT+08:00)
+    </footer>
 
-</div>
-
-<nav>
-    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#CourseModel">CourseModel</a></li><li><a href="global.html#EmploymentModel">EmploymentModel</a></li><li><a href="global.html#IntakeModel">IntakeModel</a></li><li><a href="global.html#UserModel">UserModel</a></li><li><a href="global.html#ensureAuthenticated">ensureAuthenticated</a></li><li><a href="global.html#formatInstructions">formatInstructions</a></li><li><a href="global.html#getAspiration">getAspiration</a></li><li><a href="global.html#getCourse">getCourse</a></li><li><a href="global.html#getEmployment">getEmployment</a></li><li><a href="global.html#getIntake">getIntake</a></li><li><a href="global.html#getLogin">getLogin</a></li><li><a href="global.html#getRedirect">getRedirect</a></li><li><a href="global.html#getRegister">getRegister</a></li><li><a href="global.html#getSearch">getSearch</a></li><li><a href="global.html#parser">parser</a></li><li><a href="global.html#postLogin">postLogin</a></li><li><a href="global.html#postRegister">postRegister</a></li><li><a href="global.html#prompt">prompt</a></li><li><a href="global.html#searchCourses">searchCourses</a></li></ul>
-</nav>
-
-<br class="clear">
-
-<footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Sat Oct 07 2023 16:39:22 GMT+0800 (GMT+08:00)
-</footer>
-
-<script> prettyPrint(); </script>
-<script src="scripts/linenumber.js"> </script>
-</body>
+    <script>
+      prettyPrint();
+    </script>
+    <script src="scripts/linenumber.js"></script>
+  </body>
 </html>

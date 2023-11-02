@@ -2,5 +2,11 @@ body,
 html {
   margin: 0;
   padding: 0;
-  font-family: "Roboto Condensed", sans-serif;
+  background: linear-gradient(
+    90deg,
+    rgb(225, 234, 238) 0%,
+    rgb(245, 245, 245) 30%,
+    rgb(245, 245, 245) 60%,
+    rgb(225, 234, 238) 100%
+  );
 }

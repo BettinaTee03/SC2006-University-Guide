@@ -1,4 +1,8 @@
 import passport from "passport";
+import { config } from "dotenv"; // Importing dotenv for environment variable configuration
+config(); // Configuring dotenv
+
+const BASE_URL = process.env.BASE_URL || "http://localhost:5173";
 
 /**
  * Initiates the Google OAuth2 authentication process.
@@ -8,7 +12,11 @@ import passport from "passport";
  * @param {function} next - Express next middleware function.
  */
 function getLogin(req, res, next) {
-  passport.authenticate("google", { scope: ["profile"] })(req, res, next);
+  passport.authenticate("google", { scope: ["profile", "email"] })(
+    req,
+    res,
+    next
+  );
 }
 
 /**
@@ -22,9 +30,24 @@ function getLogin(req, res, next) {
  */
 function getRedirect(req, res, next) {
   passport.authenticate("google", {
-    failureRedirect: "http://localhost:5173/login", // React app's login page
-    successRedirect: "http://localhost:5173/courses", // React app's dashboard or home page
+    failureRedirect: `${BASE_URL}/login`, // React app's login page
+    successRedirect: `${BASE_URL}/auth-success`, // React app's dashboard or home page
   })(req, res, next);
 }
 
-export default { getLogin, getRedirect };
+/**
+ * Checks if the user is authenticated.
+ * @function
+ * @param {Object} req - Express request object.
+ * @param {Object} res - Express response object.
+ */
+function getSession(req, res) {
+  if (req.isAuthenticated()) {
+    const name = req.user.particulars.firstName;
+    res.status(200).json({ isAuthenticated: true, username: name });
+  } else {
+    res.status(200).json({ isAuthenticated: false });
+  }
+}
+
+export default { getLogin, getRedirect, getSession };

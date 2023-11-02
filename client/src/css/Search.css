@@ -1,0 +1,98 @@
+.custom-label .MuiInputLabel-root {
+  font-weight: 900;
+  padding-right: 10px;
+}
+
+.search-link {
+  text-decoration: none;
+  color: #212b36;
+  font-weight: 800;
+  display: block;
+  padding: 10px;
+  margin: 0px;
+  transition: background-color 0.2s;
+  cursor: pointer;
+}
+
+.search-link:hover {
+  background-color: rgba(99, 115, 129, 0.3);
+}
+
+.explore-search-link {
+  text-decoration: none;
+  color: #212b36;
+  font-weight: 800;
+  display: block;
+  padding: 0px;
+  margin: 0px;
+  transition: background-color 0.2s;
+  cursor: pointer;
+}
+
+.search-link-selected {
+  text-decoration: none;
+  color: #212b36;
+  font-weight: 800;
+  display: block;
+  padding: 10px;
+  margin: 0px;
+  transition: background-color 0.2s;
+}
+
+.custom-header {
+  font-weight: 900;
+  color: #212b36;
+}
+
+.all-link {
+  text-decoration: none;
+  color: #212b36;
+  font-weight: 800;
+  display: block;
+  padding: 15px;
+  margin: 0px;
+  transition: background-color 0.2s;
+  font-size: large;
+  cursor: pointer;
+}
+
+.all-link:hover {
+  background-color: rgba(99, 115, 129, 0.3);
+}
+
+.all-link-selected {
+  text-decoration: none;
+  color: #212b36;
+  font-weight: 800;
+  display: block;
+  padding: 15px;
+  margin: 0px;
+  font-size: large;
+}
+
+.custom-pagination {
+  & .MuiPaginationItem-root {
+    color: #212b36;
+    font-weight: 700;
+    margin: 2px;
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1), -1px -1px 2px rgba(0, 0, 0, 0.1);
+  }
+
+  & .MuiPaginationItem-ellipsis {
+    box-shadow: none;
+  }
+
+  & .Mui-selected {
+    background-color: #f6f6f6;
+  }
+
+  & .Mui-selected:hover {
+    background-color: rgba(99, 115, 129, 0.3);
+  }
+}
+
+.selected {
+  background-color: rgba(99, 115, 129, 0.45);
+  cursor: not-allowed;
+  color: #515559;
+}

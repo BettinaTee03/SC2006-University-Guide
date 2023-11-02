@@ -4,7 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon --watch \"src/**\" --ext \"js,json\" --exec \"node src/index.js\""
+    "dev": "nodemon --watch \"src/**\" --ext \"js,json\" --exec \"node src/index.js\"",
+    "start": "node index.js"
+  },
+  "engines": {
+    "node": "20.8.0"
   },
   "type": "module",
   "keywords": [],
@@ -25,6 +29,8 @@
     "nodemon": "^3.0.1",
     "passport": "^0.6.0",
     "passport-google-oauth20": "^2.0.0",
-    "passport-local-mongoose": "^8.0.0"
+    "passport-local-mongoose": "^8.0.0",
+    "sib-api-v3-sdk": "^8.5.0",
+    "uuid": "^9.0.1"
   }
 }

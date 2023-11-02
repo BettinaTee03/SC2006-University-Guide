@@ -1,0 +1,45 @@
+.detailsRow-container {
+  padding-left: 10px;
+  padding-right: 10px;
+  color: #212b36;
+  font-size: large;
+  font-family: "Roboto Condensed", sans-serif;
+}
+
+.detailsRow-container + .detailsRow-container {
+  border-left: 1px solid rgba(99, 115, 129, 0.5);
+}
+
+.detailsColumn-container {
+  padding-left: 10px;
+  padding-right: 10px;
+  color: #212b36;
+  font-size: large;
+  font-family: "Roboto Condensed", sans-serif;
+}
+
+.detailsColumn-container + .detailsColumn-container {
+  margin-top: 5px;
+  padding-top: 10px;
+  border-top: 1px solid rgba(99, 115, 129, 0.5);
+}
+
+.details-heading {
+  color: #212b36;
+  border-bottom: 1px solid rgba(99, 115, 129, 1);
+  padding: 5px;
+  margin-bottom: 10px;
+}
+
+.coursename-heading {
+  margin-top: 0px;
+  margin-bottom: -15px;
+}
+
+.details {
+  margin-bottom: 0px;
+}
+
+.details + .details {
+  margin-top: 5px;
+}

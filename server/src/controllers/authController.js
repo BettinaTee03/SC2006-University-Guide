@@ -2,39 +2,19 @@ import UserModel from "../models/userModel.js";
 import passport from "passport";
 
 /**
- * Handles GET request for the login page.
- * @function
- * @param {Object} req - Express request object.
- * @param {Object} res - Express response object.
- */
-function getLogin(req, res) {
-  res.json({ message: "Login page" });
-}
-
-/**
- * Handles GET request for the registration page.
- * @function
- * @param {Object} req - Express request object.
- * @param {Object} res - Express response object.
- */
-function getRegister(req, res) {
-  res.json({ message: "Register page" });
-}
-
-/**
  * Handles GET request for user logout.
  * @function
  * @param {Object} req - Express request object.
  * @param {Object} res - Express response object.
  */
-function logOut(req, res) {
+async function logOut(req, res) {
   if (req.isAuthenticated()) {
     req.session.destroy((err) => {
       if (err) {
         return res.status(500).json({ error: "Failed to destroy session" });
       }
       res.clearCookie("connect.sid");
-      res.json({ message: "Logged out successfully" });
+      res.status(200).json({ message: "Logged out successfully" });
     });
   } else {
     // If the user is not authenticated, respond accordingly
@@ -52,7 +32,12 @@ function logOut(req, res) {
 async function postRegister(req, res) {
   try {
     const newUser = await UserModel.register(
-      { username: req.body.username },
+      {
+        username: req.body.username,
+        particulars: {
+          email: req.body.email,
+        },
+      },
       req.body.password
     );
     res.status(201).json({ success: true, user: newUser });
@@ -86,4 +71,4 @@ function postLogin(req, res, next) {
   })(req, res, next);
 }
 
-export default { getLogin, getRegister, logOut, postRegister, postLogin };
+export default { logOut, postRegister, postLogin };

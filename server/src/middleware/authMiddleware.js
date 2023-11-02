@@ -9,6 +9,7 @@
  * @param {function} next - Express next middleware function.
  */
 function ensureAuthenticated(req, res, next) {
+  console.log(req);
   if (req.isAuthenticated()) {
     return next();
   } else {

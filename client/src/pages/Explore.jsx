@@ -1,35 +1,49 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import React from "react";
 import Search from "../components/Search";
+import Grid from "@mui/material/Grid";
+import { Box } from "@mui/material";
+import { Link } from "react-router-dom";
 
 function Explore() {
-  const [message, setMessage] = useState("");
-
-  useEffect(() => {
-    const fetchMessage = async () => {
-      // implement /explore page
-      try {
-        const response = await axios.get("http://localhost:8000/");
-        setMessage(response.data.message);
-      } catch (error) {
-        console.error("Error fetching explore page", error);
-      }
-    };
-
-    fetchMessage();
-  }, []);
+  const renderLinkContent = (option) => {
+    return (
+      <Link
+        to={`/courses/${option.course_name}`}
+        className="explore-search-link"
+      >
+        {option.course_name}
+      </Link>
+    );
+  };
 
   return (
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        marginTop: "50px",
-      }}
-    >
-      {<Search />}
-    </div>
+    <>
+      <Box
+        sx={{
+          height: "68px",
+          background:
+            "linear-gradient(90deg,rgb(225, 234, 238) 0%,rgb(245, 245, 245) 30%,rgb(245, 245, 245) 60%,rgb(225, 234, 238) 100%",
+        }}
+      />
+      <Grid
+        container
+        rowSpacing={2}
+        sx={{
+          width: "auto",
+          mt: 2,
+          ml: { xs: "7vw", sm: "5vw", md: "11vw" },
+          mr: { xs: "5vw", sm: "5vw", md: "11vw" },
+        }}
+      >
+        {
+          <Search
+            pageTitle="All Courses"
+            renderOptionContent={renderLinkContent}
+            selectedCourses={[]}
+          />
+        }
+      </Grid>
+    </>
   );
 }
 

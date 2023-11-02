@@ -1,8 +1,11 @@
 import React from "react";
 import ReactApexChart from "react-apexcharts";
-import { Container, Grid } from "@mui/material";
+import useMediaQuery from "@mui/material/useMediaQuery";
+import { Typography } from "@mui/material";
 
 function EmploymentChart({ courseName, employmentData }) {
+  const isSM = useMediaQuery((theme) => theme.breakpoints.down("sm"));
+
   const years = employmentData.map((item) => item.year);
   const basicSalaries = employmentData.map((item) =>
     parseFloat(item.basic_monthly_mean)
@@ -48,6 +51,11 @@ function EmploymentChart({ courseName, employmentData }) {
     xaxis: {
       type: "category",
       categories: years,
+      labels: {
+        style: {
+          fontSize: isSM ? "10px" : "16px",
+        },
+      },
     },
     yaxis: [
       {
@@ -67,6 +75,8 @@ function EmploymentChart({ courseName, employmentData }) {
       },
       {
         opposite: true,
+        min: 0,
+        max: 100,
         seriesName: "Employment Rate",
         axisTicks: {
           show: true,
@@ -77,6 +87,9 @@ function EmploymentChart({ courseName, employmentData }) {
         labels: {
           formatter: function (val) {
             return val + "%";
+          },
+          style: {
+            fontSize: isSM ? "8px" : "16px",
           },
         },
         title: {
@@ -92,9 +105,7 @@ function EmploymentChart({ courseName, employmentData }) {
           const seriesName = w.config.series[seriesIndex].name;
           if (seriesName === "Basic Salary") {
             const medianValue = basicSalariesMedian[dataPointIndex];
-            return (
-              "Mean: $" + value.toFixed(2) + "<br>" + "Median: $" + medianValue
-            );
+            return "Mean: $" + value + "<br>" + "Median: $" + medianValue;
           } else if (seriesName === "Gross Salary") {
             const medianValue = grossSalariesMedian[dataPointIndex];
             return "Mean: $" + value + "<br>" + "Median: $" + medianValue;
@@ -124,19 +135,50 @@ function EmploymentChart({ courseName, employmentData }) {
     },
   ];
 
+  const chartHeight =
+    window.innerWidth * 0.8 > window.innerHeight
+      ? window.innerHeight * 0.8
+      : window.innerWidth * 0.7;
+  const chartWidth =
+    window.innerWidth * 0.8 > window.innerHeight
+      ? window.innerHeight * 0.85
+      : window.innerWidth * 0.85;
+
   return (
     <>
-      <Container maxWidth="lg">
-        <Grid container spacing={3}>
-          <Grid item xs={12} md={6} lg={8}>
-            {employmentData.length > 0 ? (
-              <ReactApexChart options={options} series={series} />
-            ) : (
-              <p>No employment data is available.</p>
-            )}
-          </Grid>
-        </Grid>
-      </Container>
+      {employmentData.length > 0 ? (
+        <>
+          <ReactApexChart
+            options={options}
+            series={series}
+            height={chartHeight}
+            width={chartWidth}
+          />
+          <Typography
+            variant="p"
+            sx={{
+              fontSize: 12,
+              opacity: 0.7,
+              color: "main",
+              display: "block",
+              textAlign: "center",
+              mx: "9vw",
+            }}
+          >
+            Contains information from{" "}
+            <a href="https://beta.data.gov.sg/collections/415/view">
+              Graduate Employment Survey
+            </a>{" "}
+            accessed on October 2023 which is made available under the terms of
+            the{" "}
+            <a href="https://beta.data.gov.sg/open-data-license">
+              Singapore Open Data Licence version 1.0
+            </a>
+          </Typography>
+        </>
+      ) : (
+        <p>No employment data is available.</p>
+      )}
     </>
   );
 }

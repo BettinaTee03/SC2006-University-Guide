@@ -1,0 +1,11 @@
+{
+  "scripts": {
+    "postinstall": "npm install --prefix ./server && npm install --prefix ./client && npm run build --prefix ./client",
+    "start": "node server/src/index.js"
+  },
+  "dependencies": {
+    "react-material-ui-carousel": "^3.4.2",
+    "sib-api-v3-sdk": "^8.5.0",
+    "validator": "^13.11.0"
+  }
+}

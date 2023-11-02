@@ -1,29 +1,59 @@
-import EditParticulars, {
-  UserParticulars,
-} from "../components/UserParticulars";
-import { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import Axios from "axios";
+import LoginAlert from "../components/LoginAlert";
+import { Box } from "@mui/material";
 
 function Profile() {
-  const [message, setMessage] = useState("");
+  const navigate = useNavigate();
+  const [isLoginAlertOpen, setIsLoginAlertOpen] = useState(false);
+  const API_BASE_URL =
+    import.meta.env.VITE_BASE_URL || "http://localhost:8000/api";
 
-  /* Need to fetch userParticulars from database and pass into Components as Props*/
+  const handleLoginAlertClose = () => {
+    setIsLoginAlertOpen(false);
+  };
+
+  const handleLogin = () => {
+    navigate("/login");
+  };
+
   useEffect(() => {
-    const fetchMessage = async () => {
+    const fetchProfileData = async () => {
       try {
-        const response = await axios.get("http://localhost:8000/");
-        setMessage(response.data.message);
+        const response = await Axios.get(`${API_BASE_URL}/profile`, {
+          withCredentials: true,
+        });
+
+        if (!response.data.isLoggedIn) {
+          setIsLoginAlertOpen(true);
+        } else {
+          navigate("/profile/" + response.data.id, { replace: true });
+          // Using 'replace' to avoid pushing multiple entries to history
+        }
       } catch (error) {
-        console.error("Error fetching profile message", error);
+        setIsLoginAlertOpen(true);
       }
     };
 
-    fetchMessage();
+    fetchProfileData();
   }, []);
 
   return (
-    <div>
-      <UserParticulars />
-    </div>
+    <>
+      <LoginAlert
+        open={isLoginAlertOpen}
+        handleClose={handleLoginAlertClose}
+        handleLogin={handleLogin}
+      />
+      <Box
+        sx={{
+          height: "90vh",
+          background:
+            "linear-gradient(90deg,rgb(225, 234, 238) 0%,rgb(245, 245, 245) 30%,rgb(245, 245, 245) 60%,rgb(225, 234, 238) 100%",
+        }}
+      />
+    </>
   );
 }
 
