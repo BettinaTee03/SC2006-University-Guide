@@ -66,7 +66,6 @@ function IndividualProfile() {
       {user && (
         <Favourites userFavourites={user.favourites} userId={user._id} />
       )}
-      ;
     </>
   );
 }
