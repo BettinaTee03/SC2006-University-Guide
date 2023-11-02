@@ -1,9 +1,9 @@
-import ntu_img from "../images/ntu.jpg";
-import smu_img from "../images/smu.jpg";
-import nus_img from "../images/nus.jpg";
-import sit_img from "../images/sit.jpg";
-import suss_img from "../images/suss.jpg";
-import sutd_img from "../images/sutd.jpg";
+import ntu_img from "../images/ntu.webp";
+import smu_img from "../images/smu.webp";
+import nus_img from "../images/nus.webp";
+import sit_img from "../images/sit.webp";
+import suss_img from "../images/suss.webp";
+import sutd_img from "../images/sutd.webp";
 
 const FeaturedCourses = [
   {

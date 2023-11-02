@@ -1,12 +1,5 @@
 import React from "react";
-import {
-  Card,
-  CardContent,
-  CardMedia,
-  Typography,
-  Avatar,
-  Box,
-} from "@mui/material";
+import { Card, CardContent, CardMedia, Typography, Box } from "@mui/material";
 import PlaceIcon from "@mui/icons-material/Place";
 
 const CourseCard = ({ course }) => {
