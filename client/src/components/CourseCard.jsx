@@ -4,7 +4,7 @@ import PlaceIcon from "@mui/icons-material/Place";
 
 const CourseCard = ({ course }) => {
   const cloudinaryBaseUrl =
-    "https://res.cloudinary.com/dm9pja9iv/image/upload/f_auto,q_auto,h_180/v1/sguniguide";
+    "https://res.cloudinary.com/dm9pja9iv/image/upload/f_auto,q_auto,dpr_auto,h_720/v1/sguniguide";
   const imageUrl = `${cloudinaryBaseUrl}/${course.imageUrl}`;
 
   return (
