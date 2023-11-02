@@ -13,6 +13,7 @@ import Button from "@mui/material/Button";
 import ButtonGroup from "@mui/material/ButtonGroup";
 import courseListWithDicts from "./IntakeLabels.jsx";
 import Typography from "@mui/material/Typography";
+import AlertSnackbar from "../components/AlertSnackbar";
 
 const icon = <CheckBoxOutlineBlankIcon fontSize="small" />;
 const checkedIcon = <CheckBoxIcon fontSize="small" />;
@@ -22,6 +23,9 @@ function IntakeChart() {
   const [chartData, setChartData] = useState([]);
   const [selectedButton, setSelectedButton] = useState("intake");
   const [isLoginAlertOpen, setIsLoginAlertOpen] = useState(false);
+  const [showAlert, setShowAlert] = useState(false);
+  const [alertMessage, setAlertMessage] = useState("");
+
   const API_BASE_URL =
     import.meta.env.VITE_BASE_URL || "http://localhost:8000/api";
   const navigate = useNavigate();
@@ -94,8 +98,8 @@ function IntakeChart() {
   const handleCourseChange_2 = (event, newValue) => {
     if (newValue.length > 5) {
       newValue.pop();
-      alert("You can select a maximum of 5 courses at a time.");
-      return;
+      setAlertMessage("You can select a maximum of 5 courses at a time.");
+      setShowAlert(true);
     } else {
       setSelectedCourses(newValue.map((course) => course.value));
     }
@@ -156,6 +160,12 @@ function IntakeChart() {
 
   return (
     <>
+      <AlertSnackbar
+        alertMessage={alertMessage}
+        open={showAlert}
+        setOpen={setShowAlert}
+        severity={"error"}
+      />
       <LoginAlert
         open={isLoginAlertOpen}
         handleClose={handleLoginAlertClose}
@@ -163,10 +173,10 @@ function IntakeChart() {
       />
       <Grid
         container
-        sx={{ 
-          width: "auto", 
-          ml: { xs: "7vw", sm: "6vw", md:"11vw" },
-          mr: { xs: "7vw", sm: "6vw", md:"11vw" },
+        sx={{
+          width: "auto",
+          ml: { xs: "7vw", sm: "6vw", md: "11vw" },
+          mr: { xs: "7vw", sm: "6vw", md: "11vw" },
         }}
       >
         <Grid item xs={12}>
