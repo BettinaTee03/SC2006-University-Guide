@@ -162,7 +162,7 @@ export const Favourites = ({ userFavourites, userId }) => {
               mt: 1,
               border: "1px solid black",
               borderRadius: "10px",
-              paddingBottom: "10px",
+              paddingBottom: "15px",
               display: "flex",
               alignItems: "space-between",
               flexWrap: "wrap",
@@ -239,8 +239,8 @@ export const Favourites = ({ userFavourites, userId }) => {
                         maxWidth: "100%",
                         maxHeight: "300px",
                         loading: "lazy",
-                        borderBottomRightRadius: "10px",
-                        borderBottomLeftRadius: "10px",
+                        borderBottomRightRadius: "8px",
+                        borderBottomLeftRadius: "8px",
                         borderTop: "1px solid black",
                       }}
                     />

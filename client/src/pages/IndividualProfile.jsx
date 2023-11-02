@@ -44,13 +44,6 @@ function IndividualProfile() {
 
   return (
     <>
-      <Box
-        sx={{
-          height: "68px",
-          background:
-            "linear-gradient(90deg,rgb(225, 234, 238) 0%,rgb(245, 245, 245) 30%,rgb(245, 245, 245) 60%,rgb(225, 234, 238) 100%",
-        }}
-      />
       <LoginAlert
         open={isLoginAlertOpen}
         handleClose={handleLoginAlertClose}
@@ -58,6 +51,13 @@ function IndividualProfile() {
       />
       {user ? (
         <>
+          <Box
+            sx={{
+              height: "68px",
+              background:
+                "linear-gradient(90deg,rgb(225, 234, 238) 0%,rgb(245, 245, 245) 30%,rgb(245, 245, 245) 60%,rgb(225, 234, 238) 100%",
+            }}
+          />
           <UserParticulars
             userParticulars={user.particulars}
             userName={user.username}
