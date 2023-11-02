@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import Axios from "axios";
 import { Link } from "react-router-dom";
 import AlertSnackbar from "./AlertSnackbar";
+
 import {
   Box,
   Typography,
@@ -180,13 +181,14 @@ export const Favourites = ({ userFavourites, userId }) => {
             sx={{
               mt: 1,
               border: "1px solid black",
+              borderRadius: "10px",
               paddingBottom: "10px",
               display: "flex",
               alignItems: "space-between",
               flexWrap: "wrap",
               backgroundColor: "white",
               overflowY: "auto",
-              paddingRight: "10px",
+              paddingRight: "15px",
             }}
           >
             {Array.isArray(favouriteCourses) &&
@@ -209,7 +211,7 @@ export const Favourites = ({ userFavourites, userId }) => {
                       alignItems: "center",
                       objectFit: "cover",
                       backgroundColor: "#f6f6f6",
-
+                      borderRadius: "10px",
                       height: "370px",
                     }}
                   >
@@ -221,7 +223,7 @@ export const Favourites = ({ userFavourites, userId }) => {
                         textAlign: "center",
                         backgroundColor: "#f6f6f6",
                         mt: 2,
-                        color: "#0382ac",
+
                         height: "65px",
 
                         "@media (max-width: 535px)": {
@@ -230,12 +232,35 @@ export const Favourites = ({ userFavourites, userId }) => {
                         },
                       }}
                     >
-                      <Link to={`/courses/${courseName}`}>{courseName}</Link>
-                      {editMode && (
-                        <Checkbox
-                          onClick={() => onCheckboxChange(courseName)}
-                        ></Checkbox>
-                      )}
+                      <Button
+                        variant="contained"
+                        href={`/courses/${courseName}`}
+                        sx={{
+                          backgroundColor: "#f6f6f6",
+                          maxWidth: "100%",
+                          maxHeight: "100%",
+
+                          width: "auto",
+                          height: "auto",
+                          fontSize: "1.2rem",
+                          fontWeight: "bold",
+                          color: "primary.main",
+                          border: "none",
+                          boxShadow: "none",
+                          lineHeight: "1.3",
+
+                          "&:hover": {
+                            backgroundColor: "#ebebeb",
+                          },
+                        }}
+                      >
+                        {courseName}
+                        {editMode && (
+                          <Checkbox
+                            onClick={() => onCheckboxChange(courseName)}
+                          ></Checkbox>
+                        )}
+                      </Button>
                     </Typography>
 
                     <img
@@ -249,7 +274,6 @@ export const Favourites = ({ userFavourites, userId }) => {
                         marginTop: "12px",
                         padding: "10px",
                         marginBottom: "15px",
-                        "@media (max-width: 535px)": {},
                       }}
                     />
                   </div>
