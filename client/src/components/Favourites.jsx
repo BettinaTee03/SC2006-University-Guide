@@ -218,7 +218,7 @@ export const Favourites = ({ userFavourites, userId }) => {
                           "&:hover": {
                             backgroundColor: "#ebebeb",
                           },
-                          width: "145px",
+                          width: "auto",
                         }}
                       >
                         {courseName}
