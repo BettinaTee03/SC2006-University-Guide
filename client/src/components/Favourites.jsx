@@ -19,7 +19,7 @@ export const Favourites = ({ userFavourites, userId }) => {
   const [showAlert, setShowAlert] = useState(false);
   const [errorSubmit, setErrorSubmit] = useState(false);
   const cloudinaryBaseUrl = "https://res.cloudinary.com/dm9pja9iv/image/upload";
-  const transformations = `f_auto,q_auto/h_270`;
+  const transformations = `f_auto,q_auto,dpr_auto/h_400`;
 
   const API_BASE_URL =
     import.meta.env.VITE_BASE_URL || "http://localhost:8000/api";
@@ -250,9 +250,6 @@ export const Favourites = ({ userFavourites, userId }) => {
                       }`}
                       alt="Course Image"
                       style={{
-                        maxWidth: "100%",
-                        maxHeight: "100%",
-                        width: "430px",
                         height: "270px",
                         marginTop: "12px",
                         padding: "10px",
