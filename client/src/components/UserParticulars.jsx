@@ -315,7 +315,7 @@ export const UserParticulars = ({ userParticulars, userName, userId }) => {
         <Container component="main" maxWidth="lg" className="container">
           <Box
             sx={{
-              marginTop: 8,
+              marginTop: 4,
               display: "flex",
               flexDirection: "column",
               alignItems: "center",
@@ -445,7 +445,7 @@ export const UserParticulars = ({ userParticulars, userName, userId }) => {
         <Container component="main" maxWidth="lg" className="container">
           <Box
             sx={{
-              marginTop: 8,
+              marginTop: 4,
               display: "flex",
               flexDirection: "column",
               alignItems: "center",
@@ -631,7 +631,7 @@ export const UserParticulars = ({ userParticulars, userName, userId }) => {
         <Container component="main" maxWidth="lg" className="container">
           <Box
             sx={{
-              marginTop: 8,
+              marginTop: 4,
               display: "flex",
               flexDirection: "column",
               alignItems: "center",
