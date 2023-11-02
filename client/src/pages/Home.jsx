@@ -190,7 +190,7 @@ function Home() {
                   src={`${cloudinaryBaseUrl}/${transformations}/v1/sguniguide/${logo.id}`}
                   alt={logo.alt}
                   loading="lazy"
-                  heigh={matchesXS ? "25" : "35"}
+                  height={matchesXS ? "25" : "35"}
                 />
               </Grid>
             ))}
