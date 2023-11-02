@@ -1,9 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import Axios from "axios";
-import { Link } from "react-router-dom";
 import AlertSnackbar from "./AlertSnackbar";
-
 import {
   Box,
   Typography,
@@ -14,57 +12,39 @@ import {
   Grid,
 } from "@mui/material";
 
-import courseimage1 from "../courseImages/courseImage1.jpg";
-import courseimage2 from "../courseImages/courseImage2.jpg";
-import courseimage3 from "../courseImages/courseImage3.jpg";
-import courseimage4 from "../courseImages/courseImage4.jpg";
-import courseimage5 from "../courseImages/courseImage5.jpg";
-import courseimage6 from "../courseImages/courseImage6.jpg";
-import courseimage7 from "../courseImages/courseImage7.jpg";
-import courseimage8 from "../courseImages/courseImage8.jpg";
-import courseimage9 from "../courseImages/courseImage9.jpg";
-import courseimage10 from "../courseImages/courseImage10.jpg";
-import courseimage11 from "../courseImages/courseImage11.jpg";
-import courseimage12 from "../courseImages/courseImage12.jpg";
-import courseimage13 from "../courseImages/courseImage13.jpg";
-import courseimage14 from "../courseImages/courseImage14.jpg";
-import courseimage15 from "../courseImages/courseImage15.jpg";
-import courseimage16 from "../courseImages/courseImage16.jpg";
-import courseimage17 from "../courseImages/courseImage17.jpg";
-import courseimage18 from "../courseImages/courseImage18.jpg";
-import courseimage19 from "../courseImages/courseImage19.jpg";
-import courseimage20 from "../courseImages/courseImage20.jpg";
-
 export const Favourites = ({ userFavourites, userId }) => {
   const [favouriteCourses, setFavouriteCourses] = useState([]);
   const [selectedCourse, setSelectedCourse] = useState([]);
   const [editMode, setEditMode] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
   const [errorSubmit, setErrorSubmit] = useState(false);
+  const cloudinaryBaseUrl = "https://res.cloudinary.com/dm9pja9iv/image/upload";
+  const transformations = `f_auto,q_auto/h_270`;
+
   const API_BASE_URL =
     import.meta.env.VITE_BASE_URL || "http://localhost:8000/api";
 
-  const images = [
-    courseimage1,
-    courseimage2,
-    courseimage3,
-    courseimage4,
-    courseimage5,
-    courseimage6,
-    courseimage7,
-    courseimage8,
-    courseimage9,
-    courseimage10,
-    courseimage11,
-    courseimage12,
-    courseimage13,
-    courseimage14,
-    courseimage15,
-    courseimage16,
-    courseimage17,
-    courseimage18,
-    courseimage19,
-    courseimage20,
+  const images_url = [
+    "mymt9db8e27v04ssrzas",
+    "vkdlad7t7owob2dmqffo",
+    "b3xyykkrxxz07qq7sbgu",
+    "wf9akjqihv5ihfi97sow",
+    "wwhqg30nlx6bp2qar95b",
+    "idsepyxntjfrfudxtz7a",
+    "qavzs3xmovhzvwym8fzm",
+    "fnvunm6byiarwvdpeoar",
+    "liudpy3zvvzrmfhj9ffs",
+    "a8bzn29m9rh2bfzv96xz",
+    "potodngpcwgww58sdtb6",
+    "m226abwygwbdxexlnwvk",
+    "avnvtngniuhxemhbseju",
+    "ndpaf7fqzzrz4ubnydgd",
+    "xh3wjru6gx81gkcn7yec",
+    "ss5ekhnpnnsqynhjhnzp",
+    "wc8kmjhy4seg5tozddtn",
+    "gzcnnem7dfbl8bakbwge",
+    "id9lejzqhr001dkzglnw",
+    "xdgeewqdfbnwurfkveke",
   ];
 
   // Fetch user favourites
@@ -264,7 +244,9 @@ export const Favourites = ({ userFavourites, userId }) => {
                     </Typography>
 
                     <img
-                      src={images[index % images.length]}
+                      src={`${cloudinaryBaseUrl}/${transformations}/v1/sguniguide/${
+                        images_url[index % images_url.length]
+                      }`}
                       alt="Course Image"
                       style={{
                         maxWidth: "100%",
@@ -274,6 +256,7 @@ export const Favourites = ({ userFavourites, userId }) => {
                         marginTop: "12px",
                         padding: "10px",
                         marginBottom: "15px",
+                        loading: "lazy",
                       }}
                     />
                   </div>
