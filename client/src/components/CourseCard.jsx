@@ -3,6 +3,10 @@ import { Card, CardContent, CardMedia, Typography, Box } from "@mui/material";
 import PlaceIcon from "@mui/icons-material/Place";
 
 const CourseCard = ({ course }) => {
+  const cloudinaryBaseUrl =
+    "https://res.cloudinary.com/dm9pja9iv/image/upload/f_auto,q_auto/v1/sguniguide";
+  const imageUrl = `${cloudinaryBaseUrl}/${course.imageUrl}`;
+
   return (
     <Card
       sx={{
@@ -18,8 +22,9 @@ const CourseCard = ({ course }) => {
       <CardMedia
         component="img"
         height="180"
-        image={course.imageUrl}
+        image={imageUrl}
         alt={course.title}
+        loading={"lazy"}
       />
       <CardContent sx={{ flexGrow: 1 }}>
         <Typography variant="overline" color="secondary.main">

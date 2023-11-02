@@ -1,6 +1,5 @@
 import { Typography, Box, Grid } from "@mui/material";
 import React, { useState, useEffect, useContext } from "react";
-import universitystudents from "../images/university_students.webp";
 import Button from "@mui/material/Button";
 import LoginIcon from "@mui/icons-material/Login";
 import { useNavigate, useLocation } from "react-router-dom";
@@ -8,12 +7,6 @@ import AlertSnackbar from "../components/AlertSnackbar";
 import Container from "@mui/material/Container";
 import AuthContext from "../contexts/AuthContext";
 import CourseCard from "../components/CourseCard";
-import ntu_logo from "../images/ntu_logo.svg.webp";
-import smu_logo from "../images/smu_logo.svg.webp";
-import nus_logo from "../images/nus_logo.svg.webp";
-import sit_logo from "../images/sit_logo.svg.webp";
-import sutd_logo from "../images/sutd_logo.svg.webp";
-import suss_logo from "../images/suss_logo.svg.webp";
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import FeaturedCourses from "../components/FeaturedCourses.jsx";
@@ -28,6 +21,17 @@ function Home() {
   const [severity, setSeverity] = useState("success");
   const theme = useTheme();
   const matchesXS = useMediaQuery(theme.breakpoints.only("xs"));
+
+  const cloudinaryBaseUrl = "https://res.cloudinary.com/dm9pja9iv/image/upload";
+  const transformations = `f_auto,q_auto,h_${matchesXS ? "25" : "35"}`;
+  const logos = [
+    { id: "cbxhvqwypjpnej0ocvwq", alt: "NTU Logo" },
+    { id: "c5bfbis8iy1ri5uxpjaa", alt: "NTU Logo" },
+    { id: "xmnjdkey2tnvirwcrnxc", alt: "NTU Logo" },
+    { id: "jpcugxt8diwgc6q4bdgy", alt: "NTU Logo" },
+    { id: "akxlzlil5m8while5qfg", alt: "NTU Logo" },
+    { id: "qsrozw7pioghhckvdt62", alt: "NTU Logo" },
+  ];
 
   useEffect(() => {
     if (location.state && location.state.showAlert) {
@@ -170,27 +174,25 @@ function Home() {
             rowGap={{ xs: 4 }}
             sx={{ mt: 2, mb: { xs: 2, lg: 6 }, ml: { lg: "11.3vw" } }}
           >
-            {[ntu_logo, nus_logo, sit_logo, smu_logo, sutd_logo, suss_logo].map(
-              (logo, idx) => (
-                <Grid
-                  item
-                  lg={0.5}
-                  xs={4}
-                  key={idx}
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                  }}
-                >
-                  <img
-                    src={logo}
-                    alt="School Logo"
-                    style={{ height: matchesXS ? "25px" : "35px" }}
-                  />
-                </Grid>
-              )
-            )}
+            {logos.map((logo) => (
+              <Grid
+                item
+                lg={0.5}
+                xs={4}
+                key={logo.id}
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
+                <img
+                  src={`${cloudinaryBaseUrl}/${transformations}/v1/sguniguide/${logo.id}`}
+                  alt={logo.alt}
+                  loading="lazy"
+                />
+              </Grid>
+            ))}
           </Grid>
 
           <Container
@@ -210,7 +212,9 @@ function Home() {
                 objectFit: "cover",
               }}
               alt="University Students."
-              src={universitystudents}
+              src={
+                "https://res.cloudinary.com/dm9pja9iv/image/upload/f_auto,q_auto/v1/sguniguide/ank6ajecjzyhydbpckhc"
+              }
             />
           </Container>
         </Box>

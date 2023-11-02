@@ -1,13 +1,6 @@
-import ntu_img from "../images/ntu.webp";
-import smu_img from "../images/smu.webp";
-import nus_img from "../images/nus.webp";
-import sit_img from "../images/sit.webp";
-import suss_img from "../images/suss.webp";
-import sutd_img from "../images/sutd.webp";
-
 const FeaturedCourses = [
   {
-    imageUrl: smu_img,
+    imageUrl: "berkudhefy3psrehs2nl",
     school: "Singapore Management University",
     title: "Accountancy",
     description:
@@ -15,7 +8,7 @@ const FeaturedCourses = [
     faculty: "School of Accountancy",
   },
   {
-    imageUrl: sit_img,
+    imageUrl: "xrv6iope3coktykcoz0t",
     school: "Singapore Institute of Technology",
     title: "Accountancy",
     description:
@@ -23,7 +16,7 @@ const FeaturedCourses = [
     faculty: "SIT@Dover",
   },
   {
-    imageUrl: suss_img,
+    imageUrl: "h0luq2zgv2qaubgit63v",
     school: "Singapore University of Social Sciences",
     title: "Accountancy",
     description:
@@ -31,7 +24,7 @@ const FeaturedCourses = [
     faculty: "School of Business",
   },
   {
-    imageUrl: sutd_img,
+    imageUrl: "y9pdlj0rk4sfdvq2dx2p",
     school: "Singapore University of Technology and Design",
     title: "Computer Science and Design",
     description:
@@ -39,7 +32,7 @@ const FeaturedCourses = [
     faculty: "Information Systems Technology and Design",
   },
   {
-    imageUrl: ntu_img,
+    imageUrl: "n8qurgzqmort8tefmnhp",
     school: "Nanyang Technological University",
     title: "Computer Science",
     description:
@@ -47,7 +40,7 @@ const FeaturedCourses = [
     faculty: "School of Computer Science and Engineering",
   },
   {
-    imageUrl: nus_img,
+    imageUrl: "rsh7wrmog8j1jchrndbn",
     school: "National University of Singapore",
     title: "Computer Science",
     description:
