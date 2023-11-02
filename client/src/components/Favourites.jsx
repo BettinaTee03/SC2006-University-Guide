@@ -202,7 +202,12 @@ export const Favourites = ({ userFavourites, userId }) => {
                       sx={{
                         textAlign: "center",
                         backgroundColor: "#f6f6f6",
+                        height: "68px",
                         my: 0.5,
+                        display: "flex",
+                        alignItems: "center",
+                        width: "100%",
+                        justifyContent: "space-evenly",
                       }}
                     >
                       <Button
@@ -210,7 +215,11 @@ export const Favourites = ({ userFavourites, userId }) => {
                         href={`/courses/${courseName}`}
                         sx={{
                           backgroundColor: "#f6f6f6",
-                          fontSize: { xs: "1rem", md: "1.2rem" },
+                          fontSize: {
+                            xs: "0.6rem",
+                            md: "0.75rem",
+                            lg: "1rem",
+                          },
                           fontWeight: "bold",
                           color: "primary.main",
                           border: "none",
@@ -218,17 +227,17 @@ export const Favourites = ({ userFavourites, userId }) => {
                           "&:hover": {
                             backgroundColor: "#ebebeb",
                           },
-                          width: "auto",
+                          flex: 1,
                         }}
                       >
                         {courseName}
-                        {editMode && (
-                          <Checkbox
-                            onClick={() => onCheckboxChange(courseName)}
-                            sx={{ mx: "10px", p: 0 }}
-                          ></Checkbox>
-                        )}
                       </Button>
+                      {editMode && (
+                        <Checkbox
+                          onClick={() => onCheckboxChange(courseName)}
+                          sx={{ p: 0, marginRight: editMode ? "15px" : "0" }}
+                        ></Checkbox>
+                      )}
                     </Typography>
 
                     <img
