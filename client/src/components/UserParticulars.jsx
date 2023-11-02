@@ -147,7 +147,7 @@ export const UserParticulars = ({ userParticulars, userName, userId }) => {
               sx={{
                 mt: 1,
                 border: "1px solid black",
-
+                borderRadius: "10px",
                 backgroundColor: "white",
                 display: "flex",
                 flexDirection: "column",
@@ -333,7 +333,7 @@ export const UserParticulars = ({ userParticulars, userName, userId }) => {
               sx={{
                 mt: 1,
                 border: "1px solid black",
-
+                borderRadius: "10px",
                 backgroundColor: "white",
                 display: "flex",
                 flexDirection: "column",
@@ -463,7 +463,7 @@ export const UserParticulars = ({ userParticulars, userName, userId }) => {
               sx={{
                 mt: 1,
                 border: "1px solid black",
-
+                borderRadius: "10px",
                 backgroundColor: "white",
                 display: "flex",
                 flexDirection: "row",
@@ -653,6 +653,7 @@ export const UserParticulars = ({ userParticulars, userName, userId }) => {
                 display: "flex",
                 flexDirection: "row",
                 alignItems: "space-between",
+                borderRadius: "10px",
               }}
             >
               <Container
