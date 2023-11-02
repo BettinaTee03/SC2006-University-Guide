@@ -23,7 +23,7 @@ function Home() {
   const matchesXS = useMediaQuery(theme.breakpoints.only("xs"));
 
   const cloudinaryBaseUrl = "https://res.cloudinary.com/dm9pja9iv/image/upload";
-  const transformations = `f_auto,q_auto,dpr_auto,h_${matchesXS ? "50" : "70"}`;
+  const transformations = `q_auto,h_${matchesXS ? "50" : "70"}`;
   const logos = [
     { id: "cbxhvqwypjpnej0ocvwq", alt: "NTU Logo" },
     { id: "c5bfbis8iy1ri5uxpjaa", alt: "NTU Logo" },
