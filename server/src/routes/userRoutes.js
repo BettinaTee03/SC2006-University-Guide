@@ -10,13 +10,13 @@ router.use(express.json()); // Middleware to parse JSON request bodies
  * @desc Retrieve user favourites
  * @access Private
  * @middleware ensureAuthenticated
- 
+ */
 
 router.get(
   "/:username/favourites",
   ensureAuthenticated,
   accountController.getUserFavourites
-);*/
+);
 
 /**
  * @route GET /profile

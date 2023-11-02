@@ -2,21 +2,23 @@ import React, { useState, useEffect } from "react";
 import Axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
 import AspirationForm from "../components/AspirationForm";
-import LoginAlert from "../components/LoginAlert";
 import FavouriteCourseButton from "../components/FavouriteCourseButton";
 import "../css/IndividualCourse.css";
 import EmploymentChart from "../components/EmploymentChart";
-
+import LoginAlert from "../components/LoginAlert";
 import Skeleton from "@mui/material/Skeleton";
 import Stack from "@mui/material/Stack";
 import { Box } from "@mui/material";
 import { Grid } from "@mui/material";
+import AlertSnackbar from "../components/AlertSnackbar";
 
 function IndividualCourse() {
   const [course, setCourse] = useState(null);
   const { courseName } = useParams();
   const [isLoginAlertOpen, setIsLoginAlertOpen] = useState(false);
   const [isIconClicked, setIsIconClicked] = React.useState();
+  const [errorSubmit, setErrorSubmit] = useState(false);
+  const [showAlert, setShowAlert] = useState(false);
   const navigate = useNavigate();
   const API_BASE_URL =
     import.meta.env.VITE_BASE_URL || "http://localhost:8000/api";
@@ -29,10 +31,6 @@ function IndividualCourse() {
     navigate("/login");
   };
 
-  const handleClick = () => {
-    setIsIconClicked(!isIconClicked);
-  };
-
   useEffect(() => {
     async function getIndividualCourse() {
       try {
@@ -40,7 +38,8 @@ function IndividualCourse() {
           `${API_BASE_URL}/courses/${courseName}`,
           { withCredentials: true }
         );
-        setCourse(response.data);
+        setCourse(response.data.course);
+        setIsIconClicked(response.data.isLiked);
       } catch (error) {
         if (error.response && error.response.status === 401) {
           setIsLoginAlertOpen(true);
@@ -50,8 +49,64 @@ function IndividualCourse() {
     getIndividualCourse();
   }, [courseName]);
 
+  const alertMessage =
+    errorSubmit && isIconClicked
+      ? "Error adding course to favourites. Please try again later."
+      : errorSubmit
+      ? "Error removing course from favourites. Please try again later."
+      : isIconClicked
+      ? "Course added to favourites."
+      : "Course removed from favourites.";
+
+  const severity = errorSubmit ? "error" : "success";
+
+  const handleClick = async () => {
+    setIsIconClicked(!isIconClicked);
+
+    // add course to favourites if clicked
+    if (!isIconClicked) {
+      try {
+        const response = await Axios.post(
+          `${API_BASE_URL}/courses/${courseName}/addToFavourites`,
+          null,
+          { withCredentials: true }
+        );
+
+        if (response.status === 200) {
+          setShowAlert(true);
+        }
+      } catch (error) {
+        setErrorSubmit(true);
+        setShowAlert(true);
+      }
+    }
+    // remove course from favourites if not clicked
+    else {
+      try {
+        const response = await Axios.delete(
+          `${API_BASE_URL}/courses/${courseName}/removeFromFavourites`,
+
+          { withCredentials: true }
+        );
+        if (response.status === 200) {
+          setShowAlert(true);
+        }
+      } catch (error) {
+        setErrorSubmit(true);
+        setShowAlert(true);
+      }
+    }
+  };
+
   return (
     <>
+      <AlertSnackbar
+        alertMessage={alertMessage}
+        open={showAlert}
+        setOpen={setShowAlert}
+        severity={severity}
+      />
+
       <Box
         sx={{
           height: "68px",
@@ -170,9 +225,7 @@ function IndividualCourse() {
             {course["percentage_at_least_3_GPA"] && (
               <p>At least 3 GPA: {course["percentage_at_least_3_GPA"]}%</p>
             )}
-            {course["remarks"] && (
-              <p>Remarks: {course["remarks"]}</p>
-            )}
+            {course["remarks"] && <p>Remarks: {course["remarks"]}</p>}
           </Grid>
 
           <Grid item xs={12}>

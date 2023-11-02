@@ -36,10 +36,10 @@
   margin-bottom: -15px;
 }
 
-.details{
+.details {
   margin-bottom: 0px;
 }
 
-.details + .details{
+.details + .details {
   margin-top: 5px;
 }

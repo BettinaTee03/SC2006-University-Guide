@@ -1,28 +1,5 @@
 import UserModel from "../models/userModel.js";
-
-/**
- * Handles GET request to retrieve user favourites
- * @function
- * @async
- * @param {Object} req - Express request object.
- * @param {Object} res - Express response object.
- */
-async function getUserFavourites(req, res) {
-  try {
-    const userId = decodeURIComponent(req.params.id);
-    const user = await UserModel.findOne({ _id: userId });
-
-    if (!user) {
-      return res.status(400).send("User does not exist.");
-    }
-
-    const userFavourites = user.favourites;
-
-    res.json(userFavourites);
-  } catch (error) {
-    res.status(500).send("Error retrieving user favourites.");
-  }
-}
+import { CourseModel } from "../models/courseModel.js";
 
 /**
  * Handles GET request to check if user is logged in and return user username
@@ -110,6 +87,31 @@ async function updateUserParticulars(req, res) {
 }
 
 /**
+ * Handles GET request to retrieve user favourites
+ * @function
+ * @async
+ * @param {Object} req - Express request object.
+ * @param {Object} res - Express response object.
+ */
+async function getUserFavourites(req, res) {
+  try {
+    const courseIds = Object.values(req.query);
+    const favouriteCourses = [];
+
+    await Promise.all(
+      courseIds.map(async (courseId) => {
+        const course = await CourseModel.findOne({ _id: courseId });
+        favouriteCourses.push(course.course_name);
+      })
+    );
+
+    res.status(200).json(favouriteCourses);
+  } catch (error) {
+    res.status(500).send("Error retrieving user favourites.");
+  }
+}
+
+/**
  * Handles PUT request to update user favourites
  * @function
  * @async
@@ -119,15 +121,27 @@ async function updateUserParticulars(req, res) {
 
 async function updateUserFavourites(req, res) {
   try {
-    const userFavourites = req.body.favourites;
+    const courseNames = req.body.filteredCourses;
+    console.log(courseNames);
+    // Convert course names to course IDs
+    const courseIds = await Promise.all(
+      courseNames.map(async (courseName) => {
+        const course = await CourseModel.findOne({ course_name: courseName });
+        if (course) {
+          return course._id;
+        } else {
+          return null; // Handle cases where a course with the given name is not found
+        }
+      })
+    );
+    // Retrieve the user
     const userId = decodeURIComponent(req.params.id);
     const user = await UserModel.findOne({ _id: userId });
 
-    if (!user) {
-      return res.status(400).send("User does not exist.");
-    }
+    // Update the user's favorite courses
+    user.favourites = courseIds.filter((id) => id !== null); // Filter out null values
 
-    user.favourites = userFavourites;
+    // Save the user's changes to the database
     const updatedUser = await user.save();
 
     res.status(200).json({
@@ -140,9 +154,9 @@ async function updateUserFavourites(req, res) {
 }
 
 export default {
-  getUserFavourites,
   checkLogin,
   getUserProfile,
   updateUserParticulars,
+  getUserFavourites,
   updateUserFavourites,
 };

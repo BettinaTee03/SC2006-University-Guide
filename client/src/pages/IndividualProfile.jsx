@@ -3,6 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import Axios from "axios";
 import LoginAlert from "../components/LoginAlert";
 import UserParticulars from "../components/UserParticulars";
+import Favourites from "../components/Favourites";
 import { Box } from "@mui/material";
 
 function IndividualProfile() {
@@ -61,6 +62,9 @@ function IndividualProfile() {
           userName={user.username}
           userId={user._id}
         />
+      )}
+      {user && (
+        <Favourites userFavourites={user.favourites} userId={user._id} />
       )}
       ;
     </>

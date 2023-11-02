@@ -51,4 +51,29 @@ router.post(
   courseController.getAspiration
 );
 
+/**
+ * @route POST /courses/:course/addToFavourites
+ * @desc Add course to user favourites
+ * @access Private
+ * @middleware ensureAuthenticated
+ */
+router.post(
+  "/:course/addToFavourites",
+  ensureAuthenticated,
+  courseController.addToFavourites
+);
+
+/**
+ * @route DELETE /courses/:course/removeFromFavourites
+ * @desc Remove course from user favourites
+ * @access Private
+ * @middleware ensureAuthenticated
+ *
+ */
+router.delete(
+  "/:course/removeFromFavourites",
+  ensureAuthenticated,
+  courseController.removeFromFavourites
+);
+
 export default router;
