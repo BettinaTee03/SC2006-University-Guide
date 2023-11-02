@@ -19,7 +19,7 @@ export const Favourites = ({ userFavourites, userId }) => {
   const [showAlert, setShowAlert] = useState(false);
   const [errorSubmit, setErrorSubmit] = useState(false);
   const cloudinaryBaseUrl = "https://res.cloudinary.com/dm9pja9iv/image/upload";
-  const transformations = `f_auto,q_auto,dpr_auto/h_400`;
+  const transformations = `f_auto,q_auto,dpr_auto,c_fill,w_600,h_300`;
 
   const API_BASE_URL =
     import.meta.env.VITE_BASE_URL || "http://localhost:8000/api";
@@ -143,7 +143,7 @@ export const Favourites = ({ userFavourites, userId }) => {
         <CssBaseline />
         <Box
           sx={{
-            marginTop: 8,
+            marginTop: 4,
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
@@ -182,7 +182,7 @@ export const Favourites = ({ userFavourites, userId }) => {
                   lg={6}
                   key={courseName}
                   sx={{
-                    height: "400px",
+                    maxHeight: "400px",
                   }}
                 >
                   <div
@@ -193,7 +193,7 @@ export const Favourites = ({ userFavourites, userId }) => {
                       objectFit: "cover",
                       backgroundColor: "#f6f6f6",
                       borderRadius: "10px",
-                      height: "370px",
+                      maxHeight: "370px",
                     }}
                   >
                     <Typography
@@ -204,9 +204,7 @@ export const Favourites = ({ userFavourites, userId }) => {
                         textAlign: "center",
                         backgroundColor: "#f6f6f6",
                         mt: 2,
-
                         height: "65px",
-
                         "@media (max-width: 535px)": {
                           height: "80px",
                           width: "95%",
@@ -220,7 +218,6 @@ export const Favourites = ({ userFavourites, userId }) => {
                           backgroundColor: "#f6f6f6",
                           maxWidth: "100%",
                           maxHeight: "100%",
-
                           width: "auto",
                           height: "auto",
                           fontSize: "1.2rem",
@@ -250,11 +247,10 @@ export const Favourites = ({ userFavourites, userId }) => {
                       }`}
                       alt="Course Image"
                       style={{
-                        height: "270px",
-                        marginTop: "12px",
-                        padding: "10px",
-                        marginBottom: "15px",
+                        maxWidth: "95%",
                         loading: "lazy",
+                        borderRadius: "10px",
+                        marginBottom: "20px",
                       }}
                     />
                   </div>
