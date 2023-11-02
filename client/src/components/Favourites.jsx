@@ -207,6 +207,7 @@ export const Favourites = ({ userFavourites, userId }) => {
                         display: "flex",
                         alignItems: "center",
                         width: "100%",
+                        borderRadius: "10px",
                         justifyContent: "space-evenly",
                       }}
                     >
