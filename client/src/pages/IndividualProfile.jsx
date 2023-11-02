@@ -4,7 +4,7 @@ import Axios from "axios";
 import LoginAlert from "../components/LoginAlert";
 import UserParticulars from "../components/UserParticulars";
 import Favourites from "../components/Favourites";
-import { Box } from "@mui/material";
+import { Box, CircularProgress } from "@mui/material";
 
 function IndividualProfile() {
   const { id } = useParams();
@@ -56,15 +56,27 @@ function IndividualProfile() {
         handleClose={handleLoginAlertClose}
         handleLogin={handleLogin}
       />
-      {user && (
-        <UserParticulars
-          userParticulars={user.particulars}
-          userName={user.username}
-          userId={user._id}
-        />
-      )}
-      {user && (
-        <Favourites userFavourites={user.favourites} userId={user._id} />
+      {user ? (
+        <>
+          <UserParticulars
+            userParticulars={user.particulars}
+            userName={user.username}
+            userId={user._id}
+          />
+          <Favourites userFavourites={user.favourites} userId={user._id} />
+        </>
+      ) : (
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            height: "100vh",
+            color: "secondary.main",
+          }}
+        >
+          <CircularProgress />
+        </Box>
       )}
     </>
   );

@@ -161,7 +161,7 @@ export const UserParticulars = ({ userParticulars, userName, userId }) => {
                   alignItems: "space-between",
                 }}
               >
-                <InputLabel sx={{ mt: 1.5, mb: 1 }}>Username</InputLabel>
+                <InputLabel sx={{ mt: 2, mb: 1 }}>Username</InputLabel>
                 <TextField
                   error={errorName}
                   InputProps={{
@@ -187,7 +187,7 @@ export const UserParticulars = ({ userParticulars, userName, userId }) => {
                   }}
                 ></TextField>
 
-                <InputLabel sx={{ mt: 3, mb: 1 }}>First Name</InputLabel>
+                <InputLabel sx={{ mt: 2, mb: 1 }}>First Name</InputLabel>
                 <TextField
                   type="text"
                   name="firstName"
@@ -196,7 +196,7 @@ export const UserParticulars = ({ userParticulars, userName, userId }) => {
                   sx={{ mb: 1, backgroundColor: "#F6F6F6" }}
                 ></TextField>
 
-                <InputLabel sx={{ mt: 3, mb: 1 }}>Last Name</InputLabel>
+                <InputLabel sx={{ mt: 2, mb: 1 }}>Last Name</InputLabel>
                 <TextField
                   type="text"
                   name="lastName"
@@ -205,7 +205,7 @@ export const UserParticulars = ({ userParticulars, userName, userId }) => {
                   sx={{ mb: 1, backgroundColor: "#F6F6F6" }}
                 ></TextField>
 
-                <InputLabel sx={{ mt: 1.5, mb: 1 }}>Email</InputLabel>
+                <InputLabel sx={{ mt: 2, mb: 1 }}>Email</InputLabel>
                 <TextField
                   type="email"
                   name="email"
@@ -223,7 +223,7 @@ export const UserParticulars = ({ userParticulars, userName, userId }) => {
                   alignItems: "space-between",
                 }}
               >
-                <InputLabel sx={{ mt: 3, mb: 1 }}>Age</InputLabel>
+                <InputLabel sx={{ mt: 2, mb: 1 }}>Age</InputLabel>
                 <TextField
                   type="number"
                   min="1"
@@ -235,7 +235,7 @@ export const UserParticulars = ({ userParticulars, userName, userId }) => {
                   sx={{ mb: 1, backgroundColor: "#F6F6F6" }}
                 ></TextField>
 
-                <InputLabel sx={{ mt: 3, mb: 1 }}>Gender</InputLabel>
+                <InputLabel sx={{ mt: 2, mb: 1 }}>Gender</InputLabel>
                 <FormControl fullWidth>
                   <Select
                     type="option"
@@ -250,14 +250,14 @@ export const UserParticulars = ({ userParticulars, userName, userId }) => {
                   </Select>
                 </FormControl>
 
-                <InputLabel sx={{ mt: 3, mb: 1 }}>Current Level</InputLabel>
+                <InputLabel sx={{ mt: 2, mb: 1 }}>Current Level</InputLabel>
                 <FormControl fullWidth>
                   <Select
                     type="option"
                     name="currentLevel"
                     value={editedParticulars.currentLevel}
                     onChange={onChangeHandler}
-                    sx={{ mb: 3, backgroundColor: "#F6F6F6" }}
+                    sx={{ mb: 1, backgroundColor: "#F6F6F6" }}
                   >
                     <MenuItem value="Primary">Primary</MenuItem>
                     <MenuItem value="Secondary">Secondary</MenuItem>
@@ -276,7 +276,7 @@ export const UserParticulars = ({ userParticulars, userName, userId }) => {
                   </Select>
                 </FormControl>
 
-                <InputLabel sx={{ mt: 3, mb: 1 }}>
+                <InputLabel sx={{ mt: 2, mb: 1 }}>
                   Matriculation Year
                 </InputLabel>
                 <TextField
@@ -287,14 +287,14 @@ export const UserParticulars = ({ userParticulars, userName, userId }) => {
                   name="matriculationYear"
                   value={editedParticulars.matriculationYear}
                   onChange={onChangeHandler}
-                  sx={{ mb: 3, backgroundColor: "#F6F6F6" }}
+                  sx={{ mb: 2, backgroundColor: "#F6F6F6" }}
                 ></TextField>
               </Container>
             </Box>
             <Button
               type="submit"
               variant="contained"
-              sx={{ mt: 3, mb: 2 }}
+              sx={{ mt: 2, mb: 1 }}
               onClick={submitHandler}
               color="secondary"
             >
@@ -303,7 +303,7 @@ export const UserParticulars = ({ userParticulars, userName, userId }) => {
             <Button
               type="submit"
               variant="contained"
-              sx={{ mt: 0, mb: 2 }}
+              sx={{ mt: 0, mb: 1 }}
               onClick={onCancelClick}
               color="secondary"
             >
@@ -347,7 +347,7 @@ export const UserParticulars = ({ userParticulars, userName, userId }) => {
                   alignItems: "space-between",
                 }}
               >
-                <InputLabel sx={{ mt: 1.5, mb: 1 }}>Username</InputLabel>
+                <InputLabel sx={{ mt: 2, mb: 1 }}>Username</InputLabel>
                 <TextField
                   value={username}
                   InputProps={{
@@ -356,7 +356,7 @@ export const UserParticulars = ({ userParticulars, userName, userId }) => {
                   sx={{ mb: 1, backgroundColor: "#F6F6F6" }}
                 ></TextField>
 
-                <InputLabel sx={{ mt: 3, mb: 1 }}>First Name</InputLabel>
+                <InputLabel sx={{ mt: 2, mb: 1 }}>First Name</InputLabel>
                 <TextField
                   value={editedParticulars.firstName}
                   InputProps={{
@@ -365,7 +365,7 @@ export const UserParticulars = ({ userParticulars, userName, userId }) => {
                   sx={{ mb: 1, backgroundColor: "#F6F6F6" }}
                 ></TextField>
 
-                <InputLabel sx={{ mt: 3, mb: 1 }}>Last Name</InputLabel>
+                <InputLabel sx={{ mt: 2, mb: 1 }}>Last Name</InputLabel>
                 <TextField
                   value={editedParticulars.lastName}
                   InputProps={{
@@ -374,7 +374,7 @@ export const UserParticulars = ({ userParticulars, userName, userId }) => {
                   sx={{ mb: 1, backgroundColor: "#F6F6F6" }}
                 ></TextField>
 
-                <InputLabel sx={{ mt: 1.5, mb: 1 }}>Email</InputLabel>
+                <InputLabel sx={{ mt: 2, mb: 1 }}>Email</InputLabel>
                 <TextField
                   value={editedParticulars.email}
                   InputProps={{
@@ -392,7 +392,7 @@ export const UserParticulars = ({ userParticulars, userName, userId }) => {
                   alignItems: "space-between",
                 }}
               >
-                <InputLabel sx={{ mt: 3, mb: 1 }}>Age</InputLabel>
+                <InputLabel sx={{ mt: 2, mb: 1 }}>Age</InputLabel>
                 <TextField
                   value={editedParticulars.age}
                   InputProps={{
@@ -401,7 +401,7 @@ export const UserParticulars = ({ userParticulars, userName, userId }) => {
                   sx={{ mb: 1, backgroundColor: "#F6F6F6" }}
                 ></TextField>
 
-                <InputLabel sx={{ mt: 3, mb: 1 }}>Gender</InputLabel>
+                <InputLabel sx={{ mt: 2, mb: 1 }}>Gender</InputLabel>
                 <TextField
                   value={editedParticulars.gender}
                   InputProps={{
@@ -410,7 +410,7 @@ export const UserParticulars = ({ userParticulars, userName, userId }) => {
                   sx={{ mb: 1, backgroundColor: "#F6F6F6" }}
                 ></TextField>
 
-                <InputLabel sx={{ mt: 3, mb: 1 }}>Current Level</InputLabel>
+                <InputLabel sx={{ mt: 2, mb: 1 }}>Current Level</InputLabel>
                 <TextField
                   value={editedParticulars.currentLevel}
                   InputProps={{
@@ -419,7 +419,7 @@ export const UserParticulars = ({ userParticulars, userName, userId }) => {
                   sx={{ mb: 1, backgroundColor: "#F6F6F6" }}
                 ></TextField>
 
-                <InputLabel sx={{ mt: 3, mb: 1 }}>
+                <InputLabel sx={{ mt: 2, mb: 1 }}>
                   Matriculation Year
                 </InputLabel>
                 <TextField
@@ -427,13 +427,13 @@ export const UserParticulars = ({ userParticulars, userName, userId }) => {
                   InputProps={{
                     readOnly: true,
                   }}
-                  sx={{ mb: 3, backgroundColor: "#F6F6F6" }}
+                  sx={{ mb: 2, backgroundColor: "#F6F6F6" }}
                 ></TextField>
               </Container>
             </Box>
             <Button
               variant="contained"
-              sx={{ mt: 3, mb: 2 }}
+              sx={{ mt: 2, mb: 1 }}
               onClick={onEditClick}
               color="secondary"
             >
@@ -477,7 +477,7 @@ export const UserParticulars = ({ userParticulars, userName, userId }) => {
                   alignItems: "space-between",
                 }}
               >
-                <InputLabel sx={{ mt: 1.5, mb: 1 }}>Username</InputLabel>
+                <InputLabel sx={{ mt: 2, mb: 1 }}>Username</InputLabel>
                 <TextField
                   error={errorName}
                   InputProps={{
@@ -503,7 +503,7 @@ export const UserParticulars = ({ userParticulars, userName, userId }) => {
                   }}
                 ></TextField>
 
-                <InputLabel sx={{ mt: 3, mb: 1 }}>First Name</InputLabel>
+                <InputLabel sx={{ mt: 2, mb: 1 }}>First Name</InputLabel>
                 <TextField
                   type="text"
                   name="firstName"
@@ -512,7 +512,7 @@ export const UserParticulars = ({ userParticulars, userName, userId }) => {
                   sx={{ mb: 1, backgroundColor: "#F6F6F6" }}
                 ></TextField>
 
-                <InputLabel sx={{ mt: 3, mb: 1 }}>Gender</InputLabel>
+                <InputLabel sx={{ mt: 2, mb: 1 }}>Gender</InputLabel>
                 <FormControl fullWidth>
                   <Select
                     type="option"
@@ -527,14 +527,14 @@ export const UserParticulars = ({ userParticulars, userName, userId }) => {
                   </Select>
                 </FormControl>
 
-                <InputLabel sx={{ mt: 3, mb: 1 }}>Current Level</InputLabel>
+                <InputLabel sx={{ mt: 2, mb: 1 }}>Current Level</InputLabel>
                 <FormControl fullWidth>
                   <Select
                     type="option"
                     name="currentLevel"
                     value={editedParticulars.currentLevel}
                     onChange={onChangeHandler}
-                    sx={{ mb: 3, backgroundColor: "#F6F6F6" }}
+                    sx={{ mb: 1, backgroundColor: "#F6F6F6" }}
                   >
                     <MenuItem value="Primary">Primary</MenuItem>
                     <MenuItem value="Secondary">Secondary</MenuItem>
@@ -562,7 +562,7 @@ export const UserParticulars = ({ userParticulars, userName, userId }) => {
                   alignItems: "space-between",
                 }}
               >
-                <InputLabel sx={{ mt: 1.5, mb: 1 }}>Email</InputLabel>
+                <InputLabel sx={{ mt: 2, mb: 1 }}>Email</InputLabel>
                 <TextField
                   type="email"
                   name="email"
@@ -571,7 +571,7 @@ export const UserParticulars = ({ userParticulars, userName, userId }) => {
                   sx={{ mb: 1, backgroundColor: "#F6F6F6" }}
                 ></TextField>
 
-                <InputLabel sx={{ mt: 3, mb: 1 }}>Last Name</InputLabel>
+                <InputLabel sx={{ mt: 2, mb: 1 }}>Last Name</InputLabel>
                 <TextField
                   type="text"
                   name="lastName"
@@ -580,7 +580,7 @@ export const UserParticulars = ({ userParticulars, userName, userId }) => {
                   sx={{ mb: 1, backgroundColor: "#F6F6F6" }}
                 ></TextField>
 
-                <InputLabel sx={{ mt: 3, mb: 1 }}>Age</InputLabel>
+                <InputLabel sx={{ mt: 2, mb: 1 }}>Age</InputLabel>
                 <TextField
                   type="number"
                   min="10"
@@ -592,7 +592,7 @@ export const UserParticulars = ({ userParticulars, userName, userId }) => {
                   sx={{ mb: 1, backgroundColor: "#F6F6F6" }}
                 ></TextField>
 
-                <InputLabel sx={{ mt: 3, mb: 1 }}>
+                <InputLabel sx={{ mt: 2, mb: 1 }}>
                   Matriculation Year
                 </InputLabel>
                 <TextField
@@ -603,14 +603,14 @@ export const UserParticulars = ({ userParticulars, userName, userId }) => {
                   name="matriculationYear"
                   value={editedParticulars.matriculationYear}
                   onChange={onChangeHandler}
-                  sx={{ mb: 3, backgroundColor: "#F6F6F6" }}
+                  sx={{ mb: 2, backgroundColor: "#F6F6F6" }}
                 ></TextField>
               </Container>
             </Box>
             <Button
               type="submit"
               variant="contained"
-              sx={{ mt: 3, mb: 2 }}
+              sx={{ mt: 2, mb: 1 }}
               onClick={submitHandler}
               color="secondary"
             >
@@ -619,7 +619,7 @@ export const UserParticulars = ({ userParticulars, userName, userId }) => {
             <Button
               type="submit"
               variant="contained"
-              sx={{ mt: 0, mb: 2 }}
+              sx={{ mt: 0, mb: 1 }}
               onClick={onCancelClick}
               color="secondary"
             >
@@ -663,7 +663,7 @@ export const UserParticulars = ({ userParticulars, userName, userId }) => {
                   alignItems: "space-between",
                 }}
               >
-                <InputLabel sx={{ mt: 1.5, mb: 1 }}>Username</InputLabel>
+                <InputLabel sx={{ mt: 2, mb: 1 }}>Username</InputLabel>
                 <TextField
                   InputProps={{
                     readOnly: true,
@@ -684,7 +684,7 @@ export const UserParticulars = ({ userParticulars, userName, userId }) => {
                   }}
                 ></TextField>
 
-                <InputLabel sx={{ mt: 3, mb: 1 }}>First Name</InputLabel>
+                <InputLabel sx={{ mt: 2, mb: 1 }}>First Name</InputLabel>
                 <TextField
                   type="text"
                   name="firstName"
@@ -695,7 +695,7 @@ export const UserParticulars = ({ userParticulars, userName, userId }) => {
                   sx={{ mb: 1, backgroundColor: "#F6F6F6" }}
                 ></TextField>
 
-                <InputLabel sx={{ mt: 3, mb: 1 }}>Gender</InputLabel>
+                <InputLabel sx={{ mt: 2, mb: 1 }}>Gender</InputLabel>
                 <TextField
                   value={editedParticulars.gender}
                   InputProps={{
@@ -704,7 +704,7 @@ export const UserParticulars = ({ userParticulars, userName, userId }) => {
                   sx={{ mb: 1, backgroundColor: "#F6F6F6" }}
                 ></TextField>
 
-                <InputLabel sx={{ mt: 3, mb: 1 }}>Current Level</InputLabel>
+                <InputLabel sx={{ mt: 2, mb: 1 }}>Current Level</InputLabel>
                 <TextField
                   value={editedParticulars.currentLevel}
                   InputProps={{
@@ -722,7 +722,7 @@ export const UserParticulars = ({ userParticulars, userName, userId }) => {
                   alignItems: "space-between",
                 }}
               >
-                <InputLabel sx={{ mt: 1.5, mb: 1 }}>Email</InputLabel>
+                <InputLabel sx={{ mt: 2, mb: 1 }}>Email</InputLabel>
                 <TextField
                   type="email"
                   name="email"
@@ -733,7 +733,7 @@ export const UserParticulars = ({ userParticulars, userName, userId }) => {
                   sx={{ mb: 1, backgroundColor: "#F6F6F6" }}
                 ></TextField>
 
-                <InputLabel sx={{ mt: 3, mb: 1 }}>Last Name</InputLabel>
+                <InputLabel sx={{ mt: 2, mb: 1 }}>Last Name</InputLabel>
                 <TextField
                   type="text"
                   name="lastName"
@@ -744,7 +744,7 @@ export const UserParticulars = ({ userParticulars, userName, userId }) => {
                   sx={{ mb: 1, backgroundColor: "#F6F6F6" }}
                 ></TextField>
 
-                <InputLabel sx={{ mt: 3, mb: 1 }}>Age</InputLabel>
+                <InputLabel sx={{ mt: 2, mb: 1 }}>Age</InputLabel>
                 <TextField
                   type="number"
                   min="1"
@@ -758,7 +758,7 @@ export const UserParticulars = ({ userParticulars, userName, userId }) => {
                   sx={{ mb: 1, backgroundColor: "#F6F6F6" }}
                 ></TextField>
 
-                <InputLabel sx={{ mt: 3, mb: 1 }}>
+                <InputLabel sx={{ mt: 2, mb: 1 }}>
                   Matriculation Year
                 </InputLabel>
                 <TextField
@@ -771,13 +771,13 @@ export const UserParticulars = ({ userParticulars, userName, userId }) => {
                   InputProps={{
                     readOnly: true,
                   }}
-                  sx={{ mb: 3, backgroundColor: "#F6F6F6" }}
+                  sx={{ mb: 2, backgroundColor: "#F6F6F6" }}
                 ></TextField>
               </Container>
             </Box>
             <Button
               variant="contained"
-              sx={{ mt: 3, mb: 2 }}
+              sx={{ mt: 2, mb: 1 }}
               onClick={onEditClick}
               color="secondary"
             >

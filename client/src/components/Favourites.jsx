@@ -177,9 +177,7 @@ export const Favourites = ({ userFavourites, userId }) => {
                 <Grid
                   item
                   xs={12}
-                  sm={12}
-                  md={6}
-                  lg={6}
+                  sm={6}
                   key={courseName}
                   sx={{
                     maxHeight: "400px",
@@ -194,6 +192,7 @@ export const Favourites = ({ userFavourites, userId }) => {
                       backgroundColor: "#f6f6f6",
                       borderRadius: "10px",
                       maxHeight: "370px",
+                      border: "1px solid black",
                     }}
                   >
                     <Typography
@@ -203,12 +202,7 @@ export const Favourites = ({ userFavourites, userId }) => {
                       sx={{
                         textAlign: "center",
                         backgroundColor: "#f6f6f6",
-                        mt: 2,
-                        height: "65px",
-                        "@media (max-width: 535px)": {
-                          height: "80px",
-                          width: "95%",
-                        },
+                        my: 0.5,
                       }}
                     >
                       <Button
@@ -216,17 +210,11 @@ export const Favourites = ({ userFavourites, userId }) => {
                         href={`/courses/${courseName}`}
                         sx={{
                           backgroundColor: "#f6f6f6",
-                          maxWidth: "100%",
-                          maxHeight: "100%",
-                          width: "auto",
-                          height: "auto",
-                          fontSize: "1.2rem",
+                          fontSize: { xs: "1rem", md: "1.2rem" },
                           fontWeight: "bold",
                           color: "primary.main",
                           border: "none",
                           boxShadow: "none",
-                          lineHeight: "1.3",
-
                           "&:hover": {
                             backgroundColor: "#ebebeb",
                           },
@@ -236,6 +224,7 @@ export const Favourites = ({ userFavourites, userId }) => {
                         {editMode && (
                           <Checkbox
                             onClick={() => onCheckboxChange(courseName)}
+                            sx={{ mx: "10px", p: 0 }}
                           ></Checkbox>
                         )}
                       </Button>
@@ -247,10 +236,12 @@ export const Favourites = ({ userFavourites, userId }) => {
                       }`}
                       alt="Course Image"
                       style={{
-                        maxWidth: "95%",
+                        maxWidth: "100%",
+                        maxHeight: "300px",
                         loading: "lazy",
-                        borderRadius: "10px",
-                        marginBottom: "20px",
+                        borderBottomRightRadius: "10px",
+                        borderBottomLeftRadius: "10px",
+                        borderTop: "1px solid black",
                       }}
                     />
                   </div>
