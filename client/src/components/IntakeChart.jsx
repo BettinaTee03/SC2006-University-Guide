@@ -98,7 +98,7 @@ function IntakeChart() {
   const handleCourseChange_2 = (event, newValue) => {
     if (newValue.length > 5) {
       newValue.pop();
-      setAlertMessage("You can select a maximum of 5 courses at a time.");
+      setAlertMessage("You can select a maximum of 5 sectors at a time.");
       setShowAlert(true);
     } else {
       setSelectedCourses(newValue.map((course) => course.value));
