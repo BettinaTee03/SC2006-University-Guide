@@ -47,12 +47,12 @@ function Register() {
   const { isAuthenticated } = useContext(AuthContext);
 
   const passwordPattern =
-    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&/,\.])[A-Za-z\d@$!%*?&/,\.]{8,}$/;
+    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&/#,\.])[A-Za-z\d@$!%*?&/#,\.]{8,}$/;
   const hasEightCharacters = password.length >= 8;
   const hasUpperCase = /[A-Z]/.test(password);
   const hasLowerCase = /[a-z]/.test(password);
   const hasDigit = /\d/.test(password);
-  const hasSpecialCharacter = /[@$!%*?&/,\.]/.test(password);
+  const hasSpecialCharacter = /[@$!%*?&/#,\.]/.test(password);
 
   const API_BASE_URL =
     import.meta.env.VITE_BASE_URL || "http://localhost:8000/api";
@@ -82,7 +82,7 @@ function Register() {
       setShowAlert(true);
       return;
     }
-
+    console.log(passwordPattern.test("DemoUser#1!"));
     if (!passwordPattern.test(password)) {
       setAlertMessage(
         "Password must have at least 8 characters, one uppercase letter, one lowercase letter, one number, and one special character."
