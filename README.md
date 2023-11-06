@@ -35,7 +35,10 @@ Visit [SG University Guide](https://www.sguniguide.tech) to explore the features
 Contributions to SG University Guide are welcome! If you have suggestions or resources to add, please [open an issue](https://github.com/timooo-thy/universityguide/issues) or submit a pull request.
 
 ## Credits
-Thanks to all the contributors who have expanded and refined SG Uni Guide.
+Thanks to all the contributors who have expanded and refined SG University Guide.
+
+## Demo Video
+[![Watch the video](https://res.cloudinary.com/dm9pja9iv/image/upload/v1699240829/sguniguide/vqpzncb9p8wmtzrd6a7z.png)](https://youtu.be/KZLXpUBVDFE)
 
 ## License
 [MIT](https://opensource.org/licenses/MIT)
