@@ -143,6 +143,7 @@ function Navbar() {
                 letterSpacing: ".2rem",
                 textDecoration: "none",
                 color: "#212B36",
+                cursor: "pointer",
               }}
             >
               Softbuns
@@ -215,6 +216,7 @@ function Navbar() {
                 letterSpacing: ".2rem",
                 textDecoration: "none",
                 color: "#212B36",
+                cursor: "pointer",
               }}
             >
               Softbuns
