@@ -258,7 +258,7 @@ function IntakeChart() {
                 color: "main",
               }}
             >
-              Compare {selectedButton === "intake" ? "Intake" : "Enrolment"}{" "}
+              Compare {selectedButton === "intake" ? "intake" : "enrolment"}{" "}
               between sectors
             </Typography>
           )}
