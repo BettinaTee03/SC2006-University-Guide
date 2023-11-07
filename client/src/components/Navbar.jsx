@@ -262,7 +262,10 @@ function Navbar() {
                   }}
                 >
                   {page}
-                  {location.pathname === `/${page.toLowerCase()}` && (
+                  {(location.pathname === `/${page.toLowerCase()}` ||
+                    location.pathname.startsWith(
+                      `/${page.toLowerCase()}/`
+                    )) && (
                     <Box
                       sx={{
                         width: "6px",

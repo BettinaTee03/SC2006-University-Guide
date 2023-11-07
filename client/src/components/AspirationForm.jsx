@@ -26,7 +26,6 @@ function AspirationForm({ course }) {
     for (let i = 1; i <= numberOfCareers; i++) {
       const careerProspect = data[`careerProspect${i}`];
       const careerPath = data[`careerPath${i}`].split("->");
-      console.log(data[`careerPath${i}`]);
       const skills = [];
 
       for (let j = 1; j <= 3; j++) {

@@ -8,7 +8,7 @@ function Explore() {
   const renderLinkContent = (option) => {
     return (
       <Link
-        to={`/courses/${option.course_name}`}
+        to={`/explore/${option.course_name}`}
         className="explore-search-link"
       >
         {option.course_name}

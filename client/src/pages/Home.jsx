@@ -81,7 +81,6 @@ function Home() {
             flexDirection: "column",
             justifyContent: { xs: "center", lg: "flex-start" },
             alignItems: { xs: "center", lg: "flex-start" },
-            fontFamily: "Roboto Condensed, sans serif",
           }}
         >
           <Typography

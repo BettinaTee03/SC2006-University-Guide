@@ -21,6 +21,7 @@ import AuthSuccess from "./components/AuthSuccess";
 import Footer from "./components/Footer";
 import ScrollBar from "./components/ScrollBar";
 import Box from "@mui/material/Box";
+import { CssBaseline } from "@mui/material";
 
 const theme = createTheme({
   palette: {
@@ -43,6 +44,7 @@ function App() {
       <Box
         sx={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}
       >
+        <CssBaseline />
         <AuthProvider>
           <Router>
             <Navbar />
@@ -59,7 +61,7 @@ function App() {
                 element={<CourseCompareResult />}
               />
               <Route
-                path="/courses/:courseName"
+                path="/explore/:courseName"
                 element={<IndividualCourse />}
               />
               <Route path="/statistics" element={<Statistics />} />
