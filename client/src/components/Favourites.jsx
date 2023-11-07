@@ -18,6 +18,8 @@ export const Favourites = ({ userFavourites, userId }) => {
   const [editMode, setEditMode] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
   const [errorSubmit, setErrorSubmit] = useState(false);
+  const [severity, setSeverity] = useState("success");
+  const [alertMessage, setAlertMessage] = useState("");
   const cloudinaryBaseUrl = "https://res.cloudinary.com/dm9pja9iv/image/upload";
   const transformations = `q_auto,c_crop,ar_16:9`;
 
@@ -63,18 +65,11 @@ export const Favourites = ({ userFavourites, userId }) => {
           setFavouriteCourses(response.data);
         }
       } catch (error) {
-        console.log(error);
-        alert("Failed to fetch user favourites. Please try again later.");
+        ("Failed to fetch user favourites. Please try again later.");
       }
     }
     getFavouriteCourses();
   }, []);
-
-  const alertMessage = errorSubmit
-    ? "An error occurred while saving changes. Please try again later."
-    : "Changes saved successfully!";
-
-  const severity = errorSubmit ? "error" : "success";
 
   //on edit click
   const onEditClick = () => {
@@ -113,10 +108,15 @@ export const Favourites = ({ userFavourites, userId }) => {
       );
 
       if (response.status === 200) {
+        setAlertMessage("Changes saved successfully!");
         setFavouriteCourses(filteredCourses);
         setShowAlert(true);
       }
     } catch (error) {
+      setSeverity("error");
+      setAlertMessage(
+        "An error occurred while saving changes. Please try again later."
+      );
       setErrorSubmit(true);
       setShowAlert(true);
     }
@@ -213,7 +213,7 @@ export const Favourites = ({ userFavourites, userId }) => {
                     >
                       <Button
                         variant="contained"
-                        href={`/courses/${courseName}`}
+                        href={`/explore/${courseName}`}
                         sx={{
                           backgroundColor: "#f6f6f6",
                           fontSize: {
