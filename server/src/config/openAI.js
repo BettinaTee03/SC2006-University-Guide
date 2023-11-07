@@ -26,7 +26,7 @@ const llm = new OpenAI({
    * The name of the model to use.
    * @type {string}
    */
-  modelName: "text-davinci-003",
+  modelName: "gpt-3.5-turbo-1106",
 
   /**
    * Determines the randomness of the model's output.
