@@ -38,7 +38,7 @@ const llm = new OpenAI({
    * The maximum number of tokens to generate.
    * @type {number}
    */
-  maxTokens: 400,
+  maxTokens: 600,
 });
 
 export default llm;
