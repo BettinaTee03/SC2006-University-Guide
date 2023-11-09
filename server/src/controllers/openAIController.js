@@ -22,7 +22,6 @@ const parser = StructuredOutputParser.fromNamesAndDescriptions({
     "List the first essential skill. Be highly specific and succint, considering the nature of the job and the tools or platforms predominantly used in that role.",
   skill2_2: "List the second essential skill.",
   skill2_3: "List the third essential skill.",
-
   careerProspect3:
     "Third unique career prospect tailored to the user's aspiration and course.",
   careerPath3:
